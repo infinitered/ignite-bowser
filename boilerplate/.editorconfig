@@ -1,12 +1,17 @@
-# http://editorconfig.org
+# EditorConfig is awesome: http://EditorConfig.org
 
 # top-most EditorConfig file
 root = true
 
+# Unix-style newlines with a newline ending every file
 [*]
-charset = utf-8
-indent_style = space
-indent_size = 2
 end_of_line = lf
 insert_final_newline = true
+indent_style = space
+indent_size = 2
+charset = utf-8
 trim_trailing_whitespace = true
+
+
+[*.gradle]
+indent_size = 4

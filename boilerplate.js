@@ -122,6 +122,12 @@ async function install (context) {
   })
 
   /**
+   * Append to files
+   */
+  // https://github.com/facebook/react-native/issues/12724
+  filesystem.appendAsync('.gitattributes', '*.bat text eol=crlf')
+
+  /**
    * Merge the package.json from our template into the one provided from react-native init.
    */
   async function mergePackageJsons () {
