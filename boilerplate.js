@@ -106,7 +106,6 @@ async function install (context) {
     { template: 'README.md', target: 'README.md' },
     { template: 'ignite.json.ejs', target: 'ignite/ignite.json' },
     { template: '.editorconfig', target: '.editorconfig' },
-    { template: '.gitattributes', target: '.gitattributes' },
     {
       template: 'App/Config/AppConfig.js.ejs',
       target: 'App/Config/AppConfig.js'
@@ -121,6 +120,12 @@ async function install (context) {
     quiet: true,
     directory: `${ignite.ignitePluginPath()}/boilerplate`
   })
+
+  /**
+   * Append to files
+   */
+  // https://github.com/facebook/react-native/issues/12724
+  filesystem.appendAsync('.gitattributes', '*.bat text eol=crlf')
 
   /**
    * Merge the package.json from our template into the one provided from react-native init.
