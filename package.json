@@ -22,7 +22,7 @@
   },
   "scripts": {
     "lint": "standard",
-    "test": "ava",
+    "test": "ava --concurrency=1",
     "watch": "ava --watch",
     "coverage": "nyc ava",
     "shipit": "np"
