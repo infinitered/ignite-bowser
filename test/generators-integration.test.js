@@ -5,7 +5,7 @@ const { contains } = require('ramda')
 const IGNITE = 'ignite'
 const TEST_IGNITE = 'cd integration_test && ignite'
 
-test.before('can setup integraion project', async t => {
+test.before('can setup integration project', async t => {
   const proj_result = await execa(IGNITE, ['new', 'integration_test', '--min'])
   process.chdir('./integration_test')
   t.is(proj_result.code, 0)
