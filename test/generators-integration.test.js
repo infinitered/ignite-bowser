@@ -1,14 +1,12 @@
 const test = require('ava')
 const execa = require('execa')
-const { contains } = require('ramda')
 
 const IGNITE = 'ignite'
-const TEST_IGNITE = 'cd integration_test && ignite'
 
 test.before('can setup integraion project', async t => {
-  const proj_result = await execa(IGNITE, ['new', 'integration_test', '--min'])
+  const projectResult = await execa(IGNITE, ['new', 'integration_test', '--min'])
   process.chdir('./integration_test')
-  t.is(proj_result.code, 0)
+  t.is(projectResult.code, 0)
   // Install self
   const result = await execa(IGNITE, ['add', '../'])
   t.is(result.code, 0)
