@@ -21,7 +21,7 @@ module.exports = async function (context) {
       target: `App/Containers/${name}Screen.js`
     },
     {
-      template: `saga.ejs`,
+      template: `screen-style.ejs`,
       target: `App/Containers/Styles/${name}ScreenStyle.js`
     }
   ]
