@@ -1,6 +1,6 @@
 // @cliDescription  Generates an opinionated container.
 
-module.exports = async function(context) {
+module.exports = async function (context) {
   // grab some features
   const { parameters, print, strings, ignite } = context
   const { pascalCase, isBlank } = strings
@@ -10,7 +10,7 @@ module.exports = async function(context) {
     print.info(`${context.runtime.brand} generate saga <name>\n`)
     print.info('A name is required.')
     return
-  } 
+  }
 
   const name = pascalCase(parameters.first)
   const props = { name }
