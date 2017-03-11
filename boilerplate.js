@@ -21,7 +21,7 @@ const finish = async function (context) {
   const { parameters, system, print, ignite } = context
   const name = parameters.third
 
-  if (parameters.options['skip-git'] === false) {
+  if (parameters.options['skip-git'] !== true) {
     // initial git
     if (system.which('git')) {
       const spinner = print.spin('configuring git')
