@@ -21,19 +21,21 @@ const finish = async function (context) {
   const { parameters, system, print, ignite } = context
   const name = parameters.third
 
-  // initial git
-  if (system.which('git')) {
-    const spinner = print.spin('configuring git')
-    ignite.log('git init .')
-    await system.run('git init .')
-    ignite.log('git add .')
-    await system.run('git add .')
-    ignite.log('git commit')
-    await system.run('git commit -m "Initial commit."')
-    // setup husky git hooks
-    spinner.text = 'setting up git hooks'
-    system.run(`node node_modules/husky/bin/install .`)
-    spinner.succeed('configured git')
+  if (parameters.options['skip-git'] !== true) {
+    // initial git
+    if (system.which('git')) {
+      const spinner = print.spin('configuring git')
+      ignite.log('git init .')
+      await system.run('git init .')
+      ignite.log('git add .')
+      await system.run('git add .')
+      ignite.log('git commit')
+      await system.run('git commit -m "Initial commit."')
+      // setup husky git hooks
+      spinner.text = 'setting up git hooks'
+      system.run(`node node_modules/husky/bin/install .`)
+      spinner.succeed('configured git')
+    }
   }
 
   // Wrap it up with our success message.
