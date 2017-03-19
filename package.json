@@ -1,10 +1,10 @@
 {
   "name": "ignite-ir-boilerplate-2016",
-  "description": "Infinite Red's recommended app structure",
+  "description": "Infinite Red's recommended app structure 2016",
   "license": "MIT",
   "repository": "infinitered/ignite",
   "homepage": "https://github.com/infinitered/ignite",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "files": [
     "boilerplate",
     "commands",
