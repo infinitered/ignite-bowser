@@ -10,6 +10,8 @@ test.before(async t => {
   jetpack.remove(APP)
   await execa(IGNITE, ['new', APP, '--min', '--skip-git', `--boilerplate=${__dirname}/../`], { env: { 'IGNITE_PLUGIN_PATH': path.resolve('../') } })
   process.chdir(APP)
+  // for some  reason... add it again (TODO: WTF)
+  await execa(IGNITE, ['add', '../'])
 })
 
 test('generates a component', async t => {
