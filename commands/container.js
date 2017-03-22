@@ -54,7 +54,6 @@ module.exports = async function (context) {
       after: 'const PrimaryNav',
       insert: routeToAdd
     })
-
   } else {
     print.log('Container created, manually add it to your navigation')
   }

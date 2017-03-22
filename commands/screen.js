@@ -55,7 +55,6 @@ module.exports = async function (context) {
       after: 'const PrimaryNav',
       insert: routeToAdd
     })
-
   } else {
     print.log('Screen created, manually add it to your navigation')
   }
