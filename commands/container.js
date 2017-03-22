@@ -2,8 +2,9 @@
 
 module.exports = async function (context) {
   // grab some features
-  const { parameters, strings, print, ignite } = context
+  const { parameters, strings, print, ignite, filesystem } = context
   const { pascalCase, isBlank } = strings
+  const config = ignite.loadIgniteConfig()
 
   // validation
   if (isBlank(parameters.first)) {
@@ -27,4 +28,34 @@ module.exports = async function (context) {
   ]
 
   await ignite.copyBatch(context, jobs, props)
+
+  // if using `react-navigation` go the extra step
+  // and insert the container into the nav router
+  if (config.navigation === 'react-navigation') {
+    const containerName = name
+    const appNavFilePath = `${process.cwd()}/App/Navigation/AppNavigation.js`
+    const importToAdd = `import ${containerName} from '../Containers/${containerName}'`
+    const routeToAdd = `  ${containerName}: { screen: ${containerName} },`
+
+    if (!filesystem.exists(appNavFilePath)) {
+      const msg = `No '${appNavFilePath}' file found.  Can't insert container.`
+      print.error(msg)
+      process.exit(1)
+    }
+
+    // insert container import
+    ignite.patchInFile(appNavFilePath, {
+      after: 'import { StackNavigator } from',
+      insert: importToAdd
+    })
+
+    // insert container route
+    ignite.patchInFile(appNavFilePath, {
+      after: 'const PrimaryNav',
+      insert: routeToAdd
+    })
+
+  } else {
+    print.log('Container created, manually add it to your navigation')
+  }
 }

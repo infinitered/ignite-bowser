@@ -2,7 +2,7 @@
 
 module.exports = async function (context) {
   // grab some features
-  const { parameters, print, strings, ignite, filesystem, patching } = context
+  const { parameters, print, strings, ignite, filesystem } = context
   const { pascalCase, isBlank } = strings
   const config = ignite.loadIgniteConfig()
 
