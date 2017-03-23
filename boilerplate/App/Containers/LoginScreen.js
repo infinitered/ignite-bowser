@@ -13,7 +13,6 @@ import { connect } from 'react-redux'
 import Styles from './Styles/LoginScreenStyles'
 import {Images, Metrics} from '../Themes'
 import LoginActions from '../Redux/LoginRedux'
-import { Actions as NavigationActions } from 'react-native-router-flux'
 
 class LoginScreen extends React.Component {
 
@@ -42,7 +41,7 @@ class LoginScreen extends React.Component {
     this.forceUpdate()
     // Did the login attempt complete?
     if (this.isAttempting && !newProps.fetching) {
-      NavigationActions.pop()
+      this.props.navigation.goBack()
     }
   }
 
@@ -142,7 +141,7 @@ class LoginScreen extends React.Component {
                 <Text style={Styles.loginText}>Sign In</Text>
               </View>
             </TouchableOpacity>
-            <TouchableOpacity style={Styles.loginButtonWrapper} onPress={NavigationActions.pop}>
+            <TouchableOpacity style={Styles.loginButtonWrapper} onPress={() => this.props.navigation.goBack()}>
               <View style={Styles.loginButton}>
                 <Text style={Styles.loginText}>Cancel</Text>
               </View>
