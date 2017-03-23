@@ -28,7 +28,7 @@ const ApplicationStyles = {
       padding: Metrics.baseMargin
     },
     sectionText: {
-      ...Fonts.normal,
+      ...Fonts.style.normal,
       paddingVertical: Metrics.doubleBaseMargin,
       color: Colors.snow,
       marginVertical: Metrics.smallMargin,
