@@ -31,16 +31,16 @@ module.exports = async function (context) {
     const answers = await context.prompt.ask({
       name: 'type',
       type: 'list',
-      typeMessage,
-      typeChoices
+      message: typeMessage,
+      choices: typeChoices
     })
     type = answers.type
     // ask question 2
     const dataAnswers = await context.prompt.ask({
       name: 'type',
       type: 'list',
-      typeDataMessage,
-      typeDataChoices
+      message: typeDataMessage,
+      choices: typeDataChoices
     })
     dataType = dataAnswers.type
   }
