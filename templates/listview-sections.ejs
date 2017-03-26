@@ -110,9 +110,9 @@ class ListviewSectionsExample extends React.Component {
   renderHeader (data, sectionID) {
     switch (sectionID) {
       case 'first':
-        return <Text style={styles.boldLabel}>First Section</Text>
+        return <View style={styles.sectionHeader}><Text style={styles.boldLabel}>First Section</Text></View>
       default:
-        return <Text style={styles.boldLabel}>Second Section</Text>
+        return <View style={styles.sectionHeader}><Text style={styles.boldLabel}>Second Section</Text></View>
     }
   }
 
