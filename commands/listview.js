@@ -16,24 +16,37 @@ module.exports = async function (context) {
   const name = pascalCase(parameters.first)
   const props = { name }
 
-  // which type of grid?
-  const message = 'What kind of ListView would you like to generate?'
-  const choices = ['Row', 'With Sections', 'Grid']
+  // which type of layout?
+  const typeMessage = 'What kind of ListView would you like to generate?'
+  const typeChoices = ['Row', 'Grid']
+
+  // Sections or no?
+  const typeDataMessage = 'How will your data be presented on this listview?'
+  const typeDataChoices = ['Single', 'Sectioned']
 
   // pick one
   let type = parameters.options.type
   if (!type) {
+    // as question 1
     const answers = await context.prompt.ask({
       name: 'type',
       type: 'list',
-      message,
-      choices
+      message: typeMessage,
+      choices: typeChoices
     })
     type = answers.type
+    // ask question 2
+    const dataAnswers = await context.prompt.ask({
+      name: 'type',
+      type: 'list',
+      message: typeDataMessage,
+      choices: typeDataChoices
+    })
+    dataType = dataAnswers.type
   }
 
   // set appropriate templates to generate
-  const componentTemplate = type === 'With Sections'
+  const componentTemplate = dataType === 'Sectioned'
     ? 'listview-sections'
     : 'listview'
   const styleTemplate = type === 'Grid'
