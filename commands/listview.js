@@ -24,8 +24,13 @@ module.exports = async function (context) {
   const typeDataMessage = 'How will your data be presented on this listview?'
   const typeDataChoices = ['Single', 'Sectioned']
 
-  // pick one
+  // get type
   let type = parameters.options.type
+
+  // get dataType
+  let dataType = parameters.options.dataType
+
+  // only prompt if type is not defined
   if (!type) {
     // as question 1
     const answers = await context.prompt.ask({
