@@ -97,6 +97,6 @@ module.exports = async function (context) {
       insert: routeToAdd
     })
   } else {
-    print.log('Listview screen created, manually add it to your navigation')
+    print.info('Listview screen created, manually add it to your navigation')
   }
 }
