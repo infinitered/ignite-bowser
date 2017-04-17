@@ -1,5 +1,7 @@
 ### Config Folder
 All application specific configuration falls in this folder.
 
-`DebugConfig.js` is used for development-wide globals.
-`ReactotronConfig.js` is used for Reactotron client settings.
+`AppConfig.js` - production values.
+`DebugConfig.js` - development-wide globals.
+`ReactotronConfig.js` - Reactotron client settings.
+`ReduxPersist.js` - rehydrate Redux state.
