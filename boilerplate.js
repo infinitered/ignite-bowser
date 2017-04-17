@@ -107,11 +107,7 @@ async function install (context) {
     { template: 'index.js.ejs', target: 'index.android.js' },
     { template: 'README.md', target: 'README.md' },
     { template: 'ignite.json.ejs', target: 'ignite/ignite.json' },
-    { template: '.editorconfig', target: '.editorconfig' },
-    {
-      template: 'App/Config/AppConfig.js.ejs',
-      target: 'App/Config/AppConfig.js'
-    }
+    { template: '.editorconfig', target: '.editorconfig' }
   ]
   const templateProps = {
     name,
