@@ -1,11 +1,10 @@
 import { StartupTypes } from '../Redux/StartupRedux'
 import Config from '../Config/DebugConfig'
 import Immutable from 'seamless-immutable'
-const Reactotron = require('reactotron-react-native').default
-const errorPlugin = require('reactotron-react-native').trackGlobalErrors
-const apisaucePlugin = require('reactotron-apisauce')
-const { reactotronRedux } = require('reactotron-redux')
-const sagaPlugin = require('reactotron-redux-saga')
+import Reactotron, { overlay, trackGlobalErrors } from 'reactotron-react-native'
+import apisaucePlugin from 'reactotron-apisauce'
+import { reactotronRedux } from 'reactotron-redux'
+import sagaPlugin from 'reactotron-redux-saga'
 
 if (Config.useReactotron) {
   Reactotron
@@ -15,7 +14,7 @@ if (Config.useReactotron) {
     })
 
     // forward all errors to Reactotron
-    .use(errorPlugin({
+    .use(trackGlobalErrors({
       // ignore all error frames from react-native (for example)
       veto: (frame) =>
         frame.fileName.indexOf('/node_modules/react-native/') >= 0
@@ -23,6 +22,9 @@ if (Config.useReactotron) {
 
     // register apisauce so we can install a monitor later
     .use(apisaucePlugin())
+
+    // add overlay ability for graphics
+    .use(overlay())
 
     // setup the redux integration with Reactotron
     .use(reactotronRedux({

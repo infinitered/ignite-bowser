@@ -26,4 +26,7 @@ class App extends Component {
   }
 }
 
-export default App
+// allow reactotron overlay for fast design
+const AppWithBenefits = console.tron.overlay(App)
+
+export default AppWithBenefits
