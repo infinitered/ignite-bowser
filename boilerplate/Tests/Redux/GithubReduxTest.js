@@ -1,28 +1,27 @@
-import test from 'ava'
 import Actions, { reducer, INITIAL_STATE } from '../../App/Redux/GithubRedux'
 
-test('request', (t) => {
+test('request', () => {
   const username = 'taco'
   const state = reducer(INITIAL_STATE, Actions.userRequest(username))
 
-  t.true(state.fetching)
-  t.is(state.username, username)
-  t.is(null, state.avatar)
+  expect(state.fetching).toBe(true)
+  expect(state.username).toBe(username)
+  expect(state.avatar).toBeNull()
 })
 
-test('success', (t) => {
+test('success', () => {
   const avatar = 'http://placekitten.com/200/300'
   const state = reducer(INITIAL_STATE, Actions.userSuccess(avatar))
 
-  t.false(state.fetching)
-  t.is(state.avatar, avatar)
-  t.is(null, state.error)
+  expect(state.fetching).toBe(false)
+  expect(state.avatar).toBe(avatar)
+  expect(state.error).toBeNull()
 })
 
-test('failure', (t) => {
+test('failure', () => {
   const state = reducer(INITIAL_STATE, Actions.userFailure())
 
-  t.false(state.fetching)
-  t.true(state.error)
-  t.is(null, state.avatar)
+  expect(state.fetching).toBe(false)
+  expect(state.error).toBe(true)
+  expect(state.avatar).toBeNull()
 })

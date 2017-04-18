@@ -83,7 +83,7 @@ async function install (context) {
     .succeed()
 
   // attempt to install React Native or die trying
-  const rnInstall = await reactNative.install({ name, skipJest: true })
+  const rnInstall = await reactNative.install({ name })
   if (rnInstall.exitCode > 0) process.exit(rnInstall.exitCode)
 
   // remove the __tests__ directory that come with React Native
