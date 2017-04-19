@@ -1,5 +1,7 @@
 // @cliDescription  Generates a redux smart component.
 
+const patterns = require('./patterns');
+
 module.exports = async function (context) {
   // grab some features
   const { parameters, strings, print, ignite, filesystem } = context
@@ -45,13 +47,13 @@ module.exports = async function (context) {
 
     // insert container import
     ignite.patchInFile(appNavFilePath, {
-      after: 'import { StackNavigator } from',
+      after: patterns[patterns.constants.PATTERN_IMPORTS],
       insert: importToAdd
     })
 
     // insert container route
     ignite.patchInFile(appNavFilePath, {
-      after: 'const PrimaryNav',
+      after: patterns[patterns.constants.PATTERN_ROUTES],
       insert: routeToAdd
     })
   } else {

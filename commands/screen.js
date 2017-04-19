@@ -1,5 +1,7 @@
 // @cliDescription  Generates an opinionated container.
 
+const patterns = require('./patterns');
+
 module.exports = async function (context) {
   // grab some features
   const { parameters, print, strings, ignite, filesystem } = context
@@ -46,13 +48,13 @@ module.exports = async function (context) {
 
     // insert screen import
     ignite.patchInFile(appNavFilePath, {
-      after: 'import { StackNavigator } from',
+      after: patterns[patterns.constants.PATTERN_IMPORTS],
       insert: importToAdd
     })
 
     // insert screen route
     ignite.patchInFile(appNavFilePath, {
-      after: 'const PrimaryNav',
+      after: patterns[patterns.constants.PATTERN_ROUTES],
       insert: routeToAdd
     })
   } else {
