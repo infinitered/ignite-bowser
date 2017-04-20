@@ -1,6 +1,6 @@
 // @cliDescription  Generates a redux smart component.
 
-const patterns = require('./patterns');
+const patterns = require('../lib/patterns');
 
 module.exports = async function (context) {
   // grab some features
