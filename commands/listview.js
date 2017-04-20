@@ -1,5 +1,7 @@
 // @cliDescription  Generates a screen with a ListView + walkthrough.
 
+const patterns = require('../lib/patterns');
+
 module.exports = async function (context) {
   // grab some features
   const { print, parameters, strings, ignite, filesystem } = context
@@ -87,13 +89,13 @@ module.exports = async function (context) {
 
     // insert listview screen import
     ignite.patchInFile(appNavFilePath, {
-      after: 'import { StackNavigator } from',
+      after: patterns[patterns.constants.PATTERN_IMPORTS],
       insert: importToAdd
     })
 
     // insert listview screen route
     ignite.patchInFile(appNavFilePath, {
-      after: 'const PrimaryNav',
+      after: patterns[patterns.constants.PATTERN_ROUTES],
       insert: routeToAdd
     })
   } else {
