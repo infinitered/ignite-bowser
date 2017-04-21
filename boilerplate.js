@@ -102,6 +102,16 @@ async function install (context) {
   })
   spinner.stop()
 
+  // --max, --min, interactive
+  let answers
+  if (parameters.options.max) {
+    answers = options.answers.max
+  } else if (parameters.options.min) {
+    answers = options.answers.min
+  } else {
+    answers = await prompt.ask(options.questions)
+  }
+
   // generate some templates
   spinner.text = '▸ generating files'
   const templates = [
@@ -109,7 +119,8 @@ async function install (context) {
     { template: 'index.js.ejs', target: 'index.android.js' },
     { template: 'README.md', target: 'README.md' },
     { template: 'ignite.json.ejs', target: 'ignite/ignite.json' },
-    { template: '.editorconfig', target: '.editorconfig' }
+    { template: '.editorconfig', target: '.editorconfig' },
+    { template: 'Tests/Setup.js.ejs', target: 'Tests/Setup.js' }
   ]
   const templateProps = {
     name,
@@ -168,16 +179,6 @@ async function install (context) {
   await mergePackageJsons()
 
   spinner.stop()
-
-  // --max, --min, interactive
-  let answers
-  if (parameters.options.max) {
-    answers = options.answers.max
-  } else if (parameters.options.min) {
-    answers = options.answers.min
-  } else {
-    answers = await prompt.ask(options.questions)
-  }
 
   spinner.text = '▸ installing ignite dependencies'
   spinner.start()
