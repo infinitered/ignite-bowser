@@ -79,7 +79,7 @@ async function install (context) {
 
   const name = parameters.third
   const spinner = print
-    .spin(`using the ${print.colors.red('Infinite Red 2016')} boilerplate`)
+    .spin(`using the ${print.colors.red('Infinite Red')} boilerplate`)
     .succeed()
 
   // attempt to install React Native or die trying
@@ -114,7 +114,10 @@ async function install (context) {
   const templateProps = {
     name,
     igniteVersion: ignite.version,
-    reactNativeVersion: rnInstall.version
+    reactNativeVersion: rnInstall.version,
+    vectorIcons: answers['vector-icons'],
+    animatable: answers['animatable'],
+    i18n: answers['i18n']
   }
   await ignite.copyBatch(context, templates, templateProps, {
     quiet: true,
