@@ -93,10 +93,12 @@ async function install (context) {
   spinner.text = '▸ copying files'
   spinner.start()
   filesystem.copy(`${__dirname}/boilerplate/App`, `${process.cwd()}/App`, {
-    overwrite: true
+    overwrite: true,
+    matching: '!*.ejs'
   })
   filesystem.copy(`${__dirname}/boilerplate/Tests`, `${process.cwd()}/Tests`, {
-    overwrite: true
+    overwrite: true,
+    matching: '!*.ejs'
   })
   spinner.stop()
 
@@ -112,7 +114,10 @@ async function install (context) {
   const templateProps = {
     name,
     igniteVersion: ignite.version,
-    reactNativeVersion: rnInstall.version
+    reactNativeVersion: rnInstall.version,
+    vectorIcons: answers['vector-icons'],
+    animatable: answers['animatable'],
+    i18n: answers['i18n']
   }
   await ignite.copyBatch(context, templates, templateProps, {
     quiet: true,

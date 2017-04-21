@@ -1,7 +1,9 @@
 import mockery from 'mockery'
 import m from 'module'
+<%_ if (props.i18n === 'react-native-i18n') { _%>
 import english from '../App/I18n/languages/english.json'
 import {keys, replace, forEach} from 'ramda'
+<%_ } _%>
 
 // inject __DEV__ as it is not available when running through the tests
 global.__DEV__ = true
@@ -19,10 +21,15 @@ mockery.warnOnUnregistered(false)
 mockery.registerMock('reactotron-react-native', {})
 mockery.registerMock('reactotron-redux', {})
 mockery.registerMock('reactotron-apisauce', {})
+<%_ if (props.animatable === 'react-native-animatable') { _%>
 mockery.registerMock('react-native-animatable', {View: 'Animatable.View'})
+<%_ } _%>
+<%_ if (props.vectorIcons === 'react-native-vector-icons') { _%>
 mockery.registerMock('react-native-vector-icons/Ionicons', {})
+<%_ } _%>
 mockery.registerMock('react-native-router-flux', {Actions: {'myScreen': () => {}}, ActionConst: {RESET: 'reset'}})
 
+<%_ if (props.i18n === 'react-native-i18n') { _%>
 // Mock i18n as it uses react native stuff
 // This mock returns the interpolated text from the english.json file in App/I18n
 // If you are not using '../App/I18n/english.json' for your I18n values, simply replace import english
@@ -40,7 +47,7 @@ mockery.registerMock('react-native-i18n', {
     return value
   }
 })
-
+<%_ } _%>
 // Mock all images for React Native
 const originalLoader = m._load
 m._load = (request, parent, isMain) => {
