@@ -2,9 +2,9 @@
   "name": "ignite-ir-next",
   "description": "Infinite Red's straight from the lab boilerplate",
   "license": "MIT",
-  "repository": "infinitered/ignite",
-  "homepage": "https://github.com/infinitered/ignite",
-  "version": "0.0.5",
+  "repository": "infinitered/ignite-ir-next",
+  "homepage": "https://github.com/infinitered/ignite-ir-next",
+  "version": "0.0.6",
   "files": [
     "boilerplate",
     "commands",
@@ -18,7 +18,7 @@
   "author": {
     "name": "Infinite Red",
     "email": "npm@infinite.red",
-    "url": "https://github.com/infinitered/ignite"
+    "url": "https://github.com/infinitered/ignite-ir-next"
   },
   "scripts": {
     "lint": "standard",
