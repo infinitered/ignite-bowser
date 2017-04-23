@@ -1,6 +1,6 @@
 // @cliDescription  Generates an opinionated container.
 
-const patterns = require('../lib/patterns');
+const patterns = require('../lib/patterns')
 
 module.exports = async function (context) {
   // grab some features

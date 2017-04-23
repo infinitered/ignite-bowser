@@ -1,6 +1,6 @@
 {
   "name": "ignite-ir-next",
-  "description": "Infinite Red's straight from the lab boilerplate",
+  "description": "Infinite Red's straight-from-the-lab boilerplate for React Native.",
   "license": "MIT",
   "repository": "infinitered/ignite-ir-next",
   "homepage": "https://github.com/infinitered/ignite-ir-next",
@@ -8,11 +8,13 @@
   "files": [
     "boilerplate",
     "commands",
+    "lib",
     "templates",
     "boilerplate.js",
     "ignite.json",
     "options.js",
     "plugin.js",
+    "readme.md",
     "screenExamples.js"
   ],
   "author": {
