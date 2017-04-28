@@ -3,7 +3,9 @@ import { Text, TouchableOpacity } from 'react-native'
 import styles from './Styles/DrawerButtonStyles'
 import ExamplesRegistry from '../Services/ExamplesRegistry'
 
-// Example
+// Note that this file (App/Components/DrawerButton) needs to be
+// imported in your app somewhere, otherwise your component won't be
+// compiled and added to the examples dev screen.
 ExamplesRegistry.addComponentExample('Drawer Button', () =>
   <DrawerButton
     text='Example left drawer button'
