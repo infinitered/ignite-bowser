@@ -3,7 +3,9 @@ import { TouchableOpacity, Text } from 'react-native'
 import styles from './Styles/FullButtonStyles'
 import ExamplesRegistry from '../Services/ExamplesRegistry'
 
-// Example
+// Note that this file (App/Components/FullButton) needs to be
+// imported in your app somewhere, otherwise your component won't be
+// compiled and added to the examples dev screen.
 ExamplesRegistry.addComponentExample('Full Button', () =>
   <FullButton
     text='Hey there'
