@@ -150,8 +150,6 @@ async function install (context) {
 
   // -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
   // NOTE(steve): I'm re-adding this here because boilerplates now hold permanent files
-  // TODO(steve):
-  //   * this needs to get planned a little better.
   // -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
   try {
     // Disabled slow but reliable method here
