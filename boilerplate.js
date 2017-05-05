@@ -17,49 +17,6 @@ const isAndroidInstalled = function (context) {
   return Boolean(hasAndroid)
 }
 
-const finish = async function (context) {
-  const { parameters, system, print, ignite } = context
-  const name = parameters.third
-
-  if (parameters.options['skip-git'] !== true) {
-    // initial git
-    if (system.which('git')) {
-      const spinner = print.spin('configuring git')
-      ignite.log('git init .')
-      await system.run('git init .')
-      ignite.log('git add .')
-      await system.run('git add .')
-      ignite.log('git commit')
-      await system.run('git commit -m "Initial commit."')
-      // setup husky git hooks
-      spinner.text = 'setting up git hooks'
-      system.run(`node node_modules/husky/bin/install .`)
-      spinner.succeed('configured git')
-    }
-  }
-
-  // Wrap it up with our success message.
-  print.info('')
-  print.info('🍽 Time to get cooking!')
-  print.info('')
-  print.info('To run in iOS:')
-  print.info(print.colors.bold(`  cd ${name}`))
-  print.info(print.colors.bold('  react-native run-ios'))
-  print.info('')
-  if (isAndroidInstalled(context)) {
-    print.info('To run in Android:')
-  } else {
-    print.info(`To run in Android, make sure you've followed the latest react-native setup instructions at https://facebook.github.io/react-native/docs/getting-started.html before using ignite.\nYou won't be able to run ${print.colors.bold('react-native run-android')} successfully until you have. Then:`)
-  }
-  print.info(print.colors.bold(`  cd ${name}`))
-  print.info(print.colors.bold('  react-native run-android'))
-  print.info('')
-  print.info('To see what ignite can do for you:')
-  print.info(print.colors.bold(`  cd ${name}`))
-  print.info(print.colors.bold('  ignite'))
-  print.info('')
-}
-
 /**
  * Let's install.
  *
@@ -76,6 +33,8 @@ async function install (context) {
     prompt,
     template
   } = context
+
+  const perfStart = (new Date()).getTime()
 
   const name = parameters.third
   const spinner = print
@@ -180,15 +139,6 @@ async function install (context) {
 
   spinner.stop()
 
-  spinner.text = '▸ installing ignite dependencies'
-  spinner.start()
-  if (context.ignite.useYarn) {
-    await system.run('yarn')
-  } else {
-    await system.run('npm i')
-  }
-  spinner.stop()
-
   // react native link -- must use spawn & stdio: ignore or it hangs!! :(
   spinner.text = `▸ linking native libraries`
   spinner.start()
@@ -200,11 +150,34 @@ async function install (context) {
 
   // -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
   // NOTE(steve): I'm re-adding this here because boilerplates now hold permanent files
-  // TODO(steve):
-  //   * this needs to get planned a little better.
   // -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
   try {
-    await system.spawn(`ignite add ir-next ${debugFlag}`, { stdio: 'inherit' })
+    // Disabled slow but reliable method here
+    // await system.spawn(`ignite add ${__dirname} ${debugFlag}`, { stdio: 'inherit' })
+
+    // mini version of `ignite add ir-next` here -- but faster
+    const moduleName = 'ignite-ir-next'
+    
+    const perfStart = (new Date()).getTime()
+    const spinner = print.spin(`adding ${print.colors.cyan(moduleName)}`)
+    
+    // note: npm is much faster than yarn here. ಠ_ಠ 
+    await system.run(`npm i ${__dirname} --save-dev`)
+
+    const ignitePluginConfigPath = `${__dirname}/ignite.json`
+    const newConfig = filesystem.read(ignitePluginConfigPath, 'json')
+    const pluginModule = require(`${__dirname}/plugin.js`)
+
+    ignite.setIgnitePluginPath(__dirname)
+    ignite.saveIgniteConfig(newConfig)
+
+    await pluginModule.add(context)
+
+    const perfDuration = parseInt(((new Date()).getTime() - perfStart) / 10) / 100
+
+    spinner.text = `added ${print.colors.cyan(moduleName)} in ${perfDuration}s`
+    spinner.start()
+    spinner.succeed()
 
     // now run install of Ignite Plugins
     if (answers['dev-screens'] === 'Yes') {
@@ -233,7 +206,44 @@ async function install (context) {
     throw e
   }
 
-  await finish(context)
+  // git configuration
+  if (parameters.options['skip-git'] !== true) {
+    // initial git
+    
+    if (system.which('git')) {
+      const spinner = print.spin('configuring git')
+
+      // TODO: Make husky hooks optional
+      const huskyCmd =  '' // `&& node node_modules/husky/bin/install .`
+      system.run(`git init . && git add . && git commit -m "Initial commit." ${huskyCmd}`)
+      
+      spinner.succeed(`configured git`)
+    }
+  }
+
+  const perfDuration = parseInt(((new Date()).getTime() - perfStart) / 10) / 100
+  spinner.succeed(`ignited ${print.colors.yellow(name)} in ${perfDuration}s`)
+
+  // Wrap it up with our success message.
+  print.info('')
+  print.info('🍽 Time to get cooking!')
+  print.info('')
+  print.info('To run in iOS:')
+  print.info(print.colors.bold(`  cd ${name}`))
+  print.info(print.colors.bold('  react-native run-ios'))
+  print.info('')
+  if (isAndroidInstalled(context)) {
+    print.info('To run in Android:')
+  } else {
+    print.info(`To run in Android, make sure you've followed the latest react-native setup instructions at https://facebook.github.io/react-native/docs/getting-started.html before using ignite.\nYou won't be able to run ${print.colors.bold('react-native run-android')} successfully until you have. Then:`)
+  }
+  print.info(print.colors.bold(`  cd ${name}`))
+  print.info(print.colors.bold('  react-native run-android'))
+  print.info('')
+  print.info('To see what ignite can do for you:')
+  print.info(print.colors.bold(`  cd ${name}`))
+  print.info(print.colors.bold('  ignite'))
+  print.info('')
 }
 
 module.exports = { install }
