@@ -204,7 +204,7 @@ async function install (context) {
   //   * this needs to get planned a little better.
   // -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
   try {
-    await system.spawn(`ignite add ir-next ${debugFlag}`, { stdio: 'inherit' })
+    await system.spawn(`ignite add ${__dirname} ${debugFlag}`, { stdio: 'inherit' })
 
     // now run install of Ignite Plugins
     if (answers['dev-screens'] === 'Yes') {
