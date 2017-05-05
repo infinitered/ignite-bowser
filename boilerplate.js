@@ -161,7 +161,8 @@ async function install (context) {
     const perfStart = (new Date()).getTime()
     const spinner = print.spin(`adding ${print.colors.cyan(moduleName)}`)
     
-    await system.run(`yarn add file:${__dirname} --force --save-dev`)
+    // note: npm is much faster than yarn here. ಠ_ಠ 
+    await system.run(`npm i ${__dirname} --save-dev`)
 
     const ignitePluginConfigPath = `${__dirname}/ignite.json`
     const newConfig = filesystem.read(ignitePluginConfigPath, 'json')
