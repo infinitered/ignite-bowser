@@ -7,9 +7,8 @@
     "clean": "rm -rf $TMPDIR/react-* && watchman watch-del-all && npm cache clean",
     "clean:android": "cd android/ && ./gradlew clean && cd .. && react-native run-android",
     "newclear": "rm -rf $TMPDIR/react-* && watchman watch-del-all && rm -rf ios/build && rm -rf node_modules/ && npm cache clean && npm i",
-    "test": "ava",
-    "test:watch": "ava --watch",
-    "coverage": "nyc ava && nyc report --reporter=html && open coverage/index.html || xdg-open coverage/index.html",
+    "test:watch": "jest --watch",
+    "coverage": "jest --coverage && open coverage/lcov-report/index.html || xdg-open coverage/lcov-report/index.html",
     "android:build": "cd android && ./gradlew assembleRelease",
     "android:install": "cd android && ./gradlew assembleRelease && ./gradlew installRelease",
     "android:hockeyapp": "cd android && ./gradlew assembleRelease && puck -submit=auto app/build/outputs/apk/app-release.apk",
@@ -38,13 +37,11 @@
     "seamless-immutable": "^7.0.1"
   },
   "devDependencies": {
-    "ava": "^0.18.2",
     "babel-eslint": "^7.1.1",
     "babel-preset-es2015": "^6.18.0",
     "enzyme": "^2.6.0",
     "mockery": "^2.0.0",
     "husky": "^0.13.1",
-    "nyc": "^10.1.2",
     "react-addons-test-utils": "^15.3.1",
     "react-dom": "^15.4.0",
     "react-native-mock": "^0.3.1",
@@ -55,24 +52,29 @@
     "snazzy": "^6.0.0",
     "standard": "8.6.0"
   },
-  "ava": {
-    "files": [
-      "Tests/**/*.js",
-      "!Tests/Setup.js"
+  "jest": {
+    "testMatch": [
+      "**/Tests/**/*.js",
+      "**/?(*.)(spec|test).js?(x)"
     ],
-    "require": [
+    "testPathIgnorePatterns":[
+      "/node_modules/",
+      "Tests/Setup.js"
+    ],
+    "setupFiles": [
       "babel-register",
       "babel-polyfill",
       "react-native-mock/mock",
       "./Tests/Setup"
     ],
-    "babel": "inherit"
+    "preset": "react-native"
   },
   "standard": {
     "parser": "babel-eslint",
     "globals": [
       "describe",
-      "it",
+      "test",
+      "expect",
       "fetch",
       "navigator",
       "__DEV__",
