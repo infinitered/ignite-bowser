@@ -156,32 +156,7 @@ async function install (context) {
   // NOTE(steve): I'm re-adding this here because boilerplates now hold permanent files
   // -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
   try {
-    // Disabled slow but reliable method here
-    // await system.spawn(`ignite add ${__dirname} ${debugFlag}`, { stdio: 'inherit' })
-
-    // mini version of `ignite add ir-next` here -- but faster
-    const moduleName = 'ignite-ir-next'
-
-    const perfStart = (new Date()).getTime()
-    const spinner = print.spin(`adding ${print.colors.cyan(moduleName)}`)
-
-    // note: npm is much faster than yarn here. ಠ_ಠ
-    await system.run(`npm i ${__dirname} --save-dev`)
-
-    const ignitePluginConfigPath = `${__dirname}/ignite.json`
-    const newConfig = filesystem.read(ignitePluginConfigPath, 'json')
-    const pluginModule = require(`${__dirname}/plugin.js`)
-
-    ignite.setIgnitePluginPath(__dirname)
-    ignite.saveIgniteConfig(newConfig)
-
-    await pluginModule.add(context)
-
-    const perfDuration = parseInt(((new Date()).getTime() - perfStart) / 10) / 100
-
-    spinner.text = `added ${print.colors.cyan(moduleName)} in ${perfDuration}s`
-    spinner.start()
-    spinner.succeed()
+    await system.spawn(`ignite add ${__dirname} ${debugFlag}`, { stdio: 'inherit' })
 
     // now run install of Ignite Plugins
     if (answers['dev-screens'] === 'Yes') {
