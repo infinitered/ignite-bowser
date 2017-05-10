@@ -16,16 +16,17 @@ module.exports = async function (context) {
   }
 
   const name = pascalCase(parameters.first)
-  const props = { name }
+  const screenName = name.endsWith('Screen') ? name : `${name}Screen`
+  const props = { name: screenName }
 
   const jobs = [
     {
       template: `screen.ejs`,
-      target: `App/Containers/${name}Screen.js`
+      target: `App/Containers/${screenName}.js`
     },
     {
       template: `screen-style.ejs`,
-      target: `App/Containers/Styles/${name}ScreenStyle.js`
+      target: `App/Containers/Styles/${screenName}Style.js`
     }
   ]
 
@@ -35,7 +36,6 @@ module.exports = async function (context) {
   // if using `react-navigation` go the extra step
   // and insert the screen into the nav router
   if (config.navigation === 'react-navigation') {
-    const screenName = `${name}Screen`
     const appNavFilePath = `${process.cwd()}/App/Navigation/AppNavigation.js`
     const importToAdd = `import ${screenName} from '../Containers/${screenName}'`
     const routeToAdd = `  ${screenName}: { screen: ${screenName} },`
@@ -58,6 +58,6 @@ module.exports = async function (context) {
       insert: routeToAdd
     })
   } else {
-    print.log('Screen created, manually add it to your navigation')
+    print.log(`Screen ${screenName} created, manually add it to your navigation`)
   }
 }
