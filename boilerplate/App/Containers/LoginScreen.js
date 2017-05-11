@@ -15,7 +15,6 @@ import {Images, Metrics} from '../Themes'
 import LoginActions from '../Redux/LoginRedux'
 
 class LoginScreen extends React.Component {
-
   static propTypes = {
     dispatch: PropTypes.func,
     fetching: PropTypes.bool,
@@ -152,7 +151,6 @@ class LoginScreen extends React.Component {
       </ScrollView>
     )
   }
-
 }
 
 const mapStateToProps = (state) => {

@@ -193,7 +193,7 @@ async function install (context) {
       const spinner = print.spin('configuring git')
 
       // TODO: Make husky hooks optional
-      const huskyCmd =  '' // `&& node node_modules/husky/bin/install .`
+      const huskyCmd = '' // `&& node node_modules/husky/bin/install .`
       system.run(`git init . && git add . && git commit -m "Initial commit." ${huskyCmd}`)
 
       spinner.succeed(`configured git`)
