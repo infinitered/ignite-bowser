@@ -5,7 +5,6 @@ import { Colors, Metrics } from '../Themes/'
 import Icon from 'react-native-vector-icons/FontAwesome'
 
 export default class SearchBar extends React.Component {
-
   static propTypes = {
     onSearch: React.PropTypes.func.isRequired,
     onCancel: React.PropTypes.func.isRequired,
