@@ -30,7 +30,3 @@ export default class AlertMessage extends React.Component {
     return messageComponent
   }
 }
-
-AlertMessage.defaultProps = {
-  show: true
-}
