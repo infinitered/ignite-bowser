@@ -10,7 +10,7 @@ import {
   LayoutAnimation
 } from 'react-native'
 import { connect } from 'react-redux'
-import Styles from './Styles/LoginScreenStyles'
+import styles from './Styles/LoginScreenStyles'
 import {Images, Metrics} from '../Themes'
 import LoginActions from '../Redux/LoginRedux'
 
@@ -94,13 +94,13 @@ class LoginScreen extends React.Component {
     const { username, password } = this.state
     const { fetching } = this.props
     const editable = !fetching
-    const textInputStyle = editable ? Styles.textInput : Styles.textInputReadonly
+    const textInputStyle = editable ? styles.textInput : styles.textInputReadonly
     return (
-      <ScrollView contentContainerStyle={{justifyContent: 'center'}} style={[Styles.container, {height: this.state.visibleHeight}]} keyboardShouldPersistTaps='always'>
-        <Image source={Images.logo} style={[Styles.topLogo, this.state.topLogo]} />
-        <View style={Styles.form}>
-          <View style={Styles.row}>
-            <Text style={Styles.rowLabel}>Username</Text>
+      <ScrollView contentContainerStyle={{justifyContent: 'center'}} style={[styles.container, {height: this.state.visibleHeight}]} keyboardShouldPersistTaps='always'>
+        <Image source={Images.logo} style={[styles.topLogo, this.state.topLogo]} />
+        <View style={styles.form}>
+          <View style={styles.row}>
+            <Text style={styles.rowLabel}>Username</Text>
             <TextInput
               ref='username'
               style={textInputStyle}
@@ -116,8 +116,8 @@ class LoginScreen extends React.Component {
               placeholder='Username' />
           </View>
 
-          <View style={Styles.row}>
-            <Text style={Styles.rowLabel}>Password</Text>
+          <View style={styles.row}>
+            <Text style={styles.rowLabel}>Password</Text>
             <TextInput
               ref='password'
               style={textInputStyle}
@@ -134,15 +134,15 @@ class LoginScreen extends React.Component {
               placeholder='Password' />
           </View>
 
-          <View style={[Styles.loginRow]}>
-            <TouchableOpacity style={Styles.loginButtonWrapper} onPress={this.handlePressLogin}>
-              <View style={Styles.loginButton}>
-                <Text style={Styles.loginText}>Sign In</Text>
+          <View style={[styles.loginRow]}>
+            <TouchableOpacity style={styles.loginButtonWrapper} onPress={this.handlePressLogin}>
+              <View style={styles.loginButton}>
+                <Text style={styles.loginText}>Sign In</Text>
               </View>
             </TouchableOpacity>
-            <TouchableOpacity style={Styles.loginButtonWrapper} onPress={() => this.props.navigation.goBack()}>
-              <View style={Styles.loginButton}>
-                <Text style={Styles.loginText}>Cancel</Text>
+            <TouchableOpacity style={styles.loginButtonWrapper} onPress={() => this.props.navigation.goBack()}>
+              <View style={styles.loginButton}>
+                <Text style={styles.loginText}>Cancel</Text>
               </View>
             </TouchableOpacity>
           </View>
