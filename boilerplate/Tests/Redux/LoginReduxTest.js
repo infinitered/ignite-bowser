@@ -1,4 +1,4 @@
-import Actions, { reducer, INITIAL_STATE } from '../../App/Redux/LoginRedux'
+import Actions, { reducer, INITIAL_STATE, isLoggedIn } from '../../App/Redux/LoginRedux'
 
 test('attempt', () => {
   const state = reducer(INITIAL_STATE, Actions.loginRequest('u', 'p'))
@@ -24,4 +24,10 @@ test('logout', () => {
   const state = reducer(loginState, Actions.logout())
 
   expect(state.username).toBeFalsy()
+})
+
+test('isLoggedIn', () => {
+  const state = reducer(INITIAL_STATE, Actions.loginSuccess('hi'))
+
+  expect(isLoggedIn(state)).toBe(true)
 })

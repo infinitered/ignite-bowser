@@ -1,18 +1,12 @@
-// https://github.com/airbnb/enzyme/blob/master/docs/api/shallow.md
+import 'react-native'
 import React from 'react'
 import DrawerButton from '../../App/Components/DrawerButton'
 import { shallow } from 'enzyme'
+import renderer from 'react-test-renderer'
 
-const wrapper = shallow(<DrawerButton onPress={() => {}} text='hi' />)
-
-test('component exists', () => {
-  expect(wrapper.length).toBe(1) // exists
-})
-
-test('component structure', () => {
-  expect(wrapper.name()).toBe('TouchableOpacity') // the right root component
-  expect(wrapper.children().length).toBe(1) // has 1 child
-  expect(wrapper.children().first().name()).toBe('Text') // that child is Text
+test('AlertMessage component renders correctly', () => {
+  const tree = renderer.create(<DrawerButton onPress={() => {}} text='hi' />).toJSON()
+  expect(tree).toMatchSnapshot()
 })
 
 test('onPress', () => {

@@ -1,34 +1,19 @@
+import 'react-native'
 import React from 'react'
-import { Text } from 'react-native'
 import AlertMessage from '../../App/Components/AlertMessage'
-import { shallow } from 'enzyme'
+import renderer from 'react-test-renderer'
 
-// Basic wrapper
-const wrapper = shallow(<AlertMessage title='howdy' />)
-
-test('component exists', () => {
-  expect(wrapper.length).toBe(1) // exists
+test('AlertMessage component renders correctly if show is true', () => {
+  const tree = renderer.create(<AlertMessage title='howdy' />).toJSON()
+  expect(tree).toMatchSnapshot()
 })
 
-test('component structure', () => {
-  expect(wrapper.name()).toBe('View')
-  expect(wrapper.children().length).toBe(1) // has 1 child
-  expect(wrapper.children().first().name()).toBe('View') // that child is View
-
-  const subview = wrapper.children().first()
-  expect(subview.children().length).toBe(1)
+test('AlertMessage component does not render if show is false', () => {
+  const tree = renderer.create(<AlertMessage title='howdy' show={false} />).toJSON()
+  expect(tree).toMatchSnapshot()
 })
 
-test('Has text and set properly', () => {
-  expect(wrapper.containsMatchingElement(<Text allowFontScaling={false}>HOWDY</Text>)).toBe(true)
-})
-
-test('style props are passed to top view', () => {
-  const withStyle = shallow(<AlertMessage title='howdy' style={{backgroundColor: 'red'}} />)
-  expect(withStyle.props().style[1].backgroundColor).toBe('red')
-})
-
-test('show false', () => {
-  const hidden = shallow(<AlertMessage title='howdy' show={false} />)
-  expect(hidden.children().length).toBe(0)
+test('AlertMessage component renders correctly if backgroundColor prop is set', () => {
+  const tree = renderer.create(<AlertMessage title='howdy' style={{backgroundColor: 'red'}} />).toJSON()
+  expect(tree).toMatchSnapshot()
 })

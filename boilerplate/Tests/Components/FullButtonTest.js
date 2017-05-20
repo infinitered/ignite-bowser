@@ -1,19 +1,12 @@
-// https://github.com/airbnb/enzyme/blob/master/docs/api/shallow.md
+import 'react-native'
 import React from 'react'
 import FullButton from '../../App/Components/FullButton'
 import { shallow } from 'enzyme'
+import renderer from 'react-test-renderer'
 
-// Basic wrapper
-const wrapper = shallow(<FullButton onPress={() => {}} text='hi' />)
-
-test('component exists', () => {
-  expect(wrapper.length).toBe(1) // exists
-})
-
-test('component structure', () => {
-  expect(wrapper.name()).toBe('TouchableOpacity') // the right root component
-  expect(wrapper.children().length).toBe(1) // has 1 child
-  expect(wrapper.children().first().name()).toBe('Text') // that child is Text
+test('FullButton component renders correctly', () => {
+  const tree = renderer.create(<FullButton onPress={() => {}} text='hi' />).toJSON()
+  expect(tree).toMatchSnapshot()
 })
 
 test('onPress', () => {
@@ -26,3 +19,4 @@ test('onPress', () => {
   wrapperPress.simulate('press')
   expect(i).toBe(1)
 })
+

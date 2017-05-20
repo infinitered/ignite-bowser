@@ -6,6 +6,9 @@ import ExamplesRegistry from '../Services/ExamplesRegistry'
 // Note that this file (App/Components/FullButton) needs to be
 // imported in your app somewhere, otherwise your component won't be
 // compiled and added to the examples dev screen.
+
+// Ignore in coverage report
+/* istanbul ignore next */
 ExamplesRegistry.addComponentExample('Full Button', () =>
   <FullButton
     text='Hey there'
