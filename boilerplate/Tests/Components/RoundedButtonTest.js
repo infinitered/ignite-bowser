@@ -1,23 +1,17 @@
-// https://github.com/airbnb/enzyme/blob/master/docs/api/shallow.md
+import 'react-native'
 import React from 'react'
 import RoundedButton from '../../App/Components/RoundedButton'
 import { shallow } from 'enzyme'
+import renderer from 'react-test-renderer'
 
-// Basic wrapper
-const wrapper = shallow(<RoundedButton onPress={() => {}} text='howdy' />)
-
-test('component exists', () => {
-  expect(wrapper.length).toBe(1) // exists
+test('RoundedButton component renders correctly', () => {
+  const tree = renderer.create(<RoundedButton onPress={() => {}} text='howdy' />).toJSON()
+  expect(tree).toMatchSnapshot()
 })
 
-test('component structure', () => {
-  expect(wrapper.name()).toBe('TouchableOpacity') // the right root component
-  expect(wrapper.children().length).toBe(1) // has 1 child
-  expect(wrapper.children().first().name()).toBe('Text') // that child is Text
-})
-
-test('the text is set properly - uppercase', () => {
-  expect(wrapper.children().first().props().children).toBe('HOWDY')
+test('RoundedButton component with children renders correctly', () => {
+  const tree = renderer.create(<RoundedButton onPress={() => {}}>Howdy</RoundedButton>).toJSON()
+  expect(tree).toMatchSnapshot()
 })
 
 test('onPress', () => {
@@ -31,8 +25,3 @@ test('onPress', () => {
   expect(i).toBe(1)
 })
 
-test('renders children text when passed', () => {
-  const wrapperChild = shallow(<RoundedButton onPress={() => {}}>Howdy</RoundedButton>)
-  expect(wrapperChild.children().length).toBe(1) // has 1 child
-  expect(wrapperChild.children().first().name()).toBe('Text') // that child is Text
-})
