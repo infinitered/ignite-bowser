@@ -37,7 +37,8 @@
       "beforeAll",
       "afterAll",
       "test",
-      "expect"
+      "expect",
+      "describe"
     ]
   },
   "devDependencies": {

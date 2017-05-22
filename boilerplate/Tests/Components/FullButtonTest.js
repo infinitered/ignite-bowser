@@ -19,4 +19,3 @@ test('onPress', () => {
   wrapperPress.simulate('press')
   expect(i).toBe(1)
 })
-

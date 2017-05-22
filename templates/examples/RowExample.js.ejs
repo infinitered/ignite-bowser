@@ -6,7 +6,6 @@ import { connect } from 'react-redux'
 import styles from './Styles/RowExampleStyle'
 
 class RowExample extends React.Component {
-
   constructor (props) {
     super(props)
     // If you need scroll to bottom, consider http://bit.ly/2bMQ2BZ

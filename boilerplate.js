@@ -186,7 +186,6 @@ async function install (context) {
         stdio: 'inherit'
       })
     }
-
   } catch (e) {
     ignite.log(e)
     throw e

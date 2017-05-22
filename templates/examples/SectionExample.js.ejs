@@ -6,7 +6,6 @@ import { connect } from 'react-redux'
 import styles from './Styles/SectionExampleStyle'
 
 class ListviewSectionsExample extends React.Component {
-
   constructor (props) {
     super(props)
 
