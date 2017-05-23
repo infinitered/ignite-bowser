@@ -68,9 +68,23 @@ Contains a preconfigured Redux and Redux-Sagas setup. Review each file carefully
 
 _TODO: explain more about Redux & Redux Sagas here_
 
+### Services
+
+Contains your API service and other important utilities for your application.
+
+* `Api.js` - main API service, giving you an interface to communicate with your back end
+* `ExamplesRegistry.js` - lets you view component and Ignite plugin examples in your app
+* `FixtureApi.js` - mocks your API service, making it faster to develop early on in your app
+* `ImmutablePersistenceTransform.js` - part of the redux-persist implementation (will be removed)
+* `RehydrationServices.js` - part of the redux-persist implementation (will be removed)
+
 ### Lib
 
 We recommend using this folder for modules that can be extracted into their own NPM packages at some point.
+
+### Images
+
+Contains actual images (usually png) used in your application.
 
 ### Transforms
 
