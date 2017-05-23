@@ -37,12 +37,14 @@ async function install (context) {
     prompt,
     template
   } = context
+  const { colors } = print
+  const { red, yellow, bold, gray, blue } = colors
 
   const perfStart = (new Date()).getTime()
 
   const name = parameters.third
   const spinner = print
-    .spin(`using the ${print.colors.red('Infinite Red Next (experimental)')} boilerplate`)
+    .spin(`using the ${red('Infinite Red Next (experimental)')} boilerplate`)
     .succeed()
 
   // attempt to install React Native or die trying
@@ -205,28 +207,29 @@ async function install (context) {
   }
 
   const perfDuration = parseInt(((new Date()).getTime() - perfStart) / 10) / 100
-  spinner.succeed(`ignited ${print.colors.yellow(name)} in ${perfDuration}s`)
+  spinner.succeed(`ignited ${yellow(name)} in ${perfDuration}s`)
 
-  // Wrap it up with our success message.
-  print.info('')
-  print.info('🍽 Time to get cooking!')
-  print.info('')
-  print.info('To run in iOS:')
-  print.info(print.colors.bold(`  cd ${name}`))
-  print.info(print.colors.bold('  react-native run-ios'))
-  print.info('')
-  if (isAndroidInstalled(context)) {
-    print.info('To run in Android:')
-  } else {
-    print.info(`To run in Android, make sure you've followed the latest react-native setup instructions at https://facebook.github.io/react-native/docs/getting-started.html before using ignite.\nYou won't be able to run ${print.colors.bold('react-native run-android')} successfully until you have. Then:`)
-  }
-  print.info(print.colors.bold(`  cd ${name}`))
-  print.info(print.colors.bold('  react-native run-android'))
-  print.info('')
-  print.info('To see what ignite can do for you:')
-  print.info(print.colors.bold(`  cd ${name}`))
-  print.info(print.colors.bold('  ignite'))
-  print.info('')
+  const androidInfo = isAndroidInstalled(context) ? ''
+    : `\n\nTo run in Android, make sure you've followed the latest react-native setup instructions at https://facebook.github.io/react-native/docs/getting-started.html before using ignite.\nYou won't be able to run ${bold('react-native run-android')} successfully until you have.`
+
+  const successMessage = `
+    ${red('Ignite CLI')} ignited ${yellow(name)} in ${gray(`${perfDuration}s`)}
+  
+    To get started:
+
+      cd ${name}
+      react-native run-ios
+      react-native run-android${androidInfo}
+      ignite --help
+
+    ${gray('Documentation is located in /docs or https://github.com/infinitered/ignite/tree/master/docs')}
+
+    ${blue('Need additional help? Join our Slack community at http://community.infinite.red.')}
+
+    ${bold('Now get cooking! 🍽')}
+  `
+
+  print.info(successMessage)
 }
 
 module.exports = { install }
