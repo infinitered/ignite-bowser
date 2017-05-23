@@ -192,18 +192,16 @@ async function install (context) {
   }
 
   // git configuration
-  if (parameters.options['skip-git'] !== true) {
+  const gitExists = await filesystem.exists('./.git')
+  if (!gitExists && !parameters.options['skip-git'] && system.which('git')) {
     // initial git
+    const spinner = print.spin('configuring git')
 
-    if (system.which('git')) {
-      const spinner = print.spin('configuring git')
+    // TODO: Make husky hooks optional
+    const huskyCmd = '' // `&& node node_modules/husky/bin/install .`
+    system.run(`git init . && git add . && git commit -m "Initial commit." ${huskyCmd}`)
 
-      // TODO: Make husky hooks optional
-      const huskyCmd = '' // `&& node node_modules/husky/bin/install .`
-      system.run(`git init . && git add . && git commit -m "Initial commit." ${huskyCmd}`)
-
-      spinner.succeed(`configured git`)
-    }
+    spinner.succeed(`configured git`)
   }
 
   const perfDuration = parseInt(((new Date()).getTime() - perfStart) / 10) / 100
