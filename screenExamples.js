@@ -2,17 +2,17 @@ const screenExamples = [
   {
     title: 'Row Example',
     screen: 'examples/RowExample.js',
-    ancillary: ['examples/Styles/RowExampleStyle.js']
+    ancillary: ['examples/Styles/RowExampleStyle.js.ejs']
   },
   {
     title: 'Grid Example',
     screen: 'examples/GridExample.js',
-    ancillary: ['examples/Styles/GridExampleStyle.js']
+    ancillary: ['examples/Styles/GridExampleStyle.js.ejs']
   },
   {
     title: 'Sections Example',
     screen: 'examples/SectionExample.js',
-    ancillary: ['examples/Styles/SectionExampleStyle.js']
+    ancillary: ['examples/Styles/SectionExampleStyle.js.ejs']
   }
 ]
 
