@@ -180,6 +180,12 @@ async function install (context) {
         stdio: 'inherit'
       })
     }
+
+    if (parameters.options.lint !== 'false') {
+      await system.spawn(`ignite add standard ${debugFlag}`, {
+        stdio: 'inherit'
+      })
+    }
   } catch (e) {
     ignite.log(e)
     throw e
