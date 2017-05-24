@@ -26,7 +26,7 @@ class App extends Component {
   }
 }
 
-// allow reactotron overlay for fast design
-const AppWithBenefits = console.tron.overlay(App)
+// allow reactotron overlay for fast design in dev mode
+const AppWithBenefits = __DEV__ ? console.tron.overlay(App) : App
 
 export default AppWithBenefits
