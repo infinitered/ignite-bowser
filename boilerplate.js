@@ -162,29 +162,29 @@ async function install (context) {
 
     // now run install of Ignite Plugins
     if (answers['dev-screens'] === 'Yes') {
-      await system.spawn(`ignite add dev-screens ${debugFlag}`, {
+      await system.spawn(`ignite add dev-screens@"<2.1.0" ${debugFlag}`, {
         stdio: 'inherit'
       })
     }
 
     if (answers['vector-icons'] === 'react-native-vector-icons') {
-      await system.spawn(`ignite add vector-icons ${debugFlag}`, {
+      await system.spawn(`ignite add vector-icons@"~>0.2.1" ${debugFlag}`, {
         stdio: 'inherit'
       })
     }
 
     if (answers['i18n'] === 'react-native-i18n') {
-      await system.spawn(`ignite add i18n ${debugFlag}`, { stdio: 'inherit' })
+      await system.spawn(`ignite add i18n@"~>0.1.1" ${debugFlag}`, { stdio: 'inherit' })
     }
 
     if (answers['animatable'] === 'react-native-animatable') {
-      await system.spawn(`ignite add animatable ${debugFlag}`, {
+      await system.spawn(`ignite add animatable@"~>0.3.1" ${debugFlag}`, {
         stdio: 'inherit'
       })
     }
 
     if (parameters.options.lint !== 'false') {
-      await system.spawn(`ignite add standard ${debugFlag}`, {
+      await system.spawn(`ignite add standard@"~>0.0.1" ${debugFlag}`, {
         stdio: 'inherit'
       })
     }
