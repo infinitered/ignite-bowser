@@ -20,13 +20,6 @@ const create = (baseURL = 'https://api.github.com/') => {
     timeout: 10000
   })
 
-  // Wrap api's addMonitor to allow the calling code to attach
-  // additional monitors in the future.  But only in __DEV__ and only
-  // if we've attached Reactotron to console (it isn't during unit tests).
-  if (__DEV__ && console.tron) {
-    api.addMonitor(console.tron.apisauce)
-  }
-
   // ------
   // STEP 2
   // ------
