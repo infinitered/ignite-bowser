@@ -47,7 +47,8 @@
     "jest": "^19.0.2",
     "np": "^2.12.0",
     "sinon": "^1.17.7",
-    "standard": "^8.6.0"
+    "standard": "^8.6.0",
+    "tempy": "^0.1.0"
   },
   "dependencies": {
     "ramda": "^0.23.0"

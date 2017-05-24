@@ -1,22 +1,20 @@
 const execa = require('execa')
 const jetpack = require('fs-jetpack')
+const tempy = require('tempy')
 
 const IGNITE = 'ignite'
 const APP = 'IntegrationTest'
+const BOILERPLATE = `${__dirname}/..`
 
 // calling the ignite cli takes a while
 jasmine.DEFAULT_TIMEOUT_INTERVAL = 600000
 
 describe('without a linter', () => {
   beforeAll(async () => {
-    jetpack.remove(APP)
-    await execa(IGNITE, ['new', APP, '--min', '--skip-git', '--no-lint', '--boilerplate', `${__dirname}/..`])
+    // creates a new temp directory
+    process.chdir(tempy.directory())
+    await execa(IGNITE, ['new', APP, '--min', '--skip-git', '--no-lint', '--boilerplate', BOILERPLATE])
     process.chdir(APP)
-  })
-
-  afterAll(() => {
-    process.chdir('../')
-    jetpack.remove(APP)
   })
 
   test('does not have a linting script', async () => {
@@ -26,14 +24,10 @@ describe('without a linter', () => {
 
 describe('generators', () => {
   beforeAll(async () => {
-    jetpack.remove(APP)
-    await execa(IGNITE, ['new', APP, '--min', '--skip-git', '--boilerplate', `${__dirname}/..`])
+    // creates a new temp directory
+    process.chdir(tempy.directory())
+    await execa(IGNITE, ['new', APP, '--min', '--skip-git', '--boilerplate', BOILERPLATE])
     process.chdir(APP)
-  })
-
-  afterAll(() => {
-    process.chdir('../')
-    jetpack.remove(APP)
   })
 
   test('generates a component', async () => {
