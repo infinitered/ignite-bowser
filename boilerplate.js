@@ -222,7 +222,7 @@ async function install (context) {
       react-native run-android${androidInfo}
       ignite --help
 
-    ${gray('Read the walkthrough at https://github.com/infinitered/ignite-ir-next/blob/master/readme.md#boilerplate-walkthrough')}
+    ${gray('Read the walkthrough at https://github.com/infinitered/ignite-ir-boilerplate/blob/master/readme.md#boilerplate-walkthrough')}
 
     ${blue('Need additional help? Join our Slack community at http://community.infinite.red.')}
 

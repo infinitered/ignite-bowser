@@ -2,8 +2,8 @@
   "name": "ignite-ir-boilerplate",
   "description": "Infinite Red's hot boilerplate for React Native.",
   "license": "MIT",
-  "repository": "infinitered/ignite-ir-next",
-  "homepage": "https://github.com/infinitered/ignite-ir-next",
+  "repository": "infinitered/ignite-ir-boilerplate",
+  "homepage": "https://github.com/infinitered/ignite-ir-boilerplate",
   "version": "2.0.0-rc.1",
   "files": [
     "boilerplate",
@@ -20,7 +20,7 @@
   "author": {
     "name": "Infinite Red",
     "email": "npm@infinite.red",
-    "url": "https://github.com/infinitered/ignite-ir-next"
+    "url": "https://github.com/infinitered/ignite-ir-boilerplate"
   },
   "scripts": {
     "lint": "standard",

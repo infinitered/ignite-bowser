@@ -1,6 +1,6 @@
 # Ignite IR Next
 
-[![Build Status](https://semaphoreci.com/api/v1/ir/ignite-ir-next/branches/master/badge.svg)](https://semaphoreci.com/ir/ignite-ir-next)
+[![Build Status](https://semaphoreci.com/api/v1/ir/ignite-ir-boilerplate/branches/master/badge.svg)](https://semaphoreci.com/ir/ignite-ir-boilerplate)
 
 ## The latest and greatest boilerplate for Infinite Red opinions
 
