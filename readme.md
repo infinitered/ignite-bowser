@@ -1,4 +1,4 @@
-# Ignite IR Next
+# Ignite IR Boilerplate
 
 [![Build Status](https://semaphoreci.com/api/v1/ir/ignite-ir-boilerplate/branches/master/badge.svg)](https://semaphoreci.com/ir/ignite-ir-boilerplate)
 
