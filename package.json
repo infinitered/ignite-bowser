@@ -4,7 +4,7 @@
   "license": "MIT",
   "repository": "infinitered/ignite-ir-next",
   "homepage": "https://github.com/infinitered/ignite-ir-next",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "files": [
     "boilerplate",
     "commands",
