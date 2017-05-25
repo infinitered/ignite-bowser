@@ -184,7 +184,7 @@ async function install (context) {
     }
 
     if (parameters.options.lint !== 'false') {
-      await system.spawn(`ignite add standard@"~>0.0.1" ${debugFlag}`, {
+      await system.spawn(`ignite add standard@"~>1.0.0" ${debugFlag}`, {
         stdio: 'inherit'
       })
     }
