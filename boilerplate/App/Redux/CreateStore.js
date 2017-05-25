@@ -14,7 +14,7 @@ export default (rootReducer, rootSaga) => {
 
   /* ------------- Saga Middleware ------------- */
 
-  const sagaMonitor = __DEV__ ? console.tron.createSagaMonitor() : null
+  const sagaMonitor = Config.useReactotron ? console.tron.createSagaMonitor() : null
   const sagaMiddleware = createSagaMiddleware({ sagaMonitor })
   middleware.push(sagaMiddleware)
 
