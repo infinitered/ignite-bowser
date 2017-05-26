@@ -1,9 +1,6 @@
 const options = require('./options')
 const { merge, pipe, assoc, omit, __ } = require('ramda')
-
-// The default version of React Native to install. We will want to upgrade
-// this when we test out new releases and they work well with our setup.
-const REACT_NATIVE_VERSION = '0.42.0'
+const { getReactNativeVersion } = require('./lib/react-native-version')
 
 /**
  * Is Android installed?
@@ -48,7 +45,10 @@ async function install (context) {
     .succeed()
 
   // attempt to install React Native or die trying
-  const rnInstall = await reactNative.install({ name, version: REACT_NATIVE_VERSION })
+  const rnInstall = await reactNative.install({
+    name,
+    version: getReactNativeVersion(context)
+  })
   if (rnInstall.exitCode > 0) process.exit(rnInstall.exitCode)
 
   // remove the __tests__ directory that come with React Native
@@ -232,4 +232,6 @@ async function install (context) {
   print.info(successMessage)
 }
 
-module.exports = { install }
+module.exports = {
+  install
+}
