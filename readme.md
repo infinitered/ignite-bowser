@@ -2,17 +2,45 @@
 
 [![Build Status](https://semaphoreci.com/api/v1/ir/ignite-ir-boilerplate/branches/master/badge.svg)](https://semaphoreci.com/ir/ignite-ir-boilerplate)
 
+
+
 ## The latest and greatest boilerplate for Infinite Red opinions
 
 This is the boilerplate that [Infinite Red](https://infinite.red) uses as a way to test bleeding-edge changes to our React Native stack.
 
 Currently includes:
 
-* React Native 0.42.0
+* React Native 0.42.0 (but you can change this if you want to experiment)
 * React Navigation
 * Redux
 * Redux Sagas
 * And more!
+
+## Quick Start
+
+When you've installed the [Ignite CLI](https://github.com/infinitered/ignite), you can get started with this boilerplate like this:
+
+```
+ignite new MyLatestCreation
+```
+
+You can also change the React Native version, just keep in mind, we may not have tested this just yet.
+
+```sh
+ignite new MyLatestCreation --react-native-version 0.44.2
+```
+
+By default we'll ask you some questions during install as to which features you'd like.  If you just want them all, you can skip the questions:
+
+```sh
+ignite new MyLatestCreation --max
+```
+
+If you want very few of these extras:
+
+```sh
+ignite new MyLatestCreation --min
+```
 
 ## Boilerplate walkthrough
 
