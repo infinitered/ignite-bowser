@@ -158,7 +158,10 @@ async function install (context) {
   // NOTE(steve): I'm re-adding this here because boilerplates now hold permanent files
   // -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
   try {
-    await system.spawn(`ignite add ${__dirname} ${debugFlag}`, { stdio: 'inherit' })
+    // boilerplate adds itself to get plugin.js/generators etc
+    // Could be directory, npm@version, or just npm name.  Default to passed in values
+    const boilerplate = parameters.options.b || parameters.options.boilerplate || 'ignite-ir-boilerplate'
+    await system.spawn(`ignite add ${boilerplate} ${debugFlag}`, { stdio: 'inherit' })
 
     // now run install of Ignite Plugins
     if (answers['dev-screens'] === 'Yes') {
@@ -214,7 +217,7 @@ async function install (context) {
 
   const successMessage = `
     ${red('Ignite CLI')} ignited ${yellow(name)} in ${gray(`${perfDuration}s`)}
-  
+
     To get started:
 
       cd ${name}
