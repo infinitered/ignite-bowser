@@ -16,9 +16,7 @@ const PrimaryNav = StackNavigator({
   headerMode: 'none',
   initialRouteName: 'LaunchScreen',
   navigationOptions: {
-    header: {
-      style: styles.header
-    }
+    headerStyle: styles.header
   }
 })
 
