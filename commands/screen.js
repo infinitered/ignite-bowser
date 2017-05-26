@@ -58,6 +58,6 @@ module.exports = async function (context) {
       insert: routeToAdd
     })
   } else {
-    print.log(`Screen ${screenName} created, manually add it to your navigation`)
+    print.info(`Screen ${screenName} created, manually add it to your navigation`)
   }
 }

@@ -57,6 +57,6 @@ module.exports = async function (context) {
       insert: routeToAdd
     })
   } else {
-    print.log('Container created, manually add it to your navigation')
+    print.info('Container created, manually add it to your navigation')
   }
 }
