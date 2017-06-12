@@ -75,9 +75,9 @@ class <%= props.name %> extends React.Component {
   * e.g.
     componentWillReceiveProps (newProps) {
       if (newProps.someData) {
-        this.setState({
-          dataSource: this.state.dataSource.cloneWithRows(newProps.someData)
-        })
+        this.setState(prevState => ({
+          dataSource: prevState.dataSource.cloneWithRows(newProps.someData)
+        }))
       }
     }
   *************************************************************/
