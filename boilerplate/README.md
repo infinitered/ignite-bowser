@@ -9,7 +9,7 @@
 
 **Step 2:** cd to the cloned repo:
 
-**Step 3:** Install the Application with `npm install`
+**Step 3:** Install the Application with `yarn` or `npm i`
 
 
 ## :arrow_forward: How to Run App
@@ -29,7 +29,7 @@ This project adheres to Standard.  Our CI enforces this, so we suggest you enabl
 
 **To Lint on Commit**
 
-This is implemented using [ghooks](https://github.com/gtramontina/ghooks). There is no additional setup needed.
+This is implemented using [husky](https://github.com/typicode/husky). There is no additional setup needed.
 
 **Bypass Lint**
 
