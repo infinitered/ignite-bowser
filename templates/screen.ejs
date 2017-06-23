@@ -7,12 +7,12 @@ import { connect } from 'react-redux'
 // Styles
 import styles from './Styles/<%= props.name %>Style'
 
-class <%= props.name %>Screen extends React.Component {
+class <%= props.name %> extends React.Component {
   render () {
     return (
       <ScrollView style={styles.container}>
         <KeyboardAvoidingView behavior='position'>
-          <Text><%= props.name %> Screen</Text>
+          <Text><%= props.name %></Text>
         </KeyboardAvoidingView>
       </ScrollView>
     )
@@ -29,4 +29,4 @@ const mapDispatchToProps = (dispatch) => {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(<%= props.name %>Screen)
+export default connect(mapStateToProps, mapDispatchToProps)(<%= props.name %>)
