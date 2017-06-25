@@ -162,7 +162,7 @@ async function install (context) {
     // boilerplate adds itself to get plugin.js/generators etc
     // Could be directory, npm@version, or just npm name.  Default to passed in values
     const boilerplate = parameters.options.b || parameters.options.boilerplate || 'ignite-ir-boilerplate'
-    
+
     await system.spawn(`ignite add ${boilerplate} ${debugFlag}`, { stdio: 'inherit' })
 
     // now run install of Ignite Plugins
