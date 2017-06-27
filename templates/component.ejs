@@ -1,8 +1,20 @@
 import React from 'react'
+// import PropTypes from 'prop-types';
 import { View, Text } from 'react-native'
 import styles from './Styles/<%= props.name %>Style'
 
 export default class <%= props.name %> extends React.Component {
+  // // Prop type warnings
+  // static propTypes = {
+  //   someProperty: PropTypes.object,
+  //   someSetting: PropTypes.bool.isRequired,
+  // }
+  //
+  // // Defaults for props
+  // static defaultProps = { 
+  //   someSetting: false 
+  // }
+
   render () {
     return (
       <View style={styles.container}>
@@ -11,14 +23,3 @@ export default class <%= props.name %> extends React.Component {
     )
   }
 }
-
-// // Prop type warnings
-// <%= props.name %>.propTypes = {
-//   someProperty: React.PropTypes.object,
-//   someSetting: React.PropTypes.bool.isRequired
-// }
-//
-// // Defaults for props
-// <%= props.name %>.defaultProps = {
-//   someSetting: false
-// }
