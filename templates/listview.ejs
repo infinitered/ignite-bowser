@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { Component } from 'react'
 import { View, Text, ListView } from 'react-native'
 import { connect } from 'react-redux'
 
@@ -8,7 +8,7 @@ import { connect } from 'react-redux'
 // Styles
 import styles from './Styles/<%= props.name %>Style'
 
-class <%= props.name %> extends React.Component {
+class <%= props.name %> extends Component {
   state: {
     dataSource: Object
   }

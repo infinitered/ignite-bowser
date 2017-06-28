@@ -1,11 +1,11 @@
-import React from 'react'
+import React, { Component } from 'react'
 import { View, ListView, Text } from 'react-native'
 import { connect } from 'react-redux'
 
 // Styles
 import styles from './Styles/SectionExampleStyle'
 
-class ListviewSectionsExample extends React.Component {
+class ListviewSectionsExample extends Component {
   constructor (props) {
     super(props)
 

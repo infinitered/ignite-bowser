@@ -1,11 +1,11 @@
-import React from 'react'
+import React, { Component } from 'react'
 import { View, Text, ListView } from 'react-native'
 import { connect } from 'react-redux'
 
 // Styles
 import styles from './Styles/RowExampleStyle'
 
-class RowExample extends React.Component {
+class RowExample extends Component {
   constructor (props) {
     super(props)
     // If you need scroll to bottom, consider http://bit.ly/2bMQ2BZ
