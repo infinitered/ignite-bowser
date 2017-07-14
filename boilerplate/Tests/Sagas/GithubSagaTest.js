@@ -19,7 +19,7 @@ test('success path', () => {
   step()
   // Second step successful return
   const stepResponse = step(response)
-  // Get the calculated temperature value from the fixture-based response
+  // Get the avatar Url from the response
   const firstUser = path(['data', 'items'], response)[0]
   const avatar = firstUser.avatar_url
   expect(stepResponse).toEqual(put(GithubActions.userSuccess(avatar)))

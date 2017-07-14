@@ -10,7 +10,7 @@ This is the boilerplate that [Infinite Red](https://infinite.red) uses as a way 
 
 Currently includes:
 
-* React Native 0.42.0 (but you can change this if you want to experiment)
+* React Native 0.45.1 (but you can change this if you want to experiment)
 * React Navigation
 * Redux
 * Redux Sagas
@@ -27,7 +27,7 @@ ignite new MyLatestCreation
 You can also change the React Native version, just keep in mind, we may not have tested this just yet.
 
 ```sh
-ignite new MyLatestCreation --react-native-version 0.44.2
+ignite new MyLatestCreation --react-native-version 0.46.0-rc.2
 ```
 
 By default we'll ask you some questions during install as to which features you'd like.  If you just want them all, you can skip the questions:
@@ -128,4 +128,4 @@ This folder (located as a sibling to `App`) contains sample Jest snapshot and un
 
 ## Premium Support
 
-[Ignite CLI](https://infinite.red/ignite) and [Ignite IR Next](https://github.com/infinitered/ignite-ir-next), as open source projects, are free to use and always will be. [Infinite Red](https://infinite.red/) offers premium Ignite CLI support and general mobile app design/development services. Email us at [hello@infinite.red](mailto:hello@infinite.red) to get in touch with us for more details.
+[Ignite CLI](https://infinite.red/ignite) and [Ignite IR Boilerplate](https://github.com/infinitered/ignite-ir-boilerplate), as open source projects, are free to use and always will be. [Infinite Red](https://infinite.red/) offers premium Ignite CLI support and general mobile app design/development services. Email us at [hello@infinite.red](mailto:hello@infinite.red) to get in touch with us for more details.

@@ -23,17 +23,17 @@ export const INITIAL_STATE = Immutable({
 
 /* ------------- Reducers ------------- */
 
-// request the temperature for a city
+// request the avatar for a user
 export const request = (state, { username }) =>
   state.merge({ fetching: true, username, avatar: null })
 
-// successful temperature lookup
+// successful avatar lookup
 export const success = (state, action) => {
   const { avatar } = action
   return state.merge({ fetching: false, error: null, avatar })
 }
 
-// failed to get the temperature
+// failed to get the avatar
 export const failure = (state) =>
   state.merge({ fetching: false, error: true, avatar: null })
 

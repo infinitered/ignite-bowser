@@ -85,6 +85,7 @@ async function install (context) {
     { template: 'README.md', target: 'README.md' },
     { template: 'ignite.json.ejs', target: 'ignite/ignite.json' },
     { template: '.editorconfig', target: '.editorconfig' },
+    { template: '.babelrc', target: '.babelrc' },
     { template: 'Tests/Setup.js.ejs', target: 'Tests/Setup.js' }
   ]
   const templateProps = {
@@ -110,7 +111,7 @@ async function install (context) {
    * Merge the package.json from our template into the one provided from react-native init.
    */
   async function mergePackageJsons () {
-    // transform our package.json incase we need to replace variables
+    // transform our package.json in case we need to replace variables
     const rawJson = await template.generate({
       directory: `${ignite.ignitePluginPath()}/boilerplate`,
       template: 'package.json.ejs',
@@ -161,6 +162,7 @@ async function install (context) {
     // boilerplate adds itself to get plugin.js/generators etc
     // Could be directory, npm@version, or just npm name.  Default to passed in values
     const boilerplate = parameters.options.b || parameters.options.boilerplate || 'ignite-ir-boilerplate'
+
     await system.spawn(`ignite add ${boilerplate} ${debugFlag}`, { stdio: 'inherit' })
 
     // now run install of Ignite Plugins
