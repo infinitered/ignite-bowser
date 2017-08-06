@@ -13,9 +13,10 @@
     "android:devices": "$ANDROID_HOME/platform-tools/adb devices",
     "android:logcat": "$ANDROID_HOME/platform-tools/adb logcat *:S ReactNative:V ReactNativeJS:V",
     "android:shake": "$ANDROID_HOME/platform-tools/adb devices | grep '\\t' | awk '{print $1}' | sed 's/\\s//g' | xargs -I {} $ANDROID_HOME/platform-tools/adb -s {} shell input keyevent 82",
-    "precommit": "npm run git-hook",
-    "prepush": "npm run git-hook",
-    "git-hook": "npm test -s"
+    <%# Commented out to disable tests until Enzyme becomes compatible with newer React Native versions: %>
+    <%# "precommit": "npm run git-hook", %>
+    <%# "prepush": "npm run git-hook", %>
+    <%# "git-hook": "npm test -s" %>
   },
   "dependencies": {
     "apisauce": "^0.14.0",
