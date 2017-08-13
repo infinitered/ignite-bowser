@@ -18,6 +18,10 @@ module.exports = async function (context) {
   const name = pascalCase(parameters.first)
   const props = { name }
 
+  // which type of list in code
+  const typeCodeMessage = 'What coding style do you want for your list?'
+  const typeCodeChoices = ['Flatlist (new)', 'Listview (classic)']
+
   // which type of layout?
   const typeMessage = 'What kind of ListView would you like to generate?'
   const typeChoices = ['Row', 'Grid']
@@ -26,15 +30,22 @@ module.exports = async function (context) {
   const typeDataMessage = 'How will your data be presented on this listview?'
   const typeDataChoices = ['Single', 'Sectioned']
 
-  // get type
+  // Check for parameters to bypass questions
+  let typeCode = parameters.options.type
   let type = parameters.options.type
-
-  // get dataType
   let dataType = parameters.options.dataType
 
   // only prompt if type is not defined
   if (!type) {
     // as question 1
+    const codeAnswers = await context.prompt.ask({
+      name: 'type',
+      type: 'list',
+      message: typeCodeMessage,
+      choices: typeCodeChoices
+    })
+    typeCode = codeAnswers.type
+    // ask question 2
     const answers = await context.prompt.ask({
       name: 'type',
       type: 'list',
@@ -42,7 +53,7 @@ module.exports = async function (context) {
       choices: typeChoices
     })
     type = answers.type
-    // ask question 2
+    // ask question 3
     const dataAnswers = await context.prompt.ask({
       name: 'type',
       type: 'list',
@@ -53,9 +64,12 @@ module.exports = async function (context) {
   }
 
   // set appropriate templates to generate
-  const componentTemplate = dataType === 'Sectioned'
-    ? 'listview-sections'
+  let componentTemplate = typeCode === typeCodeChoices[0]
+    ? 'flatlist'
     : 'listview'
+  componentTemplate = dataType === 'Sectioned'
+    ? componentTemplate + '-sections'
+    : componentTemplate
   const styleTemplate = type === 'Grid'
     ? 'listview-grid-style'
     : 'listview-style'
