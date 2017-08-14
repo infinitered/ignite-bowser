@@ -69,6 +69,9 @@ class <%= props.name %> extends Component {
   // item reordering.  Otherwise index is fine
   keyExtractor = (item, index) => index
 
+  // How many items should be kept im memory as we scroll?
+  oneScreensWorth = 20
+
   // extraData is for anything that is not indicated in data
   // for instance, if you kept "favorites" in `this.state.favs`
   // pass that in, so changes in favorites will cause a re-render
@@ -91,6 +94,7 @@ class <%= props.name %> extends Component {
           data={this.state.dataObjects}
           renderItem={this.renderRow}
           keyExtractor={this.keyExtractor}
+          initialNumToRender={this.oneScreensWorth}
           ListHeaderComponent={this.renderHeader}
           ListFooterComponent={this.renderFooter}
           ListEmptyComponent={this.renderEmpty}
