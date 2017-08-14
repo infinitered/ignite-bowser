@@ -2,6 +2,8 @@ import React from 'react'
 import { View, Text, FlatList } from 'react-native'
 import { connect } from 'react-redux'
 
+// More info here: https://facebook.github.io/react-native/docs/flatlist.html
+
 // Styles
 import styles from './Styles/<%= props.name %>Style'
 
@@ -116,4 +118,4 @@ const mapDispatchToProps = (dispatch) => {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Taco)
+export default connect(mapStateToProps, mapDispatchToProps)(<%= props.name %>)
