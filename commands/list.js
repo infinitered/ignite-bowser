@@ -10,7 +10,7 @@ module.exports = async function (context) {
 
   // validation
   if (isBlank(parameters.first)) {
-    print.info(`${context.runtime.brand} generate listview <name>\n`)
+    print.info(`${context.runtime.brand} generate list <name>\n`)
     print.info('A name is required.')
     return
   }
