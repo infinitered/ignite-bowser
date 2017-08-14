@@ -39,23 +39,39 @@ describe('generators', () => {
   })
 
   test('generate listview of type row works', async () => {
-    await execa(IGNITE, ['g', 'listview', 'TestRow', '--type=Row'], { preferLocal: false })
+    await execa(IGNITE, ['g', 'list', 'TestRow', '--type=Row', '--codeType=listview', '--dataType=Single'], { preferLocal: false })
     expect(jetpack.exists('App/Containers/TestRow.js')).toBe('file')
     expect(jetpack.exists('App/Containers/Styles/TestRowStyle.js')).toBe('file')
     const lint = await execa('npm', ['run', 'lint'])
     expect(lint.stderr).toBe('')
   })
 
-  test('generate listview of type sections works', async () => {
-    await execa(IGNITE, ['g', 'listview', 'TestSection', '--type=WithSections'], { preferLocal: false })
+  test('generate flatlist of type row works', async () => {
+    await execa(IGNITE, ['g', 'list', 'TestFlatRow', '--type=Row', '--codeType=flatlist', '--dataType=Single'], { preferLocal: false })
+    expect(jetpack.exists('App/Containers/TestFlatRow.js')).toBe('file')
+    expect(jetpack.exists('App/Containers/Styles/TestFlatRowStyle.js')).toBe('file')
+    const lint = await execa('npm', ['run', 'lint'])
+    expect(lint.stderr).toBe('')
+  })
+
+  test('generate listview of sections works', async () => {
+    await execa(IGNITE, ['g', 'list', 'TestSection', '--type=Row', '--codeType=listview', '--dataType=Sectioned'], { preferLocal: false })
     expect(jetpack.exists('App/Containers/TestSection.js')).toBe('file')
     expect(jetpack.exists('App/Containers/Styles/TestSectionStyle.js')).toBe('file')
     const lint = await execa('npm', ['run', 'lint'])
     expect(lint.stderr).toBe('')
   })
 
+  test('generate flatlist of sections works', async () => {
+    await execa(IGNITE, ['g', 'list', 'TestFlatSection', '--type=Row', '--codeType=flatlist', '--dataType=Sectioned'], { preferLocal: false })
+    expect(jetpack.exists('App/Containers/TestFlatSection.js')).toBe('file')
+    expect(jetpack.exists('App/Containers/Styles/TestFlatSectionStyle.js')).toBe('file')
+    const lint = await execa('npm', ['run', 'lint'])
+    expect(lint.stderr).toBe('')
+  })
+
   test('generate listview of type grid works', async () => {
-    await execa(IGNITE, ['g', 'listview', 'TestGrid', '--type=Grid'], { preferLocal: false })
+    await execa(IGNITE, ['g', 'list', 'TestGrid', '--type=Grid', '--codeType=listview', '--dataType=Single'], { preferLocal: false })
     expect(jetpack.exists('App/Containers/TestGrid.js')).toBe('file')
     expect(jetpack.exists('App/Containers/Styles/TestGridStyle.js')).toBe('file')
     const lint = await execa('npm', ['run', 'lint'])

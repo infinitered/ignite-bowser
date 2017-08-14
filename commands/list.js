@@ -23,20 +23,20 @@ module.exports = async function (context) {
   const typeCodeChoices = ['Flatlist (new)', 'Listview (classic)']
 
   // which type of layout?
-  const typeMessage = 'What kind of ListView would you like to generate?'
+  const typeMessage = 'What kind of List would you like to generate?'
   const typeChoices = ['Row', 'Grid']
 
   // Sections or no?
-  const typeDataMessage = 'How will your data be presented on this listview?'
+  const typeDataMessage = 'How will your data be presented on this list?'
   const typeDataChoices = ['Single', 'Sectioned']
 
   // Check for parameters to bypass questions
-  let typeCode = parameters.options.type
+  let typeCode = parameters.options.codeType
   let type = parameters.options.type
   let dataType = parameters.options.dataType
 
   // only prompt if type is not defined
-  if (!type) {
+  if (!typeCode) {
     // as question 1
     const codeAnswers = await context.prompt.ask({
       name: 'type',
@@ -44,7 +44,10 @@ module.exports = async function (context) {
       message: typeCodeMessage,
       choices: typeCodeChoices
     })
-    typeCode = codeAnswers.type
+    typeCode = codeAnswers.type === typeCodeChoices[0] ? 'flatlist' : 'listview'
+  }
+
+  if (!type) {
     // ask question 2
     const answers = await context.prompt.ask({
       name: 'type',
@@ -53,6 +56,9 @@ module.exports = async function (context) {
       choices: typeChoices
     })
     type = answers.type
+  }
+
+  if (!dataType) {
     // ask question 3
     const dataAnswers = await context.prompt.ask({
       name: 'type',
@@ -64,13 +70,13 @@ module.exports = async function (context) {
   }
 
   // set appropriate templates to generate
-  let componentTemplate = typeCode === typeCodeChoices[0]
+  let componentTemplate = typeCode.toLowerCase() === 'flatlist'
     ? 'flatlist'
     : 'listview'
-  componentTemplate = dataType === 'Sectioned'
+  componentTemplate = dataType.toLowerCase() === 'Sectioned'
     ? componentTemplate + '-sections'
     : componentTemplate
-  const styleTemplate = type === 'Grid'
+  const styleTemplate = type.toLowerCase() === 'grid'
     ? 'listview-grid-style'
     : 'listview-style'
 
@@ -96,23 +102,23 @@ module.exports = async function (context) {
     const routeToAdd = `  ${screenName}: { screen: ${screenName} },`
 
     if (!filesystem.exists(appNavFilePath)) {
-      const msg = `No '${appNavFilePath}' file found.  Can't insert listview screen.`
+      const msg = `No '${appNavFilePath}' file found.  Can't insert list screen.`
       print.error(msg)
       process.exit(1)
     }
 
-    // insert listview screen import
+    // insert list screen import
     ignite.patchInFile(appNavFilePath, {
       after: patterns[patterns.constants.PATTERN_IMPORTS],
       insert: importToAdd
     })
 
-    // insert listview screen route
+    // insert list screen route
     ignite.patchInFile(appNavFilePath, {
       after: patterns[patterns.constants.PATTERN_ROUTES],
       insert: routeToAdd
     })
   } else {
-    print.info('Listview screen created, manually add it to your navigation')
+    print.info('List screen created, manually add it to your navigation')
   }
 }
