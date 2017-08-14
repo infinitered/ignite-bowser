@@ -7,26 +7,23 @@ import { connect } from 'react-redux'
 // Styles
 import styles from './Styles/<%= props.name %>Style'
 
-class <%= props.name %> extends Component {
+class <%= props.name %> extends React.PureComponent {
 
-  constructor (props) {
-    super(props)
-    /* ***********************************************************
-    * STEP 1
-    * This is an array of objects with the properties you desire
-    * Usually this should come from Redux mapStateToProps
-    *************************************************************/
-    this.state = {
-      dataObjects: [
-        {title: 'First Title', description: 'First Description'},
-        {title: 'Second Title', description: 'Second Description'},
-        {title: 'Third Title', description: 'Third Description'},
-        {title: 'Fourth Title', description: 'Fourth Description'},
-        {title: 'Fifth Title', description: 'Fifth Description'},
-        {title: 'Sixth Title', description: 'Sixth Description'},
-        {title: 'Seventh Title', description: 'Seventh Description'}
-      ]
-    }
+  /* ***********************************************************
+  * STEP 1
+  * This is an array of objects with the properties you desire
+  * Usually this should come from Redux mapStateToProps
+  *************************************************************/
+  state = {
+    dataObjects: [
+      {title: 'First Title', description: 'First Description'},
+      {title: 'Second Title', description: 'Second Description'},
+      {title: 'Third Title', description: 'Third Description'},
+      {title: 'Fourth Title', description: 'Fourth Description'},
+      {title: 'Fifth Title', description: 'Fifth Description'},
+      {title: 'Sixth Title', description: 'Sixth Description'},
+      {title: 'Seventh Title', description: 'Seventh Description'}
+    ]
   }
 
   /* ***********************************************************
