@@ -91,7 +91,7 @@ async function install (context) {
     { template: '.editorconfig', target: '.editorconfig' },
     { template: '.babelrc', target: '.babelrc' },
     { template: 'Tests/Setup.js.ejs', target: 'Tests/Setup.js' },
-    { template: 'storybook/storybook.ejs', target: 'storybook/storybook.js'
+    { template: 'storybook/storybook.ejs', target: 'storybook/storybook.js' }
   ]
   const templateProps = {
     name,
