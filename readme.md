@@ -67,6 +67,10 @@ Your primary and other navigation components reside here.
 
 React components go here...pretty self-explanatory. We won't go through each in detail -- open each file to read the comments and view the code.
 
+### Storybook
+
+[Storybook](https://storybook.js.org/) has been setup to show off components in the different states. Storybook is a great way to develop and test components outside of use in your app. Simply run `npm run storybook` to get started. All stores are contained in the `*.story.js` files along side the components.
+
 ### Themes
 
 Styling themes used throughout your app styles.
