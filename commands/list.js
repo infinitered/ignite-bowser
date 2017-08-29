@@ -73,7 +73,7 @@ module.exports = async function (context) {
   let componentTemplate = typeCode.toLowerCase() === 'flatlist'
     ? 'flatlist'
     : 'listview'
-  componentTemplate = dataType.toLowerCase() === 'Sectioned'
+  componentTemplate = dataType.toLowerCase() === 'sectioned'
     ? componentTemplate + '-sections'
     : componentTemplate
   const styleTemplate = type.toLowerCase() === 'grid'
