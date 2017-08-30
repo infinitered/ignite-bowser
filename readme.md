@@ -10,7 +10,7 @@ This is the boilerplate that [Infinite Red](https://infinite.red) uses as a way 
 
 Currently includes:
 
-* React Native 0.45.1 (but you can change this if you want to experiment)
+* React Native 0.47.2 (but you can change this if you want to experiment)
 * React Navigation
 * Redux
 * Redux Sagas
