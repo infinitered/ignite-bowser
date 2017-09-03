@@ -69,16 +69,36 @@ module.exports = async function (context) {
     dataType = dataAnswers.type
   }
 
-  // set appropriate templates to generate
-  let componentTemplate = typeCode.toLowerCase() === 'flatlist'
-    ? 'flatlist'
-    : 'listview'
-  componentTemplate = dataType.toLowerCase() === 'sectioned'
-    ? componentTemplate + '-sections'
-    : componentTemplate
-  const styleTemplate = type.toLowerCase() === 'grid'
-    ? 'listview-grid-style'
-    : 'listview-style'
+  // Sorry the following is so confusing, but so are React Native lists
+  // There are 3 options and therefore 8 possible combinations
+  let componentTemplate = dataType.toLowerCase() === 'sectioned'
+    ? typeCode + '-sections'
+    : typeCode
+  let styleTemplate = ''
+  // Different logic depending on code types
+  if (typeCode === 'flatlist') {
+
+    /*
+    * The following mess is because FlatList supports numColumns
+    * where SectionList does not.
+    */
+    if (type.toLowerCase() === 'grid' && dataType.toLowerCase() === 'sectioned') {
+      // grid + section means we need wrap
+      styleTemplate = 'listview-grid-style'
+    } else if (type.toLowerCase() === 'grid') {
+      componentTemplate = componentTemplate + '-grid'
+      // grid + single = no wrap, use columns
+      styleTemplate = 'flatlist-grid-style'
+    } else {
+      // no grids, flatlist basic
+      styleTemplate = 'listview-style'
+    }
+  } else {
+    // listview builder
+    styleTemplate = type.toLowerCase() === 'grid'
+      ? 'listview-grid-style'
+      : 'listview-style'
+  }
 
   const jobs = [
     {
