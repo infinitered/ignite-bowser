@@ -77,7 +77,6 @@ module.exports = async function (context) {
   let styleTemplate = ''
   // Different logic depending on code types
   if (typeCode === 'flatlist') {
-
     /*
     * The following mess is because FlatList supports numColumns
     * where SectionList does not.
