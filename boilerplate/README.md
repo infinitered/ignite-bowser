@@ -60,3 +60,8 @@ Secrets.GOOGLE_MAPS_API_KEY  // 'abcdefgh'
 
 The `.env` file is ignored by git keeping those secrets out of your repo.
 
+### Get started:
+1. Copy .env.example to .env
+2. Add your config variables
+3. Follow instructions at [https://github.com/luggit/react-native-config#setup](https://github.com/luggit/react-native-config#setup)
+4. Done!
