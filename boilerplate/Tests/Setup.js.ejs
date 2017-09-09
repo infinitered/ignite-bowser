@@ -1,8 +1,6 @@
-jest
-.mock('react-native-device-info', () => {
-  return { isTablet: jest.fn(() => { return false }) }
-})
+// Mock your external modules here if needed
 <%_ if (props.i18n === 'react-native-i18n') { _%>
+jest
 .mock('react-native-i18n', () => {
   const english = require('../App/I18n/languages/english.json')
   const keys = require('ramda')
@@ -22,4 +20,9 @@ jest
     }
   }
 })
+<%_ } else { _%>
+// jest
+// .mock('react-native-device-info', () => {
+//   return { isTablet: jest.fn(() => { return false }) }
+// })
 <%_ } _%>
