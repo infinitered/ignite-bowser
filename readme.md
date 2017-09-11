@@ -79,7 +79,7 @@ Styling themes used throughout your app styles.
 * `Colors.js` - defined colors for your app
 * `Fonts.js` - defined fonts for your app
 * `Images.js` - loads and caches images used in your app
-* `Metrics.js` - useful measurements of things like searchBarHeight
+* `Metrics.js` - useful measurements of things like navBarHeight
 
 ### Config
 
