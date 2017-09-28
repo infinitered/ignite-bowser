@@ -14,8 +14,8 @@ const store = createStore()
 * For unknown reason there is still an error at first reloading but then it leave and the store is updated
 * TODO: investigate on this first strange error, the HMR still works
 *
-* <Provider> does not support changing `store` on the fly. It is most likely that you see this error because 
-* you updated to Redux 2.x and React Redux 2.x which no longer hot reload reducers automatically. 
+* <Provider> does not support changing `store` on the fly. It is most likely that you see this error because
+* you updated to Redux 2.x and React Redux 2.x which no longer hot reload reducers automatically.
 * See https://github.com/reactjs/react-redux/releases/tag/v2.0.0 for the migration instructions.
 */
 if (module.hot) {
