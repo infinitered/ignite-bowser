@@ -176,7 +176,7 @@ async function install (context) {
 
     // now run install of Ignite Plugins
     if (answers['dev-screens'] === 'Yes') {
-      await system.spawn(`ignite add dev-screens@"~>2.0.0" ${debugFlag}`, {
+      await system.spawn(`ignite add dev-screens@"~>2.2.0" ${debugFlag}`, {
         stdio: 'inherit'
       })
     }
