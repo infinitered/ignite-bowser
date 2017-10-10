@@ -51,8 +51,9 @@ async function install (context) {
   })
   if (rnInstall.exitCode > 0) process.exit(rnInstall.exitCode)
 
-  // remove the __tests__ directory that come with React Native
+  // remove the __tests__ directory and App.js that come with React Native
   filesystem.remove('__tests__')
+  filesystem.remove('App.js')
 
   // copy our App, Tests & storybook directories
   spinner.text = '▸ copying files'
@@ -84,8 +85,7 @@ async function install (context) {
   // generate some templates
   spinner.text = '▸ generating files'
   const templates = [
-    { template: 'index.js.ejs', target: 'index.ios.js' },
-    { template: 'index.js.ejs', target: 'index.android.js' },
+    { template: 'index.js.ejs', target: 'index.js' },
     { template: 'README.md', target: 'README.md' },
     { template: 'ignite.json.ejs', target: 'ignite/ignite.json' },
     { template: '.editorconfig', target: '.editorconfig' },
