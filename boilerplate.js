@@ -92,7 +92,7 @@ async function install (context) {
     { template: '.babelrc', target: '.babelrc' },
     { template: 'Tests/Setup.js.ejs', target: 'Tests/Setup.js' },
     { template: 'storybook/storybook.ejs', target: 'storybook/storybook.js' },
-    { template: '../.env.example', target: '../.env.example' }
+    { template: '.env.example', target: '.env.example' }
   ]
   const templateProps = {
     name,
