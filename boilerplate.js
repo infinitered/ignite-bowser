@@ -197,6 +197,12 @@ async function install (context) {
       })
     }
 
+    if (answers['redux-persist'] === 'Yes') {
+      await system.spawn(`ignite add redux-persist@"~>0.0.5" ${debugFlag}`, {
+        stdio: 'inherit'
+      })
+    }
+
     if (parameters.options.lint !== 'false') {
       await system.spawn(`ignite add standard@"~>1.0.0" ${debugFlag}`, {
         stdio: 'inherit'
