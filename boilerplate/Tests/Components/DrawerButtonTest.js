@@ -4,7 +4,7 @@ import DrawerButton from '../../App/Components/DrawerButton'
 import { shallow } from 'enzyme'
 import renderer from 'react-test-renderer'
 
-test('AlertMessage component renders correctly', () => {
+test('DrawerButton component renders correctly', () => {
   const tree = renderer.create(<DrawerButton onPress={() => {}} text='hi' />).toJSON()
   expect(tree).toMatchSnapshot()
 })
