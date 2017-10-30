@@ -113,7 +113,7 @@ async function install (context) {
   // https://github.com/facebook/react-native/issues/12724
   filesystem.appendAsync('.gitattributes', '*.bat text eol=crlf')
   filesystem.append('.gitignore', '\n# Misc\n#')
-  filesystem.append('.gitignore', '\n.env.example\n')
+  filesystem.append('.gitignore', '\n.env\n')
 
   /**
    * Merge the package.json from our template into the one provided from react-native init.
