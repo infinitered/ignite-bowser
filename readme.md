@@ -56,6 +56,14 @@ Containers are (mostly) full screens, although they can be sections of screens o
 * `LoginScreen.js` - an example login screen. Read the comments in there to learn more!
 * `Styles` - styling for each of the above containers and screens
 
+To generate a new Container or Screen you can use the following generator commands:
+
+* `ignite g container New` - Will create a `New.js` and also a `Styles/NewStyle.js`.
+* `ignite g list New` - The same as the `container` command, but it will give you a walkthrough to generate a ListView screen. Allowing you to even pick `FlatList` or not, grid, and some other options. 
+* `ignite g screen New` - Will create a `NewScreen.js` and also a `Styles/NewScreenStyle.js`. Important to mention that the `screen` generator will add the `Screen` on the file/class name to make easierto identify
+
+Those commands will also add the new container to the navigations file.
+
 ### Navigation
 
 Your primary and other navigation components reside here.
@@ -66,6 +74,13 @@ Your primary and other navigation components reside here.
 ### Components
 
 React components go here...pretty self-explanatory. We won't go through each in detail -- open each file to read the comments and view the code.
+
+To generate a new Component you can use the following generator commands:
+
+* `ignite g component New` - Will create a `NewComponent.js` and also a `Styles/NewComponentStyle.js`.
+* `ignite g component path/New` - The same as above, but will use a relative path
+* `ignite g component --folder path` - An alternative to `ignite g component path/index`
+* `ignite g component --folder path new ` - An alternative to `ignite g component relativePath/New`
 
 ### Storybook
 
@@ -97,6 +112,11 @@ Contains json files that mimic API responses for quicker development. These are 
 ### Redux, Sagas
 
 Contains a preconfigured Redux and Redux-Sagas setup. Review each file carefully to see how Redux interacts with your application.
+
+Here again we have generators to help you out. You just have to use one of the following:
+
+* `ignite g redux Amazing` - Will generate and link the redux for `Amazing`.
+* `ignite g saga Amazing` - The same as above, but for the Sagas
 
 _TODO: explain more about Redux & Redux Sagas here_
 

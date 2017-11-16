@@ -43,7 +43,7 @@ describe('generators', () => {
     const folderComponent = 'FolderComponent'
     await execa(IGNITE, ['g', 'component', '--folder', folderComponent], { preferLocal: false })
     expect(jetpack.exists(`App/Components/${folderComponent}/index.js`)).toBe('file')
-    expect(jetpack.exists(`App/Components/${folderComponent}/Styles/${folderComponent}Style.js`)).toBe('file')
+    expect(jetpack.exists(`App/Components/${folderComponent}/Styles/indexStyle.js`)).toBe('file')
     const lint = await execa('npm', ['-s', 'run', 'lint'])
     expect(lint.stderr).toBe('')
   })
@@ -54,6 +54,14 @@ describe('generators', () => {
     await execa(IGNITE, ['g', 'component', '--folder', folderName, componentName], { preferLocal: false })
     expect(jetpack.exists(`App/Components/${folderName}/${componentName}.js`)).toBe('file')
     expect(jetpack.exists(`App/Components/${folderName}/Styles/${componentName}Style.js`)).toBe('file')
+    const lint = await execa('npm', ['-s', 'run', 'lint'])
+    expect(lint.stderr).toBe('')
+  })
+
+  test('generates a component in a relative path', async() => {
+    await execa(IGNITE, ['g', 'component', 'My/SubFolder/Test'], { preferLocal: false })
+    expect(jetpack.exists('App/Components/My/SubFolder/Test.js')).toBe('file')
+    expect(jetpack.exists('App/Components/My/SubFolder/Styles/TestStyle.js')).toBe('file')
     const lint = await execa('npm', ['-s', 'run', 'lint'])
     expect(lint.stderr).toBe('')
   })
