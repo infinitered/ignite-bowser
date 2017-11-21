@@ -21,7 +21,8 @@ module.exports = async function (context) {
   let componentPath = hasFolder ? `${options.folder}/${parameters.first || 'index'}` : parameters.first
 
   let pathComponents = componentPath.split('/').map(pascalCase)
-  const name = pathComponents.pop()
+  let name = pathComponents.pop()
+  if (name === 'Index') { name = 'index' }
   const relativePath = pathComponents.length ? pathComponents.join('/') + '/' : ''
 
   const props = { name }
