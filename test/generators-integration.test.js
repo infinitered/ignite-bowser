@@ -41,7 +41,8 @@ describe('generators', () => {
 
   test('generates a folder component', async () => {
     const folderComponent = 'Folder'
-    await execa(IGNITE, ['g', 'component', '--folder', folderComponent], { preferLocal: false })
+    const result = await execa(IGNITE, ['g', 'component', '--folder', folderComponent], { preferLocal: false })
+    console.log(result)
     expect(jetpack.exists(`App/Components/${folderComponent}/index.js`)).toBe('file')
     expect(jetpack.exists(`App/Components/${folderComponent}/Styles/indexStyle.js`)).toBe('file')
     const lint = await execa('npm', ['-s', 'run', 'lint'])
