@@ -31,7 +31,7 @@ describe('generators', () => {
   })
 
   test('generates a component', async () => {
-    const simpleComponent = 'SimpleComponent'
+    const simpleComponent = 'Simple'
     await execa(IGNITE, ['g', 'component', simpleComponent], { preferLocal: false })
     expect(jetpack.exists(`App/Components/${simpleComponent}.js`)).toBe('file')
     expect(jetpack.exists(`App/Components/Styles/${simpleComponent}Style.js`)).toBe('file')
@@ -40,7 +40,7 @@ describe('generators', () => {
   })
 
   test('generates a folder component', async () => {
-    const folderComponent = 'FolderComponent'
+    const folderComponent = 'Folder'
     await execa(IGNITE, ['g', 'component', '--folder', folderComponent], { preferLocal: false })
     expect(jetpack.exists(`App/Components/${folderComponent}/index.js`)).toBe('file')
     expect(jetpack.exists(`App/Components/${folderComponent}/Styles/indexStyle.js`)).toBe('file')
@@ -49,8 +49,8 @@ describe('generators', () => {
   })
 
   test('generates a component inside a folder', async () => {
-    const componentName = 'InComponent'
-    const folderName = 'FolderComponent'
+    const componentName = 'InFolder'
+    const folderName = 'Folder'
     await execa(IGNITE, ['g', 'component', '--folder', folderName, componentName], { preferLocal: false })
     expect(jetpack.exists(`App/Components/${folderName}/${componentName}.js`)).toBe('file')
     expect(jetpack.exists(`App/Components/${folderName}/Styles/${componentName}Style.js`)).toBe('file')

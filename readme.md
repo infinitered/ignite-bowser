@@ -77,7 +77,7 @@ React components go here...pretty self-explanatory. We won't go through each in 
 
 To generate a new Component you can use the following generator commands:
 
-* `ignite g component New` - Will create a `NewComponent.js` and also a `Styles/NewComponentStyle.js`.
+* `ignite g component New` - Will create a `New.js` and also a `Styles/NewStyle.js`.
 * `ignite g component path/New` - The same as above, but will use a relative path
 * `ignite g component --folder path` - An alternative to `ignite g component path/index`
 * `ignite g component --folder path new ` - An alternative to `ignite g component relativePath/New`
