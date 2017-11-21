@@ -21,6 +21,12 @@ export const INITIAL_STATE = Immutable({
   username: null
 })
 
+/* ------------- Selectors ------------- */
+
+export const GithubSelectors = {
+  selectAvatar: state => state.github.avatar
+}
+
 /* ------------- Reducers ------------- */
 
 // request the avatar for a user

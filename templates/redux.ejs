@@ -21,6 +21,12 @@ export const INITIAL_STATE = Immutable({
   error: null
 })
 
+/* ------------- Selectors ------------- */
+
+export const <%= props.name %>Selectors = {
+  getData: state => state.data
+}
+
 /* ------------- Reducers ------------- */
 
 // request the data from an api

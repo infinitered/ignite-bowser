@@ -12,9 +12,12 @@
 
 import { call, put } from 'redux-saga/effects'
 import <%= props.name %>Actions from '../Redux/<%= props.name %>Redux'
+// import { <%= props.name %>Selectors } from '../Redux/<%= props.name %>Redux'
 
 export function * get<%= props.name %> (api, action) {
   const { data } = action
+  // get current data from Store
+  // const currentData = yield select(<%= props.name %>Selectors.getData)
   // make the call to the api
   const response = yield call(api.get<%= camelCase(props.name) %>, data)
 
