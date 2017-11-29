@@ -1,3 +1,8 @@
+import { configure } from 'enzyme'
+import Adapter from 'enzyme-adapter-react-16'
+
+configure({ adapter: new Adapter() })
+
 // Mock your external modules here if needed
 <%_ if (props.i18n === 'react-native-i18n') { _%>
 jest
