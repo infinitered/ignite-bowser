@@ -23,6 +23,7 @@
   "dependencies": {
     "apisauce": "^0.14.2",
     "format-json": "^1.0.3",
+    "identity-obj-proxy": "^3.0.0",
     "lodash": "^4.17.4",
     "prop-types": "^15.6.0",
     "querystringify": "1.0.0",
@@ -62,6 +63,9 @@
       "/node_modules/",
       "<rootDir>/Tests/Setup.js"
     ],
+    "moduleNameMapper": {
+      "^.+\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "identity-obj-proxy"
+    },
     "setupFiles": [
       "<rootDir>/Tests/Setup"
     ],
