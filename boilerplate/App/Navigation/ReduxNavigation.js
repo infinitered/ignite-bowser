@@ -1,5 +1,6 @@
 import React from 'react'
 import * as ReactNavigation from 'react-navigation'
+import { createReduxBoundAddListener } from 'react-navigation-redux-helpers'
 import { connect } from 'react-redux'
 import AppNavigation from './AppNavigation'
 
@@ -8,7 +9,8 @@ function ReduxNavigation (props) {
   const { dispatch, nav } = props
   const navigation = ReactNavigation.addNavigationHelpers({
     dispatch,
-    state: nav
+    state: nav,
+    addListener: createReduxBoundAddListener('root')
   })
 
   return <AppNavigation navigation={navigation} />
