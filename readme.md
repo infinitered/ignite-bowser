@@ -70,6 +70,7 @@ Your primary and other navigation components reside here.
 
 * `AppNavigation.js` - loads in your initial screen and creates your menu(s) in a StackNavigation
 * `Styles` - styling for the navigation
+* `ReduxNavigation.js` - This file contains the core navigation of your application. If you ever change your launch screen, make sure to change it also at `if (nav.routes.length === 1 && (nav.routes[0].routeName === 'LaunchScreen')) {`, otherwise you may encounter navigation problems with the Android back button!
 
 ### Components
 
