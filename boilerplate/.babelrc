@@ -2,7 +2,14 @@
   "presets": ["react-native"],
   "env": {
     "production": {
-      "plugins": ["ignite-ignore-reactotron"]
     }
-  }
+  },
+  "plugins": [
+    [
+      "transform-inline-environment-variables",
+      {
+        "include": ["NODE_ENV", "API"]
+      }
+    ]
+  ]
 }

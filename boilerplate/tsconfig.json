@@ -1,0 +1,18 @@
+{
+  "compilerOptions": {
+    "allowSyntheticDefaultImports": false,
+    "experimentalDecorators": true,
+    "jsx": "react-native",
+    "module": "es2015",
+    "moduleResolution": "node",
+    "noImplicitAny": false,
+    "noImplicitThis": true,
+    "noUnusedLocals": true,
+    "allowJs": false,
+    "target": "es2015",
+    "sourceMap": true,
+    "noImplicitReturns": true
+  },
+  "include": ["src", "test"],
+  "exclude": ["node_modules"]
+}

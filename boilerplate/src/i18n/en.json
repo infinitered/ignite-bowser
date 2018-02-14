@@ -1,0 +1,17 @@
+{
+  "common": {
+    "ok": "OK!",
+    "cancel": "Cancel",
+    "back": "Back"
+  },
+  "errors": {
+    "invalidEmail": "Invalid email address."
+  },
+  "firstExampleScreen": {
+    "header": "First Screen",
+    "nextScreenButton": "Next Screen"
+  },
+  "secondExampleScreen": {
+    "header": "Second Screen"
+  }
+}
