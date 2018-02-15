@@ -24,13 +24,14 @@ const THROTTLE_OPTIONS = { trailing: false }
 export class StatefulNavigator extends React.Component<StatefulNavigatorProps, {}> {
   render() {
     // grab our state & dispatch from our navigation store
-    const { state, dispatch } = this.props.navigationStore
+    const { state, dispatch, addListener } = this.props.navigationStore
 
     // create a custom navigation implementation
     const navigation = addNavigationHelpers({
       dispatch: throttle(dispatch, THROTTLE, THROTTLE_OPTIONS),
       state,
-    })
+      addListener,
+    } as any) // (as any is only here until @types/react-navigation is updated)
 
     return <RootNavigator navigation={navigation} />
   }

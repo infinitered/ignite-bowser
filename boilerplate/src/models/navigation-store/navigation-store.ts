@@ -1,6 +1,7 @@
 import { types } from "mobx-state-tree"
 import { RootNavigator } from "../../navigation/root-navigator"
 import { NavigationActions } from "react-navigation"
+import { NavigationEvents } from "./navigation-events"
 
 const DEFAULT_STATE = RootNavigator.router.getStateForAction(NavigationActions.init(), null)
 
@@ -21,8 +22,7 @@ function findCurrentRoute(navState) {
  * Tracks the navigation state for `react-navigation` as well as providers
  * the actions for changing that state.
  */
-export const NavigationStoreModel = types
-  .model("NavigationStore")
+export const NavigationStoreModel = NavigationEvents.named("NavigationStore")
   .props({
     /**
      * the navigation state tree (Frozen here means it is immutable.)
