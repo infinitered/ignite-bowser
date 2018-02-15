@@ -79,7 +79,8 @@ async function install (context) {
   } else if (parameters.options.min) {
     answers = options.answers.min
   } else {
-    answers = await prompt.ask(options.questions)
+    // none for now
+    // answers = await prompt.ask(options.questions)
   }
 
   // generate some templates
@@ -95,7 +96,9 @@ async function install (context) {
     { template: '.solidarity', target: '.solidarity' },
     { template: 'rn-cli.config.js', target: 'rn-cli.config.js' },
     { template: 'tsconfig.json', target: 'tsconfig.json' },
-    { template: 'tslint.json', target: 'tslint.json' }
+    { template: 'tslint.json', target: 'tslint.json' },
+    { template: 'storybook/config.js.ejs', target: 'storybook/config.js' },
+    { template: 'src/app/main.tsx.ejs', target: 'src/app/main.tsx' }
   ]
   const templateProps = {
     name,

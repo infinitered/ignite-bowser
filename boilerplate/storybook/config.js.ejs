@@ -10,5 +10,5 @@ configure(() => {
 // This assumes that storybook is running on the same host as your RN packager,
 // to set manually use, e.g. host: 'localhost' option
 const StorybookUI = getStorybookUI({ port: 9002, onDeviceUI: false })
-AppRegistry.registerComponent("Ignite", () => StorybookUI)
+AppRegistry.registerComponent("<%= props.name %>", () => StorybookUI)
 export default StorybookUI
