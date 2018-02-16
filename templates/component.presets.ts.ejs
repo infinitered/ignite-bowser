@@ -1,6 +1,5 @@
 import { ViewStyle, TextStyle } from "react-native"
-import { color } from "../../../theme/color"
-import { spacing } from "../../../theme/spacing"
+import { color, spacing } from "../../../theme"
 
 /**
  * All text will start off looking like this.
@@ -24,7 +23,7 @@ const BASE_TEXT: TextStyle = {
  */
 export const viewPresets = {
   /**
-   * A smaller piece of secondard information.
+   * A smaller piece of secondary information.
    */
   primary: { ...BASE_VIEW, backgroundColor: color.palette.orange } as ViewStyle,
 }
@@ -36,4 +35,4 @@ export const textPresets = {
 /**
  * A list of preset names.
  */
-export type ButtonPresetNames = keyof typeof viewPresets
+export type <%= props.pascalName %>PresetNames = keyof typeof viewPresets

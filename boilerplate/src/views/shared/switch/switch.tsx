@@ -1,6 +1,6 @@
 import * as React from "react"
 import { ViewStyle, Animated, Easing, TouchableWithoutFeedback } from "react-native"
-import { color } from "../../theme"
+import { color } from "../../../theme"
 import { SwitchProps } from "./switch.props"
 
 // dimensions

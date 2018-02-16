@@ -6,9 +6,8 @@
     "React Native": [
       {
         "rule": "cli",
-        "binary": "/usr/local/bin/react-native",
-        "semver": "^2.0.1",
-        "platform": "darwin"
+        "binary": "react-native",
+        "semver": "^2.0.1"
       }
     ],
     "Xcode": [

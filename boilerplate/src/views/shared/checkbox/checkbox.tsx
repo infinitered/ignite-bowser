@@ -1,7 +1,7 @@
 import * as React from "react"
 import { TouchableOpacity, TextStyle, ViewStyle, View } from "react-native"
 import { Text } from "../text"
-import { color, spacing } from "../../theme"
+import { color, spacing } from "../../../theme"
 import { CheckboxProps } from "./checkbox.props"
 
 const ROOT: ViewStyle = {
