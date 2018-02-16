@@ -2,7 +2,7 @@
 
 module.exports = async function (context) {
   // grab some features
-  const { parameters, strings, print, ignite, filesystem } = context
+  const { parameters, strings, print, ignite, filesystem, patching } = context
   const { pascalCase, isBlank } = strings
 
   const options = parameters.options || {}
@@ -51,4 +51,7 @@ module.exports = async function (context) {
   ]
 
   await ignite.copyBatch(context, jobs, props)
+
+  // wire up example
+  patching.insertInFile('./storybook/storybook-registry.ts', '\n', `require("../src/views/${domainPath}/${name}/${name}.story")`)
 }
