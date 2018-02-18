@@ -4,7 +4,7 @@ const patterns = require('../lib/patterns')
 
 module.exports = async function (context) {
   // grab some features
-  const { parameters, print, strings, ignite, filesystem } = context
+  const { parameters, print, strings, ignite, filesystem, prompt } = context
   const { pascalCase, isBlank } = strings
   const config = ignite.loadIgniteConfig()
 
@@ -15,18 +15,31 @@ module.exports = async function (context) {
     return
   }
 
-  const name = pascalCase(parameters.first)
-  const screenName = name.endsWith('Screen') ? name : `${name}Screen`
-  const props = { name: screenName }
+  const domainQuestion = 'Add component to which domain?'
+  const domains = filesystem.list('./src/views/')
+  const domainChoices = ['(Create New)', ...domains]
+
+  const domainAddAnswer = await prompt.ask({
+    name: 'domain',
+    type: 'list',
+    message: domainQuestion,
+    choices: domainChoices
+  })
+
+  const domainPath = (domainAddAnswer.domain === domainChoices[0]) ? '' : domainAddAnswer.domain + '/'
+  const name = parameters.first
+
+  const screenName = name.endsWith('-screen') ? name : `${name}-screen`
+  const pascalName = pascalCase(name)
+  const props = { name, pascalName }
 
   const jobs = [
     {
       template: `screen.ejs`,
-      target: `App/Containers/${screenName}.js`
-    },
-    {
-      template: `screen-style.ejs`,
-      target: `App/Containers/Styles/${screenName}Style.js`
+      target: `src/views/${domainPath}${name}/${screenName}.tsx`
+    }, {
+      template: 'rollup-index.ts.ejs',
+      target: `src/views/${domainPath}${name}/index.ts`
     }
   ]
 
@@ -36,9 +49,10 @@ module.exports = async function (context) {
   // if using `react-navigation` go the extra step
   // and insert the screen into the nav router
   if (config.navigation === 'react-navigation') {
-    const appNavFilePath = `${process.cwd()}/App/Navigation/AppNavigation.js`
-    const importToAdd = `import ${screenName} from '../Containers/${screenName}'`
-    const routeToAdd = `  ${screenName}: { screen: ${screenName} },`
+    const screenNavigator = pascalName + 'Navigator'
+    const appNavFilePath = `${process.cwd()}/src/navigation/root-navigator.ts`
+    const importToAdd = `import ${pascalName} from "../views/${domainPath}${name}/${screenName}"`
+    const routeToAdd = `    ${screenNavigator}: { screen: ${pascalName} },`
 
     if (!filesystem.exists(appNavFilePath)) {
       const msg = `No '${appNavFilePath}' file found.  Can't insert screen.`
