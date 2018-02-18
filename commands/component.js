@@ -2,7 +2,7 @@
 
 module.exports = async function (context) {
   // grab some features
-  const { parameters, strings, print, ignite, filesystem, patching } = context
+  const { parameters, strings, print, ignite, filesystem, patching, prompt } = context
   const { pascalCase, isBlank } = strings
 
   const options = parameters.options || {}
@@ -20,33 +20,33 @@ module.exports = async function (context) {
   const domains = filesystem.list('./src/views/')
   const domainChoices = ['(Create New)', ...domains]
 
-  const domainAddAnswer = await context.prompt.ask({
-    name: 'type',
+  const domainAddAnswer = await prompt.ask({
+    name: 'domain',
     type: 'list',
     message: domainQuestion,
     choices: domainChoices
   })
 
-  const domainPath = domainAddAnswer.type
+  const domainPath = (domainAddAnswer.domain === domainChoices[0]) ? '' : domainAddAnswer.domain + '/'
   const name = parameters.first
 
   const props = { name, pascalName: pascalCase(name) }
   const jobs = [
     {
       template: 'component.tsx.ejs',
-      target: `src/views/${domainPath}/${name}/${name}.tsx`
+      target: `src/views/${domainPath}${name}/${name}.tsx`
     }, {
       template: 'component.presets.ts.ejs',
-      target: `src/views/${domainPath}/${name}/${name}.presets.ts`
+      target: `src/views/${domainPath}${name}/${name}.presets.ts`
     }, {
       template: 'component.props.ts.ejs',
-      target: `src/views/${domainPath}/${name}/${name}.props.ts`
+      target: `src/views/${domainPath}${name}/${name}.props.ts`
     }, {
       template: 'component.story.tsx.ejs',
-      target: `src/views/${domainPath}/${name}/${name}.story.tsx`
+      target: `src/views/${domainPath}${name}/${name}.story.tsx`
     }, {
       template: 'rollup-index.ts.ejs',
-      target: `src/views/${domainPath}/${name}/index.ts`
+      target: `src/views/${domainPath}${name}/index.ts`
     }
   ]
 
