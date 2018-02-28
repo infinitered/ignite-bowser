@@ -60,7 +60,7 @@ To generate a new Container or Screen you can use the following generator comman
 
 * `ignite g container New` - Will create a `New.js` and also a `Styles/NewStyle.js`.
 * `ignite g list New` - The same as the `container` command, but it will give you a walkthrough to generate a ListView screen. Allowing you to even pick `FlatList` or not, grid, and some other options. 
-* `ignite g screen New` - Will create a `NewScreen.js` and also a `Styles/NewScreenStyle.js`. Important to mention that the `screen` generator will add the `Screen` on the file/class name to make easierto identify
+* `ignite g screen New` - Will create a `NewScreen.js` and also a `Styles/NewScreenStyle.js`. Important to mention that the `screen` generator will add the `Screen` on the file/class name to make easier to identify.
 
 Those commands will also add the new container to the navigations file.
 
