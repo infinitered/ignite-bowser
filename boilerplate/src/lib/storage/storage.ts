@@ -8,7 +8,7 @@ import { AsyncStorage } from "react-native"
 export async function loadString(key: string): Promise<string | null> {
   try {
     return await AsyncStorage.getItem(key)
-  } catch (e) {
+  } catch {
     // not sure why this would fail... even reading the RN docs I'm unclear
     return null
   }
@@ -24,7 +24,7 @@ export async function saveString(key: string, value: string): Promise<boolean> {
   try {
     await AsyncStorage.setItem(key, value)
     return true
-  } catch (e) {
+  } catch {
     return false
   }
 }
@@ -38,8 +38,7 @@ export async function load(key: string): Promise<any | null> {
   try {
     const almostThere = await AsyncStorage.getItem(key)
     return JSON.parse(almostThere)
-  } catch (e) {
-    // not sure why this would fail... even reading the RN docs I'm unclear
+  } catch {
     return null
   }
 }
@@ -58,8 +57,7 @@ export async function save(key: string, value: any): Promise<boolean> {
       await AsyncStorage.setItem(key, value)
     }
     return true
-  } catch (e) {
-    // console.tron.log(e.message)
+  } catch {
     return false
   }
 }
@@ -72,10 +70,7 @@ export async function save(key: string, value: any): Promise<boolean> {
 export async function remove(key: string): Promise<void> {
   try {
     await AsyncStorage.removeItem(key)
-  } catch (e) {
-    // not sure why this would fail... even reading the RN docs I'm unclear
-    return
-  }
+  } catch {}
 }
 
 /**
@@ -84,5 +79,5 @@ export async function remove(key: string): Promise<void> {
 export async function clear(): Promise<void> {
   try {
     await AsyncStorage.clear()
-  } catch (e) {}
+  } catch {}
 }
