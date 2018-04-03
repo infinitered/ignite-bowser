@@ -97,7 +97,6 @@ async function install (context) {
     { template: 'rn-cli.config.js', target: 'rn-cli.config.js' },
     { template: 'tsconfig.json', target: 'tsconfig.json' },
     { template: 'tslint.json', target: 'tslint.json' },
-    { template: 'storybook/config.js.ejs', target: 'storybook/config.js' },
     { template: 'src/app/main.tsx.ejs', target: 'src/app/main.tsx' }
   ]
   const templateProps = {
