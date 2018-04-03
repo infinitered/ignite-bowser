@@ -15,64 +15,51 @@
     "precommit": "lint-staged",
     "prepare": "patch-package",
     "start": "node node_modules/react-native/local-cli/cli.js start",
-    "storybook": "storybook start -p 9001 -c .storybook --skip-packager",
+    "storybook": "storybook start -p 9001 --skip-packager",
     "test": "jest"
   },
   "dependencies": {
     "apisauce": "^0.14.3",
     "lodash.throttle": "^4.1.1",
-    "mobx": "^3.5.1",
-    "mobx-react": "^4.4.1",
-    "mobx-state-tree": "^1.3.1",
+    "mobx": "^4.1.0",
+    "mobx-react": "^5.0.0",
+    "mobx-state-tree": "^2.0.1",
     "ramda": "^0.25.0",
     "react-native-i18n": "^2.0.12",
-    "react-native-keychain": "2.0.0",
-    "react-navigation": "^1.0.3",
+    "react-native-keychain": "3.0.0-rc.3",
+    "react-navigation": "^1.5.8",
+    "reactotron-mst": "1.15.0",
+    "reactotron-react-native": "1.14.0",
     "validate.js": "^0.12.0"
   },
   "devDependencies": {
-    "@storybook/addon-storyshots": "^3.3.13",
-    "@storybook/react-native": "^3.3.13",
-    "@types/jest": "^22.1.2",
-    "@types/ramda": "^0.25.18",
-    "@types/react": "^16.0.38",
-    "@types/react-native": "^0.52.11",
-    "@types/react-navigation": "^1.0.32",
+    "@storybook/addon-storyshots": "^3.3.15",
+    "@storybook/react-native": "^3.3.15",
+    "@types/jest": "^22.2.0",
+    "@types/ramda": "^0.25.20",
+    "@types/react": "^16.0.40",
+    "@types/react-native": "^0.52.18",
+    "@types/react-navigation": "^1.5.2",
     "@types/react-test-renderer": "^16.0.1",
-    "@types/validate.js": "0.0.3",
+    "@types/validate.js": "0.11.0",
     "babel-plugin-transform-inline-environment-variables": "^0.3.0",
     "husky": "^0.14.3",
-    "jest-preset-typescript-react-native": "^1.2.0",
-    "lint-staged": "^6.1.0",
+    "jest-preset-ignite": "^0.5.0",
+    "lint-staged": "^7.0.0",
     "npm-run-all": "^4.1.2",
     "patch-package": "^5.1.1",
     "postinstall-prepare": "^1.0.1",
-    "prettier": "^1.10.2",
+    "prettier": "^1.11.1",
     "react-dom": "^16.2.0",
     "react-native-typescript-transformer": "^1.2.3",
-    "react-powerplug": "^0.1.4",
-    "reactotron-mst": "^1.15.0",
-    "reactotron-react-native": "^1.14.0",
+    "react-powerplug": "^0.1.5",
     "solidarity": "^1.1.1",
     "tslint": "^5.9.1",
-    "tslint-config-prettier": "^1.7.0",
-    "typescript": "^2.7.1"
+    "tslint-config-prettier": "^1.10.0",
+    "typescript": "2.7.2"
   },
   "jest": {
-    "moduleFileExtensions": [
-      "ts",
-      "tsx",
-      "js",
-      "json"
-    ],
-    "preset": "jest-preset-typescript-react-native",
-    "setupFiles": [
-      "<rootDir>/node_modules/react-native/jest/setup.js",
-      "./test/setup.ts"
-    ],
-    "transformIgnorePatterns": [
-      "node_modules/(?!(jest-)?react-native|react-clone-referenced-element|react-navigation)"
-    ]
+    "preset": "jest-preset-ignite"
   },
   "lint-staged": {
     "*.js": [

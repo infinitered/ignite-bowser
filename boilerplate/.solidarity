@@ -7,7 +7,7 @@
       {
         "rule": "cli",
         "binary": "react-native",
-        "semver": "^2.0.1"
+        "semver": ">=2.0.1"
       }
     ],
     "Xcode": [
