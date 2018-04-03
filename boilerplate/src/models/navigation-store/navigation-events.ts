@@ -1,10 +1,5 @@
 import { types } from "mobx-state-tree"
-
-/**
- * The type of event that react-navigation triggered. This exists because the typings are
- * not available in @types/react-navigation yet.
- */
-export type ReactNavigationEvent = "willFocus" | "didFocus" | "willBlur" | "didBlur" | "action"
+import { EventType, NavigationEventCallback } from "react-navigation"
 
 /**
  * This mobx-state-tree model bestows a few events for working with `react-navigation`
@@ -43,7 +38,7 @@ export const NavigationEvents = types.model("NavigationEvents").volatile(self =>
    * @param eventName The event.
    * @param handler Some strange handler
    */
-  const addListener = (eventName: string, handler: any) => {
+  const addListener = (eventName: EventType, handler: NavigationEventCallback) => {
     if (eventName !== "action") {
       return { remove: () => {} }
     }

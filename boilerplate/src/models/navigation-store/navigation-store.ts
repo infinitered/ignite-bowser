@@ -1,6 +1,6 @@
 import { types } from "mobx-state-tree"
 import { RootNavigator } from "../../navigation/root-navigator"
-import { NavigationActions } from "react-navigation"
+import { NavigationActions, NavigationAction } from "react-navigation"
 import { NavigationEvents } from "./navigation-events"
 
 const DEFAULT_STATE = RootNavigator.router.getStateForAction(NavigationActions.init(), null)
@@ -38,7 +38,7 @@ export const NavigationStoreModel = NavigationEvents.named("NavigationStore")
      * @param action The new navigation action to perform
      * @param shouldPush Should we push or replace the whole stack?
      */
-    dispatch(action: {}, shouldPush: boolean = true) {
+    dispatch(action: NavigationAction, shouldPush: boolean = true) {
       const previousNavState = shouldPush ? self.state : null
       self.state = RootNavigator.router.getStateForAction(action, previousNavState) || self.state
       return true
