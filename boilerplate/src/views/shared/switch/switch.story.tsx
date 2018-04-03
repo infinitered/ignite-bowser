@@ -6,7 +6,7 @@ import { Toggle } from "react-powerplug"
 import { Switch } from "."
 
 storiesOf("Switch")
-  .addDecorator(fn => <StoryScreen text="Switch">{fn()}</StoryScreen>)
+  .addDecorator(fn => <StoryScreen>{fn()}</StoryScreen>)
   .add("Behaviour", () => (
     <Story>
       <UseCase text="The Toggle Switch" usage="Use the switch to represent on/off states.">

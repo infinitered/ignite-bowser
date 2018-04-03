@@ -1,18 +1,15 @@
 import * as React from "react"
-import { View, ViewStyle, StatusBar } from "react-native"
-import { KeyboardSpacer } from "../../src/views/shared/keyboard-spacer"
+import { ViewStyle, KeyboardAvoidingView, Platform } from "react-native"
 
 const ROOT: ViewStyle = { backgroundColor: "#f0f0f0", flex: 1 }
 
 export interface StoryScreenProps {
   children?: React.ReactNode
-  text?: string
 }
 
+const behavior = Platform.OS === "ios" ? "padding" : null
 export const StoryScreen = props => (
-  <View style={ROOT}>
-    <StatusBar barStyle="light-content" />
+  <KeyboardAvoidingView style={ROOT} behavior={behavior} keyboardVerticalOffset={50}>
     {props.children}
-    <KeyboardSpacer />
-  </View>
+  </KeyboardAvoidingView>
 )

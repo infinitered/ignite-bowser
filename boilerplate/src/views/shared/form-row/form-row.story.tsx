@@ -5,9 +5,9 @@ import { FormRow } from "./form-row"
 import { Text } from "../text"
 
 storiesOf("FormRow")
-  .addDecorator(fn => <StoryScreen text="FormRow">{fn()}</StoryScreen>)
+  .addDecorator(fn => <StoryScreen>{fn()}</StoryScreen>)
   .add("Assembled", () => (
-    <Story text="Assembled">
+    <Story>
       <UseCase
         text="Fully Assembled"
         usage="FormRow has many parts designed to fit together.  Here is what it looks like all assembled."
@@ -29,10 +29,7 @@ storiesOf("FormRow")
           <Text>🎉 Footers!</Text>
         </FormRow>
       </UseCase>
-      <UseCase
-        text="Alternatives"
-        usage="Less commonly used presets."
-      >
+      <UseCase text="Alternatives" usage="Less commonly used presets.">
         <FormRow preset="clear">
           <Text>
             My borders are still there, but they are clear. This causes the text to still align
@@ -49,7 +46,7 @@ storiesOf("FormRow")
     </Story>
   ))
   .add("Presets", () => (
-    <Story text="Presets">
+    <Story>
       <UseCase text="top" usage="The top of a form.">
         <FormRow preset="top">
           <Text>Curved borders at the top.</Text>

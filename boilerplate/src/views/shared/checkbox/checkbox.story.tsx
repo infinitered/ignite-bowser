@@ -6,7 +6,7 @@ import { Checkbox } from "./"
 import { Toggle } from "react-powerplug"
 
 storiesOf("Checkbox")
-  .addDecorator(fn => <StoryScreen text="Checkbox">{fn()}</StoryScreen>)
+  .addDecorator(fn => <StoryScreen>{fn()}</StoryScreen>)
   .add("Behaviour", () => (
     <Story>
       <UseCase text="The Checkbox" usage="Use the checkbox to represent on/off states.">

@@ -14,9 +14,8 @@ const USE_CASE_WRAPPER: ViewStyle = {
   flexDirection: "row",
 }
 const USE_CASE: TextStyle = {
-  fontSize: 7,
+  fontSize: 10,
   color: "#666",
-  backgroundColor: "#e6e6e6",
   paddingHorizontal: 4,
   paddingBottom: 2,
 }
@@ -34,19 +33,22 @@ export interface UseCaseProps {
   /** The title. */
   text: string
   /** When should we be using this? */
-  usage: string
+  usage?: string
   /** The component use case. */
   children: React.ReactNode
   /** A style override. Rarely used. */
   style?: ViewStyle
   /** Don't use any padding because it's important to see the spacing. */
   noPad?: boolean
+  /** Don't use background color because it's important to see the color. */
+  noBackground?: boolean
 }
 
 export function UseCase(props: UseCaseProps) {
   const style = {
     ...COMPONENT,
     ...{ padding: props.noPad ? 0 : 10 },
+    ...{ backgroundColor: props.noBackground ? "rgba(0,0,0,0)" : COMPONENT.backgroundColor },
     ...props.style,
   }
   return (

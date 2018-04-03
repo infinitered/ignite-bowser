@@ -3,7 +3,6 @@ import { ScrollView, View, ViewStyle } from "react-native"
 
 export interface StoryProps {
   children?: React.ReactNode
-  text?: string
 }
 
 const ROOT: ViewStyle = { flex: 1 }

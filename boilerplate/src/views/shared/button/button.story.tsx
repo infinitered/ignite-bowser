@@ -4,9 +4,9 @@ import { StoryScreen, Story, UseCase } from "../../../../storybook/views"
 import { Button } from "./"
 
 storiesOf("Button")
-  .addDecorator(fn => <StoryScreen text="Button">{fn()}</StoryScreen>)
+  .addDecorator(fn => <StoryScreen>{fn()}</StoryScreen>)
   .add("Style Presets", () => (
-    <Story text="Style Presets">
+    <Story>
       <UseCase text="Primary" usage="The primary button.">
         <Button text="Click It" preset="primary" onPress={() => window.alert("pressed")} />
       </UseCase>

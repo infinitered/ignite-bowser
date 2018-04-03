@@ -4,9 +4,9 @@ import { StoryScreen, Story, UseCase } from "../../../../storybook/views"
 import { Text } from "./text"
 
 storiesOf("Text")
-  .addDecorator(fn => <StoryScreen text="Text">{fn()}</StoryScreen>)
+  .addDecorator(fn => <StoryScreen>{fn()}</StoryScreen>)
   .add("Style Presets", () => (
-    <Story text="Style Presets">
+    <Story>
       <UseCase text="default" usage="Used for normal body text.">
         <Text>Hello!</Text>
         <Text style={{ paddingTop: 10 }}>
@@ -26,7 +26,7 @@ storiesOf("Text")
     </Story>
   ))
   .add("Passing Content", () => (
-    <Story text="Passing Content">
+    <Story>
       <UseCase
         text="text"
         usage="Used when you want to pass a value but don't want to open a child."

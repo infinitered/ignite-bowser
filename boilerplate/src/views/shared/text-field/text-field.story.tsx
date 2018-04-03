@@ -6,9 +6,9 @@ import { TextField } from "./"
 import { State } from "react-powerplug"
 
 storiesOf("TextField")
-  .addDecorator(fn => <StoryScreen text="TextField">{fn()}</StoryScreen>)
+  .addDecorator(fn => <StoryScreen>{fn()}</StoryScreen>)
   .add("Labelling", () => (
-    <Story text="Labelling">
+    <Story>
       <UseCase text="Normal text" usage="Use placeholder and label to set the text.">
         <State initial={{ value: "" }}>
           {({ state, setState }) => (
@@ -37,7 +37,7 @@ storiesOf("TextField")
     </Story>
   ))
   .add("Style Overrides", () => (
-    <Story text="Style Overrides">
+    <Story>
       <UseCase
         noPad
         text="Container Styles"

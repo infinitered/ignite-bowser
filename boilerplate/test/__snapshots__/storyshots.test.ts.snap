@@ -2,11 +2,19 @@
 
 exports[`Storyshots Button Style Presets 1`] = `
 <View
+  enabled={true}
+  keyboardVerticalOffset={50}
+  onLayout={[Function]}
   style={
-    Object {
-      "backgroundColor": "#f0f0f0",
-      "flex": 1,
-    }
+    Array [
+      Object {
+        "backgroundColor": "#f0f0f0",
+        "flex": 1,
+      },
+      Object {
+        "paddingBottom": 0,
+      },
+    ]
   }
 >
   <View
@@ -55,9 +63,8 @@ exports[`Storyshots Button Style Presets 1`] = `
                 ellipsizeMode="tail"
                 style={
                   Object {
-                    "backgroundColor": "#e6e6e6",
                     "color": "#666",
-                    "fontSize": 7,
+                    "fontSize": 10,
                     "paddingBottom": 2,
                     "paddingHorizontal": 4,
                   }
@@ -192,9 +199,8 @@ exports[`Storyshots Button Style Presets 1`] = `
                 ellipsizeMode="tail"
                 style={
                   Object {
-                    "backgroundColor": "#e6e6e6",
                     "color": "#666",
-                    "fontSize": 7,
+                    "fontSize": 10,
                     "paddingBottom": 2,
                     "paddingHorizontal": 4,
                   }
@@ -295,24 +301,24 @@ exports[`Storyshots Button Style Presets 1`] = `
       </View>
     </RCTScrollView>
   </View>
-  <View
-    pointerEvents="none"
-    style={
-      Object {
-        "height": 0,
-      }
-    }
-  />
 </View>
 `;
 
 exports[`Storyshots Checkbox Behaviour 1`] = `
 <View
+  enabled={true}
+  keyboardVerticalOffset={50}
+  onLayout={[Function]}
   style={
-    Object {
-      "backgroundColor": "#f0f0f0",
-      "flex": 1,
-    }
+    Array [
+      Object {
+        "backgroundColor": "#f0f0f0",
+        "flex": 1,
+      },
+      Object {
+        "paddingBottom": 0,
+      },
+    ]
   }
 >
   <View
@@ -361,9 +367,8 @@ exports[`Storyshots Checkbox Behaviour 1`] = `
                 ellipsizeMode="tail"
                 style={
                   Object {
-                    "backgroundColor": "#e6e6e6",
                     "color": "#666",
-                    "fontSize": 7,
+                    "fontSize": 10,
                     "paddingBottom": 2,
                     "paddingHorizontal": 4,
                   }
@@ -510,9 +515,8 @@ exports[`Storyshots Checkbox Behaviour 1`] = `
                 ellipsizeMode="tail"
                 style={
                   Object {
-                    "backgroundColor": "#e6e6e6",
                     "color": "#666",
-                    "fontSize": 7,
+                    "fontSize": 10,
                     "paddingBottom": 2,
                     "paddingHorizontal": 4,
                   }
@@ -669,9 +673,8 @@ exports[`Storyshots Checkbox Behaviour 1`] = `
                 ellipsizeMode="tail"
                 style={
                   Object {
-                    "backgroundColor": "#e6e6e6",
                     "color": "#666",
-                    "fontSize": 7,
+                    "fontSize": 10,
                     "paddingBottom": 2,
                     "paddingHorizontal": 4,
                   }
@@ -784,24 +787,24 @@ exports[`Storyshots Checkbox Behaviour 1`] = `
       </View>
     </RCTScrollView>
   </View>
-  <View
-    pointerEvents="none"
-    style={
-      Object {
-        "height": 0,
-      }
-    }
-  />
 </View>
 `;
 
 exports[`Storyshots Checkbox Styling 1`] = `
 <View
+  enabled={true}
+  keyboardVerticalOffset={50}
+  onLayout={[Function]}
   style={
-    Object {
-      "backgroundColor": "#f0f0f0",
-      "flex": 1,
-    }
+    Array [
+      Object {
+        "backgroundColor": "#f0f0f0",
+        "flex": 1,
+      },
+      Object {
+        "paddingBottom": 0,
+      },
+    ]
   }
 >
   <View
@@ -850,9 +853,8 @@ exports[`Storyshots Checkbox Styling 1`] = `
                 ellipsizeMode="tail"
                 style={
                   Object {
-                    "backgroundColor": "#e6e6e6",
                     "color": "#666",
-                    "fontSize": 7,
+                    "fontSize": 10,
                     "paddingBottom": 2,
                     "paddingHorizontal": 4,
                   }
@@ -1001,9 +1003,8 @@ exports[`Storyshots Checkbox Styling 1`] = `
                 ellipsizeMode="tail"
                 style={
                   Object {
-                    "backgroundColor": "#e6e6e6",
                     "color": "#666",
-                    "fontSize": 7,
+                    "fontSize": 10,
                     "paddingBottom": 2,
                     "paddingHorizontal": 4,
                   }
@@ -1155,9 +1156,8 @@ exports[`Storyshots Checkbox Styling 1`] = `
                 ellipsizeMode="tail"
                 style={
                   Object {
-                    "backgroundColor": "#e6e6e6",
                     "color": "#666",
-                    "fontSize": 7,
+                    "fontSize": 10,
                     "paddingBottom": 2,
                     "paddingHorizontal": 4,
                   }
@@ -1306,9 +1306,8 @@ exports[`Storyshots Checkbox Styling 1`] = `
                 ellipsizeMode="tail"
                 style={
                   Object {
-                    "backgroundColor": "#e6e6e6",
                     "color": "#666",
-                    "fontSize": 7,
+                    "fontSize": 10,
                     "paddingBottom": 2,
                     "paddingHorizontal": 4,
                   }
@@ -1423,24 +1422,24 @@ exports[`Storyshots Checkbox Styling 1`] = `
       </View>
     </RCTScrollView>
   </View>
-  <View
-    pointerEvents="none"
-    style={
-      Object {
-        "height": 0,
-      }
-    }
-  />
 </View>
 `;
 
 exports[`Storyshots FormRow Assembled 1`] = `
 <View
+  enabled={true}
+  keyboardVerticalOffset={50}
+  onLayout={[Function]}
   style={
-    Object {
-      "backgroundColor": "#f0f0f0",
-      "flex": 1,
-    }
+    Array [
+      Object {
+        "backgroundColor": "#f0f0f0",
+        "flex": 1,
+      },
+      Object {
+        "paddingBottom": 0,
+      },
+    ]
   }
 >
   <View
@@ -1489,9 +1488,8 @@ exports[`Storyshots FormRow Assembled 1`] = `
                 ellipsizeMode="tail"
                 style={
                   Object {
-                    "backgroundColor": "#e6e6e6",
                     "color": "#666",
-                    "fontSize": 7,
+                    "fontSize": 10,
                     "paddingBottom": 2,
                     "paddingHorizontal": 4,
                   }
@@ -1682,9 +1680,8 @@ exports[`Storyshots FormRow Assembled 1`] = `
                 ellipsizeMode="tail"
                 style={
                   Object {
-                    "backgroundColor": "#e6e6e6",
                     "color": "#666",
-                    "fontSize": 7,
+                    "fontSize": 10,
                     "paddingBottom": 2,
                     "paddingHorizontal": 4,
                   }
@@ -1813,24 +1810,24 @@ exports[`Storyshots FormRow Assembled 1`] = `
       </View>
     </RCTScrollView>
   </View>
-  <View
-    pointerEvents="none"
-    style={
-      Object {
-        "height": 0,
-      }
-    }
-  />
 </View>
 `;
 
 exports[`Storyshots FormRow Presets 1`] = `
 <View
+  enabled={true}
+  keyboardVerticalOffset={50}
+  onLayout={[Function]}
   style={
-    Object {
-      "backgroundColor": "#f0f0f0",
-      "flex": 1,
-    }
+    Array [
+      Object {
+        "backgroundColor": "#f0f0f0",
+        "flex": 1,
+      },
+      Object {
+        "paddingBottom": 0,
+      },
+    ]
   }
 >
   <View
@@ -1879,9 +1876,8 @@ exports[`Storyshots FormRow Presets 1`] = `
                 ellipsizeMode="tail"
                 style={
                   Object {
-                    "backgroundColor": "#e6e6e6",
                     "color": "#666",
-                    "fontSize": 7,
+                    "fontSize": 10,
                     "paddingBottom": 2,
                     "paddingHorizontal": 4,
                   }
@@ -2010,9 +2006,8 @@ exports[`Storyshots FormRow Presets 1`] = `
                 ellipsizeMode="tail"
                 style={
                   Object {
-                    "backgroundColor": "#e6e6e6",
                     "color": "#666",
-                    "fontSize": 7,
+                    "fontSize": 10,
                     "paddingBottom": 2,
                     "paddingHorizontal": 4,
                   }
@@ -2125,9 +2120,8 @@ exports[`Storyshots FormRow Presets 1`] = `
                 ellipsizeMode="tail"
                 style={
                   Object {
-                    "backgroundColor": "#e6e6e6",
                     "color": "#666",
-                    "fontSize": 7,
+                    "fontSize": 10,
                     "paddingBottom": 2,
                     "paddingHorizontal": 4,
                   }
@@ -2255,9 +2249,8 @@ exports[`Storyshots FormRow Presets 1`] = `
                 ellipsizeMode="tail"
                 style={
                   Object {
-                    "backgroundColor": "#e6e6e6",
                     "color": "#666",
-                    "fontSize": 7,
+                    "fontSize": 10,
                     "paddingBottom": 2,
                     "paddingHorizontal": 4,
                   }
@@ -2370,9 +2363,8 @@ exports[`Storyshots FormRow Presets 1`] = `
                 ellipsizeMode="tail"
                 style={
                   Object {
-                    "backgroundColor": "#e6e6e6",
                     "color": "#666",
-                    "fontSize": 7,
+                    "fontSize": 10,
                     "paddingBottom": 2,
                     "paddingHorizontal": 4,
                   }
@@ -2484,9 +2476,8 @@ exports[`Storyshots FormRow Presets 1`] = `
                 ellipsizeMode="tail"
                 style={
                   Object {
-                    "backgroundColor": "#e6e6e6",
                     "color": "#666",
-                    "fontSize": 7,
+                    "fontSize": 10,
                     "paddingBottom": 2,
                     "paddingHorizontal": 4,
                   }
@@ -2564,24 +2555,24 @@ exports[`Storyshots FormRow Presets 1`] = `
       </View>
     </RCTScrollView>
   </View>
-  <View
-    pointerEvents="none"
-    style={
-      Object {
-        "height": 0,
-      }
-    }
-  />
 </View>
 `;
 
 exports[`Storyshots Switch Behaviour 1`] = `
 <View
+  enabled={true}
+  keyboardVerticalOffset={50}
+  onLayout={[Function]}
   style={
-    Object {
-      "backgroundColor": "#f0f0f0",
-      "flex": 1,
-    }
+    Array [
+      Object {
+        "backgroundColor": "#f0f0f0",
+        "flex": 1,
+      },
+      Object {
+        "paddingBottom": 0,
+      },
+    ]
   }
 >
   <View
@@ -2630,9 +2621,8 @@ exports[`Storyshots Switch Behaviour 1`] = `
                 ellipsizeMode="tail"
                 style={
                   Object {
-                    "backgroundColor": "#e6e6e6",
                     "color": "#666",
-                    "fontSize": 7,
+                    "fontSize": 10,
                     "paddingBottom": 2,
                     "paddingHorizontal": 4,
                   }
@@ -2775,9 +2765,8 @@ exports[`Storyshots Switch Behaviour 1`] = `
                 ellipsizeMode="tail"
                 style={
                   Object {
-                    "backgroundColor": "#e6e6e6",
                     "color": "#666",
-                    "fontSize": 7,
+                    "fontSize": 10,
                     "paddingBottom": 2,
                     "paddingHorizontal": 4,
                   }
@@ -2920,9 +2909,8 @@ exports[`Storyshots Switch Behaviour 1`] = `
                 ellipsizeMode="tail"
                 style={
                   Object {
-                    "backgroundColor": "#e6e6e6",
                     "color": "#666",
-                    "fontSize": 7,
+                    "fontSize": 10,
                     "paddingBottom": 2,
                     "paddingHorizontal": 4,
                   }
@@ -3031,24 +3019,24 @@ exports[`Storyshots Switch Behaviour 1`] = `
       </View>
     </RCTScrollView>
   </View>
-  <View
-    pointerEvents="none"
-    style={
-      Object {
-        "height": 0,
-      }
-    }
-  />
 </View>
 `;
 
 exports[`Storyshots Switch Styling 1`] = `
 <View
+  enabled={true}
+  keyboardVerticalOffset={50}
+  onLayout={[Function]}
   style={
-    Object {
-      "backgroundColor": "#f0f0f0",
-      "flex": 1,
-    }
+    Array [
+      Object {
+        "backgroundColor": "#f0f0f0",
+        "flex": 1,
+      },
+      Object {
+        "paddingBottom": 0,
+      },
+    ]
   }
 >
   <View
@@ -3097,9 +3085,8 @@ exports[`Storyshots Switch Styling 1`] = `
                 ellipsizeMode="tail"
                 style={
                   Object {
-                    "backgroundColor": "#e6e6e6",
                     "color": "#666",
-                    "fontSize": 7,
+                    "fontSize": 10,
                     "paddingBottom": 2,
                     "paddingHorizontal": 4,
                   }
@@ -3210,24 +3197,24 @@ exports[`Storyshots Switch Styling 1`] = `
       </View>
     </RCTScrollView>
   </View>
-  <View
-    pointerEvents="none"
-    style={
-      Object {
-        "height": 0,
-      }
-    }
-  />
 </View>
 `;
 
 exports[`Storyshots Text Passing Content 1`] = `
 <View
+  enabled={true}
+  keyboardVerticalOffset={50}
+  onLayout={[Function]}
   style={
-    Object {
-      "backgroundColor": "#f0f0f0",
-      "flex": 1,
-    }
+    Array [
+      Object {
+        "backgroundColor": "#f0f0f0",
+        "flex": 1,
+      },
+      Object {
+        "paddingBottom": 0,
+      },
+    ]
   }
 >
   <View
@@ -3276,9 +3263,8 @@ exports[`Storyshots Text Passing Content 1`] = `
                 ellipsizeMode="tail"
                 style={
                   Object {
-                    "backgroundColor": "#e6e6e6",
                     "color": "#666",
-                    "fontSize": 7,
+                    "fontSize": 10,
                     "paddingBottom": 2,
                     "paddingHorizontal": 4,
                   }
@@ -3380,9 +3366,8 @@ exports[`Storyshots Text Passing Content 1`] = `
                 ellipsizeMode="tail"
                 style={
                   Object {
-                    "backgroundColor": "#e6e6e6",
                     "color": "#666",
-                    "fontSize": 7,
+                    "fontSize": 10,
                     "paddingBottom": 2,
                     "paddingHorizontal": 4,
                   }
@@ -3498,9 +3483,8 @@ exports[`Storyshots Text Passing Content 1`] = `
                 ellipsizeMode="tail"
                 style={
                   Object {
-                    "backgroundColor": "#e6e6e6",
                     "color": "#666",
-                    "fontSize": 7,
+                    "fontSize": 10,
                     "paddingBottom": 2,
                     "paddingHorizontal": 4,
                   }
@@ -3602,9 +3586,8 @@ exports[`Storyshots Text Passing Content 1`] = `
                 ellipsizeMode="tail"
                 style={
                   Object {
-                    "backgroundColor": "#e6e6e6",
                     "color": "#666",
-                    "fontSize": 7,
+                    "fontSize": 10,
                     "paddingBottom": 2,
                     "paddingHorizontal": 4,
                   }
@@ -3689,24 +3672,24 @@ exports[`Storyshots Text Passing Content 1`] = `
       </View>
     </RCTScrollView>
   </View>
-  <View
-    pointerEvents="none"
-    style={
-      Object {
-        "height": 0,
-      }
-    }
-  />
 </View>
 `;
 
 exports[`Storyshots Text Style Presets 1`] = `
 <View
+  enabled={true}
+  keyboardVerticalOffset={50}
+  onLayout={[Function]}
   style={
-    Object {
-      "backgroundColor": "#f0f0f0",
-      "flex": 1,
-    }
+    Array [
+      Object {
+        "backgroundColor": "#f0f0f0",
+        "flex": 1,
+      },
+      Object {
+        "paddingBottom": 0,
+      },
+    ]
   }
 >
   <View
@@ -3755,9 +3738,8 @@ exports[`Storyshots Text Style Presets 1`] = `
                 ellipsizeMode="tail"
                 style={
                   Object {
-                    "backgroundColor": "#e6e6e6",
                     "color": "#666",
-                    "fontSize": 7,
+                    "fontSize": 10,
                     "paddingBottom": 2,
                     "paddingHorizontal": 4,
                   }
@@ -3909,9 +3891,8 @@ exports[`Storyshots Text Style Presets 1`] = `
                 ellipsizeMode="tail"
                 style={
                   Object {
-                    "backgroundColor": "#e6e6e6",
                     "color": "#666",
-                    "fontSize": 7,
+                    "fontSize": 10,
                     "paddingBottom": 2,
                     "paddingHorizontal": 4,
                   }
@@ -4014,9 +3995,8 @@ exports[`Storyshots Text Style Presets 1`] = `
                 ellipsizeMode="tail"
                 style={
                   Object {
-                    "backgroundColor": "#e6e6e6",
                     "color": "#666",
-                    "fontSize": 7,
+                    "fontSize": 10,
                     "paddingBottom": 2,
                     "paddingHorizontal": 4,
                   }
@@ -4085,24 +4065,24 @@ exports[`Storyshots Text Style Presets 1`] = `
       </View>
     </RCTScrollView>
   </View>
-  <View
-    pointerEvents="none"
-    style={
-      Object {
-        "height": 0,
-      }
-    }
-  />
 </View>
 `;
 
 exports[`Storyshots TextField Labelling 1`] = `
 <View
+  enabled={true}
+  keyboardVerticalOffset={50}
+  onLayout={[Function]}
   style={
-    Object {
-      "backgroundColor": "#f0f0f0",
-      "flex": 1,
-    }
+    Array [
+      Object {
+        "backgroundColor": "#f0f0f0",
+        "flex": 1,
+      },
+      Object {
+        "paddingBottom": 0,
+      },
+    ]
   }
 >
   <View
@@ -4151,9 +4131,8 @@ exports[`Storyshots TextField Labelling 1`] = `
                 ellipsizeMode="tail"
                 style={
                   Object {
-                    "backgroundColor": "#e6e6e6",
                     "color": "#666",
-                    "fontSize": 7,
+                    "fontSize": 10,
                     "paddingBottom": 2,
                     "paddingHorizontal": 4,
                   }
@@ -4280,9 +4259,8 @@ exports[`Storyshots TextField Labelling 1`] = `
                 ellipsizeMode="tail"
                 style={
                   Object {
-                    "backgroundColor": "#e6e6e6",
                     "color": "#666",
-                    "fontSize": 7,
+                    "fontSize": 10,
                     "paddingBottom": 2,
                     "paddingHorizontal": 4,
                   }
@@ -4375,24 +4353,24 @@ exports[`Storyshots TextField Labelling 1`] = `
       </View>
     </RCTScrollView>
   </View>
-  <View
-    pointerEvents="none"
-    style={
-      Object {
-        "height": 0,
-      }
-    }
-  />
 </View>
 `;
 
 exports[`Storyshots TextField Style Overrides 1`] = `
 <View
+  enabled={true}
+  keyboardVerticalOffset={50}
+  onLayout={[Function]}
   style={
-    Object {
-      "backgroundColor": "#f0f0f0",
-      "flex": 1,
-    }
+    Array [
+      Object {
+        "backgroundColor": "#f0f0f0",
+        "flex": 1,
+      },
+      Object {
+        "paddingBottom": 0,
+      },
+    ]
   }
 >
   <View
@@ -4441,9 +4419,8 @@ exports[`Storyshots TextField Style Overrides 1`] = `
                 ellipsizeMode="tail"
                 style={
                   Object {
-                    "backgroundColor": "#e6e6e6",
                     "color": "#666",
-                    "fontSize": 7,
+                    "fontSize": 10,
                     "paddingBottom": 2,
                     "paddingHorizontal": 4,
                   }
@@ -4612,9 +4589,8 @@ exports[`Storyshots TextField Style Overrides 1`] = `
                 ellipsizeMode="tail"
                 style={
                   Object {
-                    "backgroundColor": "#e6e6e6",
                     "color": "#666",
-                    "fontSize": 7,
+                    "fontSize": 10,
                     "paddingBottom": 2,
                     "paddingHorizontal": 4,
                   }
@@ -4725,13 +4701,5 @@ exports[`Storyshots TextField Style Overrides 1`] = `
       </View>
     </RCTScrollView>
   </View>
-  <View
-    pointerEvents="none"
-    style={
-      Object {
-        "height": 0,
-      }
-    }
-  />
 </View>
 `;
