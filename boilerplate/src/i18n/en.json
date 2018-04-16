@@ -8,10 +8,13 @@
     "invalidEmail": "Invalid email address."
   },
   "firstExampleScreen": {
-    "header": "First Screen",
-    "nextScreenButton": "Next Screen"
+    "poweredBy": "POWERED BY BOWSER",
+    "readyForLaunch": "Ready for launch.",
+    "continue": "CONTINUE"
   },
   "secondExampleScreen": {
-    "header": "Second Screen"
+    "howTo": "HOW TO",
+    "igniteNext": "Ignite your next React Native project.",
+    "tagLine": "Create an app with default screens for development, debugging, and alpha testing with these easy steps:"
   }
 }
