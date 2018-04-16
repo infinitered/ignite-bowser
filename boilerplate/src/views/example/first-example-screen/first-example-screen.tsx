@@ -13,7 +13,6 @@ const ROOT: ViewStyle = { flex: 1 }
 const CONTAINER: ViewStyle = { 
   backgroundColor: color.transparent,
   paddingHorizontal: spacing[4],
-  alignItems: "center",
 }
 const TEXT: TextStyle = { color: color.palette.white }
 const EXTRA_BOLD: TextStyle = { fontWeight: "900" }
@@ -50,7 +49,6 @@ const CONTENT: TextStyle = {
   color: color.palette.lighterGrey,  
   alignSelf: "flex-start",
   fontSize: 16,
-  lineHeight: 24,
   marginBottom: spacing[5],
 }
 const CONTINUE: ViewStyle = { 
@@ -80,7 +78,7 @@ export class FirstExampleScreen extends React.Component<FirstExampleScreenProps,
       <View style={ROOT}>
         <Wallpaper />
         <SafeAreaView style={ROOT}>
-          <Screen style={CONTAINER} backgroundColor={color.transparent} preset="scroll">
+          <Screen style={CONTAINER} backgroundColor={color.transparent} preset="scrollStack">
             <Header
               headerTx="firstExampleScreen.poweredBy"
               style={HEADER}
