@@ -1,5 +1,5 @@
 import * as React from "react"
-import { View, Image, ViewStyle, TextStyle, ImageStyle, SafeAreaView } from "react-native"
+import { View, Image, ViewStyle, TextStyle, ImageStyle, SafeAreaView, StatusBar } from "react-native"
 import { NavigationScreenProps } from "react-navigation"
 import { Text } from "../../shared/text"
 import { Button } from "../../shared/button"
@@ -9,13 +9,16 @@ import { Header } from "../../shared/header"
 import { color, spacing } from "../../../theme"
 import { bowserLogo } from "./"
 
-const ROOT: ViewStyle = { flex: 1 }
+const FULL: ViewStyle = { flex: 1 }
 const CONTAINER: ViewStyle = { 
   backgroundColor: color.transparent,
   paddingHorizontal: spacing[4],
 }
-const TEXT: TextStyle = { color: color.palette.white }
-const EXTRA_BOLD: TextStyle = { fontWeight: "900" }
+const TEXT: TextStyle = { 
+  color: color.palette.white,
+  fontFamily: "Montserrat",
+}
+const BOLD: TextStyle = { fontWeight: "bold" }
 const HEADER: TextStyle = {
   paddingTop: spacing[3],
   paddingBottom: spacing[4] + spacing[1],
@@ -23,20 +26,26 @@ const HEADER: TextStyle = {
 }
 const HEADER_TITLE: TextStyle = { 
   ...TEXT,
-  ...EXTRA_BOLD,
-  fontSize: 13,
+  ...BOLD,
+  fontSize: 12,
+  lineHeight: 15,
   textAlign: "center",
-  letterSpacing: 2,
+  letterSpacing: 1.5,
+}
+const TITLE_WRAPPER: TextStyle = { 
+  ...TEXT,
+  textAlign: "center",
 }
 const TITLE: TextStyle = { 
   ...TEXT, 
-  ...EXTRA_BOLD,
+  ...BOLD,
   fontSize: 28,
+  lineHeight: 38,
   textAlign: "center",
 }
 const ALMOST: TextStyle = { 
   ...TEXT, 
-  ...EXTRA_BOLD,
+  ...BOLD,  
   fontSize: 26,
   fontStyle: "italic",
 }
@@ -46,23 +55,24 @@ const BOWSER: ImageStyle = {
   maxWidth: "100%",
 }
 const CONTENT: TextStyle = {
-  color: color.palette.lighterGrey,  
-  alignSelf: "flex-start",
-  fontSize: 16,
+  ...TEXT,  
+  color: "#BAB6C8",  
+  fontSize: 15,
+  lineHeight: 22,
   marginBottom: spacing[5],
 }
 const CONTINUE: ViewStyle = { 
   paddingVertical: spacing[4], 
   paddingHorizontal: spacing[4],
-  backgroundColor: "#5c2754",
+  backgroundColor: "#5D2555",
 }
 const CONTINUE_TEXT: TextStyle = {
   ...TEXT,
-  ...EXTRA_BOLD,
+  ...BOLD,
   fontSize: 13,
   letterSpacing: 2,
 }
-const FOOTER: ViewStyle = { backgroundColor: "#20172c" }
+const FOOTER: ViewStyle = { backgroundColor: "#20162D" }
 const FOOTER_CONTENT: ViewStyle = {
   paddingVertical: spacing[4], 
   paddingHorizontal: spacing[4],
@@ -75,19 +85,20 @@ export class FirstExampleScreen extends React.Component<FirstExampleScreenProps,
 
   render() {
     return (
-      <View style={ROOT}>
+      <View style={FULL}>
+        <StatusBar barStyle="light-content" />      
         <Wallpaper />
-        <SafeAreaView style={ROOT}>
+        <SafeAreaView style={FULL}>
           <Screen style={CONTAINER} backgroundColor={color.transparent} preset="scrollStack">
             <Header
               headerTx="firstExampleScreen.poweredBy"
               style={HEADER}
               titleStyle={HEADER_TITLE}
             />
-            <Text> 
-              <Text style={TITLE} preset="header" text="Your new app, " />
-              <Text style={ALMOST} preset="header" text="almost" />
-              <Text style={TITLE} preset="header" text="!" />
+            <Text style={TITLE_WRAPPER}> 
+              <Text style={TITLE} text="Your new app, " />
+              <Text style={ALMOST} text="almost" />
+              <Text style={TITLE} text="!" />
             </Text>
             <Text style={TITLE} preset="header" tx="firstExampleScreen.readyForLaunch" />          
             <Image source={bowserLogo} style={BOWSER} />

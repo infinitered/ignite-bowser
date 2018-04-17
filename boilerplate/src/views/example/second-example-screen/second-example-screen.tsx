@@ -1,5 +1,5 @@
 import * as React from "react"
-import { View, Image, ViewStyle, TextStyle, ImageStyle, SafeAreaView, Dimensions, Text as RText } from "react-native"
+import { View, Image, ViewStyle, TextStyle, ImageStyle, SafeAreaView } from "react-native"
 import { NavigationScreenProps } from "react-navigation"
 import { Screen } from "../../shared/screen"
 import { Text } from "../../shared/text"
@@ -9,35 +9,42 @@ import { color, spacing } from "../../../theme"
 import { logoIgnite, heart } from "./"
 import { BulletItem } from "../bullet-item"
 
-const ROOT: ViewStyle = { flex: 1 }
+const FULL: ViewStyle = { flex: 1 }
 const CONTAINER: ViewStyle = { 
   backgroundColor: color.transparent,
   paddingHorizontal: spacing[4],
 }
-const TEXT: TextStyle = { color: color.palette.white }
-const EXTRA_BOLD: TextStyle = { fontWeight: "900" }
+const TEXT: TextStyle = { 
+  color: color.palette.white,
+  fontFamily: "Montserrat",
+}
+const BOLD: TextStyle = { fontWeight: "bold" }
 const HEADER: TextStyle = {
   paddingTop: spacing[3],
-  paddingBottom: spacing[4] + spacing[1],
+  paddingBottom: spacing[5] - 1,
   paddingHorizontal: 0,
 }
 const HEADER_TITLE: TextStyle = { 
   ...TEXT,
-  ...EXTRA_BOLD,
-  fontSize: 13,
+  ...BOLD,
+  fontSize: 12,
+  lineHeight: 15,
   textAlign: "center",
-  letterSpacing: 2,
+  letterSpacing: 1.5,
 }
 const TITLE: TextStyle = { 
   ...TEXT, 
-  ...EXTRA_BOLD,
+  ...BOLD,
   fontSize: 28,
+  lineHeight: 38,
   textAlign: "center",
-  marginBottom: spacing[4],  
+  marginBottom: spacing[5],  
 }
 const TAGLINE: TextStyle = {
-  color: color.palette.lighterGrey,  
-  fontSize: 16,
+  ...TEXT,
+  color: "#BAB6C8",  
+  fontSize: 15,
+  lineHeight: 22,
   marginBottom: spacing[4] + spacing[1],
 }
 const IGNITE: ImageStyle = {
@@ -50,8 +57,10 @@ const LOVE_WRAPPER: ViewStyle = {
   alignSelf: "center",              
 }
 const LOVE: TextStyle = {
-  color: color.palette.lighterGrey,  
-  fontSize: 16,
+  ...TEXT,
+  color: "#BAB6C8",  
+  fontSize: 15,
+  lineHeight: 22,
 }
 const HEART: ImageStyle = {
   marginHorizontal: spacing[2],
@@ -67,9 +76,9 @@ export class SecondExampleScreen extends React.Component<SecondExampleScreenProp
 
   render() {
     return (
-      <View style={ROOT}>
+      <View style={FULL}>
         <Wallpaper />
-        <SafeAreaView style={ROOT}>
+        <SafeAreaView style={FULL}>
           <Screen style={CONTAINER} backgroundColor={color.transparent} preset="scrollStack">
             <Header
               headerTx="secondExampleScreen.howTo"
@@ -78,10 +87,10 @@ export class SecondExampleScreen extends React.Component<SecondExampleScreenProp
               style={HEADER}
               titleStyle={HEADER_TITLE}
             />
-            <Text style={TITLE} preset="header" tx={"secondExampleScreen.igniteNext"} />>
+            <Text style={TITLE} preset="header" tx={"secondExampleScreen.igniteNext"} />
             <Text style={TAGLINE} tx={"secondExampleScreen.tagLine"} />
-            <BulletItem text="Cupidatat sint et excepteur nulla ad sit reprehenderit sint eu sint quis do consectetur irure." />
-            <BulletItem text="Adipisicing sint proident nostrud commodo esse do nulla exercitation non dolore Lorem nisi sunt." />
+            <BulletItem text="Esse consequat id est labore anim ullamco consectetur." />
+            <BulletItem text="Labore occaecat magna veniam labore nostrud pariatur proident eiusmod." />
             <BulletItem text="Occaecat duis aliqua dolor Lorem duis reprehenderit eiusmod sint nulla quis." />            
             <BulletItem text="Nemo enem ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit." />
             <Image source={logoIgnite} style={IGNITE} />

@@ -1,2 +1,2 @@
 export * from "./wallpaper"
-export const defaultImage = require("./BG.png")
+export const defaultImage = require("./bg.png")
