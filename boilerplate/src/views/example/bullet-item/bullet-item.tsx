@@ -2,17 +2,17 @@ import * as React from "react"
 import { View, ViewStyle, ImageStyle, TextStyle } from "react-native"
 import { Text } from "../../shared/text"
 import { Icon } from "../../shared/icon"
-import { color, spacing } from "../../../theme"
+import { spacing } from "../../../theme"
 
 const BULLET_ITEM: ViewStyle = {
   flexDirection: "row",
-  marginTop: spacing[3],
-  paddingBottom: spacing[3],  
+  marginTop: spacing[4],
+  paddingBottom: spacing[4],  
   borderBottomWidth: 1, 
-  borderBottomColor: "#393047", 
+  borderBottomColor: "#3A3048", 
 }
 const BULLET_CONTAINER: ViewStyle = {
-  marginRight: spacing[4], 
+  marginRight: spacing[4] - 1, 
   marginTop: spacing[2],
 }
 const BULLET: ImageStyle = {
@@ -21,8 +21,10 @@ const BULLET: ImageStyle = {
 }
 const BULLET_TEXT: TextStyle = {
   flex: 1,
-  fontSize: 16,
-  color: color.palette.lighterGrey,  
+  fontFamily: "Montserrat-Regular",  
+  color: "#BAB6C8",  
+  fontSize: 15,
+  lineHeight: 22,
 }  
 
 export interface BulletItemProps {

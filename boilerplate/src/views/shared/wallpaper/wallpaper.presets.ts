@@ -9,7 +9,6 @@ const BASE: ImageStyle = {
   left: 0,
   bottom: 0,
   right: 0,
-  resizeMode: "stretch",
 }
 
 /**
@@ -21,7 +20,12 @@ export const presets = {
   /**
    * The default wallpaper styles.
    */
-  stretch: BASE,
+  stretch: {
+    ...BASE,
+    resizeMode: "stretch",
+    width: null, // Have to set these to null because android ¯\_(ツ)_/¯
+    height: null,
+  },
 }
 
 /**
