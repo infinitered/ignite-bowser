@@ -87,10 +87,10 @@ export class SecondExampleScreen extends React.Component<SecondExampleScreenProp
               style={HEADER}
               titleStyle={HEADER_TITLE}
             />
-            <Text style={TITLE} preset="header" tx={"secondExampleScreen.igniteNext"} />
+            <Text style={TITLE} preset="header" tx={"secondExampleScreen.title"} />
             <Text style={TAGLINE} tx={"secondExampleScreen.tagLine"} />
-            <BulletItem text="Esse consequat id est labore anim ullamco consectetur." />
-            <BulletItem text="Labore occaecat magna veniam labore nostrud pariatur proident eiusmod." />
+            <BulletItem text="Load up Reactotron!  You can inspect your app, view the events, interact, and so much more!" />
+            <BulletItem text="Integrated here, Navigation with State, TypeScript, Storybook, Solidarity, and i18n." />
             <BulletItem text="Occaecat duis aliqua dolor Lorem duis reprehenderit eiusmod sint nulla quis." />            
             <BulletItem text="Nemo enem ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit." />
             <Image source={logoIgnite} style={IGNITE} />

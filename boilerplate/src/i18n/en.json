@@ -14,7 +14,7 @@
   },
   "secondExampleScreen": {
     "howTo": "HOW TO",
-    "igniteNext": "Ignite your next React Native project.",
-    "tagLine": "Create an app with default screens for development, debugging, and alpha testing with these easy steps:"
+    "title": "What’s In This Stack?",
+    "tagLine": "Congratulations, you’ve got a very advanced React Native app template here.  Take advantage of this boilerplate!"
   }
 }
