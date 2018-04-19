@@ -53,5 +53,5 @@ module.exports = async function (context) {
   await ignite.copyBatch(context, jobs, props)
 
   // wire up example
-  patching.insertInFile('./storybook/storybook-registry.ts', '\n', `require("../src/views/${domainPath}/${name}/${name}.story")`)
+  patching.insertInFile('./storybook/storybook-registry.ts', '\n', `require("../src/views/${domainPath}${name}/${name}.story")`)
 }
