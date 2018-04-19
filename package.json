@@ -4,7 +4,7 @@
   "license": "MIT",
   "repository": "infinitered/ignite-ir-boilerplate",
   "homepage": "https://github.com/infinitered/ignite-ir-boilerplate",
-  "version": "2.3.1",
+  "version": "2.3.2",
   "files": [
     "boilerplate",
     "commands",
