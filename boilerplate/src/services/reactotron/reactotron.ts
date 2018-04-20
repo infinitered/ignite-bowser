@@ -3,6 +3,7 @@ import { RootStore } from "../../models/root-store"
 import { onSnapshot } from "mobx-state-tree"
 import { ReactotronConfig, DEFAULT_REACTOTRON_CONFIG } from "./reactotron-config"
 import { mst } from "reactotron-mst"
+import { commandMiddleware } from "./command-middleware"
 
 // Teach TypeScript about the bad things we want to do.
 declare global {
@@ -109,7 +110,18 @@ export class Reactotron {
         asyncStorage: this.config.useAsyncStorage ? undefined : false,
       })
 
-      Tron.use(mst())
+      // ignore some chatty `mobx-state-tree` actions
+      const RX = /postProcessSnapshot|@APPLY_SNAPSHOT/
+
+      // hookup mobx-state-tree middleware
+      Tron.use(
+        mst({
+          filter: event => RX.test(event.name) === false,
+        }),
+      )
+
+      // hookup custom command middleware
+      Tron.use(commandMiddleware(() => this.rootStore))
 
       // connect to the app
       Tron.connect()
