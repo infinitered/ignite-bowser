@@ -41,7 +41,7 @@ export const color = {
    */
   text: palette.black,
   /**
-   * Secondard information.
+   * Secondary information.
    */
   dim: palette.lightGrey,
   /**

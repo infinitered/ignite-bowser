@@ -5,4 +5,7 @@ import { SecondExampleScreen } from "../views/example/second-example-screen"
 export const ExampleNavigator = StackNavigator({
   firstExample: { screen: FirstExampleScreen },
   secondExample: { screen: SecondExampleScreen },
+},
+{
+  headerMode: "none",
 })
