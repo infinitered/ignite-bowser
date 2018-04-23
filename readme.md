@@ -152,6 +152,7 @@ If you would like to have the `ignite generate` command include the generation o
 
 **Previous Boilerplates**
 
+* [2017 aka Andross](https://github.com/infinitered/ignite-ir-boilerplate-andross)
 * [2016 aka Ignite 1.0](https://github.com/infinitered/ignite-ir-boilerplate-2016)
 
 ## Premium Support
