@@ -1,4 +1,4 @@
-# Ignite IR Boilerplate (Bowser)
+# Ignite IR Boilerplate ("Bowser")
 
 [![Build Status](https://semaphoreci.com/api/v1/ir/ignite-ir-boilerplate-bowser/branches/master/badge.svg)](https://semaphoreci.com/ir/ignite-ir-boilerplate-bowser)
 
