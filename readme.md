@@ -1,6 +1,6 @@
-# Ignite IR Boilerplate
+# Ignite IR Boilerplate (Bowser)
 
-[![Build Status](https://semaphoreci.com/api/v1/ir/ignite-ir-boilerplate/branches/master/badge.svg)](https://semaphoreci.com/ir/ignite-ir-boilerplate)
+[![Build Status](https://semaphoreci.com/api/v1/ir/ignite-ir-boilerplate-bowser/branches/master/badge.svg)](https://semaphoreci.com/ir/ignite-ir-boilerplate-bowser)
 
 
 
@@ -12,8 +12,8 @@ Currently includes:
 
 * React Native 0.55.1 (but you can change this if you want to experiment)
 * React Navigation
-* Redux
-* Redux Sagas
+* MobX State Tree
+* TypeScript
 * And more!
 
 ## Quick Start
