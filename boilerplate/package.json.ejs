@@ -1,76 +1,83 @@
 {
+  "name": "<%= props.name %>",
   "version": "0.0.1",
+  "private": true,
   "scripts": {
-    "clean": "rm -rf $TMPDIR/react-* && watchman watch-del-all && npm cache clean --force",
-    "clean:android": "cd android/ && ./gradlew clean && cd .. && react-native run-android",
-    "newclear": "rm -rf $TMPDIR/react-* && watchman watch-del-all && rm -rf ios/build && rm -rf node_modules/ && npm cache clean --force && npm i",
-    "test:watch": "jest --watch",
-    "updateSnapshot": "jest --updateSnapshot",
-    "coverage": "jest --coverage && open coverage/lcov-report/index.html || xdg-open coverage/lcov-report/index.html",
-    "android:build": "cd android && ./gradlew assembleRelease",
-    "android:install": "cd android && ./gradlew assembleRelease && ./gradlew installRelease",
-    "android:hockeyapp": "cd android && ./gradlew assembleRelease && puck -submit=auto app/build/outputs/apk/app-release.apk",
-    "android:devices": "$ANDROID_HOME/platform-tools/adb devices",
-    "android:logcat": "$ANDROID_HOME/platform-tools/adb logcat *:S ReactNative:V ReactNativeJS:V",
-    "android:shake": "$ANDROID_HOME/platform-tools/adb devices | grep '\\t' | awk '{print $1}' | sed 's/\\s//g' | xargs -I {} $ANDROID_HOME/platform-tools/adb -s {} shell input keyevent 82",
-    "storybook": "storybook start -p 7007"
-    <% /* Commented out to disable tests until Enzyme becomes compatible with newer React Native versions:
-    ,
-    "precommit": "npm run git-hook",
-    "prepush": "npm run git-hook",
-    "git-hook": "npm test -s" */ %>
+    "compile": "tsc --noEmit -p . --pretty",
+    "format": "npm-run-all format:*",
+    "format:js": "prettier --write {.,**}/*.js",
+    "format:json": "prettier --write {.,**}/*.json",
+    "format:md": "prettier --write {.,**}/*.md",
+    "format:ts": "prettier --write {.,**}/*.{ts,tsx} && tslint --fix -p .",
+    "lint": "npm-run-all lint:*",
+    "lint:ts": "tslint -p .",
+    "postinstall": "solidarity",
+    "precommit": "lint-staged",
+    "prepare": "patch-package",
+    "start": "node node_modules/react-native/local-cli/cli.js start",
+    "storybook": "storybook start -p 9001 --skip-packager",
+    "test": "jest"
   },
   "dependencies": {
-    "apisauce": "^0.14.2",
-    "format-json": "^1.0.3",
-    "identity-obj-proxy": "^3.0.0",
-    "lodash": "^4.17.4",
-    "prop-types": "^15.6.1",
-    "querystringify": "1.0.0",
+    "apisauce": "^0.14.3",
+    "lodash.throttle": "^4.1.1",
+    "mobx": "^4.1.0",
+    "mobx-react": "^5.0.0",
+    "mobx-state-tree": "^2.0.1",
     "ramda": "^0.25.0",
-    "react-native-config": "^0.10.0",
-    "react-navigation": "^1.5.11",
-    "react-navigation-redux-helpers": "^1.0.4",
-    "react-redux": "^5.0.6",
-    "redux": "^3.7.2",
-    "redux-saga": "^0.16.0",
-    "reduxsauce": "0.7.0",
-    "seamless-immutable": "^7.1.2"
+    "react-native-i18n": "^2.0.12",
+    "react-native-keychain": "3.0.0-rc.3",
+    "react-navigation": "^1.5.8",
+    "reactotron-mst": "1.15.0",
+    "reactotron-react-native": "1.14.0",
+    "validate.js": "^0.12.0"
   },
   "devDependencies": {
-    "@storybook/addons": "^3.4.0",
-    "@storybook/addon-storyshots": "^3.4.0",
-    "@storybook/channels": "^3.4.0",
-    "@storybook/react-native": "^3.4.0",
-    "babel-core": "6.26.0",
-    "babel-preset-env": "^1.6.1",
-    "babel-preset-react-native": "^3.0.2",
-    "enzyme": "^3.2.0",
-    "enzyme-adapter-react-16": "^1.1.0",
-    "mockery": "^2.1.0",
+    "@storybook/addon-storyshots": "^3.3.15",
+    "@storybook/react-native": "^3.3.15",
+    "@types/jest": "^22.2.0",
+    "@types/ramda": "^0.25.20",
+    "@types/react": "^16.0.40",
+    "@types/react-native": "^0.52.18",
+    "@types/react-navigation": "^1.5.2",
+    "@types/react-test-renderer": "^16.0.1",
+    "@types/validate.js": "0.11.0",
+    "babel-plugin-transform-inline-environment-variables": "^0.3.0",
     "husky": "^0.14.3",
-    "babel-plugin-ignite-ignore-reactotron": "^0.3.0",
-    "react-dom": "16.3.0",
-    "reactotron-react-native": "^2.0.0-alpha.3",
-    "reactotron-redux": "^2.0.0-alpha.3",
-    "reactotron-redux-saga": "^2.0.0-alpha.3"
+    "jest-preset-ignite": "^0.5.0",
+    "lint-staged": "^7.0.0",
+    "npm-run-all": "^4.1.2",
+    "patch-package": "^5.1.1",
+    "postinstall-prepare": "^1.0.1",
+    "prettier": "^1.11.1",
+    "react-dom": "^16.2.0",
+    "react-native-typescript-transformer": "^1.2.3",
+    "react-powerplug": "^0.1.5",
+    "solidarity": "^1.1.1",
+    "tslint": "^5.9.1",
+    "tslint-config-prettier": "^1.10.0",
+    "typescript": "2.7.2"
   },
   "jest": {
-    "testMatch": [
-      "<rootDir>/Tests/**/*.js",
-      "**/?(*.)(spec|test).js?(x)"
-    ],
-    "testPathIgnorePatterns":[
-      "/node_modules/",
-      "<rootDir>/Tests/Setup.js"
-    ],
-    "moduleNameMapper": {
-      "^.+\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "identity-obj-proxy"
-    },
-    "setupFiles": [
-      "<rootDir>/Tests/Setup"
-    ],
-    "preset": "react-native"
+    "preset": "jest-preset-ignite"
   },
-  "config": {}
+  "lint-staged": {
+    "*.js": [
+      "prettier --write",
+      "git add"
+    ],
+    "*.{ts,tsx}": [
+      "prettier --write",
+      "tslint --fix",
+      "git add"
+    ],
+    "*.md": [
+      "prettier --write",
+      "git add"
+    ],
+    "*.json": [
+      "prettier --write",
+      "git add"
+    ]
+  }
 }

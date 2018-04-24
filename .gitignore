@@ -9,10 +9,6 @@ yarn.lock
 lerna-debug.log
 node_modules
 .vscode/*
-!.vscode/settings.json
-!.vscode/tasks.json
-!.vscode/launch.json
-!.vscode/extensions.json
 testgrounds
 IntegrationTest
 integration_test

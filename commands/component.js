@@ -2,10 +2,8 @@
 
 module.exports = async function (context) {
   // grab some features
-  const { parameters, strings, print, ignite } = context
+  const { parameters, strings, print, ignite, filesystem, patching, prompt } = context
   const { pascalCase, isBlank } = strings
-  const config = ignite.loadIgniteConfig()
-  const { tests } = config
 
   const options = parameters.options || {}
 
@@ -18,24 +16,42 @@ module.exports = async function (context) {
     return
   }
 
-  let componentPath = hasFolder ? `${options.folder}/${parameters.first || 'index'}` : parameters.first
+  const domainQuestion = 'Add component to which domain?'
+  const domains = filesystem.list('./src/views/')
+  const domainChoices = ['(Create New)', ...domains]
 
-  let pathComponents = componentPath.split('/').map(pascalCase)
-  let name = pathComponents.pop()
-  if (name === 'Index') { name = 'index' }
-  const relativePath = pathComponents.length ? pathComponents.join('/') + '/' : ''
+  const domainAddAnswer = await prompt.ask({
+    name: 'domain',
+    type: 'list',
+    message: domainQuestion,
+    choices: domainChoices
+  })
 
-  const props = { name }
-  const jobs = [{
-    template: 'component.ejs',
-    target: `App/Components/${relativePath}${name}.js`
-  }, {
-    template: 'component-style.ejs',
-    target: `App/Components/${relativePath}Styles/${name}Style.js`
-  }, tests === 'ava' && {
-    template: 'component-test.ejs',
-    target: `Test/Components/${relativePath}${name}Test.js`
-  }]
+  const domainPath = (domainAddAnswer.domain === domainChoices[0]) ? '' : domainAddAnswer.domain + '/'
+  const name = parameters.first
+
+  const props = { name, pascalName: pascalCase(name) }
+  const jobs = [
+    {
+      template: 'component.tsx.ejs',
+      target: `src/views/${domainPath}${name}/${name}.tsx`
+    }, {
+      template: 'component.presets.ts.ejs',
+      target: `src/views/${domainPath}${name}/${name}.presets.ts`
+    }, {
+      template: 'component.props.ts.ejs',
+      target: `src/views/${domainPath}${name}/${name}.props.ts`
+    }, {
+      template: 'component.story.tsx.ejs',
+      target: `src/views/${domainPath}${name}/${name}.story.tsx`
+    }, {
+      template: 'rollup-index.ts.ejs',
+      target: `src/views/${domainPath}${name}/index.ts`
+    }
+  ]
 
   await ignite.copyBatch(context, jobs, props)
+
+  // wire up example
+  patching.insertInFile('./storybook/storybook-registry.ts', '\n', `require("../src/views/${domainPath}/${name}/${name}.story")`)
 }

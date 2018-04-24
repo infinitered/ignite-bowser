@@ -1,32 +1,19 @@
-import React, { Component } from 'react'
-import { ScrollView, Text, KeyboardAvoidingView } from 'react-native'
-import { connect } from 'react-redux'
-// Add Actions - replace 'Your' with whatever your reducer is called :)
-// import YourActions from '../Redux/YourRedux'
+import * as React from "react"
+import { Text } from "../../shared/text"
+import { NavigationScreenProps } from "react-navigation"
+import { Screen } from "../../shared/screen"
 
-// Styles
-import styles from './Styles/<%= props.name %>Style'
+export interface <%= props.pascalName %> extends NavigationScreenProps<{}> {
+}
 
-class <%= props.name %> extends Component {
+// @inject("mobxstuff")
+@observer
+export class <%= props.pascalName %> extends React.Component<RegisterScreenProps, {}> {
   render () {
     return (
-      <ScrollView style={styles.container}>
-        <KeyboardAvoidingView behavior='position'>
-          <Text><%= props.name %></Text>
-        </KeyboardAvoidingView>
-      </ScrollView>
+      <Screen preset="fixedCenter">
+        <Text preset="header" tx="<%= props.pascalName %>.header" />
+      </Screen>
     )
   }
 }
-
-const mapStateToProps = (state) => {
-  return {
-  }
-}
-
-const mapDispatchToProps = (dispatch) => {
-  return {
-  }
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(<%= props.name %>)
