@@ -1,6 +1,6 @@
-# Ignite IR Boilerplate
+# Ignite IR Boilerplate ("Bowser")
 
-[![Build Status](https://semaphoreci.com/api/v1/ir/ignite-ir-boilerplate/branches/master/badge.svg)](https://semaphoreci.com/ir/ignite-ir-boilerplate)
+[![Build Status](https://semaphoreci.com/api/v1/ir/ignite-ir-boilerplate-bowser/branches/master/badge.svg)](https://semaphoreci.com/ir/ignite-ir-boilerplate-bowser)
 
 
 
@@ -12,8 +12,8 @@ Currently includes:
 
 * React Native 0.55.1 (but you can change this if you want to experiment)
 * React Navigation
-* Redux
-* Redux Sagas
+* MobX State Tree
+* TypeScript
 * And more!
 
 ## Quick Start
@@ -152,6 +152,7 @@ If you would like to have the `ignite generate` command include the generation o
 
 **Previous Boilerplates**
 
+* [2017 aka Andross](https://github.com/infinitered/ignite-ir-boilerplate-andross)
 * [2016 aka Ignite 1.0](https://github.com/infinitered/ignite-ir-boilerplate-2016)
 
 ## Premium Support
