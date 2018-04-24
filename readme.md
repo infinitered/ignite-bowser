@@ -1,6 +1,6 @@
-# Ignite IR Boilerplate
+# Ignite IR Boilerplate ("Bowser")
 
-[![Build Status](https://semaphoreci.com/api/v1/ir/ignite-ir-boilerplate/branches/master/badge.svg)](https://semaphoreci.com/ir/ignite-ir-boilerplate)
+[![Build Status](https://semaphoreci.com/api/v1/ir/ignite-ir-boilerplate-bowser/branches/master/badge.svg)](https://semaphoreci.com/ir/ignite-ir-boilerplate-bowser)
 
 
 
@@ -10,10 +10,10 @@ This is the boilerplate that [Infinite Red](https://infinite.red) uses as a way 
 
 Currently includes:
 
-* React Native 0.52.2 (but you can change this if you want to experiment)
+* React Native 0.55.1 (but you can change this if you want to experiment)
 * React Navigation
-* Redux
-* Redux Sagas
+* MobX State Tree
+* TypeScript
 * And more!
 
 ## Quick Start
@@ -60,7 +60,7 @@ To generate a new Container or Screen you can use the following generator comman
 
 * `ignite g container New` - Will create a `New.js` and also a `Styles/NewStyle.js`.
 * `ignite g list New` - The same as the `container` command, but it will give you a walkthrough to generate a ListView screen. Allowing you to even pick `FlatList` or not, grid, and some other options. 
-* `ignite g screen New` - Will create a `NewScreen.js` and also a `Styles/NewScreenStyle.js`. Important to mention that the `screen` generator will add the `Screen` on the file/class name to make easierto identify
+* `ignite g screen New` - Will create a `NewScreen.js` and also a `Styles/NewScreenStyle.js`. Important to mention that the `screen` generator will add the `Screen` on the file/class name to make easier to identify.
 
 Those commands will also add the new container to the navigations file.
 
@@ -147,13 +147,14 @@ Helpers for transforming data between API and your application and vice versa. A
 
 This folder (located as a sibling to `App`) contains sample Jest snapshot and unit tests for your application.
 
-If you would like to have the `ignite generate` command include the generation of tests when avaiable, add 
+If you would like to have the `ignite generate` command include the generation of tests when available, add 
 `"test": "jest"` or `"test": "ava"` to `./ignite/ignite.json`, depending on the test runner you are using.
 
 **Previous Boilerplates**
 
+* [2017 aka Andross](https://github.com/infinitered/ignite-ir-boilerplate-andross)
 * [2016 aka Ignite 1.0](https://github.com/infinitered/ignite-ir-boilerplate-2016)
 
 ## Premium Support
 
-[Ignite CLI](https://infinite.red/ignite) and [Ignite IR Boilerplate](https://github.com/infinitered/ignite-ir-boilerplate), as open source projects, are free to use and always will be. [Infinite Red](https://infinite.red/) offers premium Ignite CLI support and general mobile app design/development services. Email us at [hello@infinite.red](mailto:hello@infinite.red) to get in touch with us for more details.
+[Ignite CLI](https://infinite.red/ignite) and [Ignite IR Boilerplate](https://github.com/infinitered/ignite-ir-boilerplate-bowser), as open source projects, are free to use and always will be. [Infinite Red](https://infinite.red/) offers premium Ignite CLI support and general mobile app design/development services. Email us at [hello@infinite.red](mailto:hello@infinite.red) to get in touch with us for more details.
