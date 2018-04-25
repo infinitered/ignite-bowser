@@ -10,6 +10,7 @@ import { color, spacing } from "../../../theme"
 import { logoIgnite, heart } from "./"
 import { BulletItem } from "../bullet-item"
 import { Api } from "../../../services/api"
+import { save } from "../../../lib/storage"
 
 const FULL: ViewStyle = { flex: 1 }
 const CONTAINER: ViewStyle = {
@@ -87,6 +88,25 @@ export interface SecondExampleScreenProps extends NavigationScreenProps<{}> {}
 export class SecondExampleScreen extends React.Component<SecondExampleScreenProps, {}> {
   goBack = () => this.props.navigation.goBack(null)
 
+  demoReactotron = async () => {
+    console.tron.log("Your Friendly tron log message")
+    console.tron.logImportant("I am important")
+    console.tron.display({
+      name: "Witty Here",
+      value: {a: 1, b: [1,2,3]},
+      preview: "when you click here, it might surprise you!",
+      important: true,
+      image: { uri: "https://avatars2.githubusercontent.com/u/997157?s=460&v=4" },
+    })
+    // make an API call for the demo
+    // Don't do API like this, use store's API
+    const demo = new Api()
+    demo.setup()
+    demo.getRepo("infinitered/ignite")
+    // Let's do some async storage stuff
+    await save("Cool Name", "Boaty McBoatface")
+  }
+
   render() {
     return (
       <View style={FULL}>
@@ -110,22 +130,7 @@ export class SecondExampleScreen extends React.Component<SecondExampleScreenProp
                 style={DEMO}
                 textStyle={DEMO_TEXT}
                 tx="secondExampleScreen.reactotron"
-                onPress={() => {
-                  console.tron.log("Your Friendly tron log message")
-                  console.tron.logImportant("I am important")
-                  console.tron.display({
-                    name: "Witty Here",
-                    value: {a: 1, b: [1,2,3]},
-                    preview: "when you click here, it might surprise you!",
-                    important: true,
-                    image: { uri: "https://avatars2.githubusercontent.com/u/997157?s=460&v=4" },
-                  })
-                  // make an API call for the demo
-                  // Don't do API like this, use store's API
-                  const demo = new Api()
-                  demo.setup()
-                  demo.getRepo("infinitered/ignite")
-                }}
+                onPress={this.demoReactotron}
                 />
             </View>
             <Image source={logoIgnite} style={IGNITE} />
