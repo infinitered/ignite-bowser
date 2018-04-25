@@ -3,28 +3,42 @@ import { View, Image, ViewStyle, TextStyle, ImageStyle, SafeAreaView } from "rea
 import { NavigationScreenProps } from "react-navigation"
 import { Screen } from "../../shared/screen"
 import { Text } from "../../shared/text"
+import { Button } from "../../shared/button"
 import { Wallpaper } from "../../shared/wallpaper"
 import { Header } from "../../shared/header"
 import { color, spacing } from "../../../theme"
 import { logoIgnite, heart } from "./"
 import { BulletItem } from "../bullet-item"
+import { Api } from "../../../services/api"
+import { save } from "../../../lib/storage"
 
 const FULL: ViewStyle = { flex: 1 }
-const CONTAINER: ViewStyle = { 
+const CONTAINER: ViewStyle = {
   backgroundColor: color.transparent,
   paddingHorizontal: spacing[4],
 }
-const TEXT: TextStyle = { 
+const TEXT: TextStyle = {
   color: color.palette.white,
   fontFamily: "Montserrat",
 }
+const DEMO: ViewStyle = {
+  paddingVertical: spacing[4],
+  paddingHorizontal: spacing[4],
+  backgroundColor: "#5D2555",
+}
 const BOLD: TextStyle = { fontWeight: "bold" }
+const DEMO_TEXT: TextStyle = {
+  ...TEXT,
+  ...BOLD,
+  fontSize: 13,
+  letterSpacing: 2,
+}
 const HEADER: TextStyle = {
   paddingTop: spacing[3],
   paddingBottom: spacing[5] - 1,
   paddingHorizontal: 0,
 }
-const HEADER_TITLE: TextStyle = { 
+const HEADER_TITLE: TextStyle = {
   ...TEXT,
   ...BOLD,
   fontSize: 12,
@@ -32,17 +46,17 @@ const HEADER_TITLE: TextStyle = {
   textAlign: "center",
   letterSpacing: 1.5,
 }
-const TITLE: TextStyle = { 
-  ...TEXT, 
+const TITLE: TextStyle = {
+  ...TEXT,
   ...BOLD,
   fontSize: 28,
   lineHeight: 38,
   textAlign: "center",
-  marginBottom: spacing[5],  
+  marginBottom: spacing[5],
 }
 const TAGLINE: TextStyle = {
   ...TEXT,
-  color: "#BAB6C8",  
+  color: "#BAB6C8",
   fontSize: 15,
   lineHeight: 22,
   marginBottom: spacing[4] + spacing[1],
@@ -54,11 +68,11 @@ const IGNITE: ImageStyle = {
 const LOVE_WRAPPER: ViewStyle = {
   flexDirection: "row",
   alignItems: "center",
-  alignSelf: "center",              
+  alignSelf: "center",
 }
 const LOVE: TextStyle = {
   ...TEXT,
-  color: "#BAB6C8",  
+  color: "#BAB6C8",
   fontSize: 15,
   lineHeight: 22,
 }
@@ -73,6 +87,25 @@ export interface SecondExampleScreenProps extends NavigationScreenProps<{}> {}
 
 export class SecondExampleScreen extends React.Component<SecondExampleScreenProps, {}> {
   goBack = () => this.props.navigation.goBack(null)
+
+  demoReactotron = async () => {
+    console.tron.log("Your Friendly tron log message")
+    console.tron.logImportant("I am important")
+    console.tron.display({
+      name: "Witty Here",
+      value: {a: 1, b: [1,2,3]},
+      preview: "when you click here, it might surprise you!",
+      important: true,
+      image: { uri: "https://avatars2.githubusercontent.com/u/997157?s=460&v=4" },
+    })
+    // make an API call for the demo
+    // Don't do API like this, use store's API
+    const demo = new Api()
+    demo.setup()
+    demo.getRepo("infinitered/ignite")
+    // Let's do some async storage stuff
+    await save("Cool Name", "Boaty McBoatface")
+  }
 
   render() {
     return (
@@ -91,8 +124,15 @@ export class SecondExampleScreen extends React.Component<SecondExampleScreenProp
             <Text style={TAGLINE} tx={"secondExampleScreen.tagLine"} />
             <BulletItem text="Load up Reactotron!  You can inspect your app, view the events, interact, and so much more!" />
             <BulletItem text="Integrated here, Navigation with State, TypeScript, Storybook, Solidarity, and i18n." />
-            <BulletItem text="Occaecat duis aliqua dolor Lorem duis reprehenderit eiusmod sint nulla quis." />            
-            <BulletItem text="Nemo enem ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit." />
+
+            <View>
+              <Button
+                style={DEMO}
+                textStyle={DEMO_TEXT}
+                tx="secondExampleScreen.reactotron"
+                onPress={this.demoReactotron}
+                />
+            </View>
             <Image source={logoIgnite} style={IGNITE} />
             <View style={LOVE_WRAPPER}>
               <Text style={LOVE} text="Made with" />
