@@ -22,7 +22,7 @@ export interface ReactotronConfig {
 export const DEFAULT_REACTOTRON_CONFIG: ReactotronConfig = {
   clearOnLoad: true,
   host: "localhost",
-  useAsyncStorage: false,
+  useAsyncStorage: true,
   state: {
     initial: true,
     snapshots: false,
