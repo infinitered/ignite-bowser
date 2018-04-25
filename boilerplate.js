@@ -1,4 +1,3 @@
-const options = require('./options')
 const { merge, pipe, assoc, omit, __ } = require('ramda')
 const { getReactNativeVersion } = require('./lib/react-native-version')
 
@@ -31,7 +30,6 @@ async function install (context) {
     reactNative,
     print,
     system,
-    prompt,
     template
   } = context
   const { colors } = print
@@ -71,17 +69,6 @@ async function install (context) {
     matching: '!*.ejs'
   })
   spinner.stop()
-
-  // --max, --min, interactive
-  let answers
-  if (parameters.options.max) {
-    answers = options.answers.max
-  } else if (parameters.options.min) {
-    answers = options.answers.min
-  } else {
-    // none for now
-    // answers = await prompt.ask(options.questions)
-  }
 
   // generate some templates
   spinner.text = '▸ generating files'

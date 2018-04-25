@@ -27,10 +27,26 @@ export const viewPresets = {
    * A smaller piece of secondard information.
    */
   primary: { ...BASE_VIEW, backgroundColor: color.palette.orange } as ViewStyle,
+  
+  /**
+   * A button without extras.
+   */
+  link: {
+    ...BASE_VIEW,
+    paddingHorizontal: 0,
+    paddingVertical: 0,
+    alignItems: "flex-start",
+  } as ViewStyle,
 }
 
 export const textPresets = {
   primary: { ...BASE_TEXT, fontSize: 9, color: color.palette.white } as TextStyle,
+  link: {
+    ...BASE_TEXT,
+    color: color.text,
+    paddingHorizontal: 0,
+    paddingVertical: 0,
+  } as TextStyle,
 }
 
 /**
