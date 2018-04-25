@@ -118,7 +118,7 @@ export class SecondExampleScreen extends React.Component<SecondExampleScreenProp
                     value: {a: 1, b: [1,2,3]},
                     preview: "when you click here, it might surprise you!",
                     important: true,
-                    image: "http://placekitten.com/g/400/400",
+                    image: { uri: "https://avatars2.githubusercontent.com/u/997157?s=460&v=4" },
                   })
                   // make an API call for the demo
                   // Don't do API like this, use store's API
