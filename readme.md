@@ -18,139 +18,116 @@ Currently includes:
 
 ## Quick Start
 
-When you've installed the [Ignite CLI](https://github.com/infinitered/ignite), you can get started with this boilerplate like this:
+The Ignite Bowser boilerplate project's structure will look similar to this:
 
 ```
-ignite new MyLatestCreation
+ignite-project
+├── src
+│   ├── app
+│   ├── i18n
+│   ├── lib
+│   ├── models
+│   ├── navigation
+│   ├── services
+│   ├── theme
+│   ├── views
+├── storybook
+│   ├── views
+│   ├── index.ts
+│   ├── storybook-registry.ts
+│   ├── storybook.ts
+├── test
+│   ├── __snapshots__
+│   ├── storyshots.test.ts.snap
+│   ├── mock-i18n.ts
+│   ├── mock-reactotron.ts
+│   ├── setup.ts
+│   ├── storyshots.test.ts
+├── README.md
+├── android
+│   ├── app
+│   ├── build.gradle
+│   ├── gradle
+│   ├── gradle.properties
+│   ├── gradlew
+│   ├── gradlew.bat
+│   ├── keystores
+│   └── settings.gradle
+├── ignite
+│   ├── ignite.json
+│   └── plugins
+├── index.js
+├── ios
+│   ├── IgniteProject
+│   ├── IgniteProject-tvOS
+│   ├── IgniteProject-tvOSTests
+│   ├── IgniteProject.xcodeproj
+│   └── IgniteProjectTests
+└── package.json
 ```
 
-You can also change the React Native version, just keep in mind, we may not have tested this just yet.
+The directory structure uses a ["feature first, function second"](https://alligator.io/react/index-js-public-interfaces/) approach to organization. Files are grouped by the feature they are supporting rather than the type of file.
 
-```sh
-ignite new MyLatestCreation --react-native-version 0.46.0-rc.2
+For example: A custom `Button` component would have the main component file, and test, and any assets or helper files all grouped together in one folder.
+
+This is a departure from the previous boilerplate, which grouped files by type (components together, styles together, tests together, images together, etc.). One feature of this new approach is the use of index files which export specific functions from files in the directory to create a public interface for each "thing", or "feature. You'll see that pattern quite a bit in this boilerplate.
+
+
+## ./src directory
+
+Included in an Ignite boilerplate project is the src directory. This is a directory you would normally have to create when using vanilla React Native.
+
+The inside of the src directory looks similar to the following:
+
+```
+src
+├── app
+│── i18n
+├── lib
+├── models
+├── navigation
+├── services
+├── theme
+├── views
 ```
 
-By default we'll ask you some questions during install as to which features you'd like.  If you just want them all, you can skip the questions:
+**app**
+This is where a lot of your app's initialization takes place. Here you'll find:
+* root-component.tsx - This is the root component of your app that will render your navigators and other views.
 
-```sh
-ignite new MyLatestCreation --max
-```
+**i18n**
+This is where your translations will live if you are using `react-native-i18n`.
 
-If you want very few of these extras:
+**lib**
+This is a great place to put miscellaneous helpers and utilities. Things like date helpers, formatters, etc. are often found here. However, it should only be used for things that are truely shared across your application. If a helper or utility is only used by a specific component or model, consider co-locating your helper with that component or model.
 
-```sh
-ignite new MyLatestCreation --min
-```
+**models**
+This is where your app's models will live. Each model has a directory which will contain the `mobx-state-tree` model file, test file, and any other supporting files like actions, types, etc.
 
-## Boilerplate walkthrough
+**navigation**
+This is where your `react-navigation` navigators will live.
 
-Your `App` folder is where most of the goodies are found in an Ignite Next app. Let's walk through them in more detail. Start with `Containers/App.js` (described below) and work your way down the walkthrough in order.
+**services**
+Any services that interface with the outside world will live here (think REST APIs, Push Notifications, etc.).
 
-### Containers
+**theme**
+Here lives the theme for your application, including spacing, colors, and typography.
 
-Containers are (mostly) full screens, although they can be sections of screens or application containers.
+**views**
+This is where all of your components will live. Both dumb components and screen components will be located here. Each component will have a directory containing the `.tsx` file, along with a story file, and optionally `.presets`, and `.props` files for larger components.
 
-* `App.js` - your main application. We create a Redux store and configure it here
-* `RootContainer.js` - main view of your application. Contains your status bar and navigation component
-* `LaunchScreen.js` - this is the first screen shown in your application. It's loaded into the Navigation component
-* `LoginScreen.js` - an example login screen. Read the comments in there to learn more!
-* `Styles` - styling for each of the above containers and screens
+You may choose to futher break down this directory by organizing your components into "domains", which represent cohesive areas of your application. For example, a "user" domain could hold all components and screens related to managing a user.
 
-To generate a new Container or Screen you can use the following generator commands:
+**storybook**
+This is where your stories will be registered and where the Storybook configs will live
 
-* `ignite g container New` - Will create a `New.js` and also a `Styles/NewStyle.js`.
-* `ignite g list New` - The same as the `container` command, but it will give you a walkthrough to generate a ListView screen. Allowing you to even pick `FlatList` or not, grid, and some other options. 
-* `ignite g screen New` - Will create a `NewScreen.js` and also a `Styles/NewScreenStyle.js`. Important to mention that the `screen` generator will add the `Screen` on the file/class name to make easier to identify.
+**test**
+This directory will hold your Jest configs and mocks, as well as your [storyshots](https://github.com/storybooks/storybook/tree/master/addons/storyshots) test file. This is a file that contains the snapshots of all your component storybooks.
 
-Those commands will also add the new container to the navigations file.
+**ignite**
+The `ignite` directory stores all things Ignite, including CLI and boilerplate items. Here you will find generators, plugins and examples to help you get started with React Native.
 
-### Navigation
-
-Your primary and other navigation components reside here.
-
-* `AppNavigation.js` - loads in your initial screen and creates your menu(s) in a StackNavigation
-* `Styles` - styling for the navigation
-* `ReduxNavigation.js` - This file contains the core navigation of your application. If you ever change your launch screen, make sure to change it also at `if (nav.routes.length === 1 && (nav.routes[0].routeName === 'LaunchScreen')) {`, otherwise you may encounter navigation problems with the Android back button!
-
-### Components
-
-React components go here...pretty self-explanatory. We won't go through each in detail -- open each file to read the comments and view the code.
-
-To generate a new Component you can use the following generator commands:
-
-* `ignite g component New` - Will create a `New.js` and also a `Styles/NewStyle.js`.
-* `ignite g component path/New` - The same as above, but will use a relative path
-* `ignite g component --folder path` - An alternative to `ignite g component path/index`
-* `ignite g component --folder path new ` - An alternative to `ignite g component relativePath/New`
-
-### Storybook
-
-[Storybook](https://storybook.js.org/) has been setup to show off components in the different states. Storybook is a great way to develop and test components outside of use in your app. Simply run `npm run storybook` to get started. All stores are contained in the `*.story.js` files along side the components.
-
-### Themes
-
-Styling themes used throughout your app styles.
-
-* `ApplicationStyles.js` - app-wide styles
-* `Colors.js` - defined colors for your app
-* `Fonts.js` - defined fonts for your app
-* `Images.js` - loads and caches images used in your app
-* `Metrics.js` - useful measurements of things like navBarHeight
-
-### Config
-
-Initialize and configure things here.
-
-* `AppConfig.js` - simple React Native configuration here
-* `DebugConfig.js` - define how you want your debug environment to act
-* `ReactotronConfig.js` - configures [Reactotron](https://github.com/infinitered/reactotron) in your project (Note: this [will be extracted](https://github.com/infinitered/ignite/issues/779) into a plugin in the future)
-* `ReduxPersist.js` - configures Redux Persist (Note: this [will be extracted](https://github.com/infinitered/ignite/issues/780) into a plugin in the future)
-
-### Fixtures
-
-Contains json files that mimic API responses for quicker development. These are used by the `Services/FixtureApi.js` object to mock API responses.
-
-### Redux, Sagas
-
-Contains a preconfigured Redux and Redux-Sagas setup. Review each file carefully to see how Redux interacts with your application.
-
-Here again we have generators to help you out. You just have to use one of the following:
-
-* `ignite g redux Amazing` - Will generate and link the redux for `Amazing`.
-* `ignite g saga Amazing` - The same as above, but for the Sagas
-
-_TODO: explain more about Redux & Redux Sagas here_
-
-### Services
-
-Contains your API service and other important utilities for your application.
-
-* `Api.js` - main API service, giving you an interface to communicate with your back end
-* `ExamplesRegistry.js` - lets you view component and Ignite plugin examples in your app
-* `FixtureApi.js` - mocks your API service, making it faster to develop early on in your app
-* `ImmutablePersistenceTransform.js` - part of the redux-persist implementation (will be removed)
-* `RehydrationServices.js` - part of the redux-persist implementation (will be removed)
-
-### Lib
-
-We recommend using this folder for modules that can be extracted into their own NPM packages at some point.
-
-### Images
-
-Contains actual images (usually png) used in your application.
-
-### Transforms
-
-Helpers for transforming data between API and your application and vice versa. An example is provided that you can look at to see how it works.
-
-### Tests
-
-This folder (located as a sibling to `App`) contains sample Jest snapshot and unit tests for your application.
-
-If you would like to have the `ignite generate` command include the generation of tests when available, add 
-`"test": "jest"` or `"test": "ava"` to `./ignite/ignite.json`, depending on the test runner you are using.
-
-**Previous Boilerplates**
+## Previous Boilerplates
 
 * [2017 aka Andross](https://github.com/infinitered/ignite-ir-boilerplate-andross)
 * [2016 aka Ignite 1.0](https://github.com/infinitered/ignite-ir-boilerplate-2016)
