@@ -1,14 +1,15 @@
 import * as React from "react"
+import { observer } from "mobx-react"
 import { Text } from "../../shared/text"
 import { NavigationScreenProps } from "react-navigation"
 import { Screen } from "../../shared/screen"
 
-export interface <%= props.pascalName %> extends NavigationScreenProps<{}> {
+export interface <%= props.pascalName %>ScreenProps extends NavigationScreenProps<{}> {
 }
 
 // @inject("mobxstuff")
 @observer
-export class <%= props.pascalName %> extends React.Component<RegisterScreenProps, {}> {
+export class <%= props.pascalName %> extends React.Component<<%= props.pascalName %>ScreenProps, {}> {
   render () {
     return (
       <Screen preset="fixedCenter">
