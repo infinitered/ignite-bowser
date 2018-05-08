@@ -31,7 +31,7 @@ module.exports = async function (context) {
 
   const screenName = name.endsWith('-screen') ? name : `${name}-screen`
   const pascalName = pascalCase(name)
-  const props = { name, pascalName }
+  const props = { name: screenName, pascalName }
 
   const jobs = [
     {
@@ -51,7 +51,7 @@ module.exports = async function (context) {
   if (config.navigation === 'react-navigation') {
     const screenNavigator = pascalName + 'Navigator'
     const appNavFilePath = `${process.cwd()}/src/navigation/root-navigator.ts`
-    const importToAdd = `import ${pascalName} from "../views/${domainPath}${name}/${screenName}"`
+    const importToAdd = `import {${pascalName}} from "../views/${domainPath}${name}/${screenName}"`
     const routeToAdd = `    ${screenNavigator}: { screen: ${pascalName} },`
 
     if (!filesystem.exists(appNavFilePath)) {
