@@ -41,6 +41,7 @@ export const NavigationStoreModel = NavigationEvents.named("NavigationStore")
     dispatch(action: NavigationAction, shouldPush: boolean = true) {
       const previousNavState = shouldPush ? self.state : null
       self.state = RootNavigator.router.getStateForAction(action, previousNavState) || self.state
+      self.fireSubscribers(action, previousNavState, self.state)
       return true
     },
 
