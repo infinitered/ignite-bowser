@@ -1,8 +1,10 @@
-import * as React from "react"
+import React from "react"
 import { Image } from "react-native"
 import { presets } from "./wallpaper.presets"
 import { WallpaperProps } from "./wallpaper.props"
-import { defaultImage } from "./"
+
+const defaultImage = require("./bg.png")
+
 /**
  * For your text displaying needs.
  *
