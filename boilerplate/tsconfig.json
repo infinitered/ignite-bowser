@@ -1,7 +1,7 @@
 {
   "compilerOptions": {
     "allowJs": false,
-    "allowSyntheticDefaultImports": false,
+    "allowSyntheticDefaultImports": true,
     "experimentalDecorators": true,
     "jsx": "react-native",
     "module": "es2015",
