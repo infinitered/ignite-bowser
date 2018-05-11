@@ -30,8 +30,11 @@ if (__DEV__) {
     useReactNative: noop,
     clear: noop,
     log: noop,
+    logImportant: noop,
     display: noop,
     error: noop,
+    image: noop,
+    reportError: noop,
   }
 }
 
