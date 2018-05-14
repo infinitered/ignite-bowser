@@ -5,53 +5,52 @@ module.exports = async function (context) {
   const { parameters, strings, print, ignite, filesystem, patching, prompt } = context
   const { pascalCase, isBlank } = strings
 
-  const options = parameters.options || {}
-
-  const hasFolder = !isBlank(options.folder)
-
   // validation
-  if (isBlank(parameters.first) && !hasFolder) {
+  if (isBlank(parameters.first)) {
     print.info(`${context.runtime.brand} generate component <name>\n`)
     print.info('A name is required.')
     return
   }
 
-  const domainQuestion = 'Add component to which domain?'
-  const domains = filesystem.list('./src/views/')
-  const domainChoices = ['(Create New)', ...domains]
+  const directoryQuestion = 'Add component to which subdirectory?'
+  const directories = filesystem.list('./src/views/').map(directory => `src/views/${directory}`)
+  const directoryChoices = ['src/views', ...directories]
 
   const domainAddAnswer = await prompt.ask({
-    name: 'domain',
+    name: 'directory',
     type: 'list',
-    message: domainQuestion,
-    choices: domainChoices
+    message: directoryQuestion,
+    choices: directoryChoices
   })
 
-  const domainPath = (domainAddAnswer.domain === domainChoices[0]) ? '' : domainAddAnswer.domain + '/'
+  const directoryChoice = domainAddAnswer.directory
+  const newDirectory = directoryChoice === directoryChoices[0]
+  const sharedComponent = directoryChoice === 'src/views/shared'
+  const directoryPath = directoryChoice + '/'
   const name = parameters.first
 
-  const props = { name, pascalName: pascalCase(name) }
+  const props = { name, pascalName: pascalCase(name), newDirectory, sharedComponent }
   const jobs = [
     {
       template: 'component.tsx.ejs',
-      target: `src/views/${domainPath}${name}/${name}.tsx`
+      target: `${directoryPath}${name}/${name}.tsx`
     }, {
       template: 'component.presets.ts.ejs',
-      target: `src/views/${domainPath}${name}/${name}.presets.ts`
+      target: `${directoryPath}${name}/${name}.presets.ts`
     }, {
       template: 'component.props.ts.ejs',
-      target: `src/views/${domainPath}${name}/${name}.props.ts`
+      target: `${directoryPath}${name}/${name}.props.ts`
     }, {
       template: 'component.story.tsx.ejs',
-      target: `src/views/${domainPath}${name}/${name}.story.tsx`
+      target: `${directoryPath}${name}/${name}.story.tsx`
     }, {
       template: 'rollup-index.ts.ejs',
-      target: `src/views/${domainPath}${name}/index.ts`
+      target: `${directoryPath}${name}/index.ts`
     }
   ]
 
   await ignite.copyBatch(context, jobs, props)
 
   // wire up example
-  patching.insertInFile('./storybook/storybook-registry.ts', '\n', `require("../src/views/${domainPath}${name}/${name}.story")`)
+  patching.insertInFile('./storybook/storybook-registry.ts', '\n', `require("../${directoryPath}${name}/${name}.story")`)
 }

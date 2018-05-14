@@ -1,6 +1,10 @@
 import * as React from "react"
 import { storiesOf } from "@storybook/react-native"
+<% if (props.newDirectory) { -%>
 import { StoryScreen, Story, UseCase } from "../../../storybook/views"
+<% } else { -%>
+import { StoryScreen, Story, UseCase } from "../../../../storybook/views"
+<% } -%>
 import { <%= props.pascalName %> } from "./"
 
 storiesOf("<%= props.pascalName %>")
