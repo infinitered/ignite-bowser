@@ -68,6 +68,10 @@ async function install (context) {
     overwrite: true,
     matching: '!*.ejs'
   })
+  filesystem.copy(`${__dirname}/boilerplate/patches`, `${process.cwd()}/patches`, {
+    overwrite: true,
+    matching: '!*.ejs'
+  })
   spinner.stop()
 
   // generate some templates
