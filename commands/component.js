@@ -1,9 +1,11 @@
-// @cliDescription  Generates a component, styles, and an optional test.
+// @cliDescription  Generates a component, supporting files, and a storybook test.
 
 module.exports = async function (context) {
   // grab some features
   const { parameters, strings, print, ignite, filesystem, patching, prompt } = context
   const { pascalCase, isBlank } = strings
+  const options = parameters.options || {}
+  const folder = options.folder || options.f
 
   // validation
   if (isBlank(parameters.first)) {
@@ -12,45 +14,50 @@ module.exports = async function (context) {
     return
   }
 
-  const directoryQuestion = 'Add component to which subdirectory?'
-  const directories = filesystem.list('./src/views/').map(directory => `src/views/${directory}`)
-  const directoryChoices = ['src/views', ...directories]
+  const domains = filesystem.list('./src/views/')
+  const domainChoices = ['(Create New)', ...domains]
+  let domainAddAnswer = {}
+  let domainPath = ''
+  if (!folder) {
+    const domainQuestion = 'Add component to which domain?'
+    domainAddAnswer = await prompt.ask({
+      name: 'domain',
+      type: 'list',
+      message: domainQuestion,
+      choices: domainChoices
+    })
+    domainPath = (domainAddAnswer.domain === domainChoices[0]) ? '' : domainAddAnswer.domain + '/'
+  } else {
+    domainPath = (folder === 'views') ? '' : folder + '/'
+  }
 
-  const domainAddAnswer = await prompt.ask({
-    name: 'directory',
-    type: 'list',
-    message: directoryQuestion,
-    choices: directoryChoices
-  })
-
-  const directoryChoice = domainAddAnswer.directory
-  const newDirectory = directoryChoice === directoryChoices[0]
-  const sharedComponent = directoryChoice === 'src/views/shared'
-  const directoryPath = directoryChoice + '/'
   const name = parameters.first
+  const pascalName = pascalCase(name)
+  const newDomain = isBlank(domainPath)
+  const sharedComponent = domainPath === 'shared/'
 
-  const props = { name, pascalName: pascalCase(name), newDirectory, sharedComponent }
+  const props = { name, pascalName, newDomain, sharedComponent }
   const jobs = [
     {
       template: 'component.tsx.ejs',
-      target: `${directoryPath}${name}/${name}.tsx`
+      target: `src/views/${domainPath}${name}/${name}.tsx`
     }, {
       template: 'component.presets.ts.ejs',
-      target: `${directoryPath}${name}/${name}.presets.ts`
+      target: `src/views/${domainPath}${name}/${name}.presets.ts`
     }, {
       template: 'component.props.ts.ejs',
-      target: `${directoryPath}${name}/${name}.props.ts`
+      target: `src/views/${domainPath}${name}/${name}.props.ts`
     }, {
       template: 'component.story.tsx.ejs',
-      target: `${directoryPath}${name}/${name}.story.tsx`
+      target: `src/views/${domainPath}${name}/${name}.story.tsx`
     }, {
       template: 'rollup-index.ts.ejs',
-      target: `${directoryPath}${name}/index.ts`
+      target: `src/views/${domainPath}${name}/index.ts`
     }
   ]
 
   await ignite.copyBatch(context, jobs, props)
 
   // wire up example
-  patching.insertInFile('./storybook/storybook-registry.ts', '\n', `require("../${directoryPath}${name}/${name}.story")`)
+  patching.insertInFile('./storybook/storybook-registry.ts', '\n', `require("../src/views/${domainPath}${name}/${name}.story")`)
 }
