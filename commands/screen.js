@@ -51,7 +51,7 @@ module.exports = async function (context) {
   if (config.navigation === 'react-navigation') {
     const screenNavigator = pascalName + 'Navigator'
     const appNavFilePath = `${process.cwd()}/src/navigation/root-navigator.ts`
-    const importToAdd = `import {${pascalName}} from "../views/${domainPath}${name}/${screenName}"`
+    const importToAdd = `import { ${pascalName} } from "../views/${domainPath}${name}/${screenName}"`
     const routeToAdd = `    ${screenNavigator}: { screen: ${pascalName} },`
 
     if (!filesystem.exists(appNavFilePath)) {
