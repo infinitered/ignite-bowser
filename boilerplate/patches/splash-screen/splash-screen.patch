@@ -30475,7 +30475,7 @@ index 9c9b21f..babe043 100644
  	<key>UIAppFonts</key>
  	<array>
  		<string>Montserrat-Black.ttf</string>
-@@ -72,5 +58,17 @@
+@@ -72,5 +58,19 @@
  		<string>Montserrat-Thin.ttf</string>
  		<string>Montserrat-ThinItalic.ttf</string>
  	</array>
@@ -30483,6 +30483,8 @@ index 9c9b21f..babe043 100644
 +	<array>
 +		<string>armv7</string>
 +	</array>
++ <key>UIStatusBarStyle</key>
++ <string>UIStatusBarStyleLightContent</string>
 +	<key>UISupportedInterfaceOrientations</key>
 +	<array>
 +		<string>UIInterfaceOrientationPortrait</string>
