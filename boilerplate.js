@@ -157,9 +157,15 @@ async function install (context) {
   async function patchSplashScreen () {
     spinner.text = `▸ setting up splash screen`
     spinner.start()
+    spinner.text = `▸ setting up splash screen: installing package`
+    await system.run(`yarn add react-native-splash-screen`, { stdio: 'ignore' })
+    spinner.text = `▸ setting up splash screen: linking`
+    await system.spawn(`react-native link react-native-splash-screen`, { stdio: 'ignore' })
+    spinner.text = `▸ setting up splash screen: configuring`
     await system.run(`sed -i '' 's/SplashScreenPatch/${name}/g' ${process.cwd()}/patches/splash-screen/splash-screen.patch`, { stdio: 'ignore' })
+    spinner.text = `▸ setting up splash screen: cleaning`
     await system.run(`git apply ${process.cwd()}/patches/splash-screen/splash-screen.patch`, { stdio: 'ignore' })
-    //filesystem.remove(`${process.cwd()}/patches/splash-screen`)
+    filesystem.remove(`${process.cwd()}/patches/splash-screen`)
   }
   await patchSplashScreen()
   spinner.stop()
