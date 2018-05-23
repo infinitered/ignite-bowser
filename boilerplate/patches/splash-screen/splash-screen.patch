@@ -1,63 +1,10 @@
-From 7032c37c03afa6f8d987835c93192ad4f0a702cc Mon Sep 17 00:00:00 2001
-From: "Leon S. Kim" <minusnine@gmail.com>
-Date: Mon, 21 May 2018 19:06:58 +0900
+From 799e9065501663908ac533329f60485141230788 Mon Sep 17 00:00:00 2001
+From: Leon Kim <minusnine@gmail.com>
+Date: Wed, 23 May 2018 15:40:10 +0900
 Subject: [PATCH] Splash Screen
 
-* Patch: Install splash screen (react-native-splash-screen)
 ---
- android/app/build.gradle                      |   1 +
- android/app/src/main/AndroidManifest.xml      |   2 +-
- .../main/java/com/SplashScreenPatch/MainActivity.java  |   8 +
- .../java/com/SplashScreenPatch/MainApplication.java    |   4 +-
- .../main/res/drawable-hdpi/launch_screen.png  | Bin 0 -> 88539 bytes
- .../main/res/drawable-ldpi/launch_screen.png  | Bin 0 -> 26988 bytes
- .../main/res/drawable-mdpi/launch_screen.png  | Bin 0 -> 51100 bytes
- .../main/res/drawable-xhdpi/launch_screen.png | Bin 0 -> 153682 bytes
- .../res/drawable-xxhdpi/launch_screen.png     | Bin 0 -> 226626 bytes
- .../res/drawable-xxxhdpi/launch_screen.png    | Bin 0 -> 333602 bytes
- .../src/main/res/drawable/launch_screen.png   | Bin 0 -> 88539 bytes
- .../app/src/main/res/layout/launch_screen.xml |   6 +
- android/app/src/main/res/values/colors.xml    |   4 +
- android/settings.gradle                       |   2 +
- ios/SplashScreenPatch/AppDelegate.m                    |   2 +
- .../AppIcon.appiconset/Contents.json          |  15 ++
- ios/SplashScreenPatch/Images.xcassets/Contents.json    |   2 +-
- .../LaunchImage.launchimage/Contents.json     |  58 ++++++
- .../LaunchImage-1242x2208@3x.png              | Bin 0 -> 329352 bytes
- .../LaunchImage-640x1136@2x.png               | Bin 0 -> 131947 bytes
- .../LaunchImage-640x960.png                   | Bin 0 -> 129060 bytes
- .../LaunchImage-750x1334@2x.png               | Bin 0 -> 163622 bytes
- ios/SplashScreenPatch/Info.plist                       |  30 ++-
- package.json                                  |   1 +
- src/app/root-component.tsx                    |   2 +
- 27 files changed, 264 insertions(+), 63 deletions(-)
- create mode 100755 android/app/src/main/res/drawable-hdpi/launch_screen.png
- create mode 100755 android/app/src/main/res/drawable-ldpi/launch_screen.png
- create mode 100755 android/app/src/main/res/drawable-mdpi/launch_screen.png
- create mode 100755 android/app/src/main/res/drawable-xhdpi/launch_screen.png
- create mode 100755 android/app/src/main/res/drawable-xxhdpi/launch_screen.png
- create mode 100755 android/app/src/main/res/drawable-xxxhdpi/launch_screen.png
- create mode 100755 android/app/src/main/res/drawable/launch_screen.png
- create mode 100644 android/app/src/main/res/layout/launch_screen.xml
- create mode 100644 android/app/src/main/res/values/colors.xml
- create mode 100644 ios/SplashScreenPatch/Images.xcassets/LaunchImage.launchimage/Contents.json
- create mode 100755 ios/SplashScreenPatch/Images.xcassets/LaunchImage.launchimage/LaunchImage-1242x2208@3x.png
- create mode 100644 ios/SplashScreenPatch/Images.xcassets/LaunchImage.launchimage/LaunchImage-640x1136@2x.png
- create mode 100755 ios/SplashScreenPatch/Images.xcassets/LaunchImage.launchimage/LaunchImage-640x960.png
- create mode 100755 ios/SplashScreenPatch/Images.xcassets/LaunchImage.launchimage/LaunchImage-750x1334@2x.png
 
-diff --git a/android/app/build.gradle b/android/app/build.gradle
-index 9b8ecae..2f4e0e5 100644
---- a/android/app/build.gradle
-+++ b/android/app/build.gradle
-@@ -137,6 +137,7 @@ android {
- }
- 
- dependencies {
-+    compile project(':react-native-splash-screen')
-     compile fileTree(dir: "libs", include: ["*.jar"])
-     compile "com.android.support:appcompat-v7:23.0.1"
-     compile "com.facebook.react:react-native:+"  // From node_modules
 diff --git a/android/app/src/main/AndroidManifest.xml b/android/app/src/main/AndroidManifest.xml
 index 88392ad..b53741c 100644
 --- a/android/app/src/main/AndroidManifest.xml
@@ -92,28 +39,6 @@ index 7964134..89d24a5 100644
      /**
       * Returns the name of the main component registered from JavaScript.
       * This is used to schedule rendering of the component.
-diff --git a/android/app/src/main/java/com/SplashScreenPatch/MainApplication.java b/android/app/src/main/java/com/SplashScreenPatch/MainApplication.java
-index ddd6718..d96dd14 100644
---- a/android/app/src/main/java/com/SplashScreenPatch/MainApplication.java
-+++ b/android/app/src/main/java/com/SplashScreenPatch/MainApplication.java
-@@ -3,6 +3,7 @@ package com.SplashScreenPatch;
- import android.app.Application;
- 
- import com.facebook.react.ReactApplication;
-+import org.devio.rn.splashscreen.SplashScreenReactPackage;
- import com.facebook.react.ReactNativeHost;
- import com.facebook.react.ReactPackage;
- import com.facebook.react.shell.MainReactPackage;
-@@ -22,7 +23,8 @@ public class MainApplication extends Application implements ReactApplication {
-     @Override
-     protected List<ReactPackage> getPackages() {
-       return Arrays.<ReactPackage>asList(
--          new MainReactPackage()
-+          new MainReactPackage(),
-+          new SplashScreenReactPackage()
-       );
-     }
- 
 diff --git a/android/app/src/main/res/drawable-hdpi/launch_screen.png b/android/app/src/main/res/drawable-hdpi/launch_screen.png
 new file mode 100755
 index 0000000000000000000000000000000000000000..5e3f526424674c018d88576b0da021c01e8f24df
@@ -17244,16 +17169,37 @@ index 0000000..6b4a234
 +<resources>
 +  <color name="primary_dark">#660B0B0B</color>
 +</resources>
-diff --git a/android/settings.gradle b/android/settings.gradle
-index c25daa7..849f7a9 100644
---- a/android/settings.gradle
-+++ b/android/settings.gradle
-@@ -1,3 +1,5 @@
- rootProject.name = 'SplashScreenPatch'
-+include ':react-native-splash-screen'
-+project(':react-native-splash-screen').projectDir = new File(rootProject.projectDir, '../node_modules/react-native-splash-screen/android')
- 
- include ':app'
+diff --git a/ios/SplashScreenPatch.xcodeproj/project.pbxproj b/ios/SplashScreenPatch.xcodeproj/project.pbxproj
+index 675d3f2..381c172 100644
+--- a/ios/SplashScreenPatch.xcodeproj/project.pbxproj
++++ b/ios/SplashScreenPatch.xcodeproj/project.pbxproj
+@@ -1285,8 +1341,13 @@
+ 			isa = XCBuildConfiguration;
+ 			buildSettings = {
+ 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
++				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+ 				CURRENT_PROJECT_VERSION = 1;
+ 				DEAD_CODE_STRIPPING = NO;
++				HEADER_SEARCH_PATHS = (
++					"$(inherited)",
++					"$(SRCROOT)/../node_modules/react-native-splash-screen/ios",
++				);
+ 				INFOPLIST_FILE = SplashScreenPatch/Info.plist;
+ 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+ 				OTHER_LDFLAGS = (
+@@ -1303,7 +1364,12 @@
+ 			isa = XCBuildConfiguration;
+ 			buildSettings = {
+ 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
++				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+ 				CURRENT_PROJECT_VERSION = 1;
++				HEADER_SEARCH_PATHS = (
++					"$(inherited)",
++					"$(SRCROOT)/../node_modules/react-native-splash-screen/ios",
++				);
+ 				INFOPLIST_FILE = SplashScreenPatch/Info.plist;
+ 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+ 				OTHER_LDFLAGS = (
 diff --git a/ios/SplashScreenPatch/AppDelegate.m b/ios/SplashScreenPatch/AppDelegate.m
 index 36c1405..379305f 100644
 --- a/ios/SplashScreenPatch/AppDelegate.m
@@ -17274,6 +17220,49 @@ index 36c1405..379305f 100644
    return YES;
  }
  
+diff --git a/ios/SplashScreenPatch/Images.xcassets/AppIcon.appiconset/Contents.json b/ios/SplashScreenPatch/Images.xcassets/AppIcon.appiconset/Contents.json
+index 118c98f..19882d5 100644
+--- a/ios/SplashScreenPatch/Images.xcassets/AppIcon.appiconset/Contents.json
++++ b/ios/SplashScreenPatch/Images.xcassets/AppIcon.appiconset/Contents.json
+@@ -1,5 +1,15 @@
+ {
+   "images" : [
++    {
++      "idiom" : "iphone",
++      "size" : "20x20",
++      "scale" : "2x"
++    },
++    {
++      "idiom" : "iphone",
++      "size" : "20x20",
++      "scale" : "3x"
++    },
+     {
+       "idiom" : "iphone",
+       "size" : "29x29",
+@@ -29,6 +39,11 @@
+       "idiom" : "iphone",
+       "size" : "60x60",
+       "scale" : "3x"
++    },
++    {
++      "idiom" : "ios-marketing",
++      "size" : "1024x1024",
++      "scale" : "1x"
+     }
+   ],
+   "info" : {
+diff --git a/ios/SplashScreenPatch/Images.xcassets/Contents.json b/ios/SplashScreenPatch/Images.xcassets/Contents.json
+index 2d92bd5..da4a164 100644
+--- a/ios/SplashScreenPatch/Images.xcassets/Contents.json
++++ b/ios/SplashScreenPatch/Images.xcassets/Contents.json
+@@ -3,4 +3,4 @@
+     "version" : 1,
+     "author" : "xcode"
+   }
+-}
++}
+\ No newline at end of file
 diff --git a/ios/SplashScreenPatch/Images.xcassets/LaunchImage.launchimage/Contents.json b/ios/SplashScreenPatch/Images.xcassets/LaunchImage.launchimage/Contents.json
 new file mode 100644
 index 0000000..e4c494a
