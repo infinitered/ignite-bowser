@@ -1,5 +1,9 @@
 import { ViewStyle, TextStyle } from "react-native"
+<% if (props.newDomain) { -%>
+import { color, spacing } from "../../theme"
+<% } else  { -%>
 import { color, spacing } from "../../../theme"
+<% } %>
 
 /**
  * The component will start off looking like this.
