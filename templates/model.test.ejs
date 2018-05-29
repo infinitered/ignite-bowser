@@ -1,0 +1,7 @@
+import { <%= props.pascalName %>Model, <%= props.pascalName %> } from "./<%= props.name %>"
+
+test("can be created", () => {
+  const instance: <%= props.pascalName %> = <%= props.pascalName %>Model.create({})
+
+  expect(instance).toBeTruthy()
+})

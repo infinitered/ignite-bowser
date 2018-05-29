@@ -1,0 +1,15 @@
+import { types } from "mobx-state-tree"
+
+/**
+ * Model description here for TypeScript hints.
+ */
+export const <%= props.pascalName %>Model = types
+  .model("<%= props.pascalName %>")
+  .props({})
+  .views(self => ({}))
+  .actions(self => ({}))
+
+type <%= props.pascalName %>Type = typeof <%= props.pascalName %>Model.Type
+export interface <%= props.pascalName %> extends <%= props.pascalName %>Type {}
+type <%= props.pascalName %>SnapshotType = typeof <%= props.pascalName %>Model.SnapshotType
+export interface <%= props.pascalName %>Snapshot extends <%= props.pascalName %>SnapshotType {}
