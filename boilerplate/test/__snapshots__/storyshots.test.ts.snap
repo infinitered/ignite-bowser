@@ -114,16 +114,8 @@ exports[`Storyshots Button Style Presets 1`] = `
             }
           >
             <View
-              accessibilityComponentType={undefined}
-              accessibilityLabel={undefined}
-              accessibilityTraits={undefined}
               accessible={true}
-              collapsable={undefined}
-              hasTVPreferredFocus={undefined}
-              hitSlop={undefined}
               isTVSelectable={true}
-              nativeID={undefined}
-              onLayout={undefined}
               onResponderGrant={[Function]}
               onResponderMove={[Function]}
               onResponderRelease={[Function]}
@@ -141,8 +133,6 @@ exports[`Storyshots Button Style Presets 1`] = `
                   "paddingVertical": 8,
                 }
               }
-              testID={undefined}
-              tvParallaxProperties={undefined}
             >
               <Text
                 accessible={true}
@@ -151,7 +141,7 @@ exports[`Storyshots Button Style Presets 1`] = `
                 style={
                   Object {
                     "color": "#ffffff",
-                    "fontFamily": "Avenir",
+                    "fontFamily": "Montserrat",
                     "fontSize": 9,
                     "paddingHorizontal": 12,
                   }
@@ -250,16 +240,8 @@ exports[`Storyshots Button Style Presets 1`] = `
             }
           >
             <View
-              accessibilityComponentType={undefined}
-              accessibilityLabel={undefined}
-              accessibilityTraits={undefined}
               accessible={true}
-              collapsable={undefined}
-              hasTVPreferredFocus={undefined}
-              hitSlop={undefined}
               isTVSelectable={true}
-              nativeID={undefined}
-              onLayout={undefined}
               onResponderGrant={[Function]}
               onResponderMove={[Function]}
               onResponderRelease={[Function]}
@@ -277,8 +259,6 @@ exports[`Storyshots Button Style Presets 1`] = `
                   "paddingVertical": 8,
                 }
               }
-              testID={undefined}
-              tvParallaxProperties={undefined}
             >
               <Text
                 accessible={true}
@@ -287,7 +267,7 @@ exports[`Storyshots Button Style Presets 1`] = `
                 style={
                   Object {
                     "color": "#ffffff",
-                    "fontFamily": "Avenir",
+                    "fontFamily": "Montserrat",
                     "fontSize": 9,
                     "paddingHorizontal": 12,
                   }
@@ -418,16 +398,8 @@ exports[`Storyshots Checkbox Behaviour 1`] = `
             }
           >
             <View
-              accessibilityComponentType={undefined}
-              accessibilityLabel={undefined}
-              accessibilityTraits={undefined}
               accessible={true}
-              collapsable={undefined}
-              hasTVPreferredFocus={undefined}
-              hitSlop={undefined}
               isTVSelectable={true}
-              nativeID={undefined}
-              onLayout={undefined}
               onResponderGrant={[Function]}
               onResponderMove={[Function]}
               onResponderRelease={[Function]}
@@ -442,8 +414,6 @@ exports[`Storyshots Checkbox Behaviour 1`] = `
                   "paddingVertical": 4,
                 }
               }
-              testID={undefined}
-              tvParallaxProperties={undefined}
             >
               <View
                 style={
@@ -466,8 +436,8 @@ exports[`Storyshots Checkbox Behaviour 1`] = `
                 numberOfLines={1}
                 style={
                   Object {
-                    "color": "#1d1d1d",
-                    "fontFamily": "Avenir",
+                    "color": "#ffffff",
+                    "fontFamily": "Montserrat",
                     "fontSize": 15,
                     "paddingLeft": 8,
                   }
@@ -566,16 +536,8 @@ exports[`Storyshots Checkbox Behaviour 1`] = `
             }
           >
             <View
-              accessibilityComponentType={undefined}
-              accessibilityLabel={undefined}
-              accessibilityTraits={undefined}
               accessible={true}
-              collapsable={undefined}
-              hasTVPreferredFocus={undefined}
-              hitSlop={undefined}
               isTVSelectable={true}
-              nativeID={undefined}
-              onLayout={undefined}
               onResponderGrant={[Function]}
               onResponderMove={[Function]}
               onResponderRelease={[Function]}
@@ -590,8 +552,6 @@ exports[`Storyshots Checkbox Behaviour 1`] = `
                   "paddingVertical": 4,
                 }
               }
-              testID={undefined}
-              tvParallaxProperties={undefined}
             >
               <View
                 style={
@@ -624,8 +584,8 @@ exports[`Storyshots Checkbox Behaviour 1`] = `
                 numberOfLines={1}
                 style={
                   Object {
-                    "color": "#1d1d1d",
-                    "fontFamily": "Avenir",
+                    "color": "#ffffff",
+                    "fontFamily": "Montserrat",
                     "fontSize": 15,
                     "paddingLeft": 8,
                   }
@@ -724,16 +684,8 @@ exports[`Storyshots Checkbox Behaviour 1`] = `
             }
           >
             <View
-              accessibilityComponentType={undefined}
-              accessibilityLabel={undefined}
-              accessibilityTraits={undefined}
               accessible={true}
-              collapsable={undefined}
-              hasTVPreferredFocus={undefined}
-              hitSlop={undefined}
               isTVSelectable={true}
-              nativeID={undefined}
-              onLayout={undefined}
               onResponderGrant={[Function]}
               onResponderMove={[Function]}
               onResponderRelease={[Function]}
@@ -748,8 +700,6 @@ exports[`Storyshots Checkbox Behaviour 1`] = `
                   "paddingVertical": 4,
                 }
               }
-              testID={undefined}
-              tvParallaxProperties={undefined}
             >
               <View
                 style={
@@ -772,8 +722,8 @@ exports[`Storyshots Checkbox Behaviour 1`] = `
                 numberOfLines={1}
                 style={
                   Object {
-                    "color": "#1d1d1d",
-                    "fontFamily": "Avenir",
+                    "color": "#ffffff",
+                    "fontFamily": "Montserrat",
                     "fontSize": 15,
                     "paddingLeft": 8,
                   }
@@ -905,16 +855,8 @@ exports[`Storyshots Checkbox Styling 1`] = `
           >
             <View>
               <View
-                accessibilityComponentType={undefined}
-                accessibilityLabel={undefined}
-                accessibilityTraits={undefined}
                 accessible={true}
-                collapsable={undefined}
-                hasTVPreferredFocus={undefined}
-                hitSlop={undefined}
                 isTVSelectable={true}
-                nativeID={undefined}
-                onLayout={undefined}
                 onResponderGrant={[Function]}
                 onResponderMove={[Function]}
                 onResponderRelease={[Function]}
@@ -929,8 +871,6 @@ exports[`Storyshots Checkbox Styling 1`] = `
                     "paddingVertical": 4,
                   }
                 }
-                testID={undefined}
-                tvParallaxProperties={undefined}
               >
                 <View
                   style={
@@ -953,8 +893,8 @@ exports[`Storyshots Checkbox Styling 1`] = `
                   numberOfLines={0}
                   style={
                     Object {
-                      "color": "#1d1d1d",
-                      "fontFamily": "Avenir",
+                      "color": "#ffffff",
+                      "fontFamily": "Montserrat",
                       "fontSize": 15,
                       "paddingLeft": 8,
                     }
@@ -1055,16 +995,8 @@ exports[`Storyshots Checkbox Styling 1`] = `
           >
             <View>
               <View
-                accessibilityComponentType={undefined}
-                accessibilityLabel={undefined}
-                accessibilityTraits={undefined}
                 accessible={true}
-                collapsable={undefined}
-                hasTVPreferredFocus={undefined}
-                hitSlop={undefined}
                 isTVSelectable={true}
-                nativeID={undefined}
-                onLayout={undefined}
                 onResponderGrant={[Function]}
                 onResponderMove={[Function]}
                 onResponderRelease={[Function]}
@@ -1082,8 +1014,6 @@ exports[`Storyshots Checkbox Styling 1`] = `
                     "paddingVertical": 30,
                   }
                 }
-                testID={undefined}
-                tvParallaxProperties={undefined}
               >
                 <View
                   style={
@@ -1106,8 +1036,8 @@ exports[`Storyshots Checkbox Styling 1`] = `
                   numberOfLines={1}
                   style={
                     Object {
-                      "color": "#1d1d1d",
-                      "fontFamily": "Avenir",
+                      "color": "#ffffff",
+                      "fontFamily": "Montserrat",
                       "fontSize": 15,
                       "paddingLeft": 8,
                     }
@@ -1208,16 +1138,8 @@ exports[`Storyshots Checkbox Styling 1`] = `
           >
             <View>
               <View
-                accessibilityComponentType={undefined}
-                accessibilityLabel={undefined}
-                accessibilityTraits={undefined}
                 accessible={true}
-                collapsable={undefined}
-                hasTVPreferredFocus={undefined}
-                hitSlop={undefined}
                 isTVSelectable={true}
-                nativeID={undefined}
-                onLayout={undefined}
                 onResponderGrant={[Function]}
                 onResponderMove={[Function]}
                 onResponderRelease={[Function]}
@@ -1232,8 +1154,6 @@ exports[`Storyshots Checkbox Styling 1`] = `
                     "paddingVertical": 4,
                   }
                 }
-                testID={undefined}
-                tvParallaxProperties={undefined}
               >
                 <View
                   style={
@@ -1256,8 +1176,8 @@ exports[`Storyshots Checkbox Styling 1`] = `
                   numberOfLines={1}
                   style={
                     Object {
-                      "color": "#1d1d1d",
-                      "fontFamily": "Avenir",
+                      "color": "#ffffff",
+                      "fontFamily": "Montserrat",
                       "fontSize": 15,
                       "paddingLeft": 8,
                     }
@@ -1358,16 +1278,8 @@ exports[`Storyshots Checkbox Styling 1`] = `
           >
             <View>
               <View
-                accessibilityComponentType={undefined}
-                accessibilityLabel={undefined}
-                accessibilityTraits={undefined}
                 accessible={true}
-                collapsable={undefined}
-                hasTVPreferredFocus={undefined}
-                hitSlop={undefined}
                 isTVSelectable={true}
-                nativeID={undefined}
-                onLayout={undefined}
                 onResponderGrant={[Function]}
                 onResponderMove={[Function]}
                 onResponderRelease={[Function]}
@@ -1382,8 +1294,6 @@ exports[`Storyshots Checkbox Styling 1`] = `
                     "paddingVertical": 4,
                   }
                 }
-                testID={undefined}
-                tvParallaxProperties={undefined}
               >
                 <View
                   style={
@@ -1406,8 +1316,8 @@ exports[`Storyshots Checkbox Styling 1`] = `
                   numberOfLines={1}
                   style={
                     Object {
-                      "color": "#1d1d1d",
-                      "fontFamily": "Avenir",
+                      "color": "#ffffff",
+                      "fontFamily": "Montserrat",
                       "fontSize": 15,
                       "paddingLeft": 8,
                     }
@@ -1557,7 +1467,7 @@ exports[`Storyshots FormRow Assembled 1`] = `
                 style={
                   Object {
                     "color": "#939AA4",
-                    "fontFamily": "Avenir",
+                    "fontFamily": "Montserrat",
                     "fontSize": 13,
                   }
                 }
@@ -1581,8 +1491,8 @@ exports[`Storyshots FormRow Assembled 1`] = `
                 ellipsizeMode="tail"
                 style={
                   Object {
-                    "color": "#1d1d1d",
-                    "fontFamily": "Avenir",
+                    "color": "#ffffff",
+                    "fontFamily": "Montserrat",
                     "fontSize": 15,
                   }
                 }
@@ -1607,7 +1517,7 @@ exports[`Storyshots FormRow Assembled 1`] = `
                 style={
                   Object {
                     "color": "#939AA4",
-                    "fontFamily": "Avenir",
+                    "fontFamily": "Montserrat",
                     "fontSize": 9,
                   }
                 }
@@ -1632,8 +1542,8 @@ exports[`Storyshots FormRow Assembled 1`] = `
                 ellipsizeMode="tail"
                 style={
                   Object {
-                    "color": "#1d1d1d",
-                    "fontFamily": "Avenir",
+                    "color": "#ffffff",
+                    "fontFamily": "Montserrat",
                     "fontSize": 15,
                   }
                 }
@@ -1745,8 +1655,8 @@ exports[`Storyshots FormRow Assembled 1`] = `
                 ellipsizeMode="tail"
                 style={
                   Object {
-                    "color": "#1d1d1d",
-                    "fontFamily": "Avenir",
+                    "color": "#ffffff",
+                    "fontFamily": "Montserrat",
                     "fontSize": 15,
                   }
                 }
@@ -1770,8 +1680,8 @@ exports[`Storyshots FormRow Assembled 1`] = `
                 ellipsizeMode="tail"
                 style={
                   Object {
-                    "color": "#1d1d1d",
-                    "fontFamily": "Avenir",
+                    "color": "#ffffff",
+                    "fontFamily": "Montserrat",
                     "fontSize": 15,
                   }
                 }
@@ -1796,8 +1706,8 @@ exports[`Storyshots FormRow Assembled 1`] = `
                 ellipsizeMode="tail"
                 style={
                   Object {
-                    "color": "#1d1d1d",
-                    "fontFamily": "Avenir",
+                    "color": "#ffffff",
+                    "fontFamily": "Montserrat",
                     "fontSize": 15,
                   }
                 }
@@ -1944,8 +1854,8 @@ exports[`Storyshots FormRow Presets 1`] = `
                 ellipsizeMode="tail"
                 style={
                   Object {
-                    "color": "#1d1d1d",
-                    "fontFamily": "Avenir",
+                    "color": "#ffffff",
+                    "fontFamily": "Montserrat",
                     "fontSize": 15,
                   }
                 }
@@ -1958,8 +1868,8 @@ exports[`Storyshots FormRow Presets 1`] = `
                 ellipsizeMode="tail"
                 style={
                   Object {
-                    "color": "#1d1d1d",
-                    "fontFamily": "Avenir",
+                    "color": "#ffffff",
+                    "fontFamily": "Montserrat",
                     "fontSize": 15,
                   }
                 }
@@ -2072,8 +1982,8 @@ exports[`Storyshots FormRow Presets 1`] = `
                 ellipsizeMode="tail"
                 style={
                   Object {
-                    "color": "#1d1d1d",
-                    "fontFamily": "Avenir",
+                    "color": "#ffffff",
+                    "fontFamily": "Montserrat",
                     "fontSize": 15,
                   }
                 }
@@ -2187,8 +2097,8 @@ exports[`Storyshots FormRow Presets 1`] = `
                 ellipsizeMode="tail"
                 style={
                   Object {
-                    "color": "#1d1d1d",
-                    "fontFamily": "Avenir",
+                    "color": "#ffffff",
+                    "fontFamily": "Montserrat",
                     "fontSize": 15,
                   }
                 }
@@ -2201,8 +2111,8 @@ exports[`Storyshots FormRow Presets 1`] = `
                 ellipsizeMode="tail"
                 style={
                   Object {
-                    "color": "#1d1d1d",
-                    "fontFamily": "Avenir",
+                    "color": "#ffffff",
+                    "fontFamily": "Montserrat",
                     "fontSize": 15,
                   }
                 }
@@ -2315,8 +2225,8 @@ exports[`Storyshots FormRow Presets 1`] = `
                 ellipsizeMode="tail"
                 style={
                   Object {
-                    "color": "#1d1d1d",
-                    "fontFamily": "Avenir",
+                    "color": "#ffffff",
+                    "fontFamily": "Montserrat",
                     "fontSize": 15,
                   }
                 }
@@ -2428,8 +2338,8 @@ exports[`Storyshots FormRow Presets 1`] = `
                 ellipsizeMode="tail"
                 style={
                   Object {
-                    "color": "#1d1d1d",
-                    "fontFamily": "Avenir",
+                    "color": "#ffffff",
+                    "fontFamily": "Montserrat",
                     "fontSize": 15,
                   }
                 }
@@ -2541,14 +2451,744 @@ exports[`Storyshots FormRow Presets 1`] = `
                 ellipsizeMode="tail"
                 style={
                   Object {
-                    "color": "#1d1d1d",
-                    "fontFamily": "Avenir",
+                    "color": "#ffffff",
+                    "fontFamily": "Montserrat",
                     "fontSize": 15,
                   }
                 }
               >
                 Curves nowhere.
               </Text>
+            </View>
+          </View>
+        </View>
+      </View>
+    </RCTScrollView>
+  </View>
+</View>
+`;
+
+exports[`Storyshots Header Behavior 1`] = `
+<View
+  enabled={true}
+  keyboardVerticalOffset={50}
+  onLayout={[Function]}
+  style={
+    Array [
+      Object {
+        "backgroundColor": "#f0f0f0",
+        "flex": 1,
+      },
+      Object {
+        "paddingBottom": 0,
+      },
+    ]
+  }
+>
+  <View
+    style={
+      Object {
+        "flex": 1,
+      }
+    }
+  >
+    <RCTScrollView>
+      <View>
+        <View
+          style={
+            Object {
+              "backgroundColor": "#eee",
+            }
+          }
+        >
+          <View
+            style={
+              Object {
+                "borderBottomColor": "#e6e6e6",
+                "borderBottomWidth": 1,
+                "paddingBottom": 10,
+                "paddingHorizontal": 10,
+                "paddingTop": 20,
+              }
+            }
+          >
+            <View
+              style={
+                Object {
+                  "borderTopColor": "#e6e6e6",
+                  "borderTopWidth": 1,
+                  "flexDirection": "row",
+                  "left": 0,
+                  "position": "absolute",
+                  "right": 0,
+                  "top": 0,
+                }
+              }
+            >
+              <Text
+                accessible={true}
+                allowFontScaling={true}
+                ellipsizeMode="tail"
+                style={
+                  Object {
+                    "color": "#666",
+                    "fontSize": 10,
+                    "paddingBottom": 2,
+                    "paddingHorizontal": 4,
+                  }
+                }
+              >
+                Use Case
+              </Text>
+            </View>
+            <View
+              style={Object {}}
+            >
+              <Text
+                accessible={true}
+                allowFontScaling={true}
+                ellipsizeMode="tail"
+                style={
+                  Object {
+                    "color": "#3d3d3d",
+                    "fontWeight": "600",
+                  }
+                }
+              >
+                default
+              </Text>
+            </View>
+            <Text
+              accessible={true}
+              allowFontScaling={true}
+              ellipsizeMode="tail"
+              style={
+                Object {
+                  "color": "#666",
+                  "fontSize": 10,
+                  "paddingTop": 0,
+                }
+              }
+            >
+              The default usage
+            </Text>
+          </View>
+          <View
+            style={
+              Object {
+                "backgroundColor": "#fff",
+                "padding": 0,
+              }
+            }
+          >
+            <View
+              style={
+                Object {
+                  "alignItems": "center",
+                  "flexDirection": "row",
+                  "justifyContent": "flex-start",
+                  "paddingBottom": 24,
+                  "paddingHorizontal": 16,
+                  "paddingTop": 24,
+                }
+              }
+            >
+              <View
+                style={
+                  Object {
+                    "width": 32,
+                  }
+                }
+              />
+              <View
+                style={
+                  Object {
+                    "flex": 1,
+                    "justifyContent": "center",
+                  }
+                }
+              >
+                <Text
+                  accessible={true}
+                  allowFontScaling={true}
+                  ellipsizeMode="tail"
+                  style={
+                    Object {
+                      "color": "#ffffff",
+                      "fontFamily": "Montserrat",
+                      "fontSize": 15,
+                      "textAlign": "center",
+                    }
+                  }
+                >
+                  secondExampleScreen.howTo.test
+                </Text>
+              </View>
+              <View
+                style={
+                  Object {
+                    "width": 32,
+                  }
+                }
+              />
+            </View>
+          </View>
+        </View>
+        <View
+          style={
+            Object {
+              "backgroundColor": "#eee",
+            }
+          }
+        >
+          <View
+            style={
+              Object {
+                "borderBottomColor": "#e6e6e6",
+                "borderBottomWidth": 1,
+                "paddingBottom": 10,
+                "paddingHorizontal": 10,
+                "paddingTop": 20,
+              }
+            }
+          >
+            <View
+              style={
+                Object {
+                  "borderTopColor": "#e6e6e6",
+                  "borderTopWidth": 1,
+                  "flexDirection": "row",
+                  "left": 0,
+                  "position": "absolute",
+                  "right": 0,
+                  "top": 0,
+                }
+              }
+            >
+              <Text
+                accessible={true}
+                allowFontScaling={true}
+                ellipsizeMode="tail"
+                style={
+                  Object {
+                    "color": "#666",
+                    "fontSize": 10,
+                    "paddingBottom": 2,
+                    "paddingHorizontal": 4,
+                  }
+                }
+              >
+                Use Case
+              </Text>
+            </View>
+            <View
+              style={Object {}}
+            >
+              <Text
+                accessible={true}
+                allowFontScaling={true}
+                ellipsizeMode="tail"
+                style={
+                  Object {
+                    "color": "#3d3d3d",
+                    "fontWeight": "600",
+                  }
+                }
+              >
+                leftIcon
+              </Text>
+            </View>
+            <Text
+              accessible={true}
+              allowFontScaling={true}
+              ellipsizeMode="tail"
+              style={
+                Object {
+                  "color": "#666",
+                  "fontSize": 10,
+                  "paddingTop": 0,
+                }
+              }
+            >
+              A left nav icon
+            </Text>
+          </View>
+          <View
+            style={
+              Object {
+                "backgroundColor": "#fff",
+                "padding": 0,
+              }
+            }
+          >
+            <View
+              style={
+                Object {
+                  "alignItems": "center",
+                  "flexDirection": "row",
+                  "justifyContent": "flex-start",
+                  "paddingBottom": 24,
+                  "paddingHorizontal": 16,
+                  "paddingTop": 24,
+                }
+              }
+            >
+              <View
+                accessible={true}
+                isTVSelectable={true}
+                onResponderGrant={[Function]}
+                onResponderMove={[Function]}
+                onResponderRelease={[Function]}
+                onResponderTerminate={[Function]}
+                onResponderTerminationRequest={[Function]}
+                onStartShouldSetResponder={[Function]}
+                style={
+                  Object {
+                    "alignItems": "flex-start",
+                    "borderRadius": 4,
+                    "justifyContent": "center",
+                    "opacity": 1,
+                    "paddingHorizontal": 0,
+                    "paddingVertical": 0,
+                  }
+                }
+              >
+                <View>
+                  <Image
+                    source={1}
+                    style={
+                      Object {
+                        "resizeMode": "contain",
+                      }
+                    }
+                  />
+                </View>
+              </View>
+              <View
+                style={
+                  Object {
+                    "flex": 1,
+                    "justifyContent": "center",
+                  }
+                }
+              >
+                <Text
+                  accessible={true}
+                  allowFontScaling={true}
+                  ellipsizeMode="tail"
+                  style={
+                    Object {
+                      "color": "#ffffff",
+                      "fontFamily": "Montserrat",
+                      "fontSize": 15,
+                      "textAlign": "center",
+                    }
+                  }
+                >
+                  secondExampleScreen.howTo.test
+                </Text>
+              </View>
+              <View
+                style={
+                  Object {
+                    "width": 32,
+                  }
+                }
+              />
+            </View>
+          </View>
+        </View>
+        <View
+          style={
+            Object {
+              "backgroundColor": "#eee",
+            }
+          }
+        >
+          <View
+            style={
+              Object {
+                "borderBottomColor": "#e6e6e6",
+                "borderBottomWidth": 1,
+                "paddingBottom": 10,
+                "paddingHorizontal": 10,
+                "paddingTop": 20,
+              }
+            }
+          >
+            <View
+              style={
+                Object {
+                  "borderTopColor": "#e6e6e6",
+                  "borderTopWidth": 1,
+                  "flexDirection": "row",
+                  "left": 0,
+                  "position": "absolute",
+                  "right": 0,
+                  "top": 0,
+                }
+              }
+            >
+              <Text
+                accessible={true}
+                allowFontScaling={true}
+                ellipsizeMode="tail"
+                style={
+                  Object {
+                    "color": "#666",
+                    "fontSize": 10,
+                    "paddingBottom": 2,
+                    "paddingHorizontal": 4,
+                  }
+                }
+              >
+                Use Case
+              </Text>
+            </View>
+            <View
+              style={Object {}}
+            >
+              <Text
+                accessible={true}
+                allowFontScaling={true}
+                ellipsizeMode="tail"
+                style={
+                  Object {
+                    "color": "#3d3d3d",
+                    "fontWeight": "600",
+                  }
+                }
+              >
+                rightIcon
+              </Text>
+            </View>
+            <Text
+              accessible={true}
+              allowFontScaling={true}
+              ellipsizeMode="tail"
+              style={
+                Object {
+                  "color": "#666",
+                  "fontSize": 10,
+                  "paddingTop": 0,
+                }
+              }
+            >
+              A right nav icon
+            </Text>
+          </View>
+          <View
+            style={
+              Object {
+                "backgroundColor": "#fff",
+                "padding": 0,
+              }
+            }
+          >
+            <View
+              style={
+                Object {
+                  "alignItems": "center",
+                  "flexDirection": "row",
+                  "justifyContent": "flex-start",
+                  "paddingBottom": 24,
+                  "paddingHorizontal": 16,
+                  "paddingTop": 24,
+                }
+              }
+            >
+              <View
+                style={
+                  Object {
+                    "width": 32,
+                  }
+                }
+              />
+              <View
+                style={
+                  Object {
+                    "flex": 1,
+                    "justifyContent": "center",
+                  }
+                }
+              >
+                <Text
+                  accessible={true}
+                  allowFontScaling={true}
+                  ellipsizeMode="tail"
+                  style={
+                    Object {
+                      "color": "#ffffff",
+                      "fontFamily": "Montserrat",
+                      "fontSize": 15,
+                      "textAlign": "center",
+                    }
+                  }
+                >
+                  secondExampleScreen.howTo.test
+                </Text>
+              </View>
+              <View
+                accessible={true}
+                isTVSelectable={true}
+                onResponderGrant={[Function]}
+                onResponderMove={[Function]}
+                onResponderRelease={[Function]}
+                onResponderTerminate={[Function]}
+                onResponderTerminationRequest={[Function]}
+                onStartShouldSetResponder={[Function]}
+                style={
+                  Object {
+                    "alignItems": "flex-start",
+                    "borderRadius": 4,
+                    "justifyContent": "center",
+                    "opacity": 1,
+                    "paddingHorizontal": 0,
+                    "paddingVertical": 0,
+                  }
+                }
+              >
+                <View>
+                  <Image
+                    source={1}
+                    style={
+                      Object {
+                        "resizeMode": "contain",
+                      }
+                    }
+                  />
+                </View>
+              </View>
+            </View>
+          </View>
+        </View>
+      </View>
+    </RCTScrollView>
+  </View>
+</View>
+`;
+
+exports[`Storyshots Icon Names 1`] = `
+<View
+  enabled={true}
+  keyboardVerticalOffset={50}
+  onLayout={[Function]}
+  style={
+    Array [
+      Object {
+        "backgroundColor": "#f0f0f0",
+        "flex": 1,
+      },
+      Object {
+        "paddingBottom": 0,
+      },
+    ]
+  }
+>
+  <View
+    style={
+      Object {
+        "flex": 1,
+      }
+    }
+  >
+    <RCTScrollView>
+      <View>
+        <View
+          style={
+            Object {
+              "backgroundColor": "#eee",
+            }
+          }
+        >
+          <View
+            style={
+              Object {
+                "borderBottomColor": "#e6e6e6",
+                "borderBottomWidth": 1,
+                "paddingBottom": 10,
+                "paddingHorizontal": 10,
+                "paddingTop": 20,
+              }
+            }
+          >
+            <View
+              style={
+                Object {
+                  "borderTopColor": "#e6e6e6",
+                  "borderTopWidth": 1,
+                  "flexDirection": "row",
+                  "left": 0,
+                  "position": "absolute",
+                  "right": 0,
+                  "top": 0,
+                }
+              }
+            >
+              <Text
+                accessible={true}
+                allowFontScaling={true}
+                ellipsizeMode="tail"
+                style={
+                  Object {
+                    "color": "#666",
+                    "fontSize": 10,
+                    "paddingBottom": 2,
+                    "paddingHorizontal": 4,
+                  }
+                }
+              >
+                Use Case
+              </Text>
+            </View>
+            <View
+              style={Object {}}
+            >
+              <Text
+                accessible={true}
+                allowFontScaling={true}
+                ellipsizeMode="tail"
+                style={
+                  Object {
+                    "color": "#3d3d3d",
+                    "fontWeight": "600",
+                  }
+                }
+              >
+                back
+              </Text>
+            </View>
+            <Text
+              accessible={true}
+              allowFontScaling={true}
+              ellipsizeMode="tail"
+              style={
+                Object {
+                  "color": "#666",
+                  "fontSize": 10,
+                  "paddingTop": 0,
+                }
+              }
+            >
+              The icon for going back
+            </Text>
+          </View>
+          <View
+            style={
+              Object {
+                "backgroundColor": "#fff",
+                "padding": 10,
+              }
+            }
+          >
+            <View>
+              <Image
+                source={1}
+                style={
+                  Object {
+                    "resizeMode": "contain",
+                  }
+                }
+              />
+            </View>
+          </View>
+        </View>
+        <View
+          style={
+            Object {
+              "backgroundColor": "#eee",
+            }
+          }
+        >
+          <View
+            style={
+              Object {
+                "borderBottomColor": "#e6e6e6",
+                "borderBottomWidth": 1,
+                "paddingBottom": 10,
+                "paddingHorizontal": 10,
+                "paddingTop": 20,
+              }
+            }
+          >
+            <View
+              style={
+                Object {
+                  "borderTopColor": "#e6e6e6",
+                  "borderTopWidth": 1,
+                  "flexDirection": "row",
+                  "left": 0,
+                  "position": "absolute",
+                  "right": 0,
+                  "top": 0,
+                }
+              }
+            >
+              <Text
+                accessible={true}
+                allowFontScaling={true}
+                ellipsizeMode="tail"
+                style={
+                  Object {
+                    "color": "#666",
+                    "fontSize": 10,
+                    "paddingBottom": 2,
+                    "paddingHorizontal": 4,
+                  }
+                }
+              >
+                Use Case
+              </Text>
+            </View>
+            <View
+              style={Object {}}
+            >
+              <Text
+                accessible={true}
+                allowFontScaling={true}
+                ellipsizeMode="tail"
+                style={
+                  Object {
+                    "color": "#3d3d3d",
+                    "fontWeight": "600",
+                  }
+                }
+              >
+                bullet
+              </Text>
+            </View>
+            <Text
+              accessible={true}
+              allowFontScaling={true}
+              ellipsizeMode="tail"
+              style={
+                Object {
+                  "color": "#666",
+                  "fontSize": 10,
+                  "paddingTop": 0,
+                }
+              }
+            >
+              The icon for a bullet point
+            </Text>
+          </View>
+          <View
+            style={
+              Object {
+                "backgroundColor": "#fff",
+                "padding": 10,
+              }
+            }
+          >
+            <View>
+              <Image
+                source={1}
+                style={
+                  Object {
+                    "resizeMode": "contain",
+                  }
+                }
+              />
             </View>
           </View>
         </View>
@@ -2672,14 +3312,7 @@ exports[`Storyshots Switch Behaviour 1`] = `
             }
           >
             <View
-              accessibilityComponentType={undefined}
-              accessibilityLabel={undefined}
-              accessibilityTraits={undefined}
               accessible={true}
-              collapsable={undefined}
-              hitSlop={undefined}
-              nativeID={undefined}
-              onLayout={undefined}
               onResponderGrant={[Function]}
               onResponderMove={[Function]}
               onResponderRelease={[Function]}
@@ -2696,10 +3329,8 @@ exports[`Storyshots Switch Behaviour 1`] = `
                   "width": 56,
                 }
               }
-              testID={undefined}
             >
               <View
-                collapsable={undefined}
                 style={
                   Object {
                     "backgroundColor": "#ffffff",
@@ -2816,14 +3447,7 @@ exports[`Storyshots Switch Behaviour 1`] = `
             }
           >
             <View
-              accessibilityComponentType={undefined}
-              accessibilityLabel={undefined}
-              accessibilityTraits={undefined}
               accessible={true}
-              collapsable={undefined}
-              hitSlop={undefined}
-              nativeID={undefined}
-              onLayout={undefined}
               onResponderGrant={[Function]}
               onResponderMove={[Function]}
               onResponderRelease={[Function]}
@@ -2840,10 +3464,8 @@ exports[`Storyshots Switch Behaviour 1`] = `
                   "width": 56,
                 }
               }
-              testID={undefined}
             >
               <View
-                collapsable={undefined}
                 style={
                   Object {
                     "backgroundColor": "#ffffff",
@@ -2960,14 +3582,7 @@ exports[`Storyshots Switch Behaviour 1`] = `
             }
           >
             <View
-              accessibilityComponentType={undefined}
-              accessibilityLabel={undefined}
-              accessibilityTraits={undefined}
               accessible={true}
-              collapsable={undefined}
-              hitSlop={undefined}
-              nativeID={undefined}
-              onLayout={undefined}
               onResponderGrant={[Function]}
               onResponderMove={[Function]}
               onResponderRelease={[Function]}
@@ -2984,10 +3599,8 @@ exports[`Storyshots Switch Behaviour 1`] = `
                   "width": 56,
                 }
               }
-              testID={undefined}
             >
               <View
-                collapsable={undefined}
                 style={
                   Object {
                     "backgroundColor": "#ffffff",
@@ -3137,14 +3750,7 @@ exports[`Storyshots Switch Styling 1`] = `
           >
             <View>
               <View
-                accessibilityComponentType={undefined}
-                accessibilityLabel={undefined}
-                accessibilityTraits={undefined}
                 accessible={true}
-                collapsable={undefined}
-                hitSlop={undefined}
-                nativeID={undefined}
-                onLayout={undefined}
                 onResponderGrant={[Function]}
                 onResponderMove={[Function]}
                 onResponderRelease={[Function]}
@@ -3161,10 +3767,8 @@ exports[`Storyshots Switch Styling 1`] = `
                     "width": 56,
                   }
                 }
-                testID={undefined}
               >
                 <View
-                  collapsable={undefined}
                   style={
                     Object {
                       "backgroundColor": "pink",
@@ -3319,8 +3923,8 @@ exports[`Storyshots Text Passing Content 1`] = `
               ellipsizeMode="tail"
               style={
                 Object {
-                  "color": "#1d1d1d",
-                  "fontFamily": "Avenir",
+                  "color": "#ffffff",
+                  "fontFamily": "Montserrat",
                   "fontSize": 15,
                 }
               }
@@ -3422,8 +4026,8 @@ exports[`Storyshots Text Passing Content 1`] = `
               ellipsizeMode="tail"
               style={
                 Object {
-                  "color": "#1d1d1d",
-                  "fontFamily": "Avenir",
+                  "color": "#ffffff",
+                  "fontFamily": "Montserrat",
                   "fontSize": 15,
                 }
               }
@@ -3436,8 +4040,8 @@ exports[`Storyshots Text Passing Content 1`] = `
               ellipsizeMode="tail"
               style={
                 Object {
-                  "color": "#1d1d1d",
-                  "fontFamily": "Avenir",
+                  "color": "#ffffff",
+                  "fontFamily": "Montserrat",
                   "fontSize": 15,
                 }
               }
@@ -3539,8 +4143,8 @@ exports[`Storyshots Text Passing Content 1`] = `
               ellipsizeMode="tail"
               style={
                 Object {
-                  "color": "#1d1d1d",
-                  "fontFamily": "Avenir",
+                  "color": "#ffffff",
+                  "fontFamily": "Montserrat",
                   "fontSize": 15,
                 }
               }
@@ -3642,8 +4246,8 @@ exports[`Storyshots Text Passing Content 1`] = `
               ellipsizeMode="tail"
               style={
                 Object {
-                  "color": "#1d1d1d",
-                  "fontFamily": "Avenir",
+                  "color": "#ffffff",
+                  "fontFamily": "Montserrat",
                   "fontSize": 15,
                 }
               }
@@ -3656,10 +4260,10 @@ exports[`Storyshots Text Passing Content 1`] = `
                 ellipsizeMode="tail"
                 style={
                   Object {
-                    "color": "#1d1d1d",
-                    "fontFamily": "Avenir",
+                    "color": "#ffffff",
+                    "fontFamily": "Montserrat",
                     "fontSize": 15,
-                    "fontWeight": "600",
+                    "fontWeight": "bold",
                   }
                 }
               >
@@ -3794,8 +4398,8 @@ exports[`Storyshots Text Style Presets 1`] = `
               ellipsizeMode="tail"
               style={
                 Object {
-                  "color": "#1d1d1d",
-                  "fontFamily": "Avenir",
+                  "color": "#ffffff",
+                  "fontFamily": "Montserrat",
                   "fontSize": 15,
                 }
               }
@@ -3808,8 +4412,8 @@ exports[`Storyshots Text Style Presets 1`] = `
               ellipsizeMode="tail"
               style={
                 Object {
-                  "color": "#1d1d1d",
-                  "fontFamily": "Avenir",
+                  "color": "#ffffff",
+                  "fontFamily": "Montserrat",
                   "fontSize": 15,
                   "paddingTop": 10,
                 }
@@ -3829,8 +4433,8 @@ exports[`Storyshots Text Style Presets 1`] = `
               ellipsizeMode="tail"
               style={
                 Object {
-                  "color": "#1d1d1d",
-                  "fontFamily": "Avenir",
+                  "color": "#ffffff",
+                  "fontFamily": "Montserrat",
                   "fontSize": 15,
                   "paddingTop": 10,
                 }
@@ -3844,8 +4448,8 @@ exports[`Storyshots Text Style Presets 1`] = `
               ellipsizeMode="tail"
               style={
                 Object {
-                  "color": "#1d1d1d",
-                  "fontFamily": "Avenir",
+                  "color": "#ffffff",
+                  "fontFamily": "Montserrat",
                   "fontSize": 15,
                 }
               }
@@ -3947,10 +4551,10 @@ exports[`Storyshots Text Style Presets 1`] = `
               ellipsizeMode="tail"
               style={
                 Object {
-                  "color": "#1d1d1d",
-                  "fontFamily": "Avenir",
+                  "color": "#ffffff",
+                  "fontFamily": "Montserrat",
                   "fontSize": 15,
-                  "fontWeight": "600",
+                  "fontWeight": "bold",
                 }
               }
             >
@@ -4051,10 +4655,10 @@ exports[`Storyshots Text Style Presets 1`] = `
               ellipsizeMode="tail"
               style={
                 Object {
-                  "color": "#1d1d1d",
-                  "fontFamily": "Avenir",
+                  "color": "#ffffff",
+                  "fontFamily": "Montserrat",
                   "fontSize": 24,
-                  "fontWeight": "600",
+                  "fontWeight": "bold",
                 }
               }
             >
@@ -4195,7 +4799,7 @@ exports[`Storyshots TextField Labelling 1`] = `
                 style={
                   Object {
                     "color": "#939AA4",
-                    "fontFamily": "Avenir",
+                    "fontFamily": "Montserrat",
                     "fontSize": 13,
                   }
                 }
@@ -4210,8 +4814,8 @@ exports[`Storyshots TextField Labelling 1`] = `
                 style={
                   Object {
                     "backgroundColor": "#ffffff",
-                    "color": "#1d1d1d",
-                    "fontFamily": "Avenir",
+                    "color": "#ffffff",
+                    "fontFamily": "Montserrat",
                     "fontSize": 18,
                     "minHeight": 44,
                   }
@@ -4323,7 +4927,7 @@ exports[`Storyshots TextField Labelling 1`] = `
                 style={
                   Object {
                     "color": "#939AA4",
-                    "fontFamily": "Avenir",
+                    "fontFamily": "Montserrat",
                     "fontSize": 13,
                   }
                 }
@@ -4338,8 +4942,8 @@ exports[`Storyshots TextField Labelling 1`] = `
                 style={
                   Object {
                     "backgroundColor": "#ffffff",
-                    "color": "#1d1d1d",
-                    "fontFamily": "Avenir",
+                    "color": "#ffffff",
+                    "fontFamily": "Montserrat",
                     "fontSize": 18,
                     "minHeight": 44,
                   }
@@ -4485,7 +5089,7 @@ exports[`Storyshots TextField Style Overrides 1`] = `
                 style={
                   Object {
                     "color": "#939AA4",
-                    "fontFamily": "Avenir",
+                    "fontFamily": "Montserrat",
                     "fontSize": 13,
                   }
                 }
@@ -4495,13 +5099,12 @@ exports[`Storyshots TextField Style Overrides 1`] = `
               <TextInput
                 allowFontScaling={true}
                 onChangeText={[Function]}
-                placeholder={undefined}
                 placeholderTextColor="#CDD4DA"
                 style={
                   Object {
                     "backgroundColor": "#ffffff",
-                    "color": "#1d1d1d",
-                    "fontFamily": "Avenir",
+                    "color": "#ffffff",
+                    "fontFamily": "Montserrat",
                     "fontSize": 18,
                     "minHeight": 44,
                   }
@@ -4525,7 +5128,7 @@ exports[`Storyshots TextField Style Overrides 1`] = `
                 style={
                   Object {
                     "color": "#939AA4",
-                    "fontFamily": "Avenir",
+                    "fontFamily": "Montserrat",
                     "fontSize": 13,
                   }
                 }
@@ -4535,13 +5138,12 @@ exports[`Storyshots TextField Style Overrides 1`] = `
               <TextInput
                 allowFontScaling={true}
                 onChangeText={[Function]}
-                placeholder={undefined}
                 placeholderTextColor="#CDD4DA"
                 style={
                   Object {
                     "backgroundColor": "#ffffff",
-                    "color": "#1d1d1d",
-                    "fontFamily": "Avenir",
+                    "color": "#ffffff",
+                    "fontFamily": "Montserrat",
                     "fontSize": 18,
                     "minHeight": 44,
                   }
@@ -4653,7 +5255,7 @@ exports[`Storyshots TextField Style Overrides 1`] = `
                 style={
                   Object {
                     "color": "#939AA4",
-                    "fontFamily": "Avenir",
+                    "fontFamily": "Montserrat",
                     "fontSize": 13,
                   }
                 }
@@ -4663,7 +5265,6 @@ exports[`Storyshots TextField Style Overrides 1`] = `
               <TextInput
                 allowFontScaling={true}
                 onChangeText={[Function]}
-                placeholder={undefined}
                 placeholderTextColor="#CDD4DA"
                 style={
                   Object {
@@ -4672,7 +5273,7 @@ exports[`Storyshots TextField Style Overrides 1`] = `
                     "borderRadius": 4,
                     "borderWidth": 10,
                     "color": "white",
-                    "fontFamily": "Avenir",
+                    "fontFamily": "Montserrat",
                     "fontSize": 18,
                     "minHeight": 44,
                     "padding": 40,
@@ -4689,13 +5290,149 @@ exports[`Storyshots TextField Style Overrides 1`] = `
               style={
                 Object {
                   "color": "#939AA4",
-                  "fontFamily": "Avenir",
+                  "fontFamily": "Montserrat",
                   "fontSize": 9,
                 }
               }
             >
               * attention designers:  i am so sorry
             </Text>
+          </View>
+        </View>
+      </View>
+    </RCTScrollView>
+  </View>
+</View>
+`;
+
+exports[`Storyshots Wallpaper Style Presets 1`] = `
+<View
+  enabled={true}
+  keyboardVerticalOffset={50}
+  onLayout={[Function]}
+  style={
+    Array [
+      Object {
+        "backgroundColor": "#f0f0f0",
+        "flex": 1,
+      },
+      Object {
+        "paddingBottom": 0,
+      },
+    ]
+  }
+>
+  <View
+    style={
+      Object {
+        "flex": 1,
+      }
+    }
+  >
+    <RCTScrollView>
+      <View>
+        <View
+          style={
+            Object {
+              "backgroundColor": "#eee",
+            }
+          }
+        >
+          <View
+            style={
+              Object {
+                "borderBottomColor": "#e6e6e6",
+                "borderBottomWidth": 1,
+                "paddingBottom": 10,
+                "paddingHorizontal": 10,
+                "paddingTop": 20,
+              }
+            }
+          >
+            <View
+              style={
+                Object {
+                  "borderTopColor": "#e6e6e6",
+                  "borderTopWidth": 1,
+                  "flexDirection": "row",
+                  "left": 0,
+                  "position": "absolute",
+                  "right": 0,
+                  "top": 0,
+                }
+              }
+            >
+              <Text
+                accessible={true}
+                allowFontScaling={true}
+                ellipsizeMode="tail"
+                style={
+                  Object {
+                    "color": "#666",
+                    "fontSize": 10,
+                    "paddingBottom": 2,
+                    "paddingHorizontal": 4,
+                  }
+                }
+              >
+                Use Case
+              </Text>
+            </View>
+            <View
+              style={Object {}}
+            >
+              <Text
+                accessible={true}
+                allowFontScaling={true}
+                ellipsizeMode="tail"
+                style={
+                  Object {
+                    "color": "#3d3d3d",
+                    "fontWeight": "600",
+                  }
+                }
+              >
+                default/stretch
+              </Text>
+            </View>
+            <Text
+              accessible={true}
+              allowFontScaling={true}
+              ellipsizeMode="tail"
+              style={
+                Object {
+                  "color": "#666",
+                  "fontSize": 10,
+                  "paddingTop": 0,
+                }
+              }
+            >
+              Full screen wallpaper image.
+            </Text>
+          </View>
+          <View
+            style={
+              Object {
+                "backgroundColor": "#fff",
+                "padding": 10,
+              }
+            }
+          >
+            <Image
+              source={1}
+              style={
+                Object {
+                  "bottom": 0,
+                  "height": null,
+                  "left": 0,
+                  "position": "absolute",
+                  "resizeMode": "stretch",
+                  "right": 0,
+                  "top": 0,
+                  "width": null,
+                }
+              }
+            />
           </View>
         </View>
       </View>

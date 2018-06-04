@@ -59,5 +59,15 @@ export const NavigationStoreModel = NavigationEvents.named("NavigationStore")
       return findCurrentRoute(self.state)
     },
   }))
+  .actions(self => ({
+    /**
+     * Navigate to another place.
+     *
+     * @param routeName The route name.
+     */
+    navigateTo (routeName: string) {
+      self.dispatch(NavigationActions.navigate({ routeName }))
+    },
+  }))
 
 export type NavigationStore = typeof NavigationStoreModel.Type

@@ -30503,8 +30503,8 @@ index 88a7c9c..87d2632 100644
  import { BackButtonHandler } from "../navigation/back-button-handler"
  import { contains } from "ramda"
  import { DEFAULT_NAVIGATION_CONFIG } from "../navigation/navigation-config"
-+import SplashScreen from 'react-native-splash-screen'
- 
++import SplashScreen from "react-native-splash-screen"
+
  interface RootComponentState {
    rootStore?: RootStore
 @@ -24,6 +25,7 @@ export class RootComponent extends React.Component<{}, RootComponentState> {

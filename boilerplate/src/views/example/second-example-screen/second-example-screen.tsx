@@ -17,10 +17,6 @@ const CONTAINER: ViewStyle = {
   backgroundColor: color.transparent,
   paddingHorizontal: spacing[4],
 }
-const TEXT: TextStyle = {
-  color: color.palette.white,
-  fontFamily: "Montserrat",
-}
 const DEMO: ViewStyle = {
   paddingVertical: spacing[4],
   paddingHorizontal: spacing[4],
@@ -28,7 +24,6 @@ const DEMO: ViewStyle = {
 }
 const BOLD: TextStyle = { fontWeight: "bold" }
 const DEMO_TEXT: TextStyle = {
-  ...TEXT,
   ...BOLD,
   fontSize: 13,
   letterSpacing: 2,
@@ -39,7 +34,6 @@ const HEADER: TextStyle = {
   paddingHorizontal: 0,
 }
 const HEADER_TITLE: TextStyle = {
-  ...TEXT,
   ...BOLD,
   fontSize: 12,
   lineHeight: 15,
@@ -47,7 +41,6 @@ const HEADER_TITLE: TextStyle = {
   letterSpacing: 1.5,
 }
 const TITLE: TextStyle = {
-  ...TEXT,
   ...BOLD,
   fontSize: 28,
   lineHeight: 38,
@@ -55,7 +48,6 @@ const TITLE: TextStyle = {
   marginBottom: spacing[5],
 }
 const TAGLINE: TextStyle = {
-  ...TEXT,
   color: "#BAB6C8",
   fontSize: 15,
   lineHeight: 22,
@@ -71,7 +63,6 @@ const LOVE_WRAPPER: ViewStyle = {
   alignSelf: "center",
 }
 const LOVE: TextStyle = {
-  ...TEXT,
   color: "#BAB6C8",
   fontSize: 15,
   lineHeight: 22,
