@@ -5,7 +5,7 @@ import { StoryScreen, Story, UseCase } from "../../../../storybook/views"
 import { Checkbox } from "./"
 import { Toggle } from "react-powerplug"
 
-storiesOf("Checkbox")
+storiesOf("Checkbox", module)
   .addDecorator(fn => <StoryScreen>{fn()}</StoryScreen>)
   .add("Behaviour", () => (
     <Story>
