@@ -14,21 +14,39 @@ module.exports = async function (context) {
     return
   }
 
+  const domains = filesystem.list('./src/models/') || []
+  const domainChoices = ['(Create New)', ...domains]
+  let domainAddAnswer = {}
+  let domainPath = ''
+  if (!folder) {
+    const domainQuestion = 'Add model to which domain?'
+    domainAddAnswer = await prompt.ask({
+      name: 'domain',
+      type: 'list',
+      message: domainQuestion,
+      choices: domainChoices
+    })
+    domainPath = (domainAddAnswer.domain === domainChoices[0]) ? '' : domainAddAnswer.domain + '/'
+  } else {
+    domainPath = (folder === 'models') ? '' : folder + '/'
+  }
+
   const givenName = parameters.first
   const name = kebabCase(givenName)
   const pascalName = pascalCase(givenName)
+  // const newDomain = isBlank(domainPath)
 
   const props = { name, pascalName }
   const jobs = [
     {
       template: 'model.ejs',
-      target: `src/models/${name}/${name}.ts`
+      target: `src/models/${domainPath}${name}/${name}.ts`
     }, {
       template: 'model.test.ejs',
-      target: `src/models/${name}/${name}.test.ts`
+      target: `src/models/${domainPath}${name}/${name}.test.ts`
     }, {
       template: 'rollup-index.ts.ejs',
-      target: `src/models/${name}/index.ts`
+      target: `src/models/${domainPath}${name}/index.ts`
     }
   ]
 
