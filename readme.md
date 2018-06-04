@@ -16,6 +16,8 @@ Currently includes:
 * TypeScript
 * And more!
 
+To see it in action, check out these [examples](https://github.com/infinitered/ignite-bowser-examples)!
+
 ## Quick Start
 
 The Ignite Bowser boilerplate project's structure will look similar to this:
