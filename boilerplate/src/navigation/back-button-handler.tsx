@@ -2,7 +2,7 @@ import * as React from "react"
 import { BackHandler } from "react-native"
 import { inject, observer } from "mobx-react"
 import { NavigationActions } from "react-navigation"
-import { NavigationStore } from "../models/navigation-store"
+import { NavigationStore } from "../navigation/navigation-store"
 
 interface BackButtonHandlerProps {
   navigationStore?: NavigationStore

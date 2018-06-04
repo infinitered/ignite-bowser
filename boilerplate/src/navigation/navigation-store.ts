@@ -1,5 +1,5 @@
 import { types } from "mobx-state-tree"
-import { RootNavigator } from "../../navigation/root-navigator"
+import { RootNavigator } from "./root-navigator"
 import { NavigationActions, NavigationAction } from "react-navigation"
 import { NavigationEvents } from "./navigation-events"
 

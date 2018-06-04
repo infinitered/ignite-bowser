@@ -1,5 +1,5 @@
 import { clear } from "../../lib/storage"
-import { RootStore } from "../../models/root-store"
+import { RootStore } from "../../app/root-store"
 
 export type GetRootStore = () => RootStore
 
