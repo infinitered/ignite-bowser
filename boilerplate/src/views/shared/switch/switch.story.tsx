@@ -5,7 +5,7 @@ import { StoryScreen, Story, UseCase } from "../../../../storybook/views"
 import { Toggle } from "react-powerplug"
 import { Switch } from "."
 
-storiesOf("Switch")
+storiesOf("Switch", module)
   .addDecorator(fn => <StoryScreen>{fn()}</StoryScreen>)
   .add("Behaviour", () => (
     <Story>

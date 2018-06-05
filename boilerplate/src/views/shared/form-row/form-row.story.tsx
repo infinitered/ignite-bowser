@@ -4,7 +4,7 @@ import { StoryScreen, Story, UseCase } from "../../../../storybook/views"
 import { FormRow } from "./form-row"
 import { Text } from "../text"
 
-storiesOf("FormRow")
+storiesOf("FormRow", module)
   .addDecorator(fn => <StoryScreen>{fn()}</StoryScreen>)
   .add("Assembled", () => (
     <Story>

@@ -5,7 +5,7 @@ import { Text } from "../text"
 import { TextField } from "./"
 import { State } from "react-powerplug"
 
-storiesOf("TextField")
+storiesOf("TextField", module)
   .addDecorator(fn => <StoryScreen>{fn()}</StoryScreen>)
   .add("Labelling", () => (
     <Story>
