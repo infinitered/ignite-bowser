@@ -5,8 +5,10 @@ const patterns = require('../lib/patterns')
 module.exports = async function (context) {
   // grab some features
   const { parameters, print, strings, ignite, filesystem, prompt } = context
-  const { pascalCase, isBlank } = strings
+  const { pascalCase, isBlank, camelCase } = strings
   const config = ignite.loadIgniteConfig()
+  const options = parameters.options || {}
+  const folder = options.folder || options.f
 
   // validation
   if (isBlank(parameters.first)) {
@@ -15,24 +17,31 @@ module.exports = async function (context) {
     return
   }
 
-  const domainQuestion = 'Add component to which domain?'
   const domains = filesystem.list('./src/views/')
   const domainChoices = ['(Create New)', ...domains]
+  let domainAddAnswer = {}
+  let domainPath = ''
+  if (!folder) {
+    const domainQuestion = 'Add screen to which domain?'
+    domainAddAnswer = await prompt.ask({
+      name: 'domain',
+      type: 'list',
+      message: domainQuestion,
+      choices: domainChoices
+    })
+    domainPath = (domainAddAnswer.domain === domainChoices[0]) ? '' : domainAddAnswer.domain + '/'
+  } else {
+    domainPath = (folder === 'views') ? '' : folder + '/'
+  }
 
-  const domainAddAnswer = await prompt.ask({
-    name: 'domain',
-    type: 'list',
-    message: domainQuestion,
-    choices: domainChoices
-  })
-
-  const domainPath = (domainAddAnswer.domain === domainChoices[0]) ? '' : domainAddAnswer.domain + '/'
   const name = parameters.first
-
   const screenName = name.endsWith('-screen') ? name : `${name}-screen`
   const pascalName = pascalCase(name)
-  const props = { name: screenName, pascalName }
+  const camelName = camelCase(name)
+  const newDomain = isBlank(domainPath)
+  const sharedComponent = domainPath === 'shared/'
 
+  const props = { name: screenName, pascalName, camelName, newDomain, sharedComponent }
   const jobs = [
     {
       template: `screen.ejs`,
@@ -49,10 +58,9 @@ module.exports = async function (context) {
   // if using `react-navigation` go the extra step
   // and insert the screen into the nav router
   if (config.navigation === 'react-navigation') {
-    const screenNavigator = pascalName + 'Navigator'
     const appNavFilePath = `${process.cwd()}/src/navigation/root-navigator.ts`
     const importToAdd = `import { ${pascalName} } from "../views/${domainPath}${name}/${screenName}"`
-    const routeToAdd = `    ${screenNavigator}: { screen: ${pascalName} },`
+    const routeToAdd = `    ${camelName}: { screen: ${pascalName} },`
 
     if (!filesystem.exists(appNavFilePath)) {
       const msg = `No '${appNavFilePath}' file found.  Can't insert screen.`

@@ -23,7 +23,7 @@
     "url": "https://github.com/infinitered/ignite-ir-boilerplate-bowser"
   },
   "scripts": {
-    "lint": "standard",
+    "lint": "tslint -p .",
     "test": "jest",
     "watch": "jest --runInBand --watch",
     "coverage": "jest --runInBand --coverage",
