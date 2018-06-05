@@ -1,5 +1,5 @@
 import { types } from "mobx-state-tree"
-import { NavigationStoreModel } from "../navigation-store"
+import { NavigationStoreModel } from "../navigation/navigation-store"
 
 /**
  * An RootStore model.
