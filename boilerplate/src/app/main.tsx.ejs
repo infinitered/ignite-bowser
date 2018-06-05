@@ -4,7 +4,7 @@
 
 import { AppRegistry } from "react-native"
 import { RootComponent } from "./root-component"
-import { StorybookUI } from "../../storybook"
+import { StorybookUIRoot } from "../../storybook"
 
 /**
  * This needs to match what's found in your app_delegate.m and MainActivity.java.
@@ -21,7 +21,7 @@ if (SHOW_STORYBOOK && __DEV__) {
   //
   // $> yarn run storybook
   //
-  AppRegistry.registerComponent(APP_NAME, () => StorybookUI)
+  AppRegistry.registerComponent(APP_NAME, () => StorybookUIRoot)
 } else {
   // load our app
   AppRegistry.registerComponent(APP_NAME, () => RootComponent)
