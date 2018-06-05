@@ -16,6 +16,11 @@ const APP_NAME = "<%= props.name %>"
 // ⚠️ Leave this as `false` when checking into git.
 const SHOW_STORYBOOK = false
 
+// appease the typescript overlords
+declare global {
+  var module
+}
+
 if (SHOW_STORYBOOK && __DEV__) {
   // 🎗 REMINDER: Storybook has a server you need to run from a terminal window.
   //
