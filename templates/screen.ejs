@@ -1,10 +1,26 @@
 import * as React from "react"
 import { observer } from "mobx-react"
+import { ViewStyle } from "react-native"
+<% if (props.newDomain) { -%>
+import { Text } from "../shared/text"
+import { Screen } from "../shared/screen"
+import { color } from "../../theme"
+<% } else if (props.sharedComponent) { -%>
+import { Text } from "../text"
+import { Screen } from "../screen"
+import { color } from "../../../theme"
+<% } else { -%>
 import { Text } from "../../shared/text"
-import { NavigationScreenProps } from "react-navigation"
 import { Screen } from "../../shared/screen"
+import { color } from "../../../theme"
+<% } -%>
+import { NavigationScreenProps } from "react-navigation"
 
 export interface <%= props.pascalName %>ScreenProps extends NavigationScreenProps<{}> {
+}
+
+const ROOT: ViewStyle = {
+  backgroundColor: color.palette.black,
 }
 
 // @inject("mobxstuff")
@@ -12,8 +28,8 @@ export interface <%= props.pascalName %>ScreenProps extends NavigationScreenProp
 export class <%= props.pascalName %> extends React.Component<<%= props.pascalName %>ScreenProps, {}> {
   render () {
     return (
-      <Screen preset="fixedCenter">
-        <Text preset="header" tx="<%= props.pascalName %>.header" />
+      <Screen style={ROOT} preset="fixedCenter">
+        <Text preset="header" tx="<%= props.camelName %>.header" />
       </Screen>
     )
   }

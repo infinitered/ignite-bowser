@@ -6,7 +6,7 @@ const IGNITE = 'ignite'
 const APP = 'IntegrationTest'
 const BOILERPLATE = `${__dirname}/../`
 // calling the ignite cli takes a while
-jasmine.DEFAULT_TIMEOUT_INTERVAL = 600000
+jasmine.DEFAULT_TIMEOUT_INTERVAL = 800000
 
 describe('with a linter', () => {
   // creates a new temp directory
@@ -79,11 +79,12 @@ describe('generators', () => {
     expect(lint.stderr).toBe('')
   })
 
-  // test('generate screen works', async () => {
-  //   await execa(IGNITE, ['g', 'screen', 'Test'], { preferLocal: false })
-  //   expect(jetpack.exists('App/Containers/TestScreen.js')).toBe('file')
-  //   expect(jetpack.exists('App/Containers/TestScreenStyle.js')).toBe('file')
-  //   const lint = await execa('npm', ['run', 'lint'])
-  //   expect(lint.stderr).toBe('')
-  // })
+  test('generates a screen', async () => {
+    const simpleScreen = 'test'
+    await execa(IGNITE, ['g', 'screen', simpleScreen, '--folder', 'views'], { preferLocal: false })
+    expect(jetpack.exists(`src/views/${simpleScreen}/${simpleScreen}-screen.tsx`)).toBe('file')
+    expect(jetpack.exists(`src/views/${simpleScreen}/index.ts`)).toBe('file')
+    const lint = await execa('npm', ['-s', 'run', 'lint'])
+    expect(lint.stderr).toBe('')
+  })
 })
