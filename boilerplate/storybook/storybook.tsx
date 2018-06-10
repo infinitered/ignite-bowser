@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React from 'react'
 import { getStorybookUI, configure } from "@storybook/react-native"
 
 configure(() => {
@@ -8,7 +8,7 @@ configure(() => {
 const StorybookUI = getStorybookUI({ port: 9001, host: "localhost", onDeviceUI: true })
 
 // RN hot module must be in a class for HMR
-export class StorybookUIRoot extends Component {
+export class StorybookUIRoot extends React.Component {
   render() {
     return <StorybookUI />
   }
