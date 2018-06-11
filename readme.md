@@ -10,10 +10,11 @@ This is the boilerplate that [Infinite Red](https://infinite.red) uses as a way 
 
 Currently includes:
 
-* React Native 0.55.1 (but you can change this if you want to experiment)
+* React Native
 * React Navigation
 * MobX State Tree
 * TypeScript
+* Reactotron (requires 2.x)
 * And more!
 
 To see it in action, check out these [examples](https://github.com/infinitered/ignite-bowser-examples)!
