@@ -14,6 +14,7 @@ Currently includes:
 * React Navigation
 * MobX State Tree
 * TypeScript
+* Reactotron (requires 2.x)
 * And more!
 
 To see it in action, check out these [examples](https://github.com/infinitered/ignite-bowser-examples)!
