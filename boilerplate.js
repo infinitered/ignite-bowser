@@ -155,6 +155,7 @@ async function install (context) {
   await system.spawn('react-native link', { stdio: 'ignore' })
   spinner.stop()
 
+  /* TODO: fix splash screen issues
   async function patchSplashScreen () {
     spinner.text = `▸ setting up splash screen`
     spinner.start()
@@ -171,6 +172,7 @@ async function install (context) {
   }
   await patchSplashScreen()
   spinner.stop()
+  */
 
   // pass long the debug flag if we're running in that mode
   const debugFlag = parameters.options.debug ? '--debug' : ''
