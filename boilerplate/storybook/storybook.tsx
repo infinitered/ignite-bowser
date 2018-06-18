@@ -1,6 +1,6 @@
-import React from 'react'
+import React from "react"
 import { getStorybookUI, configure } from "@storybook/react-native"
-import SplashScreen from 'react-native-splash-screen'
+import SplashScreen from "react-native-splash-screen"
 
 configure(() => {
   require("./storybook-registry")
