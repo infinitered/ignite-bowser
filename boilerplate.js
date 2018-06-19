@@ -146,26 +146,6 @@ async function install (context) {
     filesystem.write('package.json', newPackage, { jsonIndent: 2 })
   }
   await mergePackageJsons()
-
-  spinner.stop()
-
-  // react native link -- must use spawn & stdio: ignore or it hangs!! :(
-  spinner.text = `▸ linking native libraries`
-  spinner.start()
-  await system.spawn('react-native link', { stdio: 'ignore' })
-  spinner.stop()
-
-  async function patchSplashScreen () {
-    spinner.text = `▸ setting up splash screen`
-    spinner.start()
-    spinner.text = `▸ setting up splash screen: configuring`
-    const backupExtension = (os.platform() === 'darwin') ? '""' : ''
-    await system.run(`sed -i ${backupExtension} 's/SplashScreenPatch/${name}/g' ${process.cwd()}/patches/splash-screen/splash-screen.patch`, { stdio: 'ignore' })
-    spinner.text = `▸ setting up splash screen: cleaning`
-    await system.run(`git apply ${process.cwd()}/patches/splash-screen/splash-screen.patch`, { stdio: 'ignore' })
-    filesystem.remove(`${process.cwd()}/patches/splash-screen`)
-  }
-  await patchSplashScreen()
   spinner.stop()
 
   // pass long the debug flag if we're running in that mode
@@ -180,6 +160,26 @@ async function install (context) {
     const boilerplate = parameters.options.b || parameters.options.boilerplate || 'ignite-ir-boilerplate-bowser'
 
     await system.spawn(`ignite add ${boilerplate} ${debugFlag}`, { stdio: 'inherit' })
+
+    // react native link -- must use spawn & stdio: ignore or it hangs!! :(
+    spinner.text = `▸ linking native libraries`
+    spinner.start()
+    await system.spawn('react-native link', { stdio: 'ignore' })
+    spinner.stop()
+
+    // patch splash screen
+    async function patchSplashScreen () {
+      spinner.text = `▸ setting up splash screen`
+      spinner.start()
+      spinner.text = `▸ setting up splash screen: configuring`
+      const backupExtension = (os.platform() === 'darwin') ? '""' : ''
+      await system.run(`sed -i ${backupExtension} 's/SplashScreenPatch/${name}/g' ${process.cwd()}/patches/splash-screen/splash-screen.patch`, { stdio: 'ignore' })
+      spinner.text = `▸ setting up splash screen: cleaning`
+      await system.run(`git apply ${process.cwd()}/patches/splash-screen/splash-screen.patch`, { stdio: 'ignore' })
+      filesystem.remove(`${process.cwd()}/patches/splash-screen`)
+    }
+    await patchSplashScreen()
+    spinner.stop()
   } catch (e) {
     ignite.log(e)
     throw e
