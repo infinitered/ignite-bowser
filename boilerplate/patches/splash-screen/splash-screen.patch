@@ -30508,10 +30508,10 @@ index 88a7c9c..87d2632 100644
  interface RootComponentState {
    rootStore?: RootStore
 @@ -24,6 +25,7 @@ export class RootComponent extends React.Component<{}, RootComponentState> {
++    SplashScreen.hide()
      this.setState({
        rootStore: await setupRootStore(),
      })
-+    SplashScreen.hide()
    }
  
    /**
