@@ -30,6 +30,14 @@ export const NavigationStoreModel = NavigationEvents.named("NavigationStore")
     state: types.optional(types.frozen, DEFAULT_STATE),
   })
   .actions(self => ({
+
+    /**
+     * Return all subscribers 
+     */
+    actionSubscribers(){
+      return self.subs
+    },
+
     /**
      * Fires when navigation happens.
      *
