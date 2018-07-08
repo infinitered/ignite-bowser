@@ -4,7 +4,7 @@
 
 <a href='https://semaphoreci.com/ir/ignite-ir-boilerplate-bowser'> <img src='https://semaphoreci.com/api/v1/projects/a08c074e-fb81-4316-a21c-f50d7f371274/1954775/badge.svg' alt='Build Status'></a>
 
-## The latest and greatest boilerplate for Infinite Red opinions
+## The latest and greatest boilerplate for Infinite Red opinions (Beta)
 
 This is the boilerplate that [Infinite Red](https://infinite.red) uses as a way to test bleeding-edge changes to our React Native stack.
 
