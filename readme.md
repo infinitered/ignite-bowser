@@ -1,8 +1,8 @@
-<p align="center"><img src="http://ir_public.s3.amazonaws.com/projects/ignite/ignite-bowser-launch-screen.png" alt="logo" width="621px"></p>
-
-<a href='https://semaphoreci.com/ir/ignite-ir-boilerplate-bowser'> <img src='https://semaphoreci.com/api/v1/projects/a08c074e-fb81-4316-a21c-f50d7f371274/1954775/badge.svg' alt='Build Status'></a>
+<p align="center"><img src="http://ir_public.s3.amazonaws.com/projects/ignite/ignite-bowser-launch-screen.png" alt="logo" width="414px"></p>
 
 # Ignite IR Boilerplate ("Bowser")
+
+<a href='https://semaphoreci.com/ir/ignite-ir-boilerplate-bowser'> <img src='https://semaphoreci.com/api/v1/projects/a08c074e-fb81-4316-a21c-f50d7f371274/1954775/badge.svg' alt='Build Status'></a>
 
 ## The latest and greatest boilerplate for Infinite Red opinions
 
