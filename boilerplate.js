@@ -173,7 +173,8 @@ async function install (context) {
       spinner.start()
       spinner.text = `▸ setting up splash screen: configuring`
       const backupExtension = (os.platform() === 'darwin') ? '""' : ''
-      await system.run(`sed -i ${backupExtension} 's/SplashScreenPatch/${name}/g' ${process.cwd()}/patches/splash-screen/splash-screen.patch`, { stdio: 'ignore' })
+      target = `${process.cwd()}/patches/splash-screen/splash-screen.patch`
+      await system.run(`sed -e 's/SplashScreenPatch/${name}/g' ${target} > x.tmp && mv x.tmp ${target}`, { stdio: 'ignore' })
       spinner.text = `▸ setting up splash screen: cleaning`
       await system.run(`git apply ${process.cwd()}/patches/splash-screen/splash-screen.patch`, { stdio: 'ignore' })
       filesystem.remove(`${process.cwd()}/patches/splash-screen`)
