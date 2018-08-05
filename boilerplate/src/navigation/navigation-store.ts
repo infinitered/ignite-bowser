@@ -58,8 +58,6 @@ export const NavigationStoreModel = NavigationEvents.named("NavigationStore")
     findCurrentRoute() {
       return findCurrentRoute(self.state)
     },
-  }))
-  .actions(self => ({
     /**
      * Navigate to another place.
      *
