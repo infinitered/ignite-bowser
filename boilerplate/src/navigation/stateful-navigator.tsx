@@ -1,8 +1,7 @@
 import * as React from "react"
 import { inject, observer } from "mobx-react"
 import { RootNavigator } from "./root-navigator"
-import { NavigationStore } from "../navigation/navigation-store"
-import throttle from "lodash.throttle"
+import { NavigationStore } from "./navigation-store"
 
 interface StatefulNavigatorProps {
   navigationStore?: NavigationStore
