@@ -1,6 +1,5 @@
 const { merge, pipe, assoc, omit, __ } = require('ramda')
 const { getReactNativeVersion } = require('./lib/react-native-version')
-const os = require('os')
 
 /**
  * Is Android installed?
@@ -172,10 +171,15 @@ async function install (context) {
       spinner.text = `▸ setting up splash screen`
       spinner.start()
       spinner.text = `▸ setting up splash screen: configuring`
-      const backupExtension = (os.platform() === 'darwin') ? '""' : ''
-      await system.run(`sed -i ${backupExtension} 's/SplashScreenPatch/${name}/g' ${process.cwd()}/patches/splash-screen/splash-screen.patch`, { stdio: 'ignore' })
+      const patchPath = `${process.cwd()}/patches/splash-screen/splash-screen.patch`
+      const patch = filesystem.read(patchPath)
+      const androidOldMainPathRegex = new RegExp('/android/app/src/main/java/com/SplashScreenPatch/MainActivity.java', 'g')
+      const androidNewMainPath = `/android/app/src/main/java/com/${name.toLowerCase()}/MainActivity.java`
+      const androidPatch = patch.replace(androidOldMainPathRegex, androidNewMainPath)
+      const patchForNewProject = androidPatch.replace(/SplashScreenPatch/g, name)
+      filesystem.write(patchPath, patchForNewProject)
       spinner.text = `▸ setting up splash screen: cleaning`
-      await system.run(`git apply ${process.cwd()}/patches/splash-screen/splash-screen.patch`, { stdio: 'ignore' })
+      await system.run(`git apply ${patchPath}`, { stdio: 'ignore' })
       filesystem.remove(`${process.cwd()}/patches/splash-screen`)
     }
     await patchSplashScreen()

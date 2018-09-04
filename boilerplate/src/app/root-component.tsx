@@ -2,7 +2,7 @@ import "../i18n"
 import * as React from "react"
 import { setupRootStore } from "./setup-root-store"
 import { StatefulNavigator } from "../navigation"
-import { RootStore } from "../app/root-store"
+import { RootStore } from "./root-store"
 import { Provider } from "mobx-react"
 import { BackButtonHandler } from "../navigation/back-button-handler"
 import { contains } from "ramda"
@@ -39,7 +39,7 @@ export class RootComponent extends React.Component<{}, RootComponentState> {
   render() {
     const rootStore = this.state && this.state.rootStore
 
-    // Before we show the app, we have to wait for out state to be ready.
+    // Before we show the app, we have to wait for our state to be ready.
     // In the meantime, don't render anything. This will be the background
     // color set in native by rootView's background color.
     //
