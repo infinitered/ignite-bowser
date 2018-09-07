@@ -20,7 +20,7 @@ export interface TextProps extends TextProperties {
   /**
    * An optional style override useful for padding & margin.
    */
-  style?: TextStyle
+  style?: TextStyle | TextStyle[]
 
   /**
    * One of the different types of text presets.
