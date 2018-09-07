@@ -3,6 +3,7 @@ import { TouchableOpacity, TextStyle, ViewStyle, View } from "react-native"
 import { Text } from "../text"
 import { color, spacing } from "../../../theme"
 import { CheckboxProps } from "./checkbox.props"
+import { concat, mergeWith } from "ramda"
 
 const ROOT: ViewStyle = {
   flexDirection: "row",
@@ -17,7 +18,7 @@ const OUTLINE: ViewStyle = {
   marginTop: 2, // finicky and will depend on font/line-height/baseline/weather
   justifyContent: "center",
   alignItems: "center",
-  borderWidth: 1,
+  borderWidth: 1,//
   borderColor: color.primaryDarker,
   borderRadius: 1,
 }
@@ -32,9 +33,27 @@ const LABEL: TextStyle = { paddingLeft: spacing[2] }
 
 export function Checkbox(props: CheckboxProps) {
   const numberOfLines = props.multiline ? 0 : 1
-  const rootStyle = { ...ROOT, ...props.style } as ViewStyle
-  const outlineStyle = { ...OUTLINE, ...props.outlineStyle } as ViewStyle
-  const fillStyle = { ...FILL, ...props.fillStyle } as ViewStyle
+
+  let rootStyle
+  if (Array.isArray(props.style)) {
+    rootStyle = mergeWith(concat, ROOT, props.style) as ViewStyle
+  } else {
+    rootStyle = { ...ROOT, ...props.style } as ViewStyle
+  }
+
+  let outlineStyle
+  if (Array.isArray(props.outlineStyle)) {
+    outlineStyle = mergeWith(concat, OUTLINE, props.outlineStyle)
+  } else {
+    outlineStyle = { ...OUTLINE, ...props.outlineStyle } as ViewStyle
+  }
+
+  let fillStyle
+  if (Array.isArray(props.fillStyle)) {
+    fillStyle = mergeWith(concat, FILL, props.fillStyle)
+  } else {
+    fillStyle = { ...FILL, ...props.fillStyle } as ViewStyle
+  }
   const onPress = props.onToggle ? () => props.onToggle && props.onToggle(!props.value) : null
 
   return (

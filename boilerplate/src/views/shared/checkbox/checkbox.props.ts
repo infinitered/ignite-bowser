@@ -4,17 +4,17 @@ export interface CheckboxProps {
   /**
    * Additional container style. Useful for margins.
    */
-  style?: ViewStyle
+  style?: ViewStyle | ViewStyle[]
 
   /**
    * Additional outline style.
    */
-  outlineStyle?: ViewStyle
+  outlineStyle?: ViewStyle | ViewStyle[]
 
   /**
    * Additional fill style. Only visible when checked.
    */
-  fillStyle?: ViewStyle
+  fillStyle?: ViewStyle | ViewStyle[]
 
   /**
    * Is the checkbox checked?
