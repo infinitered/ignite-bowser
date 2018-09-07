@@ -14,7 +14,7 @@ export interface FormRowProps {
   /**
    * Override the container style... useful for margins and padding.
    */
-  style?: ViewStyle
+  style?: ViewStyle | ViewStyle[]
 
   /**
    * The type of border.
