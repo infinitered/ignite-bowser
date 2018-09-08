@@ -2,6 +2,7 @@ import * as React from "react"
 import { ViewStyle, Animated, Easing, TouchableWithoutFeedback } from "react-native"
 import { color } from "../../../theme"
 import { SwitchProps } from "./switch.props"
+import { concat, mergeWith } from "ramda"
 
 // dimensions
 const THUMB_SIZE = 30
@@ -76,6 +77,18 @@ export class Switch extends React.PureComponent<SwitchProps, SwitchState> {
    */
   handlePress = () => this.props.onToggle && this.props.onToggle(!this.props.value)
 
+  enhanceStyle(baseStyle, onOption, offOption) {
+    if (this.props.value)  {
+      if (Array.isArray(onOption)) {
+        return mergeWith(concat, baseStyle, onOption)
+      }
+    } else {
+      if (Array.isArray(offOption)) {
+        return mergeWith(concat, baseStyle, offOption)
+      }
+    }
+  }
+
   /**
    * Render the component.
    */
@@ -85,23 +98,30 @@ export class Switch extends React.PureComponent<SwitchProps, SwitchState> {
       outputRange: [OFF_POSITION, ON_POSITION],
     })
 
-    const trackStyle = {
+    let style
+    if (Array.isArray(this.props.style)) {
+      style = mergeWith(concat, {}, this.props.style)
+    } else {
+      style = this.props.style
+    }
+
+    let trackStyle
+    trackStyle = this.enhanceStyle({
       ...TRACK,
       ...{
         backgroundColor: this.props.value ? ON_COLOR : OFF_COLOR,
         borderColor: this.props.value ? BORDER_ON_COLOR : BORDER_OFF_COLOR,
       },
-      ...this.props.value ? this.props.trackOnStyle : this.props.trackOffStyle,
-    }
+    }, this.props.trackOnStyle, this.props.trackOffStyle)
 
-    const thumbStyle = {
+    let thumbStyle
+    thumbStyle = this.enhanceStyle({
       ...THUMB,
       ...{ transform: [{ translateX }] },
-      ...this.props.value ? this.props.thumbOnStyle : this.props.thumbOffStyle,
-    }
+    }, this.props.thumbOnStyle, this.props.thumbOffStyle)
 
     return (
-      <TouchableWithoutFeedback onPress={this.handlePress} style={this.props.style}>
+      <TouchableWithoutFeedback onPress={this.handlePress} style={style}>
         <Animated.View style={trackStyle}>
           <Animated.View style={thumbStyle} />
         </Animated.View>
