@@ -1466,7 +1466,7 @@ exports[`Storyshots FormRow Assembled 1`] = `
                 ellipsizeMode="tail"
                 style={
                   Object {
-                    "color": "#939AA4",
+                    "color": "#1d1d1d",
                     "fontFamily": "Montserrat",
                     "fontSize": 13,
                   }
@@ -1491,7 +1491,7 @@ exports[`Storyshots FormRow Assembled 1`] = `
                 ellipsizeMode="tail"
                 style={
                   Object {
-                    "color": "#ffffff",
+                    "color": "#1d1d1d",
                     "fontFamily": "Montserrat",
                     "fontSize": 15,
                   }
@@ -1516,7 +1516,7 @@ exports[`Storyshots FormRow Assembled 1`] = `
                 ellipsizeMode="tail"
                 style={
                   Object {
-                    "color": "#939AA4",
+                    "color": "#1d1d1d",
                     "fontFamily": "Montserrat",
                     "fontSize": 9,
                   }
@@ -1542,7 +1542,7 @@ exports[`Storyshots FormRow Assembled 1`] = `
                 ellipsizeMode="tail"
                 style={
                   Object {
-                    "color": "#ffffff",
+                    "color": "#1d1d1d",
                     "fontFamily": "Montserrat",
                     "fontSize": 15,
                   }
@@ -1655,7 +1655,7 @@ exports[`Storyshots FormRow Assembled 1`] = `
                 ellipsizeMode="tail"
                 style={
                   Object {
-                    "color": "#ffffff",
+                    "color": "#1d1d1d",
                     "fontFamily": "Montserrat",
                     "fontSize": 15,
                   }
@@ -1680,7 +1680,7 @@ exports[`Storyshots FormRow Assembled 1`] = `
                 ellipsizeMode="tail"
                 style={
                   Object {
-                    "color": "#ffffff",
+                    "color": "#1d1d1d",
                     "fontFamily": "Montserrat",
                     "fontSize": 15,
                   }
@@ -1706,7 +1706,7 @@ exports[`Storyshots FormRow Assembled 1`] = `
                 ellipsizeMode="tail"
                 style={
                   Object {
-                    "color": "#ffffff",
+                    "color": "#1d1d1d",
                     "fontFamily": "Montserrat",
                     "fontSize": 15,
                   }
@@ -1854,7 +1854,7 @@ exports[`Storyshots FormRow Presets 1`] = `
                 ellipsizeMode="tail"
                 style={
                   Object {
-                    "color": "#ffffff",
+                    "color": "#1d1d1d",
                     "fontFamily": "Montserrat",
                     "fontSize": 15,
                   }
@@ -1868,7 +1868,7 @@ exports[`Storyshots FormRow Presets 1`] = `
                 ellipsizeMode="tail"
                 style={
                   Object {
-                    "color": "#ffffff",
+                    "color": "#1d1d1d",
                     "fontFamily": "Montserrat",
                     "fontSize": 15,
                   }
@@ -1982,7 +1982,7 @@ exports[`Storyshots FormRow Presets 1`] = `
                 ellipsizeMode="tail"
                 style={
                   Object {
-                    "color": "#ffffff",
+                    "color": "#1d1d1d",
                     "fontFamily": "Montserrat",
                     "fontSize": 15,
                   }
@@ -2097,7 +2097,7 @@ exports[`Storyshots FormRow Presets 1`] = `
                 ellipsizeMode="tail"
                 style={
                   Object {
-                    "color": "#ffffff",
+                    "color": "#1d1d1d",
                     "fontFamily": "Montserrat",
                     "fontSize": 15,
                   }
@@ -2111,7 +2111,7 @@ exports[`Storyshots FormRow Presets 1`] = `
                 ellipsizeMode="tail"
                 style={
                   Object {
-                    "color": "#ffffff",
+                    "color": "#1d1d1d",
                     "fontFamily": "Montserrat",
                     "fontSize": 15,
                   }
@@ -2225,7 +2225,7 @@ exports[`Storyshots FormRow Presets 1`] = `
                 ellipsizeMode="tail"
                 style={
                   Object {
-                    "color": "#ffffff",
+                    "color": "#1d1d1d",
                     "fontFamily": "Montserrat",
                     "fontSize": 15,
                   }
@@ -2338,7 +2338,7 @@ exports[`Storyshots FormRow Presets 1`] = `
                 ellipsizeMode="tail"
                 style={
                   Object {
-                    "color": "#ffffff",
+                    "color": "#1d1d1d",
                     "fontFamily": "Montserrat",
                     "fontSize": 15,
                   }
@@ -2451,7 +2451,7 @@ exports[`Storyshots FormRow Presets 1`] = `
                 ellipsizeMode="tail"
                 style={
                   Object {
-                    "color": "#ffffff",
+                    "color": "#1d1d1d",
                     "fontFamily": "Montserrat",
                     "fontSize": 15,
                   }
@@ -2584,53 +2584,62 @@ exports[`Storyshots Header Behavior 1`] = `
             <View
               style={
                 Object {
-                  "alignItems": "center",
-                  "flexDirection": "row",
-                  "justifyContent": "flex-start",
-                  "paddingBottom": 24,
-                  "paddingHorizontal": 16,
-                  "paddingTop": 24,
+                  "backgroundColor": "#1d1d1d",
+                  "flex": 1,
                 }
               }
             >
               <View
                 style={
                   Object {
-                    "width": 32,
-                  }
-                }
-              />
-              <View
-                style={
-                  Object {
-                    "flex": 1,
-                    "justifyContent": "center",
+                    "alignItems": "center",
+                    "flexDirection": "row",
+                    "justifyContent": "flex-start",
+                    "paddingBottom": 24,
+                    "paddingHorizontal": 16,
+                    "paddingTop": 24,
                   }
                 }
               >
-                <Text
-                  accessible={true}
-                  allowFontScaling={true}
-                  ellipsizeMode="tail"
+                <View
                   style={
                     Object {
-                      "color": "#ffffff",
-                      "fontFamily": "Montserrat",
-                      "fontSize": 15,
-                      "textAlign": "center",
+                      "width": 32,
+                    }
+                  }
+                />
+                <View
+                  style={
+                    Object {
+                      "flex": 1,
+                      "justifyContent": "center",
                     }
                   }
                 >
-                  secondExampleScreen.howTo.test
-                </Text>
-              </View>
-              <View
-                style={
-                  Object {
-                    "width": 32,
+                  <Text
+                    accessible={true}
+                    allowFontScaling={true}
+                    ellipsizeMode="tail"
+                    style={
+                      Object {
+                        "color": "#ffffff",
+                        "fontFamily": "Montserrat",
+                        "fontSize": 15,
+                        "textAlign": "center",
+                      }
+                    }
+                  >
+                    secondExampleScreen.howTo.test
+                  </Text>
+                </View>
+                <View
+                  style={
+                    Object {
+                      "width": 32,
+                    }
                   }
-                }
-              />
+                />
+              </View>
             </View>
           </View>
         </View>
@@ -2724,77 +2733,86 @@ exports[`Storyshots Header Behavior 1`] = `
             <View
               style={
                 Object {
-                  "alignItems": "center",
-                  "flexDirection": "row",
-                  "justifyContent": "flex-start",
-                  "paddingBottom": 24,
-                  "paddingHorizontal": 16,
-                  "paddingTop": 24,
+                  "backgroundColor": "#1d1d1d",
+                  "flex": 1,
                 }
               }
             >
               <View
-                accessible={true}
-                isTVSelectable={true}
-                onResponderGrant={[Function]}
-                onResponderMove={[Function]}
-                onResponderRelease={[Function]}
-                onResponderTerminate={[Function]}
-                onResponderTerminationRequest={[Function]}
-                onStartShouldSetResponder={[Function]}
                 style={
                   Object {
-                    "alignItems": "flex-start",
-                    "borderRadius": 4,
-                    "justifyContent": "center",
-                    "opacity": 1,
-                    "paddingHorizontal": 0,
-                    "paddingVertical": 0,
+                    "alignItems": "center",
+                    "flexDirection": "row",
+                    "justifyContent": "flex-start",
+                    "paddingBottom": 24,
+                    "paddingHorizontal": 16,
+                    "paddingTop": 24,
                   }
                 }
               >
-                <View>
-                  <Image
-                    source={1}
-                    style={
-                      Object {
-                        "resizeMode": "contain",
-                      }
-                    }
-                  />
-                </View>
-              </View>
-              <View
-                style={
-                  Object {
-                    "flex": 1,
-                    "justifyContent": "center",
-                  }
-                }
-              >
-                <Text
+                <View
                   accessible={true}
-                  allowFontScaling={true}
-                  ellipsizeMode="tail"
+                  isTVSelectable={true}
+                  onResponderGrant={[Function]}
+                  onResponderMove={[Function]}
+                  onResponderRelease={[Function]}
+                  onResponderTerminate={[Function]}
+                  onResponderTerminationRequest={[Function]}
+                  onStartShouldSetResponder={[Function]}
                   style={
                     Object {
-                      "color": "#ffffff",
-                      "fontFamily": "Montserrat",
-                      "fontSize": 15,
-                      "textAlign": "center",
+                      "alignItems": "flex-start",
+                      "borderRadius": 4,
+                      "justifyContent": "center",
+                      "opacity": 1,
+                      "paddingHorizontal": 0,
+                      "paddingVertical": 0,
                     }
                   }
                 >
-                  secondExampleScreen.howTo.test
-                </Text>
-              </View>
-              <View
-                style={
-                  Object {
-                    "width": 32,
+                  <View>
+                    <Image
+                      source={1}
+                      style={
+                        Object {
+                          "resizeMode": "contain",
+                        }
+                      }
+                    />
+                  </View>
+                </View>
+                <View
+                  style={
+                    Object {
+                      "flex": 1,
+                      "justifyContent": "center",
+                    }
                   }
-                }
-              />
+                >
+                  <Text
+                    accessible={true}
+                    allowFontScaling={true}
+                    ellipsizeMode="tail"
+                    style={
+                      Object {
+                        "color": "#ffffff",
+                        "fontFamily": "Montserrat",
+                        "fontSize": 15,
+                        "textAlign": "center",
+                      }
+                    }
+                  >
+                    secondExampleScreen.howTo.test
+                  </Text>
+                </View>
+                <View
+                  style={
+                    Object {
+                      "width": 32,
+                    }
+                  }
+                />
+              </View>
             </View>
           </View>
         </View>
@@ -2888,75 +2906,84 @@ exports[`Storyshots Header Behavior 1`] = `
             <View
               style={
                 Object {
-                  "alignItems": "center",
-                  "flexDirection": "row",
-                  "justifyContent": "flex-start",
-                  "paddingBottom": 24,
-                  "paddingHorizontal": 16,
-                  "paddingTop": 24,
+                  "backgroundColor": "#1d1d1d",
+                  "flex": 1,
                 }
               }
             >
               <View
                 style={
                   Object {
-                    "width": 32,
-                  }
-                }
-              />
-              <View
-                style={
-                  Object {
-                    "flex": 1,
-                    "justifyContent": "center",
+                    "alignItems": "center",
+                    "flexDirection": "row",
+                    "justifyContent": "flex-start",
+                    "paddingBottom": 24,
+                    "paddingHorizontal": 16,
+                    "paddingTop": 24,
                   }
                 }
               >
-                <Text
-                  accessible={true}
-                  allowFontScaling={true}
-                  ellipsizeMode="tail"
+                <View
                   style={
                     Object {
-                      "color": "#ffffff",
-                      "fontFamily": "Montserrat",
-                      "fontSize": 15,
-                      "textAlign": "center",
+                      "width": 32,
+                    }
+                  }
+                />
+                <View
+                  style={
+                    Object {
+                      "flex": 1,
+                      "justifyContent": "center",
                     }
                   }
                 >
-                  secondExampleScreen.howTo.test
-                </Text>
-              </View>
-              <View
-                accessible={true}
-                isTVSelectable={true}
-                onResponderGrant={[Function]}
-                onResponderMove={[Function]}
-                onResponderRelease={[Function]}
-                onResponderTerminate={[Function]}
-                onResponderTerminationRequest={[Function]}
-                onStartShouldSetResponder={[Function]}
-                style={
-                  Object {
-                    "alignItems": "flex-start",
-                    "borderRadius": 4,
-                    "justifyContent": "center",
-                    "opacity": 1,
-                    "paddingHorizontal": 0,
-                    "paddingVertical": 0,
-                  }
-                }
-              >
-                <View>
-                  <Image
-                    source={1}
+                  <Text
+                    accessible={true}
+                    allowFontScaling={true}
+                    ellipsizeMode="tail"
                     style={
                       Object {
-                        "resizeMode": "contain",
+                        "color": "#ffffff",
+                        "fontFamily": "Montserrat",
+                        "fontSize": 15,
+                        "textAlign": "center",
                       }
                     }
-                  />
+                  >
+                    secondExampleScreen.howTo.test
+                  </Text>
+                </View>
+                <View
+                  accessible={true}
+                  isTVSelectable={true}
+                  onResponderGrant={[Function]}
+                  onResponderMove={[Function]}
+                  onResponderRelease={[Function]}
+                  onResponderTerminate={[Function]}
+                  onResponderTerminationRequest={[Function]}
+                  onStartShouldSetResponder={[Function]}
+                  style={
+                    Object {
+                      "alignItems": "flex-start",
+                      "borderRadius": 4,
+                      "justifyContent": "center",
+                      "opacity": 1,
+                      "paddingHorizontal": 0,
+                      "paddingVertical": 0,
+                    }
+                  }
+                >
+                  <View>
+                    <Image
+                      source={1}
+                      style={
+                        Object {
+                          "resizeMode": "contain",
+                        }
+                      }
+                    />
+                  </View>
                 </View>
               </View>
             </View>
@@ -3917,20 +3944,29 @@ exports[`Storyshots Text Passing Content 1`] = `
               }
             }
           >
-            <Text
-              accessible={true}
-              allowFontScaling={true}
-              ellipsizeMode="tail"
+            <View
               style={
                 Object {
-                  "color": "#ffffff",
-                  "fontFamily": "Montserrat",
-                  "fontSize": 15,
+                  "backgroundColor": "#1d1d1d",
+                  "flex": 1,
                 }
               }
             >
-              Heyo!
-            </Text>
+              <Text
+                accessible={true}
+                allowFontScaling={true}
+                ellipsizeMode="tail"
+                style={
+                  Object {
+                    "color": "#ffffff",
+                    "fontFamily": "Montserrat",
+                    "fontSize": 15,
+                  }
+                }
+              >
+                Heyo!
+              </Text>
+            </View>
           </View>
         </View>
         <View
@@ -4020,34 +4056,43 @@ exports[`Storyshots Text Passing Content 1`] = `
               }
             }
           >
-            <Text
-              accessible={true}
-              allowFontScaling={true}
-              ellipsizeMode="tail"
+            <View
               style={
                 Object {
-                  "color": "#ffffff",
-                  "fontFamily": "Montserrat",
-                  "fontSize": 15,
+                  "backgroundColor": "#1d1d1d",
+                  "flex": 1,
                 }
               }
             >
-              common.ok.test
-            </Text>
-            <Text
-              accessible={true}
-              allowFontScaling={true}
-              ellipsizeMode="tail"
-              style={
-                Object {
-                  "color": "#ffffff",
-                  "fontFamily": "Montserrat",
-                  "fontSize": 15,
+              <Text
+                accessible={true}
+                allowFontScaling={true}
+                ellipsizeMode="tail"
+                style={
+                  Object {
+                    "color": "#ffffff",
+                    "fontFamily": "Montserrat",
+                    "fontSize": 15,
+                  }
                 }
-              }
-            >
-              omglol.test
-            </Text>
+              >
+                common.ok.test
+              </Text>
+              <Text
+                accessible={true}
+                allowFontScaling={true}
+                ellipsizeMode="tail"
+                style={
+                  Object {
+                    "color": "#ffffff",
+                    "fontFamily": "Montserrat",
+                    "fontSize": 15,
+                  }
+                }
+              >
+                omglol.test
+              </Text>
+            </View>
           </View>
         </View>
         <View
@@ -4137,20 +4182,29 @@ exports[`Storyshots Text Passing Content 1`] = `
               }
             }
           >
-            <Text
-              accessible={true}
-              allowFontScaling={true}
-              ellipsizeMode="tail"
+            <View
               style={
                 Object {
-                  "color": "#ffffff",
-                  "fontFamily": "Montserrat",
-                  "fontSize": 15,
+                  "backgroundColor": "#1d1d1d",
+                  "flex": 1,
                 }
               }
             >
-              Passing strings as children.
-            </Text>
+              <Text
+                accessible={true}
+                allowFontScaling={true}
+                ellipsizeMode="tail"
+                style={
+                  Object {
+                    "color": "#ffffff",
+                    "fontFamily": "Montserrat",
+                    "fontSize": 15,
+                  }
+                }
+              >
+                Passing strings as children.
+              </Text>
+            </View>
           </View>
         </View>
         <View
@@ -4240,20 +4294,14 @@ exports[`Storyshots Text Passing Content 1`] = `
               }
             }
           >
-            <Text
-              accessible={true}
-              allowFontScaling={true}
-              ellipsizeMode="tail"
+            <View
               style={
                 Object {
-                  "color": "#ffffff",
-                  "fontFamily": "Montserrat",
-                  "fontSize": 15,
+                  "backgroundColor": "#1d1d1d",
+                  "flex": 1,
                 }
               }
             >
-               
-              Hello 
               <Text
                 accessible={true}
                 allowFontScaling={true}
@@ -4263,14 +4311,29 @@ exports[`Storyshots Text Passing Content 1`] = `
                     "color": "#ffffff",
                     "fontFamily": "Montserrat",
                     "fontSize": 15,
-                    "fontWeight": "bold",
                   }
                 }
               >
-                bolded
+                 
+                Hello 
+                <Text
+                  accessible={true}
+                  allowFontScaling={true}
+                  ellipsizeMode="tail"
+                  style={
+                    Object {
+                      "color": "#ffffff",
+                      "fontFamily": "Montserrat",
+                      "fontSize": 15,
+                      "fontWeight": "bold",
+                    }
+                  }
+                >
+                  bolded
+                </Text>
+                 World.
               </Text>
-               World.
-            </Text>
+            </View>
           </View>
         </View>
       </View>
@@ -4392,70 +4455,79 @@ exports[`Storyshots Text Style Presets 1`] = `
               }
             }
           >
-            <Text
-              accessible={true}
-              allowFontScaling={true}
-              ellipsizeMode="tail"
+            <View
               style={
                 Object {
-                  "color": "#ffffff",
-                  "fontFamily": "Montserrat",
-                  "fontSize": 15,
+                  "backgroundColor": "#1d1d1d",
+                  "flex": 1,
                 }
               }
             >
-              Hello!
-            </Text>
-            <Text
-              accessible={true}
-              allowFontScaling={true}
-              ellipsizeMode="tail"
-              style={
-                Object {
-                  "color": "#ffffff",
-                  "fontFamily": "Montserrat",
-                  "fontSize": 15,
-                  "paddingTop": 10,
+              <Text
+                accessible={true}
+                allowFontScaling={true}
+                ellipsizeMode="tail"
+                style={
+                  Object {
+                    "color": "#ffffff",
+                    "fontFamily": "Montserrat",
+                    "fontSize": 15,
+                  }
                 }
-              }
-            >
-              Check out
-              
+              >
+                Hello!
+              </Text>
+              <Text
+                accessible={true}
+                allowFontScaling={true}
+                ellipsizeMode="tail"
+                style={
+                  Object {
+                    "color": "#ffffff",
+                    "fontFamily": "Montserrat",
+                    "fontSize": 15,
+                    "paddingTop": 10,
+                  }
+                }
+              >
+                Check out
+                
 
-              my
-              
+                my
+                
 
-              line height
-            </Text>
-            <Text
-              accessible={true}
-              allowFontScaling={true}
-              ellipsizeMode="tail"
-              style={
-                Object {
-                  "color": "#ffffff",
-                  "fontFamily": "Montserrat",
-                  "fontSize": 15,
-                  "paddingTop": 10,
+                line height
+              </Text>
+              <Text
+                accessible={true}
+                allowFontScaling={true}
+                ellipsizeMode="tail"
+                style={
+                  Object {
+                    "color": "#ffffff",
+                    "fontFamily": "Montserrat",
+                    "fontSize": 15,
+                    "paddingTop": 10,
+                  }
                 }
-              }
-            >
-              The quick brown fox jumped over the slow lazy dog.
-            </Text>
-            <Text
-              accessible={true}
-              allowFontScaling={true}
-              ellipsizeMode="tail"
-              style={
-                Object {
-                  "color": "#ffffff",
-                  "fontFamily": "Montserrat",
-                  "fontSize": 15,
+              >
+                The quick brown fox jumped over the slow lazy dog.
+              </Text>
+              <Text
+                accessible={true}
+                allowFontScaling={true}
+                ellipsizeMode="tail"
+                style={
+                  Object {
+                    "color": "#ffffff",
+                    "fontFamily": "Montserrat",
+                    "fontSize": 15,
+                  }
                 }
-              }
-            >
-              $123,456,789.00
-            </Text>
+              >
+                $123,456,789.00
+              </Text>
+            </View>
           </View>
         </View>
         <View
@@ -4545,21 +4617,30 @@ exports[`Storyshots Text Style Presets 1`] = `
               }
             }
           >
-            <Text
-              accessible={true}
-              allowFontScaling={true}
-              ellipsizeMode="tail"
+            <View
               style={
                 Object {
-                  "color": "#ffffff",
-                  "fontFamily": "Montserrat",
-                  "fontSize": 15,
-                  "fontWeight": "bold",
+                  "backgroundColor": "#1d1d1d",
+                  "flex": 1,
                 }
               }
             >
-              Osnap! I'm puffy.
-            </Text>
+              <Text
+                accessible={true}
+                allowFontScaling={true}
+                ellipsizeMode="tail"
+                style={
+                  Object {
+                    "color": "#ffffff",
+                    "fontFamily": "Montserrat",
+                    "fontSize": 15,
+                    "fontWeight": "bold",
+                  }
+                }
+              >
+                Osnap! I'm puffy.
+              </Text>
+            </View>
           </View>
         </View>
         <View
@@ -4649,21 +4730,30 @@ exports[`Storyshots Text Style Presets 1`] = `
               }
             }
           >
-            <Text
-              accessible={true}
-              allowFontScaling={true}
-              ellipsizeMode="tail"
+            <View
               style={
                 Object {
-                  "color": "#ffffff",
-                  "fontFamily": "Montserrat",
-                  "fontSize": 24,
-                  "fontWeight": "bold",
+                  "backgroundColor": "#1d1d1d",
+                  "flex": 1,
                 }
               }
             >
-              Behold!
-            </Text>
+              <Text
+                accessible={true}
+                allowFontScaling={true}
+                ellipsizeMode="tail"
+                style={
+                  Object {
+                    "color": "#ffffff",
+                    "fontFamily": "Montserrat",
+                    "fontSize": 24,
+                    "fontWeight": "bold",
+                  }
+                }
+              >
+                Behold!
+              </Text>
+            </View>
           </View>
         </View>
       </View>
@@ -4807,7 +4897,7 @@ exports[`Storyshots TextField Labelling 1`] = `
                 Name
               </Text>
               <TextInput
-                allowFontScaling={true}
+                autoFocus={false}
                 onChangeText={[Function]}
                 placeholder="omg your name"
                 placeholderTextColor="#CDD4DA"
@@ -4935,7 +5025,7 @@ exports[`Storyshots TextField Labelling 1`] = `
                 storybook.field.test
               </Text>
               <TextInput
-                allowFontScaling={true}
+                autoFocus={false}
                 onChangeText={[Function]}
                 placeholder="storybook.placeholder.test"
                 placeholderTextColor="#CDD4DA"
@@ -5097,7 +5187,7 @@ exports[`Storyshots TextField Style Overrides 1`] = `
                 First Name
               </Text>
               <TextInput
-                allowFontScaling={true}
+                autoFocus={false}
                 onChangeText={[Function]}
                 placeholderTextColor="#CDD4DA"
                 style={
@@ -5136,7 +5226,7 @@ exports[`Storyshots TextField Style Overrides 1`] = `
                 Last Name
               </Text>
               <TextInput
-                allowFontScaling={true}
+                autoFocus={false}
                 onChangeText={[Function]}
                 placeholderTextColor="#CDD4DA"
                 style={
@@ -5263,7 +5353,7 @@ exports[`Storyshots TextField Style Overrides 1`] = `
                 Name
               </Text>
               <TextInput
-                allowFontScaling={true}
+                autoFocus={false}
                 onChangeText={[Function]}
                 placeholderTextColor="#CDD4DA"
                 style={

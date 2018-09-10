@@ -17,5 +17,9 @@
     "title": "What’s In This Stack?",
     "tagLine": "Congratulations, you’ve got a very advanced React Native app template here.  Take advantage of this boilerplate!",
     "reactotron": "Demo Reactotron"
+  },
+  "storybook": {
+    "placeholder": "Placeholder",
+    "field": "Field"
   }
 }
