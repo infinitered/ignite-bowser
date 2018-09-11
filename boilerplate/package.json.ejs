@@ -61,7 +61,13 @@
     "typescript": "2.8.3"
   },
   "jest": {
-    "preset": "jest-preset-ignite"
+    "preset": "jest-preset-ignite",
+    "testPathIgnorePatterns": [
+      "/node_modules"
+    ],
+    "globals": {
+      "__TEST__": true
+    }
   },
   "rnpm": {
     "assets": [

@@ -12,6 +12,11 @@ const StorybookUI = getStorybookUI({ port: 9001, host: "localhost", onDeviceUI: 
 export class StorybookUIRoot extends React.Component {
   componentDidMount() {
     SplashScreen.hide()
+    if (typeof __TEST__ === "undefined" || !__TEST__) {
+      const Reactotron = require("../src/services/reactotron")
+      const reactotron = new Reactotron.Reactotron()
+      reactotron.setup()
+    }
   }
   render() {
     return <StorybookUI />
