@@ -1,11 +1,11 @@
 // @cliDescription  Generates a model and model test.
 
+const domains = require('../lib/domains')
+
 module.exports = async function (context) {
   // grab some features
-  const { parameters, strings, print, ignite, filesystem, patching, prompt } = context
+  const { parameters, strings, print, ignite, patching } = context
   const { camelCase, kebabCase, pascalCase, isBlank } = strings
-  const options = parameters.options || {}
-  const folder = options.folder || options.f
 
   // validation
   if (isBlank(parameters.first)) {
@@ -19,22 +19,7 @@ module.exports = async function (context) {
   const pascalName = pascalCase(givenName)
   const camelName = camelCase(givenName)
 
-  const domains = filesystem.list('./src/models/') || []
-  const domainChoices = ['(Create New)', ...domains]
-  let domainAddAnswer = {}
-  let domainPath = ''
-  if (!folder) {
-    const domainQuestion = 'Add model to which domain?'
-    domainAddAnswer = await prompt.ask({
-      name: 'domain',
-      type: 'list',
-      message: domainQuestion,
-      choices: domainChoices
-    })
-    domainPath = (domainAddAnswer.domain === domainChoices[0]) ? name : domainAddAnswer.domain
-  } else {
-    domainPath = (folder === 'models') ? '' : folder
-  }
+  const domainPath = domains.getDomainPath('models', context)
 
   const props = { name, pascalName }
   const jobs = [
