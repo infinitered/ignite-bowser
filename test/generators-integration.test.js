@@ -87,4 +87,14 @@ describe('generators', () => {
     const lint = await execa('npm', ['-s', 'run', 'lint'])
     expect(lint.stderr).toBe('')
   })
+
+  test('generates a model', async () => {
+    const simpleModel = 'test'
+    await execa(IGNITE, ['g', 'model', simpleModel, '--folder', 'models'], { preferLocal: false })
+    expect(jetpack.exists(`src/models/${simpleModel}/${simpleModel}.ts`)).toBe('file')
+    expect(jetpack.exists(`src/models/${simpleModel}/${simpleModel}.test.ts`)).toBe('file')
+    expect(jetpack.exists(`src/models/${simpleModel}/index.ts`)).toBe('file')
+    const lint = await execa('npm', ['-s', 'run', 'lint'])
+    expect(lint.stderr).toBe('')
+  })
 })

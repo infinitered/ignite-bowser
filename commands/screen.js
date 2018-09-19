@@ -16,7 +16,7 @@ module.exports = async function (context) {
     return
   }
 
-  const domainPath = domains.getDomainPath('views', context)
+  const domainPath = await domains.getDomainPath('views', context)
 
   const name = parameters.first
   const screenName = name.endsWith('-screen') ? name : `${name}-screen`

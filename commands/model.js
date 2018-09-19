@@ -4,7 +4,7 @@ const domains = require('../lib/domains')
 
 module.exports = async function (context) {
   // grab some features
-  const { parameters, strings, print, ignite, patching } = context
+  const { parameters, strings, print, ignite, patching, filesystem } = context
   const { camelCase, kebabCase, pascalCase, isBlank } = strings
 
   // validation
@@ -19,26 +19,28 @@ module.exports = async function (context) {
   const pascalName = pascalCase(givenName)
   const camelName = camelCase(givenName)
 
-  const domainPath = domains.getDomainPath('models', context)
+  const domainPath = await domains.getDomainPath('models', context)
 
-  const props = { name, pascalName }
+  const newDomain = isBlank(domainPath)
+  const props = { name, pascalName, newDomain }
+
   const jobs = [
     {
       template: 'model.ejs',
-      target: `src/models/${domainPath}/${name}.ts`
+      target: `src/models/${domainPath}${name}/${name}.ts`
     }, {
       template: 'model.test.ejs',
-      target: `src/models/${domainPath}/${name}.test.ts`
+      target: `src/models/${domainPath}${name}/${name}.test.ts`
     }
   ]
 
-  const rollupPath = `src/models/${domainPath}/index.ts`
-  const newDomain = domainPath === name
+  const rollupPath = `src/models/${domainPath}${name}/index.ts`
+  const rollupExists = filesystem.exists(rollupPath)
 
-  if (newDomain) {
-    jobs.push({ template: 'rollup-index.ts.ejs', target: rollupPath })
-  } else {
+  if (rollupExists) {
     patching.insertInFile(rollupPath, 'export', `export * from "./${name}"`, false)
+  } else {
+    jobs.push({ template: 'rollup-index.ts.ejs', target: rollupPath })
   }
 
   await ignite.copyBatch(context, jobs, props)
