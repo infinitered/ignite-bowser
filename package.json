@@ -36,9 +36,12 @@
       "jasmine",
       "beforeAll",
       "afterAll",
+      "beforeEach",
       "test",
       "expect",
-      "describe"
+      "describe",
+      "jest",
+      "it"
     ]
   },
   "devDependencies": {

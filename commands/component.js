@@ -1,11 +1,11 @@
 // @cliDescription  Generates a component, supporting files, and a storybook test.
 
+const domains = require('../lib/domains')
+
 module.exports = async function (context) {
   // grab some features
-  const { parameters, strings, print, ignite, filesystem, patching, prompt } = context
+  const { parameters, strings, print, ignite, patching } = context
   const { pascalCase, isBlank } = strings
-  const options = parameters.options || {}
-  const folder = options.folder || options.f
 
   // validation
   if (isBlank(parameters.first)) {
@@ -14,22 +14,7 @@ module.exports = async function (context) {
     return
   }
 
-  const domains = filesystem.list('./src/views/')
-  const domainChoices = ['(Create New)', ...domains]
-  let domainAddAnswer = {}
-  let domainPath = ''
-  if (!folder) {
-    const domainQuestion = 'Add component to which domain?'
-    domainAddAnswer = await prompt.ask({
-      name: 'domain',
-      type: 'list',
-      message: domainQuestion,
-      choices: domainChoices
-    })
-    domainPath = (domainAddAnswer.domain === domainChoices[0]) ? '' : domainAddAnswer.domain + '/'
-  } else {
-    domainPath = (folder === 'views') ? '' : folder + '/'
-  }
+  const domainPath = await domains.getDomainPath('views', context)
 
   const name = parameters.first
   const pascalName = pascalCase(name)

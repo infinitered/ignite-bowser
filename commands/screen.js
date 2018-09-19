@@ -1,14 +1,13 @@
 // @cliDescription  Generates an opinionated container.
 
 const patterns = require('../lib/patterns')
+const domains = require('../lib/domains')
 
 module.exports = async function (context) {
   // grab some features
-  const { parameters, print, strings, ignite, filesystem, prompt } = context
+  const { parameters, print, strings, ignite, filesystem } = context
   const { pascalCase, isBlank, camelCase } = strings
   const config = ignite.loadIgniteConfig()
-  const options = parameters.options || {}
-  const folder = options.folder || options.f
 
   // validation
   if (isBlank(parameters.first)) {
@@ -17,22 +16,7 @@ module.exports = async function (context) {
     return
   }
 
-  const domains = filesystem.list('./src/views/')
-  const domainChoices = ['(Create New)', ...domains]
-  let domainAddAnswer = {}
-  let domainPath = ''
-  if (!folder) {
-    const domainQuestion = 'Add screen to which domain?'
-    domainAddAnswer = await prompt.ask({
-      name: 'domain',
-      type: 'list',
-      message: domainQuestion,
-      choices: domainChoices
-    })
-    domainPath = (domainAddAnswer.domain === domainChoices[0]) ? '' : domainAddAnswer.domain + '/'
-  } else {
-    domainPath = (folder === 'views') ? '' : folder + '/'
-  }
+  const domainPath = await domains.getDomainPath('views', context)
 
   const name = parameters.first
   const screenName = name.endsWith('-screen') ? name : `${name}-screen`
