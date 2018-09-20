@@ -9,7 +9,7 @@ import { EventType, NavigationEventCallback } from "react-navigation"
  */
 export const NavigationEvents = types.model("NavigationEvents").volatile(self => {
   // who is currently subscribed to react-navigation events
-  const subs = new Set()
+  const subs = new Set<NavigationEventCallback>()
 
   /**
    * Fires after we change our state.  You call this from the dispatch
@@ -52,5 +52,5 @@ export const NavigationEvents = types.model("NavigationEvents").volatile(self =>
     }
   }
 
-  return { addListener, fireSubscribers }
+  return { addListener, fireSubscribers, subs}
 })
