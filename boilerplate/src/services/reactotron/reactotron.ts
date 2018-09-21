@@ -57,7 +57,6 @@ export class Reactotron {
     this.config = {
       host: "localhost",
       useAsyncStorage: true,
-      clearOnLoad: true,
       ...config,
       state: {
         initial: false,
