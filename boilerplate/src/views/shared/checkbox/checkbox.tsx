@@ -18,7 +18,7 @@ const OUTLINE: ViewStyle = {
   marginTop: 2, // finicky and will depend on font/line-height/baseline/weather
   justifyContent: "center",
   alignItems: "center",
-  borderWidth: 1,//
+  borderWidth: 1,
   borderColor: color.primaryDarker,
   borderRadius: 1,
 }
