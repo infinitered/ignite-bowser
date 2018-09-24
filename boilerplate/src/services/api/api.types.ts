@@ -1,9 +1,9 @@
 import { GeneralApiProblem } from "./api-problem"
 
-export interface Repo {
+export interface User {
   id: number
   name: string
-  owner: string
 }
 
-export type GetRepoResult = { kind: "ok"; repo: Repo } | GeneralApiProblem
+export type GetUsersResult = { kind: "ok"; users: User[] } | GeneralApiProblem
+export type GetUserResult = { kind: "ok"; user: User } | GeneralApiProblem

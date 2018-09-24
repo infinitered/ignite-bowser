@@ -4,7 +4,7 @@
   "license": "MIT",
   "repository": "infinitered/ignite-ir-boilerplate-bowser",
   "homepage": "https://github.com/infinitered/ignite-ir-boilerplate-bowser",
-  "version": "1.0.0-beta.2",
+  "version": "1.0.0",
   "files": [
     "boilerplate",
     "commands",
@@ -36,9 +36,12 @@
       "jasmine",
       "beforeAll",
       "afterAll",
+      "beforeEach",
       "test",
       "expect",
-      "describe"
+      "describe",
+      "jest",
+      "it"
     ]
   },
   "devDependencies": {

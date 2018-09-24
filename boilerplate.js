@@ -171,15 +171,29 @@ async function install (context) {
       spinner.text = `▸ setting up splash screen`
       spinner.start()
       spinner.text = `▸ setting up splash screen: configuring`
+      // Grab the patches
       const patchPath = `${process.cwd()}/patches/splash-screen/splash-screen.patch`
+      const iphoneXPatchPath = `${process.cwd()}/patches/splash-screen/iphonex-splash-screen.patch`
       const patch = filesystem.read(patchPath)
+      const iphoneXPatch = filesystem.read(iphoneXPatchPath)
+
+      // Change some android configs in the main patch
       const androidOldMainPathRegex = new RegExp('/android/app/src/main/java/com/SplashScreenPatch/MainActivity.java', 'g')
       const androidNewMainPath = `/android/app/src/main/java/com/${name.toLowerCase()}/MainActivity.java`
       const androidPatch = patch.replace(androidOldMainPathRegex, androidNewMainPath)
+
+      // Replace placeholder name with this projects actual name
       const patchForNewProject = androidPatch.replace(/SplashScreenPatch/g, name)
+      const iphoneXPatchForNewProject = iphoneXPatch.replace(/SplashScreenPatch/g, name)
       filesystem.write(patchPath, patchForNewProject)
-      spinner.text = `▸ setting up splash screen: cleaning`
+      filesystem.write(iphoneXPatchPath, iphoneXPatchForNewProject)
+
+      // Apply the patches
       await system.run(`git apply ${patchPath}`, { stdio: 'ignore' })
+      await system.run(`git apply ${iphoneXPatchPath}`, { stdio: 'ignore' })
+
+      // Cleanup
+      spinner.text = `▸ setting up splash screen: cleaning`
       filesystem.remove(`${process.cwd()}/patches/splash-screen`)
     }
     await patchSplashScreen()
