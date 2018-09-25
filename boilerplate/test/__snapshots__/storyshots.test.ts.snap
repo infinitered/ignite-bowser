@@ -822,7 +822,7 @@ exports[`Storyshots Checkbox Styling 1`] = `
                     }
                   }
                 >
-                  We’re an App Design & Development Team. Experts in mobile & web technologies. We create beautiful, functional mobile apps and websites.
+                  We’re an App Design & Development Team. Experts in mobile & web technologies. We create beautiful, functional mobile apps and websites. 
                 </Text>
               </View>
             </View>
@@ -3928,8 +3928,8 @@ exports[`Storyshots Text Passing Content 1`] = `
                   }
                 }
               >
-
-                Hello
+                 
+                Hello 
                 <Text
                   style={
                     Object {
@@ -4085,10 +4085,10 @@ exports[`Storyshots Text Style Presets 1`] = `
                 }
               >
                 Check out
-
+                
 
                 my
-
+                
 
                 line height
               </Text>
