@@ -85,7 +85,6 @@ async function install (context) {
     { template: '.prettierignore', target: '.prettierignore' },
     { template: '.prettierrc', target: '.prettierrc' },
     { template: '.solidarity', target: '.solidarity' },
-    { template: 'rn-cli.config.js', target: 'rn-cli.config.js' },
     { template: 'tsconfig.json', target: 'tsconfig.json' },
     { template: 'tslint.json', target: 'tslint.json' },
     { template: 'src/app/main.tsx.ejs', target: 'src/app/main.tsx' }
