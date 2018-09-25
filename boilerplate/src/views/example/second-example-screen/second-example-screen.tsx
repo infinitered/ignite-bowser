@@ -109,7 +109,7 @@ export class SecondExampleScreen extends React.Component<SecondExampleScreenProp
     // Don't do API like this, use store's API
     const demo = new Api()
     demo.setup()
-    demo.getRepo("infinitered/ignite")
+    demo.getUser("1")
     // Let's do some async storage stuff
     await save("Cool Name", "Boaty McBoatface")
   }
@@ -138,7 +138,7 @@ export class SecondExampleScreen extends React.Component<SecondExampleScreenProp
                 textStyle={DEMO_TEXT}
                 tx="secondExampleScreen.reactotron"
                 onPress={this.demoReactotron}
-                />
+              />
             </View>
             <Image source={logoIgnite} style={IGNITE} />
             <View style={LOVE_WRAPPER}>

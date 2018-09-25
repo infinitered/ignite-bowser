@@ -4,3 +4,8 @@ import "react-native"
 // libraries to mock
 import "./mock-i18n"
 import "./mock-reactotron"
+import "./mock-textinput"
+
+declare global {
+  var __TEST__
+}
