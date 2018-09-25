@@ -37,7 +37,7 @@ export class TextField extends React.Component<TextFieldProps, {}> {
       preset = "default",
       style: styleOverride,
       inputStyle: inputStyleOverride,
-      ...rest,
+      ...rest
     } = this.props
     const containerStyle: ViewStyle = { ...CONTAINER, ...PRESETS[preset], ...styleOverride }
     const inputStyle: TextStyle = { ...INPUT, ...inputStyleOverride }
