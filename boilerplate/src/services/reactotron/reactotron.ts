@@ -24,17 +24,20 @@ if (__DEV__) {
 } else {
   // attach a mock so if things sneaky by our __DEV__ guards, we won't crash.
   console.tron = {
+    benchmark: noop,
+    clear: noop,
+    close: noop,
     configure: noop,
     connect: noop,
-    use: noop,
-    useReactNative: noop,
-    clear: noop,
-    log: noop,
-    logImportant: noop,
     display: noop,
     error: noop,
     image: noop,
+    log: noop,
+    logImportant: noop,
     reportError: noop,
+    use: noop,
+    useReactNative: noop,
+    warn: noop,
   }
 }
 
