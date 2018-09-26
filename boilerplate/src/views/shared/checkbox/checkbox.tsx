@@ -37,7 +37,7 @@ export function Checkbox(props: CheckboxProps) {
   let rootStyle
   if (Array.isArray(props.style)) {
     rootStyle = reduce((acc,term) => {
-      return { ...acc, ...term, }
+      return { ...acc, ...term }
     }, ROOT, props.style)
   } else {
     rootStyle = { ...ROOT, ...props.style } as ViewStyle
@@ -46,7 +46,7 @@ export function Checkbox(props: CheckboxProps) {
   let outlineStyle
   if (Array.isArray(props.outlineStyle)) {
     outlineStyle = reduce((acc,term) => {
-      return { ...acc, ...term, }
+      return { ...acc, ...term }
     }, OUTLINE, props.outlineStyle)
   } else {
     outlineStyle = { ...OUTLINE, ...props.outlineStyle } as ViewStyle
@@ -54,8 +54,8 @@ export function Checkbox(props: CheckboxProps) {
 
   let fillStyle
   if (Array.isArray(props.fillStyle)) {
-    rootStyle = reduce((acc,term) => {
-      return { ...acc, ...term, }
+    fillStyle = reduce((acc,term) => {
+      return { ...acc, ...term }
     }, FILL, props.fillStyle)
   } else {
     fillStyle = { ...FILL, ...props.fillStyle } as ViewStyle

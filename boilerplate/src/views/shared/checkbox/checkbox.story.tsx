@@ -1,9 +1,22 @@
 import * as React from "react"
-import { View } from "react-native"
+import { View, ViewStyle } from "react-native"
 import { storiesOf } from "@storybook/react-native"
 import { StoryScreen, Story, UseCase } from "../../../../storybook/views"
 import { Checkbox } from "./"
 import { Toggle } from "react-powerplug"
+
+const arrayStyle: ViewStyle[] = [
+  {paddingVertical: 40},
+  {alignSelf: "flex-end"},
+]
+const arrayOutlineStyle: ViewStyle[] =
+  [
+    {borderColor: "#b443c9"},
+    {borderWidth: 25},
+  ]
+const arrayFillStyle: ViewStyle[] = [
+  {backgroundColor: "#55e0ff"},
+]
 
 storiesOf("Checkbox", module)
   .addDecorator(fn => <StoryScreen>{fn()}</StoryScreen>)
@@ -86,6 +99,23 @@ storiesOf("Checkbox", module)
                 value={on}
                 fillStyle={{ backgroundColor: "red", borderRadius: 8 }}
                 onToggle={toggle}
+              />
+            </View>
+          )}
+        </Toggle>
+      </UseCase>
+
+      <UseCase text="Array style" usage="Use array styles">
+        <Toggle initial={false}>
+          {({ on, toggle }) => (
+            <View>
+              <Checkbox
+                text="Check it twice"
+                value={on}
+                onToggle={toggle}
+                style={arrayStyle}
+                outlineStyle={arrayOutlineStyle}
+                fillStyle={arrayFillStyle}
               />
             </View>
           )}
