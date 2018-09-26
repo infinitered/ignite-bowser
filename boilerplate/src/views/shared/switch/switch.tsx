@@ -2,7 +2,7 @@ import * as React from "react"
 import { ViewStyle, Animated, Easing, TouchableWithoutFeedback } from "react-native"
 import { color } from "../../../theme"
 import { SwitchProps } from "./switch.props"
-import { reduce } from "ramda"
+import { reduce } from "ramda";
 
 // dimensions
 const THUMB_SIZE = 30
@@ -46,6 +46,20 @@ const THUMB: ViewStyle = {
   elevation: 2,
 }
 
+const enhance = (style, newStyles) => {
+  if (Array.isArray(newStyles)) {
+    return reduce((acc,term) => {
+      return { ...acc, ...term }
+    }, style, newStyles)
+  } else {
+    return {
+      ...style,
+      ...newStyles,
+    }
+  }
+}
+
+
 interface SwitchState {
   timer: Animated.Value
 }
@@ -77,22 +91,6 @@ export class Switch extends React.PureComponent<SwitchProps, SwitchState> {
    */
   handlePress = () => this.props.onToggle && this.props.onToggle(!this.props.value)
 
-  enhanceStyle(baseStyle, onOption, offOption) {
-    if (this.props.value)  {
-      if (Array.isArray(onOption)) {
-        return reduce((acc,term) => {
-          return { ...acc, ...term, }
-        }, baseStyle, onOption)
-      }
-    } else {
-      if (Array.isArray(offOption)) {
-        return reduce((acc,term) => {
-          return { ...acc, ...term, }
-        }, baseStyle, offOption)
-      }
-    }
-  }
-
   /**
    * Render the component.
    */
@@ -102,29 +100,24 @@ export class Switch extends React.PureComponent<SwitchProps, SwitchState> {
       outputRange: [OFF_POSITION, ON_POSITION],
     })
 
-    let style
-    if (Array.isArray(this.props.style)) {
-      style = reduce((acc,term) => {
-        return { ...acc, ...term, }
-      }, {}, this.props.style)
-    } else {
-      style = this.props.style
-    }
+    const style = enhance({}, this.props.style)
 
-    let trackStyle
-    trackStyle = this.enhanceStyle({
-      ...TRACK,
-      ...{
-        backgroundColor: this.props.value ? ON_COLOR : OFF_COLOR,
-        borderColor: this.props.value ? BORDER_ON_COLOR : BORDER_OFF_COLOR,
-      },
-    }, this.props.trackOnStyle, this.props.trackOffStyle)
+    let trackStyle = TRACK
+    trackStyle = enhance(trackStyle, {
+      backgroundColor: this.props.value ? ON_COLOR : OFF_COLOR,
+      borderColor: this.props.value ? BORDER_ON_COLOR : BORDER_OFF_COLOR,
+      })
+    trackStyle = enhance(trackStyle,
+      this.props.value ? this.props.trackOnStyle : this.props.trackOffStyle,
+      )
 
-    let thumbStyle
-    thumbStyle = this.enhanceStyle({
-      ...THUMB,
-      ...{ transform: [{ translateX }] },
-    }, this.props.thumbOnStyle, this.props.thumbOffStyle)
+    let thumbStyle = THUMB
+    thumbStyle = enhance(thumbStyle, {
+      transform: [{ translateX }],
+    })
+    thumbStyle = enhance(thumbStyle,
+      this.props.value ? this.props.thumbOnStyle : this.props.thumbOffStyle,
+    )
 
     return (
       <TouchableWithoutFeedback onPress={this.handlePress} style={style}>
