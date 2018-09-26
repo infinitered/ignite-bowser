@@ -30,7 +30,7 @@ export function Button(props: ButtonProps) {
   let textStyle
   if (Array.isArray(textStyleOverride)) {
     textStyle = reduce((acc,term) => {
-      return { ...acc, ...term, }
+      return { ...acc, ...term }
     }, textPresetToUse, textStyleOverride)
   } else {
     textStyle = { ...textPresetToUse, ...textStyleOverride }

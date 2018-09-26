@@ -91,7 +91,7 @@ storiesOf("FormRow", module)
       </UseCase>
     </Story>
   ))
-  .add("Style", () => (
+  .add("Styling", () => (
     <Story>
       <UseCase text="Style array" usage="Form row with an array of styles">
         <FormRow preset="soloStraight" style={arrayStyle}>
