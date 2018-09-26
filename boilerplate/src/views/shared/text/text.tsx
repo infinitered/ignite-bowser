@@ -23,7 +23,7 @@ export function Text(props: TextProps) {
   let style
   if (Array.isArray(styleOverride)) {
     style = reduce((acc,term) => {
-      return { ...acc, ...term, }
+      return { ...acc, ...term }
     }, presetToUse, styleOverride)
   } else {
     style = { ...presetToUse, ...styleOverride }
