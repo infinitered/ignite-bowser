@@ -2380,7 +2380,7 @@ exports[`Storyshots Header Behavior 1`] = `
                       }
                     }
                   >
-                    HOW TO
+                    secondExampleScreen.howTo.test
                   </Text>
                 </View>
                 <View
@@ -2541,7 +2541,7 @@ exports[`Storyshots Header Behavior 1`] = `
                       }
                     }
                   >
-                    HOW TO
+                    secondExampleScreen.howTo.test
                   </Text>
                 </View>
                 <View
@@ -2678,7 +2678,7 @@ exports[`Storyshots Header Behavior 1`] = `
                       }
                     }
                   >
-                    HOW TO
+                    secondExampleScreen.howTo.test
                   </Text>
                 </View>
                 <View
@@ -3717,7 +3717,7 @@ exports[`Storyshots Text Passing Content 1`] = `
                   }
                 }
               >
-                OK!
+                common.ok.test
               </Text>
               <Text
                 style={
@@ -3728,7 +3728,7 @@ exports[`Storyshots Text Passing Content 1`] = `
                   }
                 }
               >
-                [missing "en.omglol" translation]
+                omglol.test
               </Text>
             </View>
           </View>
@@ -4447,7 +4447,7 @@ exports[`Storyshots TextField Labelling 1`] = `
                 Name
               </Text>
               <TextInput
-                allowFontScaling={true}
+                autoFocus={false}
                 onChangeText={[Function]}
                 placeholder="omg your name"
                 placeholderTextColor="#CDD4DA"
@@ -4560,12 +4560,12 @@ exports[`Storyshots TextField Labelling 1`] = `
                   }
                 }
               >
-                Field
+                storybook.field.test
               </Text>
               <TextInput
-                allowFontScaling={true}
+                autoFocus={false}
                 onChangeText={[Function]}
-                placeholder="Placeholder"
+                placeholder="storybook.placeholder.test"
                 placeholderTextColor="#CDD4DA"
                 style={
                   Object {
@@ -4711,7 +4711,7 @@ exports[`Storyshots TextField Style Overrides 1`] = `
                 First Name
               </Text>
               <TextInput
-                allowFontScaling={true}
+                autoFocus={false}
                 onChangeText={[Function]}
                 placeholderTextColor="#CDD4DA"
                 style={
@@ -4747,7 +4747,7 @@ exports[`Storyshots TextField Style Overrides 1`] = `
                 Last Name
               </Text>
               <TextInput
-                allowFontScaling={true}
+                autoFocus={false}
                 onChangeText={[Function]}
                 placeholderTextColor="#CDD4DA"
                 style={
@@ -4862,7 +4862,7 @@ exports[`Storyshots TextField Style Overrides 1`] = `
                 Name
               </Text>
               <TextInput
-                allowFontScaling={true}
+                autoFocus={false}
                 onChangeText={[Function]}
                 placeholderTextColor="#CDD4DA"
                 style={
