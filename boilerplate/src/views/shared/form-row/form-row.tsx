@@ -2,7 +2,7 @@ import * as React from "react"
 import { View } from "react-native"
 import { PRESETS } from "./form-row.presets"
 import { FormRowProps } from "./form-row.props"
-import { concat, mergeWith } from "ramda"
+import { reduce } from "ramda"
 
 /**
  * A horizontal container component used to hold a row of a form.
@@ -10,7 +10,9 @@ import { concat, mergeWith } from "ramda"
 export function FormRow(props: FormRowProps) {
   let viewStyle
   if (Array.isArray(props.style)) {
-    viewStyle = mergeWith(concat, PRESETS[props.preset], props.style)
+    viewStyle = reduce((acc,term) => {
+      return { ...acc, ...term, }
+    }, PRESETS[props.preset], props.style)
   } else {
     viewStyle = {
       ...PRESETS[props.preset],

@@ -3,7 +3,7 @@ import { TouchableOpacity, TextStyle, ViewStyle, View } from "react-native"
 import { Text } from "../text"
 import { color, spacing } from "../../../theme"
 import { CheckboxProps } from "./checkbox.props"
-import { concat, mergeWith } from "ramda"
+import { reduce } from "ramda"
 
 const ROOT: ViewStyle = {
   flexDirection: "row",
@@ -36,21 +36,27 @@ export function Checkbox(props: CheckboxProps) {
 
   let rootStyle
   if (Array.isArray(props.style)) {
-    rootStyle = mergeWith(concat, ROOT, props.style) as ViewStyle
+    rootStyle = reduce((acc,term) => {
+      return { ...acc, ...term, }
+    }, ROOT, props.style)
   } else {
     rootStyle = { ...ROOT, ...props.style } as ViewStyle
   }
 
   let outlineStyle
   if (Array.isArray(props.outlineStyle)) {
-    outlineStyle = mergeWith(concat, OUTLINE, props.outlineStyle)
+    outlineStyle = reduce((acc,term) => {
+      return { ...acc, ...term, }
+    }, OUTLINE, props.outlineStyle)
   } else {
     outlineStyle = { ...OUTLINE, ...props.outlineStyle } as ViewStyle
   }
 
   let fillStyle
   if (Array.isArray(props.fillStyle)) {
-    fillStyle = mergeWith(concat, FILL, props.fillStyle)
+    rootStyle = reduce((acc,term) => {
+      return { ...acc, ...term, }
+    }, FILL, props.fillStyle)
   } else {
     fillStyle = { ...FILL, ...props.fillStyle } as ViewStyle
   }

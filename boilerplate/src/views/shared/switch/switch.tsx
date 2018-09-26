@@ -2,7 +2,7 @@ import * as React from "react"
 import { ViewStyle, Animated, Easing, TouchableWithoutFeedback } from "react-native"
 import { color } from "../../../theme"
 import { SwitchProps } from "./switch.props"
-import { concat, mergeWith } from "ramda"
+import { reduce } from "ramda"
 
 // dimensions
 const THUMB_SIZE = 30
@@ -80,11 +80,15 @@ export class Switch extends React.PureComponent<SwitchProps, SwitchState> {
   enhanceStyle(baseStyle, onOption, offOption) {
     if (this.props.value)  {
       if (Array.isArray(onOption)) {
-        return mergeWith(concat, baseStyle, onOption)
+        return reduce((acc,term) => {
+          return { ...acc, ...term, }
+        }, baseStyle, onOption)
       }
     } else {
       if (Array.isArray(offOption)) {
-        return mergeWith(concat, baseStyle, offOption)
+        return reduce((acc,term) => {
+          return { ...acc, ...term, }
+        }, baseStyle, offOption)
       }
     }
   }
@@ -100,7 +104,9 @@ export class Switch extends React.PureComponent<SwitchProps, SwitchState> {
 
     let style
     if (Array.isArray(this.props.style)) {
-      style = mergeWith(concat, {}, this.props.style)
+      style = reduce((acc,term) => {
+        return { ...acc, ...term, }
+      }, {}, this.props.style)
     } else {
       style = this.props.style
     }

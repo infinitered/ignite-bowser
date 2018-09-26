@@ -3,7 +3,7 @@ import { Text as ReactNativeText } from "react-native"
 import { presets } from "./text.presets"
 import { TextProps } from "./text.props"
 import { translate } from "../../../i18n"
-import { mergeWith, concat } from "ramda"
+import { reduce } from "ramda"
 
 /**
  * For your text displaying needs.
@@ -22,7 +22,9 @@ export function Text(props: TextProps) {
   const presetToUse = presets[preset] || presets.default
   let style
   if (Array.isArray(styleOverride)) {
-    style = mergeWith(concat, ...presetToUse, styleOverride)
+    style = reduce((acc,term) => {
+      return { ...acc, ...term, }
+    }, presetToUse, styleOverride)
   } else {
     style = { ...presetToUse, ...styleOverride }
   }

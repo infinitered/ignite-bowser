@@ -3,7 +3,7 @@ import { TouchableOpacity } from "react-native"
 import { Text } from "../text"
 import { viewPresets, textPresets } from "./button.presets"
 import { ButtonProps } from "./button.props"
-import { mergeWith, concat } from "ramda"
+import { reduce } from "ramda"
 
 /**
  * For your text displaying needs.
@@ -20,14 +20,18 @@ export function Button(props: ButtonProps) {
 
   let viewStyle
   if (Array.isArray(styleOverride)) {
-    viewStyle = mergeWith(concat, ...viewPresetToUse, styleOverride)
+    viewStyle = reduce((acc,term) => {
+      return { ...acc, ...term, }
+    }, viewPresetToUse, styleOverride)
   } else {
     viewStyle = { ...viewPresetToUse, ...styleOverride }
   }
 
   let textStyle
   if (Array.isArray(textStyleOverride)) {
-    textStyle = mergeWith(concat, ...textPresetToUse, textStyleOverride)
+    textStyle = reduce((acc,term) => {
+      return { ...acc, ...term, }
+    }, textPresetToUse, textStyleOverride)
   } else {
     textStyle = { ...textPresetToUse, ...textStyleOverride }
   }
