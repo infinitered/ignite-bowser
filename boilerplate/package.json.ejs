@@ -48,7 +48,7 @@
     "@types/react-test-renderer": "16.0.2",
     "@types/validate.js": "0.11.0",
     "babel-plugin-transform-inline-environment-variables": "0.4.3",
-    "jest-preset-ignite": "0.5.0",
+    "jest-preset-ignite": "0.6.1",
     "npm-run-all": "4.1.3",
     "patch-package": "5.1.1",
     "postinstall-prepare": "1.0.1",
@@ -62,32 +62,6 @@
     "typescript": "3.0.3"
   },
   "jest": {
-    "preset": "react-native",
-    "transform": {
-      "^.+\\.(ts|tsx)$": "<rootDir>/node_modules/jest-preset-ignite/preprocessor.js",
-      "^.+\\.js$": "<rootDir>/node_modules/react-native/jest/preprocessor.js"
-    },
-    "testMatch": [
-      "**/__tests__/**/*.js?(x)",
-      "**/?(*.)(spec|test).js?(x)",
-      "**/__tests__/**/*.ts?(x)",
-      "**/?(*.)(spec|test).ts?(x)"
-    ],
-    "moduleFileExtensions": [
-      "js",
-      "jsx",
-      "ts",
-      "tsx",
-      "json"
-    ],
-    "moduleNameMapper": {
-      "^[./a-zA-Z0-9$_-]+\\.(bmp|gif|jpg|jpeg|png|psd|svg|webp|ttf|otf)$": "RelativeImageStub",
-      "^React$": "<rootDir>/node_modules/react"
-    }
-  },
-  "rnpm": {
-    "assets": [
-      "./src/theme/fonts/"
-    ]
+    "preset": "jest-preset-ignite"
   }
 }
