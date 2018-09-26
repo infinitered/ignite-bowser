@@ -4,6 +4,7 @@ import { color, spacing, typography } from "../../../theme"
 import { translate } from "../../../i18n"
 import { Text } from "../text"
 import { TextFieldProps } from "./text-field.props"
+import { reduce } from "ramda";
 
 // the base styling for the container
 const CONTAINER: ViewStyle = {
@@ -24,6 +25,20 @@ const PRESETS: { [name: string]: ViewStyle } = {
   default: {},
 }
 
+const enhance = (style, styleOverride) => {
+  if (Array.isArray(styleOverride)) {
+    return reduce((acc,term) => {
+      return { ...acc, ...term }
+    }, style, styleOverride)
+  } else {
+    return {
+      ...style,
+      ...styleOverride,
+    }
+  }
+}
+
+
 /**
  * A component which has a label and an input together.
  */
@@ -39,8 +54,11 @@ export class TextField extends React.Component<TextFieldProps, {}> {
       inputStyle: inputStyleOverride,
       ...rest,
     } = this.props
-    const containerStyle: ViewStyle = { ...CONTAINER, ...PRESETS[preset], ...styleOverride }
-    const inputStyle: TextStyle = { ...INPUT, ...inputStyleOverride }
+    let containerStyle: ViewStyle = { ...CONTAINER, ...PRESETS[preset] }
+    containerStyle = enhance(containerStyle, styleOverride)
+
+    let inputStyle: TextStyle = INPUT
+    inputStyle = enhance(inputStyle, inputStyleOverride)
     const actualPlaceholder = placeholderTx ? translate(placeholderTx) : placeholder
 
     return (
