@@ -1,4 +1,4 @@
-import I18n from "react-native-i18n"
+import i18n from "i18n-js"
 
 /**
  * Translates text.
@@ -6,7 +6,7 @@ import I18n from "react-native-i18n"
  * @param key The i18n key.
  */
 export function translate(key: string) {
-  return key ? I18n.t(key) : null
+  return key ? i18n.t(key) : null
 }
 
 /**
@@ -16,5 +16,5 @@ export function translate(key: string) {
  * @param vars Additional values sure to replace.
  */
 export function translateWithVars(key: string, vars: object) {
-  return key ? I18n.t(key, vars) : null
+  return key ? i18n.t(key, vars) : null
 }

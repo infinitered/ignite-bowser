@@ -1,4 +1,4 @@
-jest.mock("react-native-i18n", () => {
+jest.mock("i18n-js", () => {
   return {
     t: key => `${key}.test`,
   }
