@@ -25,7 +25,13 @@ storiesOf("Button", module)
         <Button text="Click It" preset="primary" onPress={() => window.alert("pressed")} disabled />
       </UseCase>
       <UseCase text="Array Style" usage="Button with array style" >
-        <Button text="Click It" preset="primary" onPress={() => window.alert("pressed")} style={buttonStyleArray} textStyle={buttonTextStyleArray} />
+        <Button
+          text="Click It"
+          preset="primary"
+          onPress={() => window.alert("pressed")}
+          style={buttonStyleArray}
+          textStyle={buttonTextStyleArray}
+        />
       </UseCase>
     </Story>
   ))
