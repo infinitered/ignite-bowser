@@ -17208,7 +17208,7 @@ index 36c1405..379305f 100644
   */
 
  #import "AppDelegate.h"
-+#import "SplashScreen.h"
++#import "RNSplashScreen.h"
 
  #import <React/RCTBundleURLProvider.h>
  #import <React/RCTRootView.h>
@@ -17216,7 +17216,7 @@ index 36c1405..379305f 100644
    rootViewController.view = rootView;
    self.window.rootViewController = rootViewController;
    [self.window makeKeyAndVisible];
-+  [SplashScreen show];
++  [RNSplashScreen show];
    return YES;
  }
 
