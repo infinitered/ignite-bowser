@@ -4,7 +4,12 @@ import { StoryScreen, Story, UseCase } from "../../../../storybook/views"
 import { Text } from "../text"
 import { TextField } from "./"
 import { State } from "react-powerplug"
-import { TextStyle } from "react-native"
+import { ViewStyle, TextStyle } from "react-native"
+
+const styleArray: ViewStyle[] = [
+  {paddingHorizontal: 30},
+  {borderWidth: 30},
+]
 
 const inputStyleArray: TextStyle[] = [
   {
@@ -111,6 +116,7 @@ storiesOf("TextField", module)
               onChangeText={value => setState({ value })}
               value={state.value}
               label="Name"
+              style={styleArray}
               inputStyle={inputStyleArray}
             />
           )}
