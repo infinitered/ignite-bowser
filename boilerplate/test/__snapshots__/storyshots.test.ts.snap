@@ -392,9 +392,9 @@ exports[`Storyshots Button Style Presets 1`] = `
                 ellipsizeMode="tail"
                 style={
                   Object {
-                    "color": "#ffffff",
+                    "color": "#a511dc",
                     "fontFamily": "Montserrat",
-                    "fontSize": 9,
+                    "fontSize": 20,
                     "paddingHorizontal": 12,
                   }
                 }
@@ -6193,6 +6193,8 @@ exports[`Storyshots TextField Style Overrides 1`] = `
             <View
               style={
                 Object {
+                  "borderWidth": 30,
+                  "paddingHorizontal": 30,
                   "paddingVertical": 12,
                 }
               }
