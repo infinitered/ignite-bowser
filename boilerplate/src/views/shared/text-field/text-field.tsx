@@ -4,7 +4,7 @@ import { color, spacing, typography } from "../../../theme"
 import { translate } from "../../../i18n"
 import { Text } from "../text"
 import { TextFieldProps } from "./text-field.props"
-import { reduce } from "ramda";
+import { reduce } from "ramda"
 
 // the base styling for the container
 const CONTAINER: ViewStyle = {

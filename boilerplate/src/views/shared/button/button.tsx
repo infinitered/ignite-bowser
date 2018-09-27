@@ -21,7 +21,7 @@ export function Button(props: ButtonProps) {
   let viewStyle
   if (Array.isArray(styleOverride)) {
     viewStyle = reduce((acc,term) => {
-      return { ...acc, ...term, }
+      return { ...acc, ...term }
     }, viewPresetToUse, styleOverride)
   } else {
     viewStyle = { ...viewPresetToUse, ...styleOverride }
