@@ -9,6 +9,11 @@ const buttonStyleArray: ViewStyle[] = [
   {borderRadius: 0},
 ]
 
+const buttonTextStyleArray: TextStyle[] = [
+  {fontSize: 20},
+  {color: "#a511dc"}
+]
+
 storiesOf("Button", module)
   .addDecorator(fn => <StoryScreen>{fn()}</StoryScreen>)
   .add("Style Presets", () => (
@@ -20,7 +25,7 @@ storiesOf("Button", module)
         <Button text="Click It" preset="primary" onPress={() => window.alert("pressed")} disabled />
       </UseCase>
       <UseCase text="Array Style" usage="Button with array style" >
-        <Button text="Click It" preset="primary" onPress={() => window.alert("pressed")} style={buttonStyleArray} />
+        <Button text="Click It" preset="primary" onPress={() => window.alert("pressed")} style={buttonStyleArray} textStyle={buttonTextStyleArray} />
       </UseCase>
     </Story>
   ))
