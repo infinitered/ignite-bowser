@@ -11,7 +11,7 @@ const buttonStyleArray: ViewStyle[] = [
 
 const buttonTextStyleArray: TextStyle[] = [
   {fontSize: 20},
-  {color: "#a511dc"}
+  {color: "#a511dc"},
 ]
 
 storiesOf("Button", module)
