@@ -37,6 +37,7 @@ export class TextField extends React.Component<TextFieldProps, {}> {
       preset = "default",
       style: styleOverride,
       inputStyle: inputStyleOverride,
+      forwardedRef,
       ...rest,
     } = this.props
     const containerStyle: ViewStyle = { ...CONTAINER, ...PRESETS[preset], ...styleOverride }
@@ -52,6 +53,7 @@ export class TextField extends React.Component<TextFieldProps, {}> {
           underlineColorAndroid={color.transparent}
           {...rest}
           style={inputStyle}
+          ref={forwardedRef}
         />
       </View>
     )

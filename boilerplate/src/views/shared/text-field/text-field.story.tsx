@@ -82,6 +82,28 @@ storiesOf("TextField", module)
                 borderRadius: 4,
                 borderColor: "hotpink",
               }}
+  .add("Ref Forwarding", () => (
+    <Story>
+      <UseCase
+        text="Ref Forwarding"
+        usage=""
+      >
+        <State initial={{ value: "fancy colour" }}>
+          {({ state, setState }) => (
+            <TextField
+              onChangeText={value => setState({ value })}
+              value={state.value}
+              label="Name"
+              inputStyle={{
+                backgroundColor: "rebeccapurple",
+                color: "white",
+                padding: 40,
+                borderWidth: 10,
+                borderRadius: 4,
+                borderColor: "hotpink",
+              }}
+              forwardedRef={ref => ref && ref.focus()}
+              onFocus={() => console.tron.log("focus")}
             />
           )}
         </State>

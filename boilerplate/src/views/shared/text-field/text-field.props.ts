@@ -35,4 +35,6 @@ export interface TextFieldProps extends TextInputProperties {
    * Various look & feels.
    */
   preset?: "default"
+
+  forwardedRef?: any
 }
