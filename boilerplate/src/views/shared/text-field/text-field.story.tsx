@@ -82,6 +82,13 @@ storiesOf("TextField", module)
                 borderRadius: 4,
                 borderColor: "hotpink",
               }}
+            />
+          )}
+        </State>
+        <Text text="* attention designers:  i am so sorry" preset="secondary" />
+      </UseCase>
+    </Story>
+  ))
   .add("Ref Forwarding", () => (
     <Story>
       <UseCase
