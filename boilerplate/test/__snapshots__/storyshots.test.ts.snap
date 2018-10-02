@@ -5050,6 +5050,171 @@ exports[`Storyshots TextField Labelling 1`] = `
 </View>
 `;
 
+exports[`Storyshots TextField Ref Forwarding 1`] = `
+<View
+  enabled={true}
+  keyboardVerticalOffset={50}
+  onLayout={[Function]}
+  style={
+    Array [
+      Object {
+        "backgroundColor": "#f0f0f0",
+        "flex": 1,
+      },
+      Object {
+        "paddingBottom": 0,
+      },
+    ]
+  }
+>
+  <View
+    style={
+      Object {
+        "flex": 1,
+      }
+    }
+  >
+    <RCTScrollView>
+      <View>
+        <View
+          style={
+            Object {
+              "backgroundColor": "#eee",
+            }
+          }
+        >
+          <View
+            style={
+              Object {
+                "borderBottomColor": "#e6e6e6",
+                "borderBottomWidth": 1,
+                "paddingBottom": 10,
+                "paddingHorizontal": 10,
+                "paddingTop": 20,
+              }
+            }
+          >
+            <View
+              style={
+                Object {
+                  "borderTopColor": "#e6e6e6",
+                  "borderTopWidth": 1,
+                  "flexDirection": "row",
+                  "left": 0,
+                  "position": "absolute",
+                  "right": 0,
+                  "top": 0,
+                }
+              }
+            >
+              <Text
+                accessible={true}
+                allowFontScaling={true}
+                ellipsizeMode="tail"
+                style={
+                  Object {
+                    "color": "#666",
+                    "fontSize": 10,
+                    "paddingBottom": 2,
+                    "paddingHorizontal": 4,
+                  }
+                }
+              >
+                Use Case
+              </Text>
+            </View>
+            <View
+              style={Object {}}
+            >
+              <Text
+                accessible={true}
+                allowFontScaling={true}
+                ellipsizeMode="tail"
+                style={
+                  Object {
+                    "color": "#3d3d3d",
+                    "fontWeight": "600",
+                  }
+                }
+              >
+                Ref Forwarding
+              </Text>
+            </View>
+            
+          </View>
+          <View
+            style={
+              Object {
+                "backgroundColor": "#fff",
+                "padding": 10,
+              }
+            }
+          >
+            <View
+              style={
+                Object {
+                  "paddingVertical": 12,
+                }
+              }
+            >
+              <Text
+                accessible={true}
+                allowFontScaling={true}
+                ellipsizeMode="tail"
+                style={
+                  Object {
+                    "color": "#939AA4",
+                    "fontFamily": "Montserrat",
+                    "fontSize": 13,
+                  }
+                }
+              >
+                Name
+              </Text>
+              <TextInput
+                autoFocus={false}
+                onChangeText={[Function]}
+                onFocus={[Function]}
+                placeholderTextColor="#CDD4DA"
+                style={
+                  Object {
+                    "backgroundColor": "rebeccapurple",
+                    "borderColor": "hotpink",
+                    "borderRadius": 4,
+                    "borderWidth": 10,
+                    "color": "white",
+                    "fontFamily": "Montserrat",
+                    "fontSize": 18,
+                    "minHeight": 44,
+                    "padding": 40,
+                  }
+                }
+                underlineColorAndroid="rgba(0, 0, 0, 0)"
+                value="fancy colour"
+              />
+            </View>
+            <Text
+              accessible={true}
+              allowFontScaling={true}
+              ellipsizeMode="tail"
+              style={
+                Object {
+                  "color": "#939AA4",
+                  "fontFamily": "Montserrat",
+                  "fontSize": 9,
+                }
+              }
+            >
+              * attention designers:  i am so sorry
+            </Text>
+          </View>
+        </View>
+      </View>
+    </RCTScrollView>
+  </View>
+</View>
+`;
+
 exports[`Storyshots TextField Style Overrides 1`] = `
 <View
   enabled={true}
