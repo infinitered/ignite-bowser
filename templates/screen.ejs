@@ -16,7 +16,7 @@ import { color } from "../../../theme"
 <% } -%>
 import { NavigationScreenProps } from "react-navigation"
 
-export interface <%= props.pascalName %>ScreenProps extends NavigationScreenProps<{}> {
+export interface <%= props.pascalName %>Props extends NavigationScreenProps<{}> {
 }
 
 const ROOT: ViewStyle = {
@@ -25,7 +25,7 @@ const ROOT: ViewStyle = {
 
 // @inject("mobxstuff")
 @observer
-export class <%= props.pascalName %> extends React.Component<<%= props.pascalName %>ScreenProps, {}> {
+export class <%= props.pascalName %> extends React.Component<<%= props.pascalName %>Props, {}> {
   render () {
     return (
       <Screen style={ROOT} preset="fixedCenter">
