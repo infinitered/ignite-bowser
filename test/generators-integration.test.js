@@ -59,8 +59,6 @@ describe('generators', () => {
     const directoryComponent = 'Directory'
     await execa(IGNITE, ['g', 'component', directoryComponent, '--folder', 'example'], { preferLocal: false })
     expect(jetpack.exists(`src/views/example/${directoryComponent}/${directoryComponent}.tsx`)).toBe('file')
-    expect(jetpack.exists(`src/views/example/${directoryComponent}/${directoryComponent}.presets.ts`)).toBe('file')
-    expect(jetpack.exists(`src/views/example/${directoryComponent}/${directoryComponent}.props.ts`)).toBe('file')
     expect(jetpack.exists(`src/views/example/${directoryComponent}/${directoryComponent}.story.tsx`)).toBe('file')
     expect(jetpack.exists(`src/views/example/${directoryComponent}/index.ts`)).toBe('file')
     const lint = await execa('npm', ['-s', 'run', 'lint'])
