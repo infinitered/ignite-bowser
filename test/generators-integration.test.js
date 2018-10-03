@@ -47,8 +47,6 @@ describe('generators', () => {
     const simpleComponent = 'Simple'
     await execa(IGNITE, ['g', 'component', simpleComponent, '--folder', 'views'], { preferLocal: false })
     expect(jetpack.exists(`src/views/${simpleComponent}/${simpleComponent}.tsx`)).toBe('file')
-    expect(jetpack.exists(`src/views/${simpleComponent}/${simpleComponent}.presets.ts`)).toBe('file')
-    expect(jetpack.exists(`src/views/${simpleComponent}/${simpleComponent}.props.ts`)).toBe('file')
     expect(jetpack.exists(`src/views/${simpleComponent}/${simpleComponent}.story.tsx`)).toBe('file')
     expect(jetpack.exists(`src/views/${simpleComponent}/index.ts`)).toBe('file')
     const lint = await execa('npm', ['-s', 'run', 'lint'])
