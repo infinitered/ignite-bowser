@@ -71,8 +71,6 @@ describe('generators', () => {
     const sharedComponent = 'Shared'
     await execa(IGNITE, ['g', 'component', sharedComponent, '--folder', 'shared'], { preferLocal: false })
     expect(jetpack.exists(`src/views/shared/${sharedComponent}/${sharedComponent}.tsx`)).toBe('file')
-    expect(jetpack.exists(`src/views/shared/${sharedComponent}/${sharedComponent}.presets.ts`)).toBe('file')
-    expect(jetpack.exists(`src/views/shared/${sharedComponent}/${sharedComponent}.props.ts`)).toBe('file')
     expect(jetpack.exists(`src/views/shared/${sharedComponent}/${sharedComponent}.story.tsx`)).toBe('file')
     expect(jetpack.exists(`src/views/shared/${sharedComponent}/index.ts`)).toBe('file')
     const lint = await execa('npm', ['-s', 'run', 'lint'])
