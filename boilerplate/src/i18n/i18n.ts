@@ -1,7 +1,9 @@
-import I18n from "react-native-i18n"
+import RNLanguages from "react-native-languages"
+import i18n from "i18n-js"
 
 const en = require("./en")
 const ja = require("./ja")
 
-I18n.fallbacks = true
-I18n.translations = { en, ja }
+i18n.locale = RNLanguages.language
+i18n.fallbacks = true
+i18n.translations = { en, ja }
