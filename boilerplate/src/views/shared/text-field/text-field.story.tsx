@@ -22,6 +22,7 @@ const inputStyleArray: TextStyle[] = [
     borderColor: "#7fff00",
   },
 ] 
+var alertWhenFocused = true
 
 storiesOf("TextField", module)
   .addDecorator(fn => <StoryScreen>{fn()}</StoryScreen>)
@@ -145,8 +146,14 @@ storiesOf("TextField", module)
                 borderRadius: 4,
                 borderColor: "hotpink",
               }}
-              forwardedRef={ref => ref && ref.focus && ref.focus()}
-              onFocus={() => window.alert("focus")}
+              forwardedRef={ref => ref}
+              onFocus={() => {
+                if(alertWhenFocused) {
+                  // Prevent text field focus from being repeatedly triggering alert
+                  alertWhenFocused = false
+                  window.alert("Text field focuesed with forwarded ref!")
+                }
+              }}
             />
           )}
         </State>
