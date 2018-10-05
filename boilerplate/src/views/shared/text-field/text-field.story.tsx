@@ -146,7 +146,7 @@ storiesOf("TextField", module)
                 borderColor: "hotpink",
               }}
               forwardedRef={ref => ref && ref.focus && ref.focus()}
-              onFocus={() => console.tron.log("focus")}
+              onFocus={() => window.alert("focus")}
             />
           )}
         </State>
