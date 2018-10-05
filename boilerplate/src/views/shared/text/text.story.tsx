@@ -1,5 +1,5 @@
 import * as React from "react"
-import { View } from "react-native"
+import { View, ViewStyle } from "react-native"
 import { storiesOf } from "@storybook/react-native"
 import { StoryScreen, Story, UseCase } from "../../../../storybook/views"
 import { color } from "../../../theme/color"
@@ -9,6 +9,10 @@ const VIEWSTYLE = {
   flex: 1,
   backgroundColor: color.storybookDarkBg,
 }
+const viewStyleArray: ViewStyle[] = [
+  VIEWSTYLE,
+  {backgroundColor: "#7fff00"},
+]
 
 storiesOf("Text", module)
   .addDecorator(fn => <StoryScreen>{fn()}</StoryScreen>)
@@ -64,6 +68,21 @@ storiesOf("Text", module)
       </UseCase>
       <UseCase text="nested children" usage="You can embed them and change styles too.">
         <View style={VIEWSTYLE}>
+          <Text>
+            {" "}
+            Hello <Text preset="bold">bolded</Text> World.
+          </Text>
+        </View>
+      </UseCase>
+    </Story>
+  ))
+  .add("Styling", () => (
+    <Story>
+      <UseCase
+        text="Style array"
+        usage="Text with style array"
+      >
+        <View style={viewStyleArray}>
           <Text>
             {" "}
             Hello <Text preset="bold">bolded</Text> World.

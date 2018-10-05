@@ -4,6 +4,24 @@ import { StoryScreen, Story, UseCase } from "../../../../storybook/views"
 import { Text } from "../text"
 import { TextField } from "./"
 import { State } from "react-powerplug"
+import { ViewStyle, TextStyle } from "react-native"
+
+const styleArray: ViewStyle[] = [
+  {paddingHorizontal: 30},
+  {borderWidth: 30},
+]
+
+const inputStyleArray: TextStyle[] = [
+  {
+    backgroundColor: "rebeccapurple",
+    color: "white",
+    padding: 40},
+  {
+    borderWidth: 10,
+    borderRadius: 4,
+    borderColor: "#7fff00",
+  },
+] 
 
 storiesOf("TextField", module)
   .addDecorator(fn => <StoryScreen>{fn()}</StoryScreen>)
@@ -82,6 +100,24 @@ storiesOf("TextField", module)
                 borderRadius: 4,
                 borderColor: "hotpink",
               }}
+            />
+          )}
+        </State>
+        <Text text="* attention designers:  i am so sorry" preset="secondary" />
+      </UseCase>
+
+      <UseCase
+        text="Style array"
+        usage="Useful for 1-off exceptions, but using style arrays."
+      >
+        <State initial={{ value: "fancy colour" }}>
+          {({ state, setState }) => (
+            <TextField
+              onChangeText={value => setState({ value })}
+              value={state.value}
+              label="Name"
+              style={styleArray}
+              inputStyle={inputStyleArray}
             />
           )}
         </State>

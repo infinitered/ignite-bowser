@@ -15,25 +15,25 @@ export interface SwitchProps {
   /**
    * A style override to apply to the container.  Useful for margins and paddings.
    */
-  style?: ViewStyle
+  style?: ViewStyle | ViewStyle[]
 
   /**
    * Additional track styling when on.
    */
-  trackOnStyle?: ViewStyle
+  trackOnStyle?: ViewStyle | ViewStyle[]
 
   /**
    * Additional track styling when off.
    */
-  trackOffStyle?: ViewStyle
+  trackOffStyle?: ViewStyle | ViewStyle[]
 
   /**
    * Additional thumb styling when on.
    */
-  thumbOnStyle?: ViewStyle
+  thumbOnStyle?: ViewStyle | ViewStyle[]
 
   /**
    * Additional thumb styling when off.
    */
-  thumbOffStyle?: ViewStyle
+  thumbOffStyle?: ViewStyle | ViewStyle[]
 }
