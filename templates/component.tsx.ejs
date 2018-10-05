@@ -1,5 +1,5 @@
 import * as React from "react"
-import { ViewStyle, TouchableOpacity, TouchableOpacityProperties } from "react-native"
+import { View, ViewStyle } from "react-native"
 <% if (props.newDomain) { -%>
 import { Text } from "../shared/text"
 <% } else if (props.sharedComponent) { -%>
@@ -8,7 +8,7 @@ import { Text } from "../text"
 import { Text } from "../../shared/text"
 <% } -%>
 
-export interface <%= props.pascalName %>Props extends TouchableOpacityProperties {
+export interface <%= props.pascalName %>Props {
   /**
    * Text which is looked up via i18n.
    */
@@ -36,8 +36,8 @@ export function <%= props.pascalName %>(props: <%= props.pascalName %>Props) {
   const textStyle = { }
 
   return (
-    <TouchableOpacity style={style} {...rest}>
+    <View style={style} {...rest}>
       <Text tx={tx} text={text} style={textStyle} />
-    </TouchableOpacity>
+    </View>
   )
 }
