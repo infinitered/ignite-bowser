@@ -4,10 +4,15 @@ import { StoryScreen, Story, UseCase } from "../../../../storybook/views"
 import { FormRow } from "./form-row"
 import { Text } from "../text"
 import { color } from "../../../theme/color"
+import { ViewStyle } from "react-native"
 
 const TEXT_STYLE_OVERRIDE = {
   color: color.storybookTextColor,
 }
+const arrayStyle: ViewStyle[] = [
+  {borderWidth: 5},
+  {borderColor: "#32cd32"},
+]
 
 storiesOf("FormRow", module)
   .addDecorator(fn => <StoryScreen>{fn()}</StoryScreen>)
@@ -82,6 +87,15 @@ storiesOf("FormRow", module)
       <UseCase text="clear" usage="Identical dimensions but transparent edges.">
         <FormRow preset="clear">
           <Text style={TEXT_STYLE_OVERRIDE}>Curves nowhere.</Text>
+        </FormRow>
+      </UseCase>
+    </Story>
+  ))
+  .add("Styling", () => (
+    <Story>
+      <UseCase text="Style array" usage="Form row with an array of styles">
+        <FormRow preset="soloStraight" style={arrayStyle}>
+          <Text style={TEXT_STYLE_OVERRIDE}>Array style.</Text>
         </FormRow>
       </UseCase>
     </Story>
