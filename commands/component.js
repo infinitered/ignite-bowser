@@ -27,12 +27,6 @@ module.exports = async function (context) {
       template: 'component.tsx.ejs',
       target: `src/views/${domainPath}${name}/${name}.tsx`
     }, {
-      template: 'component.presets.ts.ejs',
-      target: `src/views/${domainPath}${name}/${name}.presets.ts`
-    }, {
-      template: 'component.props.ts.ejs',
-      target: `src/views/${domainPath}${name}/${name}.props.ts`
-    }, {
       template: 'component.story.tsx.ejs',
       target: `src/views/${domainPath}${name}/${name}.story.tsx`
     }, {

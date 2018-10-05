@@ -1,5 +1,5 @@
 import * as React from "react"
-import { TouchableOpacity } from "react-native"
+import { View, ViewStyle } from "react-native"
 <% if (props.newDomain) { -%>
 import { Text } from "../shared/text"
 <% } else if (props.sharedComponent) { -%>
@@ -7,8 +7,23 @@ import { Text } from "../text"
 <% } else { -%>
 import { Text } from "../../shared/text"
 <% } -%>
-import { viewPresets, textPresets } from "./<%= props.name %>.presets"
-import { <%= props.pascalName %>Props } from "./<%= props.name %>.props"
+
+export interface <%= props.pascalName %>Props {
+  /**
+   * Text which is looked up via i18n.
+   */
+  tx?: string
+
+  /**
+   * The text to display if not using `tx` or nested components.
+   */
+  text?: string
+
+  /**
+   * An optional style override useful for padding & margin.
+   */
+  style?: ViewStyle
+}
 
 /**
  * Stateless functional component for your needs
@@ -17,18 +32,12 @@ import { <%= props.pascalName %>Props } from "./<%= props.name %>.props"
  */
 export function <%= props.pascalName %>(props: <%= props.pascalName %>Props) {
   // grab the props
-  const { preset = "primary", tx, text, style: styleOverride, ...rest } = props
-
-  // assemble the style
-  const viewPresetToUse = viewPresets[preset] || viewPresets.primary
-  const textPresetToUse = textPresets[preset] || textPresets.primary
-
-  const viewStyle = { ...viewPresetToUse, ...styleOverride }
-  const textStyle = textPresetToUse
+  const { tx, text, style, ...rest } = props
+  const textStyle = { }
 
   return (
-    <TouchableOpacity style={viewStyle} {...rest}>
+    <View style={style} {...rest}>
       <Text tx={tx} text={text} style={textStyle} />
-    </TouchableOpacity>
+    </View>
   )
 }
