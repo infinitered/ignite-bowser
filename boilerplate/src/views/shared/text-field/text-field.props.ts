@@ -24,12 +24,12 @@ export interface TextFieldProps extends TextInputProperties {
   /**
    * Optional container style overrides useful for margins & padding.
    */
-  style?: ViewStyle
+  style?: ViewStyle | ViewStyle[]
 
   /**
    * Optional style overrides for the input.
    */
-  inputStyle?: TextStyle
+  inputStyle?: TextStyle | TextStyle[]
 
   /**
    * Various look & feels.
