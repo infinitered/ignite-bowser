@@ -53,7 +53,7 @@ export class TextField extends React.Component<TextFieldProps, {}> {
       style: styleOverride,
       inputStyle: inputStyleOverride,
       forwardedRef,
-      ...rest,
+      ...rest
     } = this.props
     let containerStyle: ViewStyle = { ...CONTAINER, ...PRESETS[preset] }
     containerStyle = enhance(containerStyle, styleOverride)
