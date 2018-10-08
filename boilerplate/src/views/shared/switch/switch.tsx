@@ -2,6 +2,7 @@ import * as React from "react"
 import { ViewStyle, Animated, Easing, TouchableWithoutFeedback } from "react-native"
 import { color } from "../../../theme"
 import { SwitchProps } from "./switch.props"
+import { reduce } from "ramda"
 
 // dimensions
 const THUMB_SIZE = 30
@@ -45,6 +46,20 @@ const THUMB: ViewStyle = {
   elevation: 2,
 }
 
+const enhance = (style, newStyles) => {
+  if (Array.isArray(newStyles)) {
+    return reduce((acc,term) => {
+      return { ...acc, ...term }
+    }, style, newStyles)
+  } else {
+    return {
+      ...style,
+      ...newStyles,
+    }
+  }
+}
+
+
 interface SwitchState {
   timer: Animated.Value
 }
@@ -85,23 +100,27 @@ export class Switch extends React.PureComponent<SwitchProps, SwitchState> {
       outputRange: [OFF_POSITION, ON_POSITION],
     })
 
-    const trackStyle = {
-      ...TRACK,
-      ...{
-        backgroundColor: this.props.value ? ON_COLOR : OFF_COLOR,
-        borderColor: this.props.value ? BORDER_ON_COLOR : BORDER_OFF_COLOR,
-      },
-      ...this.props.value ? this.props.trackOnStyle : this.props.trackOffStyle,
-    }
+    const style = enhance({}, this.props.style)
 
-    const thumbStyle = {
-      ...THUMB,
-      ...{ transform: [{ translateX }] },
-      ...this.props.value ? this.props.thumbOnStyle : this.props.thumbOffStyle,
-    }
+    let trackStyle = TRACK
+    trackStyle = enhance(trackStyle, {
+      backgroundColor: this.props.value ? ON_COLOR : OFF_COLOR,
+      borderColor: this.props.value ? BORDER_ON_COLOR : BORDER_OFF_COLOR,
+      })
+    trackStyle = enhance(trackStyle,
+      this.props.value ? this.props.trackOnStyle : this.props.trackOffStyle,
+      )
+
+    let thumbStyle = THUMB
+    thumbStyle = enhance(thumbStyle, {
+      transform: [{ translateX }],
+    })
+    thumbStyle = enhance(thumbStyle,
+      this.props.value ? this.props.thumbOnStyle : this.props.thumbOffStyle,
+    )
 
     return (
-      <TouchableWithoutFeedback onPress={this.handlePress} style={this.props.style}>
+      <TouchableWithoutFeedback onPress={this.handlePress} style={style}>
         <Animated.View style={trackStyle}>
           <Animated.View style={thumbStyle} />
         </Animated.View>

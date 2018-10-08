@@ -47,8 +47,6 @@ describe('generators', () => {
     const simpleComponent = 'Simple'
     await execa(IGNITE, ['g', 'component', simpleComponent, '--folder', 'views'], { preferLocal: false })
     expect(jetpack.exists(`src/views/${simpleComponent}/${simpleComponent}.tsx`)).toBe('file')
-    expect(jetpack.exists(`src/views/${simpleComponent}/${simpleComponent}.presets.ts`)).toBe('file')
-    expect(jetpack.exists(`src/views/${simpleComponent}/${simpleComponent}.props.ts`)).toBe('file')
     expect(jetpack.exists(`src/views/${simpleComponent}/${simpleComponent}.story.tsx`)).toBe('file')
     expect(jetpack.exists(`src/views/${simpleComponent}/index.ts`)).toBe('file')
     const lint = await execa('npm', ['-s', 'run', 'lint'])
@@ -59,8 +57,6 @@ describe('generators', () => {
     const directoryComponent = 'Directory'
     await execa(IGNITE, ['g', 'component', directoryComponent, '--folder', 'example'], { preferLocal: false })
     expect(jetpack.exists(`src/views/example/${directoryComponent}/${directoryComponent}.tsx`)).toBe('file')
-    expect(jetpack.exists(`src/views/example/${directoryComponent}/${directoryComponent}.presets.ts`)).toBe('file')
-    expect(jetpack.exists(`src/views/example/${directoryComponent}/${directoryComponent}.props.ts`)).toBe('file')
     expect(jetpack.exists(`src/views/example/${directoryComponent}/${directoryComponent}.story.tsx`)).toBe('file')
     expect(jetpack.exists(`src/views/example/${directoryComponent}/index.ts`)).toBe('file')
     const lint = await execa('npm', ['-s', 'run', 'lint'])
@@ -71,8 +67,6 @@ describe('generators', () => {
     const sharedComponent = 'Shared'
     await execa(IGNITE, ['g', 'component', sharedComponent, '--folder', 'shared'], { preferLocal: false })
     expect(jetpack.exists(`src/views/shared/${sharedComponent}/${sharedComponent}.tsx`)).toBe('file')
-    expect(jetpack.exists(`src/views/shared/${sharedComponent}/${sharedComponent}.presets.ts`)).toBe('file')
-    expect(jetpack.exists(`src/views/shared/${sharedComponent}/${sharedComponent}.props.ts`)).toBe('file')
     expect(jetpack.exists(`src/views/shared/${sharedComponent}/${sharedComponent}.story.tsx`)).toBe('file')
     expect(jetpack.exists(`src/views/shared/${sharedComponent}/index.ts`)).toBe('file')
     const lint = await execa('npm', ['-s', 'run', 'lint'])
