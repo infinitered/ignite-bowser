@@ -23,13 +23,13 @@ index 7964134..89d24a5 100644
 --- a/android/app/src/main/java/com/SplashScreenPatch/MainActivity.java
 +++ b/android/app/src/main/java/com/SplashScreenPatch/MainActivity.java
 @@ -2,8 +2,16 @@
- 
+
 +import android.os.Bundle;
  import com.facebook.react.ReactActivity;
 +import org.devio.rn.splashscreen.SplashScreen;
- 
+
  public class MainActivity extends ReactActivity {
- 
+
 +   @Override
 +    protected void onCreate(Bundle savedInstanceState) {
 +        SplashScreen.show(this);
@@ -17206,20 +17206,20 @@ index 36c1405..379305f 100644
 +++ b/ios/SplashScreenPatch/AppDelegate.m
 @@ -6,6 +6,7 @@
   */
- 
+
  #import "AppDelegate.h"
-+#import "SplashScreen.h"
- 
++#import "RNSplashScreen.h"
+
  #import <React/RCTBundleURLProvider.h>
  #import <React/RCTRootView.h>
 @@ -29,6 +30,7 @@
    rootViewController.view = rootView;
    self.window.rootViewController = rootViewController;
    [self.window makeKeyAndVisible];
-+  [SplashScreen show];
++  [RNSplashScreen show];
    return YES;
  }
- 
+
 diff --git a/ios/SplashScreenPatch/Images.xcassets/AppIcon.appiconset/Contents.json b/ios/SplashScreenPatch/Images.xcassets/AppIcon.appiconset/Contents.json
 index 118c98f..19882d5 100644
 --- a/ios/SplashScreenPatch/Images.xcassets/AppIcon.appiconset/Contents.json
@@ -30447,6 +30447,8 @@ index 9c9b21f..babe043 100644
  	<string>1</string>
  	<key>LSRequiresIPhoneOS</key>
  	<true/>
+-	<key>NSLocationWhenInUseUsageDescription</key>
+-	<string/>
 -	<key>UILaunchStoryboardName</key>
 -	<string>LaunchScreen</string>
 -	<key>UIRequiredDeviceCapabilities</key>
@@ -30461,12 +30463,10 @@ index 9c9b21f..babe043 100644
 -	</array>
 -	<key>UIViewControllerBasedStatusBarAppearance</key>
 -	<false/>
--	<key>NSLocationWhenInUseUsageDescription</key>
--	<string/>
  	<key>NSAppTransportSecurity</key>
  	<dict>
- 		<key>NSExceptionDomains</key>
-@@ -51,6 +35,8 @@
+ 		<key>NSAllowsArbitraryLoads</key>
+@@ -53,6 +37,8 @@
  			</dict>
  		</dict>
  	</dict>
@@ -30475,7 +30475,7 @@ index 9c9b21f..babe043 100644
  	<key>UIAppFonts</key>
  	<array>
  		<string>Montserrat-Black.ttf</string>
-@@ -72,5 +58,19 @@
+@@ -74,5 +60,19 @@
  		<string>Montserrat-Thin.ttf</string>
  		<string>Montserrat-ThinItalic.ttf</string>
  	</array>
@@ -30483,8 +30483,8 @@ index 9c9b21f..babe043 100644
 +	<array>
 +		<string>armv7</string>
 +	</array>
-+ <key>UIStatusBarStyle</key>
-+ <string>UIStatusBarStyleLightContent</string>
++	<key>UIStatusBarStyle</key>
++	<string>UIStatusBarStyleLightContent</string>
 +	<key>UISupportedInterfaceOrientations</key>
 +	<array>
 +		<string>UIInterfaceOrientationPortrait</string>
@@ -30513,8 +30513,8 @@ index 88a7c9c..87d2632 100644
        rootStore: await setupRootStore(),
      })
    }
- 
+
    /**
--- 
+--
 2.17.0
 
