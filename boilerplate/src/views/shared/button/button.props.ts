@@ -1,7 +1,7 @@
-import { ViewStyle, TextStyle, TouchableOpacityProperties } from "react-native"
+import { ViewStyle, TextStyle, TouchableOpacityProps } from "react-native"
 import { ButtonPresetNames } from "./button.presets"
 
-export interface ButtonProps extends TouchableOpacityProperties {
+export interface ButtonProps extends TouchableOpacityProps {
   /**
    * Text which is looked up via i18n.
    */
