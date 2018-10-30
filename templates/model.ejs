@@ -9,6 +9,16 @@ export const <%= props.pascalName %>Model = types
   .views(self => ({}))
   .actions(self => ({}))
 
+  /**
+  * Un-comment the following to omit model attributes from your snapshots (and from async storage). 
+  * Useful for sensitive data like passwords, or transitive state like whether a modal is open.
+
+  * Note that you'll need to import `omit` from ramda, which is already included in the project!
+  *  .actions(self => ({
+  *   postProcessSnapshot: omit(["password", "socialSecurityNumber", "creditCardNumber"]),
+  * }))
+  */
+
 type <%= props.pascalName %>Type = typeof <%= props.pascalName %>Model.Type
 export interface <%= props.pascalName %> extends <%= props.pascalName %>Type {}
 type <%= props.pascalName %>SnapshotType = typeof <%= props.pascalName %>Model.SnapshotType
