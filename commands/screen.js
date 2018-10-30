@@ -20,6 +20,10 @@ module.exports = async function (context) {
 
   const name = parameters.first
   const screenName = name.endsWith('-screen') ? name : `${name}-screen`
+  if (name.endsWith('-screen')) {
+    print.info(`Note: For future reference, the \`-screen\` suffix is automatically added for you.`)
+    print.info(`You're welcome to add it manually, but we wanted you to know you don't have to. :)`)
+  }
   const pascalName = pascalCase(name)
   const camelName = camelCase(name)
   const newDomain = isBlank(domainPath)
