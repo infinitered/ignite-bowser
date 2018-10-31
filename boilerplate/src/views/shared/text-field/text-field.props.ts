@@ -1,6 +1,6 @@
-import { TextInputProperties, TextStyle, ViewStyle } from "react-native"
+import { TextInputProps, TextStyle, ViewStyle } from "react-native"
 
-export interface TextFieldProps extends TextInputProperties {
+export interface TextFieldProps extends TextInputProps {
   /**
    * The placeholder i18n key.
    */
