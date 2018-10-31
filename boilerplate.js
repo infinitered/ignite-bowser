@@ -82,6 +82,7 @@ async function install (context) {
     { template: 'ignite.json.ejs', target: 'ignite/ignite.json' },
     { template: '.editorconfig', target: '.editorconfig' },
     { template: '.babelrc', target: '.babelrc' },
+    { template: '.gitignore', target: '.gitignore' },
     { template: '.prettierignore', target: '.prettierignore' },
     { template: '.prettierrc', target: '.prettierrc' },
     { template: '.solidarity', target: '.solidarity' },
