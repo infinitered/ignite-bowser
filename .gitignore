@@ -15,3 +15,4 @@ testgrounds
 IntegrationTest
 integration_test
 ios/Pods
+package-lock.json
