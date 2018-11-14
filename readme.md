@@ -4,13 +4,13 @@
 
 <a href='https://semaphoreci.com/ir/ignite-ir-boilerplate-bowser'> <img src='https://semaphoreci.com/api/v1/ir/ignite-ir-boilerplate-bowser/branches/master/badge.svg' alt='Build Status'></a>
 
-## The latest and greatest boilerplate for Infinite Red opinions (Beta)
+## Infinite Red's latest and greatest React Native boilerplate
 
-When you've installed the [Ignite CLI](https://github.com/infinitered/ignite), you can get started with this boilerplate.
+Once you've installed the [Ignite CLI](https://github.com/infinitered/ignite), you can get started with this boilerplate.
 
-This is the boilerplate that [Infinite Red](https://infinite.red) uses as a way to test bleeding-edge changes to our React Native stack.
+This is the boilerplate that the [Infinite Red](https://infinite.red) team recommends and uses on a day-to-day basis. Prior art includes [Ignite Andross](https://github.com/infinitered/ignite-ir-boilerplate-andross).
 
-Currently includes:
+Includes:
 
 * React Native
 * React Navigation

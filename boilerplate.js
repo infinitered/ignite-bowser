@@ -22,7 +22,7 @@ const isAndroidInstalled = function (context) {
  *
  * @param {any} context - The gluegun context.
  */
-async function install (context) {
+async function install(context) {
   const {
     filesystem,
     parameters,
@@ -112,7 +112,7 @@ async function install (context) {
   /**
    * Merge the package.json from our template into the one provided from react-native init.
    */
-  async function mergePackageJsons () {
+  async function mergePackageJsons() {
     // transform our package.json in case we need to replace variables
     const rawJson = await template.generate({
       directory: `${ignite.ignitePluginPath()}/boilerplate`,
@@ -167,7 +167,7 @@ async function install (context) {
     spinner.stop()
 
     // patch splash screen
-    async function patchSplashScreen () {
+    async function patchSplashScreen() {
       spinner.text = `▸ setting up splash screen`
       spinner.start()
       spinner.text = `▸ setting up splash screen: configuring`
@@ -211,10 +211,19 @@ async function install (context) {
 
     // TODO: Make husky hooks optional
     const huskyCmd = '' // `&& node node_modules/husky/bin/install .`
-    system.run(`git init . && git add . && git commit -m "Initial commit." ${huskyCmd}`)
+    await system.run(`git init . && git add . && git commit -m "Initial commit." ${huskyCmd}`)
 
     spinner.succeed(`configured git`)
   }
+
+  // re-run yarn
+  const installDeps = ignite.useYarn ? 'yarn' : 'npm install'
+  await system.run(installDeps)
+  spinner.succeed(`Installed dependencies`)
+
+  // re-run react-native link
+  await system.run('react-native link')
+  spinner.succeed(`Linked dependencies`)
 
   const perfDuration = parseInt(((new Date()).getTime() - perfStart) / 10) / 100
   spinner.succeed(`ignited ${yellow(name)} in ${perfDuration}s`)
