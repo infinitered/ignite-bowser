@@ -4,7 +4,7 @@
 
 <a href='https://semaphoreci.com/ir/ignite-ir-boilerplate-bowser'> <img src='https://semaphoreci.com/api/v1/ir/ignite-ir-boilerplate-bowser/branches/master/badge.svg' alt='Build Status'></a>
 
-## Infinite Red's latest and greated React Native boilerplate
+## Infinite Red's latest and greatest React Native boilerplate
 
 Once you've installed the [Ignite CLI](https://github.com/infinitered/ignite), you can get started with this boilerplate.
 
