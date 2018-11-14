@@ -45,15 +45,15 @@
     ]
   },
   "devDependencies": {
-    "babel-eslint": "^7.1.1",
-    "fs-jetpack": "^1.0.0",
-    "jest": "^20.0.4",
-    "np": "^2.15.0",
-    "sinon": "^2.3.1",
-    "standard": "^10.0.2",
-    "tempy": "^0.1.0"
+    "babel-eslint": "^10.0.1",
+    "fs-jetpack": "^2.2.0",
+    "jest": "^23.6.0",
+    "np": "^3.0.4",
+    "sinon": "^7.1.1",
+    "standard": "^12.0.1",
+    "tempy": "^0.2.1"
   },
   "dependencies": {
-    "ramda": "^0.23.0"
+    "ramda": "^0.25.0"
   }
 }
