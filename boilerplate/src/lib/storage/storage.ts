@@ -51,11 +51,7 @@ export async function load(key: string): Promise<any | null> {
  */
 export async function save(key: string, value: any): Promise<boolean> {
   try {
-    if (typeof value === "object") {
-      await AsyncStorage.setItem(key, JSON.stringify(value))
-    } else {
-      await AsyncStorage.setItem(key, value)
-    }
+    await AsyncStorage.setItem(key, JSON.stringify(value))
     return true
   } catch {
     return false
