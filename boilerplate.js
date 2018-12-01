@@ -222,7 +222,7 @@ async function install(context) {
   spinner.succeed(`Installed dependencies`)
 
   // re-run react-native link
-  await system.run('react-native link')
+  await system.spawn('react-native link', { stdio: 'ignore' })
   spinner.succeed(`Linked dependencies`)
 
   const perfDuration = parseInt(((new Date()).getTime() - perfStart) / 10) / 100
