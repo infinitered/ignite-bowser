@@ -166,6 +166,30 @@ async function install(context) {
     await system.spawn('react-native link', { stdio: 'ignore' })
     spinner.stop()
 
+    await ignite.addModule('react-native-gesture-handler', { version: '1.0.9', link: true })
+
+    ignite.patchInFile(`${process.cwd()}/android/app/src/main/java/com/${name.toLowerCase()}/MainActivity.java`, {
+      after: 'import com.facebook.react.ReactActivity;',
+      insert: `
+      import com.facebook.react.ReactActivityDelegate;
+      import com.facebook.react.ReactRootView;
+      import com.swmansion.gesturehandler.react.RNGestureHandlerEnabledRootView;`
+    })
+
+    ignite.patchInFile(`${process.cwd()}/android/app/src/main/java/com/${name.toLowerCase()}/MainActivity.java`, {
+      after: `public class MainActivity extends ReactActivity {`,
+      insert: '\n  @Override\n' +
+      '  protected ReactActivityDelegate createReactActivityDelegate() {\n' +
+      '    return new ReactActivityDelegate(this, getMainComponentName()) {\n' +
+      '      @Override\n' +
+      '      protected ReactRootView createRootView() {\n' +
+      '       return new RNGestureHandlerEnabledRootView(MainActivity.this);\n' +
+      '      }\n' +
+      '    };\n' +
+      '  }'
+    })
+
+
     // patch splash screen
     async function patchSplashScreen() {
       spinner.text = `▸ setting up splash screen`
