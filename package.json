@@ -62,10 +62,12 @@
     ]
   },
   "devDependencies": {
+    "@semantic-release/git": "^7.0.5",
     "babel-eslint": "^10.0.1",
     "fs-jetpack": "^2.2.0",
     "jest": "^23.6.0",
     "np": "^3.0.4",
+    "semantic-release": "^15.12.3",
     "sinon": "^7.1.1",
     "standard": "^12.0.1",
     "tempy": "^0.2.1"
