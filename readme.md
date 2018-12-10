@@ -2,6 +2,8 @@
 
 # Ignite IR Boilerplate ("Bowser")
 
+NOTE: This repo has been renamed from ignite-ir-boilerplate-bowser to ignite-bowser. Although web traffic and git operations for the previous name will be redirected, we recommend you update any links and git urls for this repo.
+
 <a href="https://circleci.com/gh/infinitered/ignite-bowser"><img alt="CircleCI" src="https://circleci.com/gh/infinitered/ignite-bowser.svg?style=svg" /></a>
 
 ## Infinite Red's latest and greatest React Native boilerplate
