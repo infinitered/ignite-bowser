@@ -1,10 +1,10 @@
 {
-  "name": "ignite-ir-boilerplate-bowser",
+  "name": "ignite-bowser",
   "description": "Infinite Red's hot boilerplate for React Native.",
   "license": "MIT",
-  "repository": "infinitered/ignite-ir-boilerplate-bowser",
-  "homepage": "https://github.com/infinitered/ignite-ir-boilerplate-bowser",
-  "version": "1.0.1",
+  "repository": "infinitered/ignite-bowser",
+  "homepage": "https://github.com/infinitered/ignite-bowser",
+  "version": "2.0.0",
   "files": [
     "boilerplate",
     "commands",
@@ -20,14 +20,16 @@
   "author": {
     "name": "Infinite Red",
     "email": "npm@infinite.red",
-    "url": "https://github.com/infinitered/ignite-ir-boilerplate-bowser"
+    "url": "https://github.com/infinitered/ignite-bowser"
   },
   "scripts": {
     "lint": "tslint -p .",
     "test": "jest",
     "watch": "jest --runInBand --watch",
     "coverage": "jest --runInBand --coverage",
-    "shipit": "np"
+    "ci:test": "yarn test",
+    "ci:publish": "yarn semantic-release",
+    "semantic-release": "semantic-release"
   },
   "standard": {
     "parser": "babel-eslint",
@@ -44,11 +46,28 @@
       "it"
     ]
   },
+  "release": {
+    "plugins": [
+      "@semantic-release/commit-analyzer",
+      "@semantic-release/release-notes-generator",
+      "@semantic-release/npm",
+      "@semantic-release/github",
+      [
+        "@semantic-release/git",
+        {
+          "assets": "package.json",
+          "message": "chore(release): ${nextRelease.version} [skip ci]\n\n${nextRelease.notes}"
+        }
+      ]
+    ]
+  },
   "devDependencies": {
+    "@semantic-release/git": "^7.0.5",
     "babel-eslint": "^10.0.1",
     "fs-jetpack": "^2.2.0",
     "jest": "^23.6.0",
     "np": "^3.0.4",
+    "semantic-release": "^15.12.3",
     "sinon": "^7.1.1",
     "standard": "^12.0.1",
     "tempy": "^0.2.1"
