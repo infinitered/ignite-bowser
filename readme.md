@@ -2,7 +2,7 @@
 
 # Ignite IR Boilerplate ("Bowser")
 
-NOTE: This repo has been renamed from ignite-ir-boilerplate-bowser to ignite-bowser. Although web traffic and git operations for the previous name will be redirected, we recommend you update any links and git urls for this repo.
+_NOTE: This repo has been renamed from ignite-ir-boilerplate-bowser to ignite-bowser. Although web traffic and git operations for the previous name will be redirected, we recommend you update any links and git urls for this repo._
 
 <a href="https://circleci.com/gh/infinitered/ignite-bowser"><img alt="CircleCI" src="https://circleci.com/gh/infinitered/ignite-bowser.svg?style=svg" /></a>
 
@@ -52,24 +52,11 @@ ignite-project
 │   ├── storyshots.test.ts
 ├── README.md
 ├── android
-│   ├── app
-│   ├── build.gradle
-│   ├── gradle
-│   ├── gradle.properties
-│   ├── gradlew
-│   ├── gradlew.bat
-│   ├── keystores
-│   └── settings.gradle
 ├── ignite
 │   ├── ignite.json
 │   └── plugins
 ├── index.js
 ├── ios
-│   ├── IgniteProject
-│   ├── IgniteProject-tvOS
-│   ├── IgniteProject-tvOSTests
-│   ├── IgniteProject.xcodeproj
-│   └── IgniteProjectTests
 └── package.json
 ```
 
@@ -123,13 +110,15 @@ Here lives the theme for your application, including spacing, colors, and typogr
 **views**
 This is where all of your components will live. Both dumb components and screen components will be located here. Each component will have a directory containing the `.tsx` file, along with a story file, and optionally `.presets`, and `.props` files for larger components.
 
-You may choose to futher break down this directory by organizing your components into "domains", which represent cohesive areas of your application. For example, a "user" domain could hold all components and screens related to managing a user.
+You may choose to futher break down this directory by organizing your components into "domains", which represent cohesive areas of your application. For example, a "user" domain could hold all components and screens related to managing a user. Alternatively, you can put your views into more of a flat structure, which is simpler for linking across components.
+
+You will generally spend the bulk of your development time in the `views` directory.
 
 **storybook**
-This is where your stories will be registered and where the Storybook configs will live
+This is where your stories will be registered and where the Storybook configs will live.
 
 **test**
-This directory will hold your Jest configs and mocks, as well as your [storyshots](https://github.com/storybooks/storybook/tree/master/addons/storyshots) test file. This is a file that contains the snapshots of all your component storybooks.
+This directory will hold your Jest configs and mocks, as well as your [storyshots](https://github.com/storybooks/storybook/tree/master/addons/storyshots) test file. This is a file that contains the snapshots of all your component storybooks. Note that actual tests will often live side-by-side with their tested components or other files.
 
 **ignite**
 The `ignite` directory stores all things Ignite, including CLI and boilerplate items. Here you will find generators, plugins and examples to help you get started with React Native.
