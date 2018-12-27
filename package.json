@@ -4,7 +4,7 @@
   "license": "MIT",
   "repository": "infinitered/ignite-bowser",
   "homepage": "https://github.com/infinitered/ignite-bowser",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "files": [
     "boilerplate",
     "commands",
