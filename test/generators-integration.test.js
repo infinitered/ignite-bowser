@@ -8,19 +8,27 @@ const BOILERPLATE = `${__dirname}/../`
 // calling the ignite cli takes a while
 jasmine.DEFAULT_TIMEOUT_INTERVAL = 800000
 
-describe('with a linter', () => {
+describe('a generated app', () => {
   // creates a new temp directory
-  const linterTemp = tempy.directory()
+  const appTemp = tempy.directory()
   beforeAll(async () => {
     // make sure we are in the temp directory
-    process.chdir(linterTemp)
+    process.chdir(appTemp)
     await execa(IGNITE, ['new', APP, '--skip-git', '--boilerplate', BOILERPLATE])
     process.chdir(APP)
   })
 
   afterAll(() => {
     // clean up generated test app
-    jetpack.remove(linterTemp)
+    jetpack.remove(appTemp)
+  })
+
+  test('can yarn install and pass tests', async () => {
+    return execa.shell("yarn install 2>&1")
+    .then(() => execa.shell("npm test 2>&1"))
+    .catch(error => {
+      expect(error.stdout).toEqual('') // will fail & show the yarn or test errors
+    })
   })
 
   test('does have a linting script', async () => {
