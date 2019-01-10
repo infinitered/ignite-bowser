@@ -24,7 +24,7 @@ const inputStyleArray: TextStyle[] = [
 ]
 var alertWhenFocused = true
 
-storiesOf("TextField", module)
+storiesOf("TextField")
   .addDecorator(fn => <StoryScreen>{fn()}</StoryScreen>)
   .add("Labelling", () => (
     <Story>

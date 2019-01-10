@@ -34,6 +34,7 @@ if (__DEV__) {
     image: noop,
     log: noop,
     logImportant: noop,
+    overlay: noop,
     reportError: noop,
     use: noop,
     useReactNative: noop,

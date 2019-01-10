@@ -14,7 +14,7 @@ const arrayStyle: ViewStyle[] = [
   {borderColor: "#32cd32"},
 ]
 
-storiesOf("FormRow", module)
+storiesOf("FormRow")
   .addDecorator(fn => <StoryScreen>{fn()}</StoryScreen>)
   .add("Assembled", () => (
     <Story>
