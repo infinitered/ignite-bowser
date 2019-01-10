@@ -56,7 +56,7 @@ async function install(context) {
   // copy our App, Tests & storybook directories
   spinner.text = '▸ copying files'
   spinner.start()
-  filesystem.copy(`${__dirname}/boilerplate/src`, `${process.cwd()}/src`, {
+  filesystem.copy(`${__dirname}/boilerplate/app`, `${process.cwd()}/app`, {
     overwrite: true,
     matching: '!*.ejs'
   })
@@ -84,7 +84,7 @@ async function install(context) {
     { template: '.solidarity', target: '.solidarity' },
     { template: 'tsconfig.json', target: 'tsconfig.json' },
     { template: 'tslint.json', target: 'tslint.json' },
-    { template: 'src/app/main.tsx.ejs', target: 'src/app/main.tsx' }
+    { template: 'app/app.tsx.ejs', target: 'app/app.tsx' }
   ]
   const templateProps = {
     name,
