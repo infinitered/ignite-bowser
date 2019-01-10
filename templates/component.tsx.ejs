@@ -1,12 +1,6 @@
 import * as React from "react"
 import { View, ViewStyle } from "react-native"
-<% if (props.newDomain) { -%>
-import { Text } from "../shared/text"
-<% } else if (props.sharedComponent) { -%>
 import { Text } from "../text"
-<% } else { -%>
-import { Text } from "../../shared/text"
-<% } -%>
 
 export interface <%= props.pascalName %>Props {
   /**

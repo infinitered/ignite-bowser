@@ -1,19 +1,9 @@
 import * as React from "react"
 import { observer } from "mobx-react"
 import { ViewStyle } from "react-native"
-<% if (props.newDomain) { -%>
-import { Text } from "../shared/text"
-import { Screen } from "../shared/screen"
+import { Text } from "../../components/text"
+import { Screen } from "../../components/screen"
 import { color } from "../../theme"
-<% } else if (props.sharedComponent) { -%>
-import { Text } from "../text"
-import { Screen } from "../screen"
-import { color } from "../../../theme"
-<% } else { -%>
-import { Text } from "../../shared/text"
-import { Screen } from "../../shared/screen"
-import { color } from "../../../theme"
-<% } -%>
 import { NavigationScreenProps } from "react-navigation"
 
 export interface <%= props.pascalName %>Props extends NavigationScreenProps<{}> {

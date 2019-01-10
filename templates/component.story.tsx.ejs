@@ -1,21 +1,14 @@
 import * as React from "react"
 import { storiesOf } from "@storybook/react-native"
-<% if (props.newDomain) { -%>
 import { StoryScreen, Story, UseCase } from "../../../storybook/views"
-<% } else { -%>
-import { StoryScreen, Story, UseCase } from "../../../../storybook/views"
-<% } -%>
 import { <%= props.pascalName %> } from "./"
 
-storiesOf("<%= props.pascalName %>", module)
+storiesOf("<%= props.pascalName %>")
   .addDecorator(fn => <StoryScreen>{fn()}</StoryScreen>)
   .add("Style Presets", () => (
     <Story>
       <UseCase text="Primary" usage="The primary.">
-        <<%= props.pascalName %> text="Click It" preset="primary" onPress={() => window.alert("pressed")} />
-      </UseCase>
-      <UseCase text="Disabled" usage="The disabled behaviour of the primary button.">
-        <<%= props.pascalName %> text="Click It" preset="primary" onPress={() => window.alert("pressed")} disabled />
+        <<%= props.pascalName %> text="<%= props.pascalName %>" />
       </UseCase>
     </Story>
   ))

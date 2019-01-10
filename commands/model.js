@@ -1,7 +1,5 @@
 // @cliDescription  Generates a model and model test.
 
-const domains = require('../lib/domains')
-
 module.exports = async function (context) {
   // grab some features
   const { parameters, strings, print, ignite, patching, filesystem } = context
@@ -19,22 +17,19 @@ module.exports = async function (context) {
   const pascalName = pascalCase(givenName)
   const camelName = camelCase(givenName)
 
-  const domainPath = await domains.getDomainPath('models', context)
-
-  const newDomain = isBlank(domainPath)
-  const props = { name, pascalName, newDomain }
+  const props = { name, pascalName }
 
   const jobs = [
     {
       template: 'model.ejs',
-      target: `src/models/${domainPath}${name}/${name}.ts`
+      target: `app/models/${name}/${name}.ts`
     }, {
       template: 'model.test.ejs',
-      target: `src/models/${domainPath}${name}/${name}.test.ts`
+      target: `app/models/${name}/${name}.test.ts`
     }
   ]
 
-  const rollupPath = `src/models/${domainPath}${name}/index.ts`
+  const rollupPath = `app/models/${name}/index.ts`
   const rollupExists = filesystem.exists(rollupPath)
 
   if (rollupExists) {
@@ -47,7 +42,7 @@ module.exports = async function (context) {
 
   // include stores in root-store
   if (name.endsWith('store')) {
-    const rootStorePath = './src/app/root-store.ts'
+    const rootStorePath = './app/models/root-store/root-store.ts'
     const rootStoreDef = 'export const RootStoreModel'
     const storeTypeImport = `import { ${pascalName}Model } from "../models/${name}"`
     const storeType = `  ${camelName}: types.optional(${pascalName}Model, {}),`
