@@ -29,15 +29,17 @@ The Ignite Bowser boilerplate project's structure will look similar to this:
 
 ```
 ignite-project
-├── src
-│   ├── app
+├── app
+│   ├── components
 │   ├── i18n
-│   ├── lib
 │   ├── models
 │   ├── navigation
+│   ├── screens
 │   ├── services
 │   ├── theme
-│   ├── views
+│   ├── utils
+│   ├── app.tsx
+│   ├── environment-variables.tsx
 ├── storybook
 │   ├── views
 │   ├── index.ts
@@ -60,40 +62,30 @@ ignite-project
 └── package.json
 ```
 
-The directory structure uses a ["feature first, function second"](https://alligator.io/react/index-js-public-interfaces/) approach to organization. Files are grouped by the feature they are supporting rather than the type of file.
-
-For example: A custom `Button` component would have the main component file, and test, and any assets or helper files all grouped together in one folder.
-
-This is a departure from the previous boilerplate, which grouped files by type (components together, styles together, tests together, images together, etc.). One feature of this new approach is the use of index files which export specific functions from files in the directory to create a public interface for each "thing", or "feature. You'll see that pattern quite a bit in this boilerplate.
-
-
-## ./src directory
+### ./app directory
 
 Included in an Ignite boilerplate project is the src directory. This is a directory you would normally have to create when using vanilla React Native.
 
 The inside of the src directory looks similar to the following:
 
 ```
-src
-├── app
+app
+│── components
 │── i18n
-├── lib
 ├── models
 ├── navigation
+├── screens
 ├── services
 ├── theme
-├── views
+├── utils
+├── app.tsx
+├── environment-variables.tsx
 ```
-
-**app**
-This is where a lot of your app's initialization takes place. Here you'll find:
-* root-component.tsx - This is the root component of your app that will render your navigators and other views.
+**components**
+This is where your React dumb components will live. Each component will have a directory containing the `.tsx` file, along with a story file, and optionally `.presets`, and `.props` files for larger components. The app will come with some commonly used components like Button.
 
 **i18n**
 This is where your translations will live if you are using `react-native-i18n`.
-
-**lib**
-This is a great place to put miscellaneous helpers and utilities. Things like date helpers, formatters, etc. are often found here. However, it should only be used for things that are truely shared across your application. If a helper or utility is only used by a specific component or model, consider co-locating your helper with that component or model.
 
 **models**
 This is where your app's models will live. Each model has a directory which will contain the `mobx-state-tree` model file, test file, and any other supporting files like actions, types, etc.
@@ -101,27 +93,28 @@ This is where your app's models will live. Each model has a directory which will
 **navigation**
 This is where your `react-navigation` navigators will live.
 
+**screens**
+This is where your screen components will live. A screen is a React component which will take up the entire screen and be part of the navigation hierarchy. Each screen will have a directory containing the `.tsx` file, along with any assets or other helper files.
+
 **services**
 Any services that interface with the outside world will live here (think REST APIs, Push Notifications, etc.).
 
 **theme**
 Here lives the theme for your application, including spacing, colors, and typography.
 
-**views**
-This is where all of your components will live. Both dumb components and screen components will be located here. Each component will have a directory containing the `.tsx` file, along with a story file, and optionally `.presets`, and `.props` files for larger components.
+**utils**
+This is a great place to put miscellaneous helpers and utilities. Things like date helpers, formatters, etc. are often found here. However, it should only be used for things that are truely shared across your application. If a helper or utility is only used by a specific component or model, consider co-locating your helper with that component or model.
 
-You may choose to futher break down this directory by organizing your components into "domains", which represent cohesive areas of your application. For example, a "user" domain could hold all components and screens related to managing a user. Alternatively, you can put your views into more of a flat structure, which is simpler for linking across components.
+**app.tsx** This is the entry point to your app. This is where you will find the main App component which renders the rest of the application. This is also where you will specify whether you want to run the app in storybook mode.
 
-You will generally spend the bulk of your development time in the `views` directory.
-
-**storybook**
-This is where your stories will be registered and where the Storybook configs will live.
-
-**test**
-This directory will hold your Jest configs and mocks, as well as your [storyshots](https://github.com/storybooks/storybook/tree/master/addons/storyshots) test file. This is a file that contains the snapshots of all your component storybooks. Note that actual tests will often live side-by-side with their tested components or other files.
-
-**ignite**
+### ./ignite directory
 The `ignite` directory stores all things Ignite, including CLI and boilerplate items. Here you will find generators, plugins and examples to help you get started with React Native.
+
+### ./storybook directory
+This is where your stories will be registered and where the Storybook configs will live
+
+### ./test directory
+This directory will hold your Jest configs and mocks, as well as your [storyshots](https://github.com/storybooks/storybook/tree/master/addons/storyshots) test file. This is a file that contains the snapshots of all your component storybooks.
 
 ## Previous Boilerplates
 
