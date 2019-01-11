@@ -30,7 +30,7 @@ ignite-project
 │   ├── services
 │   ├── theme
 │   ├── app.tsx
-│   ├── environment-variables.tsx
+│   ├── environment-variables.ts
 ├── storybook
 │   ├── views
 │   ├── index.ts
@@ -83,7 +83,7 @@ app
 ├── theme
 ├── utils
 ├── app.tsx
-├── environment-variables.tsx
+├── environment-variables.ts
 ```
 **components**
 This is where your React components will live. Each component will have a directory containing the `.tsx` file, along with a story file, and optionally `.presets`, and `.props` files for larger components. The app will come with some commonly used components like Button.
