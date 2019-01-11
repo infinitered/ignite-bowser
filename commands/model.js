@@ -44,7 +44,7 @@ module.exports = async function (context) {
   if (name.endsWith('store')) {
     const rootStorePath = './app/models/root-store/root-store.ts'
     const rootStoreDef = 'export const RootStoreModel'
-    const storeTypeImport = `import { ${pascalName}Model } from "../models/${name}"`
+    const storeTypeImport = `import { ${pascalName}Model } from "../../models/${name}"`
     const storeType = `  ${camelName}: types.optional(${pascalName}Model, {}),`
 
     patching.insertInFile(rootStorePath, 'import', storeTypeImport)
