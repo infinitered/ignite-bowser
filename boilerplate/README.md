@@ -86,7 +86,7 @@ app
 ├── environment-variables.tsx
 ```
 **components**
-This is where your React dumb components will live. Each component will have a directory containing the `.tsx` file, along with a story file, and optionally `.presets`, and `.props` files for larger components. The app will come with some commonly used components like Button.
+This is where your React components will live. Each component will have a directory containing the `.tsx` file, along with a story file, and optionally `.presets`, and `.props` files for larger components. The app will come with some commonly used components like Button.
 
 **i18n**
 This is where your translations will live if you are using `react-native-i18n`.
