@@ -25,6 +25,18 @@ To see it in action, check out these [examples](https://github.com/infinitered/i
 
 ## Quick Start
 
+First, install Ignite CLI:
+
+```
+$ yarn global add ignite-cli
+```
+
+Then spin up a new Bowser-powered React Native app:
+
+```
+$ ignite new MyApp -b bowser
+```
+
 The Ignite Bowser boilerplate project's structure will look similar to this:
 
 ```
