@@ -65,6 +65,36 @@
   "jest": {
     "preset": "jest-preset-ignite"
   },
+  "babel": {
+    "presets": ["module:metro-react-native-babel-preset"],
+    "env": {
+      "production": {
+      }
+    },
+    "plugins": [
+      [
+        "transform-inline-environment-variables",
+        {
+          "include": ["NODE_ENV", "API"]
+        }
+      ],
+      [
+        "@babel/plugin-proposal-decorators",
+        {
+          "legacy": true
+        }
+      ],
+      [
+        "@babel/plugin-proposal-optional-catch-binding"
+      ]
+    ]
+  },
+  "prettier": {
+    "printWidth": 100,
+    "semi": false,
+    "singleQuote": false,
+    "trailingComma": "all"
+  },
   "rnpm": {
     "assets": [
       "./app/theme/fonts/"

@@ -49,9 +49,15 @@ async function install(context) {
   })
   if (rnInstall.exitCode > 0) process.exit(rnInstall.exitCode)
 
-  // remove the __tests__ directory and App.js that come with React Native
-  filesystem.remove('__tests__')
-  filesystem.remove('App.js')
+  // remove the __tests__ directory, App.js, and unnecessary config files that come with React Native
+  const filesToRemove = [
+    '__tests__',
+    'App.js',
+    '.babelrc',
+    '.flowconfig',
+    '.buckconfig',
+  ]
+  filesToRemove.map(filesystem.remove)
 
   // copy our App, Tests & storybook directories
   spinner.text = '▸ copying files'
@@ -76,11 +82,8 @@ async function install(context) {
     { template: 'index.js.ejs', target: 'index.js' },
     { template: 'README.md', target: 'README.md' },
     { template: 'ignite.json.ejs', target: 'ignite/ignite.json' },
-    { template: '.editorconfig', target: '.editorconfig' },
-    { template: '.babelrc', target: '.babelrc' },
     { template: '.gitignore', target: '.gitignore' },
     { template: '.prettierignore', target: '.prettierignore' },
-    { template: '.prettierrc', target: '.prettierrc' },
     { template: '.solidarity', target: '.solidarity' },
     { template: 'tsconfig.json', target: 'tsconfig.json' },
     { template: 'tslint.json', target: 'tslint.json' },
