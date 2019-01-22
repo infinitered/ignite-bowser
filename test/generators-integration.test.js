@@ -53,49 +53,29 @@ describe('generators', () => {
 
   test('generates a component', async () => {
     const simpleComponent = 'Simple'
-    await execa(IGNITE, ['g', 'component', simpleComponent, '--folder', 'views'], { preferLocal: false })
-    expect(jetpack.exists(`src/views/${simpleComponent}/${simpleComponent}.tsx`)).toBe('file')
-    expect(jetpack.exists(`src/views/${simpleComponent}/${simpleComponent}.story.tsx`)).toBe('file')
-    expect(jetpack.exists(`src/views/${simpleComponent}/index.ts`)).toBe('file')
-    const lint = await execa('npm', ['-s', 'run', 'lint'])
-    expect(lint.stderr).toBe('')
-  })
-
-  test('generates a component inside a directory', async () => {
-    const directoryComponent = 'Directory'
-    await execa(IGNITE, ['g', 'component', directoryComponent, '--folder', 'example'], { preferLocal: false })
-    expect(jetpack.exists(`src/views/example/${directoryComponent}/${directoryComponent}.tsx`)).toBe('file')
-    expect(jetpack.exists(`src/views/example/${directoryComponent}/${directoryComponent}.story.tsx`)).toBe('file')
-    expect(jetpack.exists(`src/views/example/${directoryComponent}/index.ts`)).toBe('file')
-    const lint = await execa('npm', ['-s', 'run', 'lint'])
-    expect(lint.stderr).toBe('')
-  })
-
-  test('generates a shared component', async () => {
-    const sharedComponent = 'Shared'
-    await execa(IGNITE, ['g', 'component', sharedComponent, '--folder', 'shared'], { preferLocal: false })
-    expect(jetpack.exists(`src/views/shared/${sharedComponent}/${sharedComponent}.tsx`)).toBe('file')
-    expect(jetpack.exists(`src/views/shared/${sharedComponent}/${sharedComponent}.story.tsx`)).toBe('file')
-    expect(jetpack.exists(`src/views/shared/${sharedComponent}/index.ts`)).toBe('file')
+    await execa(IGNITE, ['g', 'component', simpleComponent], { preferLocal: false })
+    expect(jetpack.exists(`app/components/${simpleComponent}/${simpleComponent}.tsx`)).toBe('file')
+    expect(jetpack.exists(`app/components/${simpleComponent}/${simpleComponent}.story.tsx`)).toBe('file')
+    expect(jetpack.exists(`app/components/${simpleComponent}/index.ts`)).toBe('file')
     const lint = await execa('npm', ['-s', 'run', 'lint'])
     expect(lint.stderr).toBe('')
   })
 
   test('generates a screen', async () => {
     const simpleScreen = 'test'
-    await execa(IGNITE, ['g', 'screen', simpleScreen, '--folder', 'views'], { preferLocal: false })
-    expect(jetpack.exists(`src/views/${simpleScreen}/${simpleScreen}-screen.tsx`)).toBe('file')
-    expect(jetpack.exists(`src/views/${simpleScreen}/index.ts`)).toBe('file')
+    await execa(IGNITE, ['g', 'screen', simpleScreen], { preferLocal: false })
+    expect(jetpack.exists(`app/screens/${simpleScreen}-screen/${simpleScreen}-screen.tsx`)).toBe('file')
+    expect(jetpack.exists(`app/screens/${simpleScreen}-screen/index.ts`)).toBe('file')
     const lint = await execa('npm', ['-s', 'run', 'lint'])
     expect(lint.stderr).toBe('')
   })
 
   test('generates a model', async () => {
     const simpleModel = 'test'
-    await execa(IGNITE, ['g', 'model', simpleModel, '--folder', 'models'], { preferLocal: false })
-    expect(jetpack.exists(`src/models/${simpleModel}/${simpleModel}.ts`)).toBe('file')
-    expect(jetpack.exists(`src/models/${simpleModel}/${simpleModel}.test.ts`)).toBe('file')
-    expect(jetpack.exists(`src/models/${simpleModel}/index.ts`)).toBe('file')
+    await execa(IGNITE, ['g', 'model', simpleModel], { preferLocal: false })
+    expect(jetpack.exists(`app/models/${simpleModel}/${simpleModel}.ts`)).toBe('file')
+    expect(jetpack.exists(`app/models/${simpleModel}/${simpleModel}.test.ts`)).toBe('file')
+    expect(jetpack.exists(`app/models/${simpleModel}/index.ts`)).toBe('file')
     const lint = await execa('npm', ['-s', 'run', 'lint'])
     expect(lint.stderr).toBe('')
   })

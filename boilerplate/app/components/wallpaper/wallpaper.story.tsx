@@ -1,14 +1,14 @@
 import * as React from "react"
 import { storiesOf } from "@storybook/react-native"
 import { StoryScreen, Story, UseCase } from "../../../storybook/views"
-import { <%= props.pascalName %> } from "./"
+import { Wallpaper } from "./wallpaper"
 
-storiesOf("<%= props.pascalName %>")
+storiesOf("Wallpaper")
   .addDecorator(fn => <StoryScreen>{fn()}</StoryScreen>)
   .add("Style Presets", () => (
     <Story>
-      <UseCase text="Primary" usage="The primary.">
-        <<%= props.pascalName %> text="<%= props.pascalName %>" />
+      <UseCase text="default/stretch" usage="Full screen wallpaper image.">
+        <Wallpaper />
       </UseCase>
     </Story>
   ))

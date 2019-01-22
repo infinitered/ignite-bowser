@@ -8,4 +8,4 @@
 //
 // It's easier just to leave it here.
 
-import "./src/app/main"
+import "./app/app.tsx"

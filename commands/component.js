@@ -1,7 +1,5 @@
 // @cliDescription  Generates a component, supporting files, and a storybook test.
 
-const domains = require('../lib/domains')
-
 module.exports = async function (context) {
   // grab some features
   const { parameters, strings, print, ignite, patching } = context
@@ -14,29 +12,25 @@ module.exports = async function (context) {
     return
   }
 
-  const domainPath = await domains.getDomainPath('views', context)
-
   const name = parameters.first
   const pascalName = pascalCase(name)
-  const newDomain = isBlank(domainPath)
-  const sharedComponent = domainPath === 'shared/'
 
-  const props = { name, pascalName, newDomain, sharedComponent }
+  const props = { name, pascalName }
   const jobs = [
     {
       template: 'component.tsx.ejs',
-      target: `src/views/${domainPath}${name}/${name}.tsx`
+      target: `app/components/${name}/${name}.tsx`
     }, {
       template: 'component.story.tsx.ejs',
-      target: `src/views/${domainPath}${name}/${name}.story.tsx`
+      target: `app/components/${name}/${name}.story.tsx`
     }, {
       template: 'rollup-index.ts.ejs',
-      target: `src/views/${domainPath}${name}/index.ts`
+      target: `app/components/${name}/index.ts`
     }
   ]
 
   await ignite.copyBatch(context, jobs, props)
 
   // wire up example
-  patching.insertInFile('./storybook/storybook-registry.ts', '\n', `require("../src/views/${domainPath}${name}/${name}.story")`)
+  patching.insertInFile('./storybook/storybook-registry.ts', '\n', `require("../app/components/${name}/${name}.story")`)
 }

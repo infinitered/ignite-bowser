@@ -1,7 +1,6 @@
 // @cliDescription  Generates an opinionated container.
 
 const patterns = require('../lib/patterns')
-const domains = require('../lib/domains')
 
 module.exports = async function (context) {
   // grab some features
@@ -16,27 +15,23 @@ module.exports = async function (context) {
     return
   }
 
-  const domainPath = await domains.getDomainPath('views', context)
-
   const name = parameters.first
   const screenName = name.endsWith('-screen') ? name : `${name}-screen`
   if (name.endsWith('-screen')) {
     print.info(`Note: For future reference, the \`-screen\` suffix is automatically added for you.`)
     print.info(`You're welcome to add it manually, but we wanted you to know you don't have to. :)`)
   }
-  const pascalName = pascalCase(name)
-  const camelName = camelCase(name)
-  const newDomain = isBlank(domainPath)
-  const sharedComponent = domainPath === 'shared/'
+  const pascalName = pascalCase(screenName)
+  const camelName = camelCase(screenName)
 
-  const props = { name: screenName, pascalName, camelName, newDomain, sharedComponent }
+  const props = { name: screenName, pascalName, camelName }
   const jobs = [
     {
       template: `screen.ejs`,
-      target: `src/views/${domainPath}${name}/${screenName}.tsx`
+      target: `app/screens/${screenName}/${screenName}.tsx`
     }, {
       template: 'rollup-index.ts.ejs',
-      target: `src/views/${domainPath}${name}/index.ts`
+      target: `app/screens/${screenName}/index.ts`
     }
   ]
 
@@ -46,8 +41,8 @@ module.exports = async function (context) {
   // if using `react-navigation` go the extra step
   // and insert the screen into the nav router
   if (config.navigation === 'react-navigation') {
-    const appNavFilePath = `${process.cwd()}/src/navigation/root-navigator.ts`
-    const importToAdd = `import { ${pascalName} } from "../views/${domainPath}${name}/${screenName}"`
+    const appNavFilePath = `${process.cwd()}/app/navigation/root-navigator.ts`
+    const importToAdd = `import { ${pascalName} } from "../screens/${screenName}/${screenName}"`
     const routeToAdd = `    ${camelName}: { screen: ${pascalName} },`
 
     if (!filesystem.exists(appNavFilePath)) {
