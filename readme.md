@@ -76,9 +76,9 @@ ignite-project
 
 ### ./app directory
 
-Included in an Ignite boilerplate project is the src directory. This is a directory you would normally have to create when using vanilla React Native.
+Included in an Ignite boilerplate project is the `app` directory. This is a directory you would normally have to create when using vanilla React Native.
 
-The inside of the src directory looks similar to the following:
+The inside of the `app` directory looks similar to the following:
 
 ```
 app
