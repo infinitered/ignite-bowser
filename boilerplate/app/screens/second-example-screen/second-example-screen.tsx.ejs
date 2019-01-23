@@ -116,7 +116,11 @@ export class SecondExampleScreen extends React.Component<SecondExampleScreenProp
 
   render() {
     return (
+    <% if (props.includeDetox) { -%>
+      <View testID="SecondExampleScreen" style={FULL}>
+    <% } else { -%>
       <View style={FULL}>
+    <% } -%>
         <Wallpaper />
         <SafeAreaView style={FULL}>
           <Screen style={CONTAINER} backgroundColor={color.transparent} preset="scrollStack">

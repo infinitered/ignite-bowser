@@ -30,10 +30,11 @@ async function install(context) {
     reactNative,
     print,
     system,
-    template
+    template,
+    prompt,
   } = context
   const { colors } = print
-  const { red, yellow, bold, gray, blue } = colors
+  const { red, yellow, bold, gray, blue, cyan } = colors
 
   const perfStart = (new Date()).getTime()
 
@@ -59,6 +60,12 @@ async function install(context) {
   ]
   filesToRemove.map(filesystem.remove)
 
+  const includeDetox = await prompt.confirm('Would you like to include Detox end-to-end tests?')
+
+  if (includeDetox) {
+    print.info(`You'll love Detox for testing your app! There are some additional requirements to install, so make sure to check out ${cyan('e2e/README.md')}!`)
+  }
+
   // copy our App, Tests & storybook directories
   spinner.text = '▸ copying files'
   spinner.start()
@@ -77,6 +84,10 @@ async function install(context) {
   filesystem.copy(`${__dirname}/boilerplate/bin`, `${process.cwd()}/bin`, {
     overwrite: true,
   })
+  includeDetox && filesystem.copy(`${__dirname}/boilerplate/e2e`, `${process.cwd()}/e2e`, {
+    overwrite: true,
+    matching: '!*.ejs'
+  })
   spinner.stop()
 
   // generate some templates
@@ -90,7 +101,9 @@ async function install(context) {
     { template: '.solidarity', target: '.solidarity' },
     { template: 'tsconfig.json', target: 'tsconfig.json' },
     { template: 'tslint.json', target: 'tslint.json' },
-    { template: 'app/app.tsx.ejs', target: 'app/app.tsx' }
+    { template: 'app/app.tsx.ejs', target: 'app/app.tsx' },
+    { template: 'app/screens/first-example-screen/first-example-screen.tsx.ejs', target: 'app/screens/first-example-screen/first-example-screen.tsx' },
+    { template: 'app/screens/second-example-screen/second-example-screen.tsx.ejs', target: 'app/screens/second-example-screen/second-example-screen.tsx' },
   ]
   const templateProps = {
     name,
@@ -98,7 +111,8 @@ async function install(context) {
     reactNativeVersion: rnInstall.version,
     vectorIcons: false,
     animatable: false,
-    i18n: false
+    i18n: false,
+    includeDetox,
   }
   await ignite.copyBatch(context, templates, templateProps, {
     quiet: true,
@@ -142,6 +156,12 @@ async function install(context) {
         omit(['dependencies', 'devDependencies', 'scripts'], newPackageJson)
       )
     )(currentPackage)
+
+    if (!includeDetox) {
+      delete newPackage.detox
+      delete newPackage.scripts["test:e2e"]
+      delete newPackage.devDependencies.detox
+    }
 
     // write this out
     filesystem.write('package.json', newPackage, { jsonIndent: 2 })
