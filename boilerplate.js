@@ -61,7 +61,7 @@ async function install(context) {
   filesToRemove.map(filesystem.remove)
 
   const askAboutDetox = !parameters.options.detox
-  const includeDetox = askAboutDetox ? await prompt.confirm('Would you like to include Detox end-to-end tests?') : parameters.options.detox === 'true'
+  const includeDetox = askAboutDetox ? await prompt.confirm('Would you like to include Detox end-to-end tests?') : parameters.options.detox === true
 
   if (includeDetox) {
     print.info(`You'll love Detox for testing your app! There are some additional requirements to install, so make sure to check out ${cyan('e2e/README.md')}!`)

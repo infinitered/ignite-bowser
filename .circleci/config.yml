@@ -9,6 +9,11 @@ defaults: &defaults
     - image: circleci/node:10.11
   working_directory: ~/repo
 
+mac: &mac
+  macos:
+    xcode: "10.1.0"
+  working_directory: ~/repo
+
 version: 2
 jobs:
   setup:
@@ -50,6 +55,52 @@ jobs:
           name: Run tests
           command: yarn ci:test # this command will be added to/found in your package.json scripts
 
+  detox:
+    <<: *mac
+    steps:
+      - checkout
+      - restore_cache:
+          name: Restore node modules
+          keys:
+            - v1-dependencies-mac-{{ checksum "package.json" }}
+            # fallback to using the latest cache if no exact match is found
+            - v1-dependencies-mac-
+      - run:
+          name: Install dependencies
+          command: |
+            yarn install
+      - save_cache:
+          name: Save node modules
+          paths:
+            - node_modules
+          key: v1-dependencies-mac-{{ checksum "package.json" }}
+      - run:
+          name: Install React Native CLI and Ignite CLI
+          command: |
+            sudo npm i -g ignite-cli react-native-cli detox-cli
+      - run:
+          name: Install applesimutils
+          command: brew tap wix/brew && brew install applesimutils
+      - run:
+          name: Install fbsimctl
+          command: brew tap facebook/fb
+      - run:
+          name: Create temp directory
+          command: mkdir tempApp
+      - run:
+          name: Ignite app
+          command: cd tempApp && ignite new DetoxTests --detox --skip-git -b ../
+      - run:
+          name: Build Detox in ignited app
+          command: cd tempApp/DetoxTests && detox build
+      - run:
+          name: Run detox tests in ignited app
+          command: cd tempApp/DetoxTests && detox test -c ios.sim.debug -l verbose --cleanup
+      - run:
+          name: Remove temp directory
+          command: rm -rf tempApp
+
+
   publish:
     <<: *defaults
     steps:
@@ -74,6 +125,7 @@ workflows:
       - tests:
           requires:
             - setup
+      - detox
       - publish:
           requires:
             - tests
