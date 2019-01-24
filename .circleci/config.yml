@@ -59,9 +59,6 @@ jobs:
     <<: *mac
     steps:
       - checkout
-      - run:
-          name: Change Permissions
-          command: sudo chown -R $(whoami) /Users/distiller
       - restore_cache:
           name: Restore node modules
           keys:
@@ -81,6 +78,9 @@ jobs:
           name: Install React Native CLI and Ignite CLI
           command: |
             sudo npm i -g ignite-cli react-native-cli detox-cli
+      - run:
+          name: Change Permissions
+          command: sudo chown -R $(whoami) /Users/distiller/.config/
       - run:
           name: Install applesimutils
           command: brew tap wix/brew && brew install applesimutils
