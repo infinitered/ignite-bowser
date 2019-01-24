@@ -70,7 +70,8 @@
     "typescript": "3.0.3"
   },
   "jest": {
-    "preset": "jest-preset-ignite"
+    "preset": "jest-preset-ignite",
+    "testPathIgnorePatterns": ["/node_modules/", "/e2e"]
   },
   "babel": {
     "presets": ["module:metro-react-native-babel-preset"],
@@ -80,15 +81,15 @@
     },
     "plugins": [
       [
-        "transform-inline-environment-variables",
-        {
-          "include": ["NODE_ENV", "API"]
-        }
-      ],
-      [
         "@babel/plugin-proposal-decorators",
         {
           "legacy": true
+        }
+      ],
+      [
+        "transform-inline-environment-variables",
+        {
+          "include": ["NODE_ENV", "API"]
         }
       ],
       [

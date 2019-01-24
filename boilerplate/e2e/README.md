@@ -43,13 +43,21 @@ Note that in order to pick up elements by ID, we've added the `testID` prop to t
 
 ## Running tests
 
-1. Run the app
+1. Start the packager
+
+```
+yarn start
+```
+
+2. Run the app
+
+In a separate terminal window from the packager:
 
 ```
 yarn build:e2e
 ```
 
-2. Run the tests
+3. Run the tests
 
 ```
 yarn test:e2e
