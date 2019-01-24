@@ -12,7 +12,7 @@ defaults: &defaults
 mac: &mac
   macos:
     xcode: "10.1.0"
-  working_directory: /Users/distiller/project
+  working_directory: ~/repo
 
 version: 2
 jobs:
@@ -60,8 +60,8 @@ jobs:
     steps:
       - checkout
       - run:
-          name: Set permissions
-          command: chmod -R 777 /Users/distiller/project
+          name: Change Permissions
+          command: sudo chown -R $(whoami) /Users/distiller
       - restore_cache:
           name: Restore node modules
           keys:
