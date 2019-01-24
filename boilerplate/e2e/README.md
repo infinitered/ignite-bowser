@@ -46,7 +46,7 @@ Note that in order to pick up elements by ID, we've added the `testID` prop to t
 1. Run the app
 
 ```
-react-native run-ios
+yarn build:e2e
 ```
 
 2. Run the tests
