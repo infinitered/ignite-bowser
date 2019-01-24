@@ -95,10 +95,10 @@ jobs:
           command: cd tempApp && ignite new DetoxTests --detox --skip-git -b ../
       - run:
           name: Build Detox in ignited app
-          command: cd tempApp/DetoxTests && detox build
+          command: cd tempApp/DetoxTests && detox build -c ios.sim.release
       - run:
           name: Run detox tests in ignited app
-          command: cd tempApp/DetoxTests && detox test -c ios.sim.debug -l verbose --cleanup
+          command: cd tempApp/DetoxTests && detox test -c ios.sim.release -l verbose --cleanup
       - run:
           name: Remove temp directory
           command: rm -rf tempApp
