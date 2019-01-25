@@ -23,11 +23,12 @@ describe('a generated app', () => {
     jetpack.remove(appTemp)
   })
 
-  test('can yarn install and pass tests', async () => {
-    return execa.shell("yarn install 2>&1")
-    .then(() => execa.shell("npm test 2>&1"))
+  test('can lint, compile, and pass tests', async () => {
+    return execa.shell("yarn run lint 2>&1")
+    .then(() => execa.shell("yarn run compile 2>&1"))
+    .then(() => execa.shell("yarn test 2>&1"))
     .catch(error => {
-      expect(error.stdout).toEqual('') // will fail & show the yarn or test errors
+      expect(error.stdout).toEqual('') // will fail & show the errors
     })
   })
 
