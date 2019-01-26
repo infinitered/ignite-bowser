@@ -10,6 +10,7 @@
     "noImplicitReturns": true,
     "noImplicitThis": true,
     "noUnusedLocals": true,
+    "skipLibCheck": true,
     "sourceMap": true,
     "target": "es2015"
   },
