@@ -1,5 +1,5 @@
 jest.mock("TextInput", () => {
-  const RealComponent = require.requireActual("TextInput")
+  const RealComponent = (require as any).requireActual("TextInput")
   const React = require("React")
 
   class TextInput extends React.Component {
