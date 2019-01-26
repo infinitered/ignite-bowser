@@ -3,10 +3,12 @@
   "version": "0.0.1",
   "private": true,
   "scripts": {
+<% if (props.includeDetox) { -%>
     "test:e2e": "detox test -c ios.sim.debug",
     "build:e2e": "detox build -c ios.sim.debug",
     "ci:test:e2e": "detox test -c ios.sim.release -l verbose --cleanup",
     "ci:build:e2e": "detox build -c ios.sim.release",
+<% } -%>
     "compile": "tsc --noEmit -p . --pretty",
     "format": "npm-run-all format:*",
     "format:js": "prettier --write {.,**}/*.js",
@@ -54,7 +56,9 @@
     "@types/react-navigation": "2.13.5",
     "@types/react-test-renderer": "16.0.3",
     "babel-plugin-transform-inline-environment-variables": "0.4.3",
+<% if (props.includeDetox) { -%>
     "detox": "^10.0.2",
+<% } -%>
     "jest-preset-ignite": "0.6.1",
     "npm-run-all": "4.1.5",
     "patch-package": "5.1.1",
@@ -103,11 +107,7 @@
     "singleQuote": false,
     "trailingComma": "all"
   },
-  "rnpm": {
-    "assets": [
-      "./app/theme/fonts/"
-    ]
-  },
+  <% if (props.includeDetox) { -%>
   "detox": {
     "test-runner": "jest",
     "configurations": {
@@ -124,5 +124,11 @@
         "name": "iPhone 8"
       }
     }
+  },
+<% } -%>
+  "rnpm": {
+    "assets": [
+      "./app/theme/fonts/"
+    ]
   }
 }

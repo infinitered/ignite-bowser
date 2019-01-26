@@ -171,15 +171,6 @@ async function install(context) {
       )
     )(currentPackage)
 
-    if (!includeDetox) {
-      delete newPackage.detox
-      delete newPackage.scripts["test:e2e"]
-      delete newPackage.scripts["build:e2e"]
-      delete newPackage.scripts["ci:build:e2e"]
-      delete newPackage.scripts["ci:test:e2e"]
-      delete newPackage.devDependencies.detox
-    }
-
     // write this out
     filesystem.write('package.json', newPackage, { jsonIndent: 2 })
   }
