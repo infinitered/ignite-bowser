@@ -35,6 +35,8 @@ async function install(context) {
   } = context
   const { colors } = print
   const { red, yellow, bold, gray, blue, cyan } = colors
+  const isWindows = process.platform === 'win32'
+  const isMac = process.platform === 'darwin'
 
   const perfStart = (new Date()).getTime()
 
@@ -60,11 +62,22 @@ async function install(context) {
   ]
   filesToRemove.map(filesystem.remove)
 
-  const askAboutDetox = !parameters.options.detox
-  const includeDetox = askAboutDetox ? await prompt.confirm('Would you like to include Detox end-to-end tests?') : parameters.options.detox === true
+  let includeDetox = false
+  if (isMac) {
+    const askAboutDetox = parameters.options.detox === undefined
+    includeDetox = askAboutDetox ? await prompt.confirm('Would you like to include Detox end-to-end tests?') : parameters.options.detox === true
 
-  if (includeDetox) {
-    print.info(`You'll love Detox for testing your app! There are some additional requirements to install, so make sure to check out ${cyan('e2e/README.md')}!`)
+    if (includeDetox) {
+      print.info(`You'll love Detox for testing your app! There are some additional requirements to install, so make sure to check out ${cyan('e2e/README.md')}!`)
+    }
+  } else {
+    if (parameters.options.detox === 'true') {
+      if (isWindows) {
+        print.info("Skipping Detox because it is only supported on macOS, but you're running Windows")
+      } else {
+        print.info("Skipping Detox because it is only supported on macOS")
+      }
+    }
   }
 
   // copy our App, Tests & storybook directories
