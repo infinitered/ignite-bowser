@@ -9,7 +9,7 @@ const { getReactNativeVersion } = require('./lib/react-native-version')
  * @param {*} context - The gluegun context.
  * @returns {boolean}
  */
-const isAndroidInstalled = function (context) {
+const isAndroidInstalled = function(context) {
   const androidHome = process.env['ANDROID_HOME']
   const hasAndroidEnv = !context.strings.isBlank(androidHome)
   const hasAndroid = hasAndroidEnv && context.filesystem.exists(`${androidHome}/tools`) === 'dir'
@@ -23,21 +23,13 @@ const isAndroidInstalled = function (context) {
  * @param {any} context - The gluegun context.
  */
 async function install(context) {
-  const {
-    filesystem,
-    parameters,
-    ignite,
-    reactNative,
-    print,
-    system,
-    template
-  } = context
+  const { filesystem, parameters, ignite, reactNative, print, system, template } = context
   const { colors } = print
   const { red, yellow, bold, gray, blue } = colors
 
-  const perfStart = (new Date()).getTime()
+  const perfStart = new Date().getTime()
 
-  const name = parameters.third
+  const name = parameters.first
   const spinner = print
     .spin(`using the ${red('Infinite Red')} boilerplate v3 (code name 'Bowser')`)
     .succeed()
@@ -50,13 +42,7 @@ async function install(context) {
   if (rnInstall.exitCode > 0) process.exit(rnInstall.exitCode)
 
   // remove the __tests__ directory, App.js, and unnecessary config files that come with React Native
-  const filesToRemove = [
-    '__tests__',
-    'App.js',
-    '.babelrc',
-    '.flowconfig',
-    '.buckconfig',
-  ]
+  const filesToRemove = ['__tests__', 'App.js', '.babelrc', '.flowconfig', '.buckconfig']
   filesToRemove.map(filesystem.remove)
 
   // copy our App, Tests & storybook directories
@@ -75,7 +61,7 @@ async function install(context) {
     matching: '!*.ejs'
   })
   filesystem.copy(`${__dirname}/boilerplate/bin`, `${process.cwd()}/bin`, {
-    overwrite: true,
+    overwrite: true
   })
   spinner.stop()
 
@@ -128,19 +114,13 @@ async function install(context) {
 
     // deep merge, lol
     const newPackage = pipe(
-      assoc(
-        'dependencies',
-        merge(currentPackage.dependencies, newPackageJson.dependencies)
-      ),
+      assoc('dependencies', merge(currentPackage.dependencies, newPackageJson.dependencies)),
       assoc(
         'devDependencies',
         merge(currentPackage.devDependencies, newPackageJson.devDependencies)
       ),
       assoc('scripts', merge(currentPackage.scripts, newPackageJson.scripts)),
-      merge(
-        __,
-        omit(['dependencies', 'devDependencies', 'scripts'], newPackageJson)
-      )
+      merge(__, omit(['dependencies', 'devDependencies', 'scripts'], newPackageJson))
     )(currentPackage)
 
     // write this out
@@ -170,26 +150,33 @@ async function install(context) {
 
     await ignite.addModule('react-native-gesture-handler', { version: '1.0.9', link: true })
 
-    ignite.patchInFile(`${process.cwd()}/android/app/src/main/java/com/${name.toLowerCase()}/MainActivity.java`, {
-      after: 'import com.facebook.react.ReactActivity;',
-      insert: `
+    ignite.patchInFile(
+      `${process.cwd()}/android/app/src/main/java/com/${name.toLowerCase()}/MainActivity.java`,
+      {
+        after: 'import com.facebook.react.ReactActivity;',
+        insert: `
       import com.facebook.react.ReactActivityDelegate;
       import com.facebook.react.ReactRootView;
       import com.swmansion.gesturehandler.react.RNGestureHandlerEnabledRootView;`
-    })
+      }
+    )
 
-    ignite.patchInFile(`${process.cwd()}/android/app/src/main/java/com/${name.toLowerCase()}/MainActivity.java`, {
-      after: `public class MainActivity extends ReactActivity {`,
-      insert: '\n  @Override\n' +
-        '  protected ReactActivityDelegate createReactActivityDelegate() {\n' +
-        '    return new ReactActivityDelegate(this, getMainComponentName()) {\n' +
-        '      @Override\n' +
-        '      protected ReactRootView createRootView() {\n' +
-        '       return new RNGestureHandlerEnabledRootView(MainActivity.this);\n' +
-        '      }\n' +
-        '    };\n' +
-        '  }'
-    })
+    ignite.patchInFile(
+      `${process.cwd()}/android/app/src/main/java/com/${name.toLowerCase()}/MainActivity.java`,
+      {
+        after: `public class MainActivity extends ReactActivity {`,
+        insert:
+          '\n  @Override\n' +
+          '  protected ReactActivityDelegate createReactActivityDelegate() {\n' +
+          '    return new ReactActivityDelegate(this, getMainComponentName()) {\n' +
+          '      @Override\n' +
+          '      protected ReactRootView createRootView() {\n' +
+          '       return new RNGestureHandlerEnabledRootView(MainActivity.this);\n' +
+          '      }\n' +
+          '    };\n' +
+          '  }'
+      }
+    )
   } catch (e) {
     ignite.log(e)
     throw e
@@ -217,11 +204,14 @@ async function install(context) {
   await system.spawn('react-native link', { stdio: 'ignore' })
   spinner.succeed(`Linked dependencies`)
 
-  const perfDuration = parseInt(((new Date()).getTime() - perfStart) / 10) / 100
+  const perfDuration = parseInt((new Date().getTime() - perfStart) / 10) / 100
   spinner.succeed(`ignited ${yellow(name)} in ${perfDuration}s`)
 
-  const androidInfo = isAndroidInstalled(context) ? ''
-    : `\n\nTo run in Android, make sure you've followed the latest react-native setup instructions at https://facebook.github.io/react-native/docs/getting-started.html before using ignite.\nYou won't be able to run ${bold('react-native run-android')} successfully until you have.`
+  const androidInfo = isAndroidInstalled(context)
+    ? ''
+    : `\n\nTo run in Android, make sure you've followed the latest react-native setup instructions at https://facebook.github.io/react-native/docs/getting-started.html before using ignite.\nYou won't be able to run ${bold(
+        'react-native run-android'
+      )} successfully until you have.`
 
   const successMessage = `
     ${red('Ignite CLI')} ignited ${yellow(name)} in ${gray(`${perfDuration}s`)}

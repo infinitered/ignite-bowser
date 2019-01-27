@@ -46,6 +46,11 @@
       "it"
     ]
   },
+  "prettier": {
+    "semi": false,
+    "singleQuote": true,
+    "printWidth": 100
+  },
   "release": {
     "plugins": [
       "@semantic-release/commit-analyzer",
