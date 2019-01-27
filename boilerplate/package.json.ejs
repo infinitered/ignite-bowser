@@ -14,9 +14,9 @@
     "format:js": "prettier --write {.,**}/*.js",
     "format:json": "prettier --write {.,**}/*.json",
     "format:md": "prettier --write {.,**}/*.md",
-    "format:ts": "prettier --write {.,**}/*.{ts,tsx} && tslint --fix -p .",
+    "format:ts": "prettier --write {.,**}/*.{ts,tsx}",
     "lint": "npm-run-all lint:*",
-    "lint:ts": "tslint -p .",
+    "lint:ts": "eslint index.js app --fix --ext .js,.ts,.tsx",
     "postinstall": "solidarity",
     "hack:types-react-navigation": "rimraf node_modules/@types/react-navigation/node_modules/@types",
     "hack:types-react-native": "rimraf node_modules/@types/react-native/node_modules/@types",
@@ -55,10 +55,21 @@
     "@types/react-native": "0.57.13",
     "@types/react-navigation": "2.13.5",
     "@types/react-test-renderer": "16.0.3",
+    "@typescript-eslint/eslint-plugin": "^1.1.0",
+    "@typescript-eslint/parser": "^1.1.0",
     "babel-plugin-transform-inline-environment-variables": "0.4.3",
 <% if (props.includeDetox) { -%>
     "detox": "^10.0.2",
 <% } -%>
+    "eslint": "^5.12.1",
+    "eslint-config-prettier": "^3.6.0",
+    "eslint-config-standard": "^12.0.0",
+    "eslint-plugin-import": "^2.15.0",
+    "eslint-plugin-node": "^8.0.1",
+    "eslint-plugin-promise": "^4.0.1",
+    "eslint-plugin-react": "^7.12.4",
+    "eslint-plugin-react-native": "^3.6.0",
+    "eslint-plugin-standard": "^4.0.0",
     "jest-preset-ignite": "0.6.1",
     "npm-run-all": "4.1.5",
     "patch-package": "5.1.1",
@@ -69,9 +80,7 @@
     "react-powerplug": "0.1.5",
     "rimraf": "2.6.2",
     "solidarity": "2.1.0",
-    "tslint": "5.11.0",
-    "tslint-config-prettier": "1.15.0",
-    "typescript": "3.0.3"
+    "typescript": "3.2.4"
   },
   "jest": {
     "preset": "jest-preset-ignite",
@@ -102,6 +111,58 @@
     }
   },
 <% } -%>
+  "eslintConfig": {
+    "parser": "@typescript-eslint/parser",
+    "extends": [
+      "prettier",
+      "plugin:@typescript-eslint/recommended",
+      "plugin:react/recommended",
+      "plugin:react-native/all",
+      "standard"
+    ],
+    "parserOptions": {
+      "ecmaFeatures": {
+        "jsx": true
+      },
+      "project": "./tsconfig.json"
+    },
+    "plugins": [
+      "@typescript-eslint",
+      "react",
+      "react-native"
+    ],
+    "settings": {
+      "react": {
+        "pragma": "React",
+        "version": "detect"
+      }
+    },
+    "globals": {
+      "__DEV__": false,
+      "jasmine": false,
+      "beforeAll": false,
+      "afterAll": false,
+      "beforeEach": false,
+      "afterEach": false,
+      "test": false,
+      "expect": false,
+      "describe": false,
+      "jest": false,
+      "it": false
+    },
+    "rules": {
+      "no-unused-vars": 0,
+      "react/no-unescaped-entities": 0,
+      "react-native/no-raw-text": 0,
+      "@typescript-eslint/indent": 0,
+      "@typescript-eslint/explicit-member-accessibility": 0,
+      "@typescript-eslint/explicit-function-return-type": 0,
+      "@typescript-eslint/no-explicit-any": 0,
+      "@typescript-eslint/no-object-literal-type-assertion": 0,
+      "@typescript-eslint/no-empty-interface": 0,
+      "@typescript-eslint/no-var-requires": 0
+    }
+  },
   "rnpm": {
     "assets": [
       "./app/theme/fonts/"

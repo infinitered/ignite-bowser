@@ -106,7 +106,6 @@ async function install(context) {
     { template: '.solidarity', target: '.solidarity' },
     { template: '.babelrc', target: '.babelrc' },
     { template: 'tsconfig.json', target: 'tsconfig.json' },
-    { template: 'tslint.json', target: 'tslint.json' },
     { template: 'app/app.tsx.ejs', target: 'app/app.tsx' },
     {
       template: 'app/screens/first-example-screen/first-example-screen.tsx.ejs',
