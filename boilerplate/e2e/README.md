@@ -23,13 +23,7 @@ brew update && brew install node 8.6.0
 brew tap wix/brew && brew install applesimutils
 ```
 
-4. Install `fbsimctl`
-
-```bash
-brew tap facebook/fb
-```
-
-5. Install the Detox CLI
+4. Install the Detox CLI
 
 ```bash
   yarn global add detox-cli
