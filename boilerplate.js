@@ -71,7 +71,7 @@ async function install(context) {
       print.info(`You'll love Detox for testing your app! There are some additional requirements to install, so make sure to check out ${cyan('e2e/README.md')}!`)
     }
   } else {
-    if (parameters.options.detox === 'true') {
+    if (parameters.options.detox === true) {
       if (isWindows) {
         print.info("Skipping Detox because it is only supported on macOS, but you're running Windows")
       } else {
