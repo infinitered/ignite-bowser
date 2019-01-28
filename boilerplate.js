@@ -56,7 +56,6 @@ async function install(context) {
   const filesToRemove = [
     '__tests__',
     'App.js',
-    '.babelrc',
     '.flowconfig',
     '.buckconfig',
   ]
@@ -113,6 +112,7 @@ async function install(context) {
     { template: '.gitignore', target: '.gitignore' },
     { template: '.prettierignore', target: '.prettierignore' },
     { template: '.solidarity', target: '.solidarity' },
+    { template: '.babelrc', target: '.babelrc' },
     { template: 'tsconfig.json', target: 'tsconfig.json' },
     { template: 'tslint.json', target: 'tslint.json' },
     { template: 'app/app.tsx.ejs', target: 'app/app.tsx' },

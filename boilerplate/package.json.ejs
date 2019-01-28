@@ -77,30 +77,6 @@
     "preset": "jest-preset-ignite",
     "testPathIgnorePatterns": ["/node_modules/", "/e2e"]
   },
-  "babel": {
-    "presets": ["module:metro-react-native-babel-preset"],
-    "env": {
-      "production": {
-      }
-    },
-    "plugins": [
-      [
-        "@babel/plugin-proposal-decorators",
-        {
-          "legacy": true
-        }
-      ],
-      [
-        "transform-inline-environment-variables",
-        {
-          "include": ["NODE_ENV", "API"]
-        }
-      ],
-      [
-        "@babel/plugin-proposal-optional-catch-binding"
-      ]
-    ]
-  },
   "prettier": {
     "printWidth": 100,
     "semi": false,
