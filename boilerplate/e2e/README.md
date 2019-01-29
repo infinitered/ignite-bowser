@@ -5,17 +5,18 @@
 To get your Detox tests up and running, you'll need to install some global dependencies:
 
 1. Install the latest version of [Homebrew](https://brew.sh/)
-2. Make sure you're running node 8.6.0 or higher. If you aren't, you can run:
+2. Make sure you have Node installed (at least 8.6.0). If you don't:
 
+If you use NVM:
 ```bash
-nvm install 8.6.0
+nvm install node
 ```
 
-or
-
+Or if you'd prefer to install directly from Homebrew
 ```bash
-brew update && brew install node 8.6.0
+brew update && brew install node
 ```
+
 
 3. Install `applesimutils, which will allow Detox to communicate with the iOS simulator:
 
