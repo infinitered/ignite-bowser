@@ -35,11 +35,27 @@ async function install(context) {
     .succeed()
 
   // attempt to install React Native or die trying
-  const rnInstall = await reactNative.install({
-    name,
-    version: getReactNativeVersion(context)
-  })
-  if (rnInstall.exitCode > 0) process.exit(rnInstall.exitCode)
+  let rnInstall = undefined
+  if (parameters.options['react-native-version']) {
+    // install a specific RN version (slow!)
+    rnInstall = await reactNative.install({
+      name,
+      version: getReactNativeVersion(context)
+    })
+    if (rnInstall.exitCode > 0) process.exit(rnInstall.exitCode)
+  } else {
+    // install the bundled RN version (fast!)
+    filesystem.copy(__dirname + '/vanilla', name)
+    // jump immediately to the new thing
+    process.chdir(name)
+    // rename vanilla to our name
+    await system.run(`npx react-native-rename ${name}`)
+    filesystem.write(`./ignite/plugins/.gitkeep`, '')
+    rnInstall = {
+      exitCode: 0,
+      version: getReactNativeVersion()
+    }
+  }
 
   // remove the __tests__ directory, App.js, and unnecessary config files that come with React Native
   const filesToRemove = ['__tests__', 'App.js', '.babelrc', '.flowconfig', '.buckconfig']
@@ -71,7 +87,7 @@ async function install(context) {
     { template: 'index.js.ejs', target: 'index.js' },
     { template: 'README.md', target: 'README.md' },
     { template: 'ignite.json.ejs', target: 'ignite/ignite.json' },
-    { template: '.gitignore', target: '.gitignore' },
+    { template: '.gitignore.ejs', target: '.gitignore' },
     { template: '.prettierignore', target: '.prettierignore' },
     { template: '.solidarity', target: '.solidarity' },
     { template: 'tsconfig.json', target: 'tsconfig.json' },
@@ -148,7 +164,7 @@ async function install(context) {
     await system.spawn('react-native link', { stdio: 'ignore' })
     spinner.stop()
 
-    await ignite.addModule('react-native-gesture-handler', { version: '1.0.9', link: true })
+    await ignite.addModule('react-native-gesture-handler', { version: '1.1.0', link: true })
 
     ignite.patchInFile(
       `${process.cwd()}/android/app/src/main/java/com/${name.toLowerCase()}/MainActivity.java`,

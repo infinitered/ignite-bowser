@@ -12,10 +12,9 @@
     "templates",
     "boilerplate.js",
     "ignite.json",
-    "options.js",
     "plugin.js",
     "readme.md",
-    "screenExamples.js"
+    "vanilla"
   ],
   "author": {
     "name": "Infinite Red",
