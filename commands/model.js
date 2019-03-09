@@ -1,53 +1,55 @@
-// @cliDescription  Generates a model and model test.
+module.exports = {
+  description: 'Generates a model and model test.',
+  run: async function(toolbox) {
+    // grab some features
+    const { parameters, strings, print, ignite, patching, filesystem } = toolbox
+    const { camelCase, kebabCase, pascalCase, isBlank } = strings
 
-module.exports = async function (context) {
-  // grab some features
-  const { parameters, strings, print, ignite, patching, filesystem } = context
-  const { camelCase, kebabCase, pascalCase, isBlank } = strings
-
-  // validation
-  if (isBlank(parameters.first)) {
-    print.info(`${context.runtime.brand} generate model <name>\n`)
-    print.info('A name is required.')
-    return
-  }
-
-  const givenName = parameters.first
-  const name = kebabCase(givenName)
-  const pascalName = pascalCase(givenName)
-  const camelName = camelCase(givenName)
-
-  const props = { name, pascalName }
-
-  const jobs = [
-    {
-      template: 'model.ejs',
-      target: `app/models/${name}/${name}.ts`
-    }, {
-      template: 'model.test.ejs',
-      target: `app/models/${name}/${name}.test.ts`
+    // validation
+    if (isBlank(parameters.first)) {
+      print.info(`${toolbox.runtime.brand} generate model <name>\n`)
+      print.info('A name is required.')
+      return
     }
-  ]
 
-  const rollupPath = `app/models/${name}/index.ts`
-  const rollupExists = filesystem.exists(rollupPath)
+    const givenName = parameters.first
+    const name = kebabCase(givenName)
+    const pascalName = pascalCase(givenName)
+    const camelName = camelCase(givenName)
 
-  if (rollupExists) {
-    patching.insertInFile(rollupPath, 'export', `export * from "./${name}"`, false)
-  } else {
-    jobs.push({ template: 'rollup-index.ts.ejs', target: rollupPath })
-  }
+    const props = { name, pascalName }
 
-  await ignite.copyBatch(context, jobs, props)
+    const jobs = [
+      {
+        template: 'model.ejs',
+        target: `app/models/${name}/${name}.ts`
+      },
+      {
+        template: 'model.test.ejs',
+        target: `app/models/${name}/${name}.test.ts`
+      }
+    ]
 
-  // include stores in root-store
-  if (name.endsWith('store')) {
-    const rootStorePath = './app/models/root-store/root-store.ts'
-    const rootStoreDef = 'export const RootStoreModel'
-    const storeTypeImport = `import { ${pascalName}Model } from "../../models/${name}"`
-    const storeType = `  ${camelName}: types.optional(${pascalName}Model, {}),`
+    const rollupPath = `app/models/${name}/index.ts`
+    const rollupExists = filesystem.exists(rollupPath)
 
-    patching.insertInFile(rootStorePath, 'import', storeTypeImport)
-    patching.insertInFile(rootStorePath, rootStoreDef, storeType)
+    if (rollupExists) {
+      patching.insertInFile(rollupPath, 'export', `export * from "./${name}"`, false)
+    } else {
+      jobs.push({ template: 'rollup-index.ts.ejs', target: rollupPath })
+    }
+
+    await ignite.copyBatch(toolbox, jobs, props)
+
+    // include stores in root-store
+    if (name.endsWith('store')) {
+      const rootStorePath = './app/models/root-store/root-store.ts'
+      const rootStoreDef = 'export const RootStoreModel'
+      const storeTypeImport = `import { ${pascalName}Model } from "../../models/${name}"`
+      const storeType = `  ${camelName}: types.optional(${pascalName}Model, {}),`
+
+      patching.insertInFile(rootStorePath, 'import', storeTypeImport)
+      patching.insertInFile(rootStorePath, rootStoreDef, storeType)
+    }
   }
 }
