@@ -4,7 +4,7 @@ import { color, spacing, typography } from "../../theme"
 import { translate } from "../../i18n"
 import { Text } from "../text"
 import { TextFieldProps } from "./text-field.props"
-import { reduce } from "ramda"
+import { mergeAll, flatten } from "ramda"
 
 // the base styling for the container
 const CONTAINER: ViewStyle = {
@@ -26,16 +26,7 @@ const PRESETS: { [name: string]: ViewStyle } = {
 }
 
 const enhance = (style, styleOverride) => {
-  if (Array.isArray(styleOverride)) {
-    return reduce((acc,term) => {
-      return { ...acc, ...term }
-    }, style, styleOverride)
-  } else {
-    return {
-      ...style,
-      ...styleOverride,
-    }
-  }
+  return mergeAll(flatten([style, styleOverride]))
 }
 
 

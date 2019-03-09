@@ -3,7 +3,7 @@ import { TouchableOpacity } from "react-native"
 import { Text } from "../text"
 import { viewPresets, textPresets } from "./button.presets"
 import { ButtonProps } from "./button.props"
-import { reduce } from "ramda"
+import { mergeAll, flatten } from "ramda"
 
 /**
  * For your text displaying needs.
@@ -14,27 +14,8 @@ export function Button(props: ButtonProps) {
   // grab the props
   const { preset = "primary", tx, text, style: styleOverride, textStyle: textStyleOverride, children, ...rest } = props
 
-  // assemble the style
-  const viewPresetToUse = viewPresets[preset] || viewPresets.primary
-  const textPresetToUse = textPresets[preset] || textPresets.primary
-
-  let viewStyle
-  if (Array.isArray(styleOverride)) {
-    viewStyle = reduce((acc,term) => {
-      return { ...acc, ...term }
-    }, viewPresetToUse, styleOverride)
-  } else {
-    viewStyle = { ...viewPresetToUse, ...styleOverride }
-  }
-
-  let textStyle
-  if (Array.isArray(textStyleOverride)) {
-    textStyle = reduce((acc,term) => {
-      return { ...acc, ...term }
-    }, textPresetToUse, textStyleOverride)
-  } else {
-    textStyle = { ...textPresetToUse, ...textStyleOverride }
-  }
+  const viewStyle = mergeAll(flatten([viewPresets[preset] || viewPresets.primary, styleOverride]))
+  const textStyle = mergeAll(flatten([textPresets[preset] || textPresets.primary, textStyleOverride]))
 
   const content = children || <Text tx={tx} text={text} style={textStyle} />
 
