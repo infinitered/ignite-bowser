@@ -38,26 +38,11 @@ async function install(context) {
 
   // attempt to install React Native or die trying
   let rnInstall = undefined
-  if (parameters.options['react-native-version']) {
-    // install a specific RN version (slow!)
-    rnInstall = await reactNative.install({
-      name,
-      version: getReactNativeVersion(context)
-    })
-    if (rnInstall.exitCode > 0) process.exit(rnInstall.exitCode)
-  } else {
-    // install the bundled RN version (fast!)
-    filesystem.copy(__dirname + '/vanilla', name)
-    // jump immediately to the new thing
-    process.chdir(name)
-    // rename vanilla to our name
-    await system.run(`npx react-native-rename ${name}`)
-    filesystem.write(`./ignite/plugins/.gitkeep`, '')
-    rnInstall = {
-      exitCode: 0,
-      version: getReactNativeVersion()
-    }
-  }
+  rnInstall = await reactNative.install({
+    name,
+    version: getReactNativeVersion(context)
+  })
+  if (rnInstall.exitCode > 0) process.exit(rnInstall.exitCode)
 
   // remove the __tests__ directory, App.js, and unnecessary config files that come with React Native
   const filesToRemove = ['__tests__', 'App.js', '.babelrc', '.flowconfig', '.buckconfig']
