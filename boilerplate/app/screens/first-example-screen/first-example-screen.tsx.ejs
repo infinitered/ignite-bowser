@@ -85,7 +85,11 @@ export class FirstExampleScreen extends React.Component<FirstExampleScreenProps,
 
   render() {
     return (
+<% if (props.includeDetox) { -%>
+      <View testID="FirstExampleScreen" style={FULL}>
+<% } else { -%>
       <View style={FULL}>
+<% } -%>
         <StatusBar barStyle="light-content" />
         <Wallpaper />
         <SafeAreaView style={FULL}>
@@ -113,6 +117,9 @@ export class FirstExampleScreen extends React.Component<FirstExampleScreenProps,
         <SafeAreaView style={FOOTER}>
           <View style={FOOTER_CONTENT}>
             <Button
+<% if (props.includeDetox) { -%>
+              testID="next-screen-button"
+<% } -%>
               style={CONTINUE}
               textStyle={CONTINUE_TEXT}
               tx="firstExampleScreen.continue"
