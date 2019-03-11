@@ -14,7 +14,7 @@ const buttonTextStyleArray: TextStyle[] = [
   {color: "#a511dc"},
 ]
 
-storiesOf("Button")
+storiesOf("Button", module)
   .addDecorator(fn => <StoryScreen>{fn()}</StoryScreen>)
   .add("Style Presets", () => (
     <Story>
