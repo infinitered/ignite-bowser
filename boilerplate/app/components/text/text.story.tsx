@@ -14,7 +14,7 @@ const viewStyleArray: ViewStyle[] = [
   {backgroundColor: "#7fff00"},
 ]
 
-storiesOf("Text")
+storiesOf("Text", module)
   .addDecorator(fn => <StoryScreen>{fn()}</StoryScreen>)
   .add("Style Presets", () => (
     <Story>

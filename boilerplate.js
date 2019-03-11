@@ -23,9 +23,11 @@ const isAndroidInstalled = function(context) {
  * @param {any} context - The gluegun context.
  */
 async function install(context) {
-  const { filesystem, parameters, ignite, reactNative, print, system, template } = context
+  const { filesystem, parameters, ignite, reactNative, print, system, template, prompt } = context
   const { colors } = print
-  const { red, yellow, bold, gray, blue } = colors
+  const { red, yellow, bold, gray, blue, cyan } = colors
+  const isWindows = process.platform === 'win32'
+  const isMac = process.platform === 'darwin'
 
   const perfStart = new Date().getTime()
 
@@ -61,6 +63,28 @@ async function install(context) {
   const filesToRemove = ['__tests__', 'App.js', '.babelrc', '.flowconfig', '.buckconfig']
   filesToRemove.map(filesystem.remove)
 
+  let includeDetox = false
+  if (isMac) {
+    const askAboutDetox = parameters.options.detox === undefined
+    includeDetox = askAboutDetox
+      ? await prompt.confirm('Would you like to include Detox end-to-end tests?')
+      : parameters.options.detox === true
+
+    if (includeDetox) {
+      // prettier-ignore
+      print.info(`You'll love Detox for testing your app! There are some additional requirements to install, so make sure to check out ${cyan('e2e/README.md')}!`)
+    }
+  } else {
+    if (parameters.options.detox === true) {
+      // prettier-ignore
+      if (isWindows) {
+        print.info("Skipping Detox because it is only supported on macOS, but you're running Windows")
+      } else {
+        print.info("Skipping Detox because it is only supported on macOS")
+      }
+    }
+  }
+
   // copy our App, Tests & storybook directories
   spinner.text = '▸ copying files'
   spinner.start()
@@ -79,6 +103,11 @@ async function install(context) {
   filesystem.copy(`${__dirname}/boilerplate/bin`, `${process.cwd()}/bin`, {
     overwrite: true
   })
+  includeDetox &&
+    filesystem.copy(`${__dirname}/boilerplate/e2e`, `${process.cwd()}/e2e`, {
+      overwrite: true,
+      matching: '!*.ejs'
+    })
   spinner.stop()
 
   // generate some templates
@@ -90,9 +119,18 @@ async function install(context) {
     { template: '.gitignore.ejs', target: '.gitignore' },
     { template: '.prettierignore', target: '.prettierignore' },
     { template: '.solidarity', target: '.solidarity' },
+    { template: '.babelrc', target: '.babelrc' },
     { template: 'tsconfig.json', target: 'tsconfig.json' },
     { template: 'tslint.json', target: 'tslint.json' },
-    { template: 'app/app.tsx.ejs', target: 'app/app.tsx' }
+    { template: 'app/app.tsx.ejs', target: 'app/app.tsx' },
+    {
+      template: 'app/screens/first-example-screen/first-example-screen.tsx.ejs',
+      target: 'app/screens/first-example-screen/first-example-screen.tsx'
+    },
+    {
+      template: 'app/screens/second-example-screen/second-example-screen.tsx.ejs',
+      target: 'app/screens/second-example-screen/second-example-screen.tsx'
+    }
   ]
   const templateProps = {
     name,
@@ -100,7 +138,8 @@ async function install(context) {
     reactNativeVersion: rnInstall.version,
     vectorIcons: false,
     animatable: false,
-    i18n: false
+    i18n: false,
+    includeDetox
   }
   await ignite.copyBatch(context, templates, templateProps, {
     quiet: true,

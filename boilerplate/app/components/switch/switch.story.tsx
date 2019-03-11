@@ -46,7 +46,7 @@ const thumbOnStyle: ViewStyle[] = [
   },
 ]
 
-storiesOf("Switch")
+storiesOf("Switch", module)
   .addDecorator(fn => <StoryScreen>{fn()}</StoryScreen>)
   .add("Behaviour", () => (
     <Story>

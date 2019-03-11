@@ -78,5 +78,8 @@
   },
   "dependencies": {
     "ramda": "^0.25.0"
+  },
+  "jest": {
+    "testPathIgnorePatterns": ["/node_modules", "/boilerplate"]
   }
 }

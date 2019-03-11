@@ -18,7 +18,7 @@ const arrayFillStyle: ViewStyle[] = [
   {backgroundColor: "#55e0ff"},
 ]
 
-storiesOf("Checkbox")
+storiesOf("Checkbox", module)
   .addDecorator(fn => <StoryScreen>{fn()}</StoryScreen>)
   .add("Behaviour", () => (
     <Story>

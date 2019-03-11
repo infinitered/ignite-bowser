@@ -14,7 +14,7 @@ describe('a generated app', () => {
   beforeAll(async () => {
     // make sure we are in the temp directory
     process.chdir(appTemp)
-    await execa(IGNITE, ['new', APP, '--skip-git', '--boilerplate', BOILERPLATE])
+    await execa(IGNITE, ['new', APP, '--no-detox','--skip-git', '--boilerplate', BOILERPLATE])
     process.chdir(APP)
   })
 
@@ -25,7 +25,7 @@ describe('a generated app', () => {
 
   test('can yarn install and pass tests', async () => {
     return execa.shell("yarn install 2>&1")
-    .then(() => execa.shell("npm test 2>&1"))
+    .then(() => execa.shell("yarn test 2>&1"))
     .catch(error => {
       expect(error.stdout).toEqual('') // will fail & show the yarn or test errors
     })
@@ -42,7 +42,7 @@ describe('generators', () => {
   beforeAll(async () => {
     // make sure we are in the temp directory
     process.chdir(generatorsTemp)
-    await execa(IGNITE, ['new', APP, '--skip-git', '--boilerplate', BOILERPLATE])
+    await execa(IGNITE, ['new', APP, '--no-detox', '--skip-git', '--boilerplate',  BOILERPLATE])
     process.chdir(APP)
   })
 

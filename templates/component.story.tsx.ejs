@@ -3,7 +3,7 @@ import { storiesOf } from "@storybook/react-native"
 import { StoryScreen, Story, UseCase } from "../../../storybook/views"
 import { <%= props.pascalName %> } from "./"
 
-storiesOf("<%= props.pascalName %>")
+storiesOf("<%= props.pascalName %>", module)
   .addDecorator(fn => <StoryScreen>{fn()}</StoryScreen>)
   .add("Style Presets", () => (
     <Story>
