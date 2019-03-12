@@ -4,7 +4,7 @@ module.exports = {
   description: 'Generates a React Native screen.',
   run: async function(toolbox) {
     // grab some features
-    const { parameters, print, strings, ignite, filesystem } = toolbox
+    const { parameters, print, strings, ignite, filesystem, patching } = toolbox
     const { pascalCase, isBlank, camelCase } = strings
     const config = ignite.loadIgniteConfig()
 
@@ -60,13 +60,13 @@ module.exports = {
       }
 
       // insert screen import
-      await ignite.patch(appNavFilePath, {
+      await patching.patch(appNavFilePath, {
         after: patterns[patterns.constants.PATTERN_IMPORTS],
         insert: importToAdd
       })
 
       // insert screen route
-      await ignite.patch(appNavFilePath, {
+      await patching.patch(appNavFilePath, {
         after: patterns[patterns.constants.PATTERN_ROUTES],
         insert: routeToAdd
       })
