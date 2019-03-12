@@ -4,14 +4,13 @@
   "license": "MIT",
   "repository": "infinitered/ignite-bowser",
   "homepage": "https://github.com/infinitered/ignite-bowser",
-  "version": "4.0.0-alpha.1",
+  "version": "4.0.0-alpha.2",
   "files": [
     "boilerplate",
     "commands",
     "lib",
     "templates",
     "boilerplate.js",
-    "ignite.json",
     "plugin.js",
     "readme.md",
     "vanilla"
@@ -85,6 +84,9 @@
     "ramda": "^0.25.0"
   },
   "jest": {
-    "testPathIgnorePatterns": ["/node_modules", "/boilerplate"]
+    "testPathIgnorePatterns": [
+      "/node_modules",
+      "/boilerplate"
+    ]
   }
 }
