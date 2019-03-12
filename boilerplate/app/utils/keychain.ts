@@ -57,6 +57,7 @@ export async function reset(server?: string) {
     await ReactNativeKeychain.resetInternetCredentials(server)
     return true
   } else {
-    return await ReactNativeKeychain.resetGenericPassword()
+    const result = await ReactNativeKeychain.resetGenericPassword()
+    return result
   }
 }

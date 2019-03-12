@@ -22,7 +22,7 @@
     "url": "https://github.com/infinitered/ignite-bowser"
   },
   "scripts": {
-    "lint": "tslint -p .",
+    "lint": "eslint commands lib test --fix",
     "test": "jest",
     "watch": "jest --runInBand --watch",
     "coverage": "jest --runInBand --coverage",
@@ -30,20 +30,20 @@
     "ci:publish": "yarn semantic-release",
     "semantic-release": "semantic-release"
   },
-  "standard": {
-    "parser": "babel-eslint",
-    "globals": [
-      "__DEV__",
-      "jasmine",
-      "beforeAll",
-      "afterAll",
-      "beforeEach",
-      "test",
-      "expect",
-      "describe",
-      "jest",
-      "it"
-    ]
+  "eslintConfig": {
+    "extends": "standard",
+    "globals": {
+      "__DEV__": false,
+      "jasmine": false,
+      "beforeAll": false,
+      "afterAll": false,
+      "beforeEach": false,
+      "test": false,
+      "expect": false,
+      "describe": false,
+      "jest": false,
+      "it": false
+    }
   },
   "prettier": {
     "semi": false,
@@ -68,12 +68,17 @@
   "devDependencies": {
     "@semantic-release/git": "^7.0.5",
     "babel-eslint": "^10.0.1",
+    "eslint": "^5.12.1",
+    "eslint-config-standard": "^12.0.0",
+    "eslint-plugin-import": "^2.15.0",
+    "eslint-plugin-node": "^8.0.1",
+    "eslint-plugin-promise": "^4.0.1",
+    "eslint-plugin-standard": "^4.0.0",
     "fs-jetpack": "^2.2.0",
     "jest": "^23.6.0",
     "np": "^3.0.4",
     "semantic-release": "^15.12.3",
     "sinon": "^7.1.1",
-    "standard": "^12.0.1",
     "tempy": "^0.2.1"
   },
   "dependencies": {

@@ -7,7 +7,7 @@ import { EventType, NavigationEventCallback } from "react-navigation"
  *
  * You use can `compose` or build directly off this to mixin these features.
  */
-export const NavigationEvents = types.model("NavigationEvents").volatile(self => {
+export const NavigationEvents = types.model("NavigationEvents").volatile(() => {
   // who is currently subscribed to react-navigation events
   const subs = new Set<NavigationEventCallback>()
 
