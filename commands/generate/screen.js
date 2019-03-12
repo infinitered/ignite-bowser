@@ -1,7 +1,7 @@
-const patterns = require('../lib/patterns')
+const patterns = require('../../lib/patterns')
 
 module.exports = {
-  description: 'Generates an opinionated container.',
+  description: 'Generates a React Native screen.',
   run: async function(toolbox) {
     // grab some features
     const { parameters, print, strings, ignite, filesystem } = toolbox
@@ -10,21 +10,21 @@ module.exports = {
 
     // validation
     if (isBlank(parameters.first)) {
-      print.info(`${toolbox.runtime.brand} generate screen <name>\n`)
       print.info('A name is required.')
+      print.info(`ignite generate screen <name>\n`)
       return
     }
 
     const name = parameters.first
     const screenName = name.endsWith('-screen') ? name : `${name}-screen`
+
+    // prettier-ignore
     if (name.endsWith('-screen')) {
-      print.info(
-        `Note: For future reference, the \`-screen\` suffix is automatically added for you.`
-      )
-      print.info(
-        `You're welcome to add it manually, but we wanted you to know you don't have to. :)`
-      )
+      print.info(`Note: For future reference, the \`-screen\` suffix is automatically added for you.`)
+      print.info(`You're welcome to add it manually, but we wanted you to know you don't have to. :)`)
     }
+
+    // get permutations of the given model name
     const pascalName = pascalCase(screenName)
     const camelName = camelCase(screenName)
 
@@ -51,19 +51,22 @@ module.exports = {
       const routeToAdd = `    ${camelName}: { screen: ${pascalName} },`
 
       if (!filesystem.exists(appNavFilePath)) {
-        const msg = `No '${appNavFilePath}' file found.  Can't insert screen.`
+        const msg =
+          `No '${appNavFilePath}' file found.  Can't insert screen.` +
+          `Add your new screen manually to your navigation.`
         print.error(msg)
         process.exit(1)
+        return
       }
 
       // insert screen import
-      ignite.patchInFile(appNavFilePath, {
+      await ignite.patch(appNavFilePath, {
         after: patterns[patterns.constants.PATTERN_IMPORTS],
         insert: importToAdd
       })
 
       // insert screen route
-      ignite.patchInFile(appNavFilePath, {
+      await ignite.patch(appNavFilePath, {
         after: patterns[patterns.constants.PATTERN_ROUTES],
         insert: routeToAdd
       })

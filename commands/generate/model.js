@@ -7,11 +7,12 @@ module.exports = {
 
     // validation
     if (isBlank(parameters.first)) {
-      print.info(`${toolbox.runtime.brand} generate model <name>\n`)
       print.info('A name is required.')
+      print.info(`ignite generate model <name>\n`)
       return
     }
 
+    // get permutations of the given model name
     const givenName = parameters.first
     const name = kebabCase(givenName)
     const pascalName = pascalCase(givenName)
@@ -34,7 +35,7 @@ module.exports = {
     const rollupExists = filesystem.exists(rollupPath)
 
     if (rollupExists) {
-      patching.insertInFile(rollupPath, 'export', `export * from "./${name}"`, false)
+      await patching.prepend(rollupPath, `export * from "./${name}"`)
     } else {
       jobs.push({ template: 'rollup-index.ts.ejs', target: rollupPath })
     }
@@ -42,14 +43,14 @@ module.exports = {
     await ignite.copyBatch(toolbox, jobs, props)
 
     // include stores in root-store
-    if (name.endsWith('store')) {
+    if (name.endsWith('-store')) {
       const rootStorePath = './app/models/root-store/root-store.ts'
       const rootStoreDef = 'export const RootStoreModel'
       const storeTypeImport = `import { ${pascalName}Model } from "../../models/${name}"`
       const storeType = `  ${camelName}: types.optional(${pascalName}Model, {}),`
 
-      patching.insertInFile(rootStorePath, 'import', storeTypeImport)
-      patching.insertInFile(rootStorePath, rootStoreDef, storeType)
+      await patching.prepend(rootStorePath, storeTypeImport)
+      await patching.patch(rootStorePath, { after: rootStoreDef, insert: storeType })
     }
   }
 }

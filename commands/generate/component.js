@@ -7,8 +7,8 @@ module.exports = {
 
     // validation
     if (isBlank(parameters.first)) {
-      print.info(`${toolbox.runtime.brand} generate component <name>\n`)
       print.info('A name is required.')
+      print.info(`ignite generate component <name>\n`)
       return
     }
 
@@ -34,10 +34,9 @@ module.exports = {
     await ignite.copyBatch(toolbox, jobs, props)
 
     // wire up example
-    patching.insertInFile(
+    await patching.prepend(
       './storybook/storybook-registry.ts',
-      '\n',
-      `require("../app/components/${name}/${name}.story")`
+      `require("../app/components/${name}/${name}.story")\n`
     )
   }
 }
