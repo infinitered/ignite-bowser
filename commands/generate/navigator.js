@@ -65,7 +65,7 @@ module.exports = {
 
     // get a list of current screens
     const allKebabScreens = list(`${process.cwd()}/app/screens/`)
-    const allPascalScreens = !!allKebabScreens ? allKebabScreens.map(s => pascalCase(s)) : undefined
+    const allPascalScreens = allKebabScreens.map(s => pascalCase(s))
     let pascalScreens = []
 
     // ask which screens to include in navigator
@@ -73,12 +73,34 @@ module.exports = {
       const askForScreens = {
         type: 'multiselect',
         name: 'screens',
-        message: 'What screens would you like to add to the navigator?',
+        message: 'What screens would you like to import to the navigator?',
         choices: allPascalScreens
       }
 
       result = await ask(askForScreens)
       pascalScreens = result.screens
+    }
+
+    // get a list of current screens
+    const allKebabNavigators = list(`${process.cwd()}/app/navigation/`).filter(
+      n => n.includes('-navigator.') && !n.includes('stateful-') && !n.includes('root-')
+    )
+    const allPascalNavigators = allKebabNavigators.map(s =>
+      pascalCase(s.replace('.tsx', '').replace('.ts', ''))
+    )
+    let pascalNavigators = []
+
+    // ask which screens to include in navigator
+    if (!!allKebabNavigators) {
+      const askForNavigators = {
+        type: 'multiselect',
+        name: 'screens',
+        message: 'What other navigators would you like to import to the navigator?',
+        choices: allPascalNavigators
+      }
+
+      result = await ask(askForNavigators)
+      pascalNavigators = result.screens
     }
 
     const props = {
@@ -97,8 +119,8 @@ module.exports = {
     // make the template
     await ignite.copyBatch(toolbox, jobs, props)
 
-    // import screens to newly created navigator
-    if (!!pascalScreens) {
+    // import screens/navigators to newly created navigator
+    if (!!pascalScreens.length || !!pascalNavigators.length) {
       const navFilePath = `${process.cwd()}/app/navigation/${navigatorName}.ts`
 
       if (!filesystem.exists(navFilePath)) {
@@ -110,24 +132,30 @@ module.exports = {
         return
       }
 
-      // insert screen import
-      const imports = pascalScreens
-        .map(pascalScreen => {
-          const kebabScreen = kebabCase(pascalScreen)
-          return `\nimport { ${pascalScreen} } from "../screens/${kebabScreen}"`
-        })
-        .join('')
+      // insert screen/navigator import
+      const screenImports = pascalScreens.map(pascalScreen => {
+        const kebabScreen = kebabCase(pascalScreen)
+        return `\nimport { ${pascalScreen} } from "../screens/${kebabScreen}"`
+      })
+      const navigatorImports = pascalNavigators.map(pascalNavigator => {
+        const kebabNavigator = kebabCase(pascalNavigator)
+        return `\nimport { ${pascalNavigator} } from "./${kebabNavigator}"`
+      })
+
+      const toImport = [...screenImports, ...navigatorImports].join('')
 
       await patching.patch(navFilePath, {
         after: new RegExp(patterns[patterns.constants.PATTERN_NAV_IMPORTS]),
-        insert: imports
+        insert: toImport
       })
 
       // insert routes
-      const routes = pascalScreens
-        .map(pascalScreen => {
-          const camelScreen = camelCase(pascalScreen)
-          return `\n  ${camelScreen.replace('Screen', '')}: { screen: ${pascalScreen} },`
+      const routes = [...pascalScreens, ...pascalNavigators]
+        .map(pascalItem => {
+          const camelItem = camelCase(pascalItem)
+          return `\n  ${camelItem
+            .replace('Screen', '')
+            .replace('Navigator', '')}: { screen: ${pascalItem} },`
         })
         .join('')
 
