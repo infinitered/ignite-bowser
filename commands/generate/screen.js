@@ -61,13 +61,13 @@ module.exports = {
 
       // insert screen import
       await patching.patch(appNavFilePath, {
-        after: patterns[patterns.constants.PATTERN_IMPORTS],
+        after: new RegExp(patterns[patterns.constants.PATTERN_NAV_IMPORTS]),
         insert: importToAdd
       })
 
       // insert screen route
       await patching.patch(appNavFilePath, {
-        after: patterns[patterns.constants.PATTERN_ROUTES],
+        after: new RegExp(patterns[patterns.constants.PATTERN_ROOT_NAV_ROUTES]),
         insert: routeToAdd
       })
     } else {
