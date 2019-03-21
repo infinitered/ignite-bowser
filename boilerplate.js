@@ -23,7 +23,7 @@ const isAndroidInstalled = function(context) {
  * @param {any} context - The gluegun context.
  */
 async function install(context) {
-  const { filesystem, parameters, ignite, reactNative, print, system, template, prompt } = context
+  const { filesystem, parameters, ignite, reactNative, print, system, template, prompt, patching } = context
   const { colors } = print
   const { red, yellow, bold, gray, blue, cyan } = colors
   const isWindows = process.platform === 'win32'
@@ -244,6 +244,14 @@ async function install(context) {
   await system.spawn('react-native link', { stdio: 'ignore' })
   spinner.succeed(`Linked dependencies`)
 
+  // for Windows, fix the settings.gradle file. Ref: https://github.com/oblador/react-native-vector-icons/issues/938#issuecomment-463296401
+  // for ease of use, just replace any backslashes with forward slashes
+  if (isWindows) {
+    await patching.update(`${process.cwd()}/android/settings.gradle`, contents => {
+      return contents.split('\\').join('/')
+    })
+  }
+
   const perfDuration = parseInt((new Date().getTime() - perfStart) / 10) / 100
   spinner.succeed(`ignited ${yellow(name)} in ${perfDuration}s`)
 
@@ -263,9 +271,11 @@ async function install(context) {
       react-native run-android${androidInfo}
       ignite --help
 
-    ${blue('Need additional help? Join our Slack community at http://community.infinite.red.')}
+    ${cyan('Need additional help? Join our Slack community at http://community.infinite.red.')}
 
     ${bold('Now get cooking! 🍽')}
+
+    ${gray('(Running yarn install one last time to make sure everything is installed -- please be patient!)')}
   `
 
   print.info(successMessage)
