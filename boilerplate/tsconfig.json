@@ -14,5 +14,5 @@
     "target": "es2015"
   },
   "exclude": ["node_modules"],
-  "include": ["src", "test", "storybook"]
+  "include": ["app", "test", "storybook"]
 }
