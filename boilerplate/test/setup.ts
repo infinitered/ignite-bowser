@@ -5,7 +5,7 @@ import "react-native"
 import "./mock-i18n"
 import "./mock-reactotron"
 import "./mock-textinput"
-import "./mock-react-native-languages"
+import "./mock-react-native-localize"
 
 declare global {
   var __TEST__

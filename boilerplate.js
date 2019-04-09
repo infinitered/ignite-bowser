@@ -105,11 +105,12 @@ async function install(context) {
 
   // generate some templates
   spinner.text = '▸ generating files'
+  //
   const templates = [
     { template: 'index.js.ejs', target: 'index.js' },
     { template: 'README.md', target: 'README.md' },
     { template: 'ignite.json.ejs', target: 'ignite/ignite.json' },
-    { template: '.gitignore', target: '.gitignore' },
+    { template: '.gitignore.ejs', target: '.gitignore' },
     { template: '.prettierignore', target: '.prettierignore' },
     { template: '.solidarity', target: '.solidarity' },
     { template: '.babelrc', target: '.babelrc' },
@@ -260,7 +261,7 @@ async function install(context) {
       react-native run-ios
       react-native run-android${androidInfo}
       ignite --help
-
+    
     ${blue('Need additional help? Join our Slack community at http://community.infinite.red.')}
 
     ${bold('Now get cooking! 🍽')}
