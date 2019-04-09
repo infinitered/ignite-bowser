@@ -1,4 +1,4 @@
-import { types } from "mobx-state-tree"
+import { Instance, types } from "mobx-state-tree"
 import { RootNavigator } from "./root-navigator"
 import { NavigationActions, NavigationAction } from "react-navigation"
 import { NavigationEvents } from "./navigation-events"
@@ -27,7 +27,7 @@ export const NavigationStoreModel = NavigationEvents.named("NavigationStore")
     /**
      * the navigation state tree (Frozen here means it is immutable.)
      */
-    state: types.optional(types.frozen, DEFAULT_STATE),
+    state: types.optional(types.frozen(), DEFAULT_STATE),
   })
   .actions(self => ({
 
@@ -78,4 +78,4 @@ export const NavigationStoreModel = NavigationEvents.named("NavigationStore")
     },
   }))
 
-export type NavigationStore = typeof NavigationStoreModel.Type
+export type NavigationStore = Instance<typeof NavigationStoreModel>
