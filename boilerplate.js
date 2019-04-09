@@ -23,7 +23,17 @@ const isAndroidInstalled = function(context) {
  * @param {any} context - The gluegun context.
  */
 async function install(context) {
-  const { filesystem, parameters, ignite, reactNative, print, system, template, prompt, patching } = context
+  const {
+    filesystem,
+    parameters,
+    ignite,
+    reactNative,
+    print,
+    system,
+    template,
+    prompt,
+    patching
+  } = context
   const { colors } = print
   const { red, yellow, bold, gray, blue, cyan } = colors
   const isWindows = process.platform === 'win32'
@@ -98,6 +108,7 @@ async function install(context) {
 
   // generate some templates
   spinner.text = '▸ generating files'
+  //
   const templates = [
     { template: 'index.js.ejs', target: 'index.js' },
     { template: 'README.md', target: 'README.md' },
@@ -275,7 +286,9 @@ async function install(context) {
 
     ${bold('Now get cooking! 🍽')}
 
-    ${gray('(Running yarn install one last time to make sure everything is installed -- please be patient!)')}
+    ${gray(
+      '(Running yarn install one last time to make sure everything is installed -- please be patient!)'
+    )}
   `
 
   print.info(successMessage)
