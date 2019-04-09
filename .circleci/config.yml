@@ -126,7 +126,7 @@ workflows:
       - tests:
           requires:
             - setup
-      - detox
+      # - detox # disabled until we can figure out detox CircleCI problems
       - publish:
           requires:
             - tests
