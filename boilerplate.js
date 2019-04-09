@@ -261,7 +261,7 @@ async function install(context) {
       react-native run-ios
       react-native run-android${androidInfo}
       ignite --help
-
+    
     ${blue('Need additional help? Join our Slack community at http://community.infinite.red.')}
 
     ${bold('Now get cooking! 🍽')}
