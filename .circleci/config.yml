@@ -6,7 +6,7 @@
 defaults: &defaults
   docker:
     # Choose the version of Node you want here
-    - image: circleci/node:10.11
+    - image: circleci/node:11.9.0
   working_directory: ~/repo
 
 mac: &mac
@@ -28,14 +28,12 @@ jobs:
             - v1-dependencies-
       - run:
           name: Install dependencies
-          command: |
-            yarn install
+          command: yarn install
       - save_cache:
           name: Save node modules
           paths:
             - node_modules
           key: v1-dependencies-{{ checksum "package.json" }}
-
 
   tests:
     <<: *defaults
