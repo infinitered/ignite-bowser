@@ -34,22 +34,6 @@ describe('a generated app', () => {
   test('does have a linting script', async () => {
     expect(jetpack.read('package.json', 'json')['scripts']['lint']).toBe('npm-run-all lint:*')
   })
-})
-
-describe('generators', () => {
-  // creates a new temp directory
-  const generatorsTemp = tempy.directory()
-  beforeAll(async () => {
-    // make sure we are in the temp directory
-    process.chdir(generatorsTemp)
-    await execa(IGNITE, ['new', APP, '--no-detox', '--skip-git', '--boilerplate',  BOILERPLATE])
-    process.chdir(APP)
-  })
-
-  afterAll(() => {
-    // clean up generated test app
-    jetpack.remove(generatorsTemp)
-  })
 
   test('generates a component', async () => {
     const simpleComponent = 'Simple'

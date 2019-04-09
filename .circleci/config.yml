@@ -6,7 +6,7 @@
 defaults: &defaults
   docker:
     # Choose the version of Node you want here
-    - image: circleci/node:10.11
+    - image: circleci/node:11.9.0
   working_directory: ~/repo
 
 mac: &mac
@@ -23,18 +23,17 @@ jobs:
       - restore_cache:
           name: Restore node modules
           keys:
-            - v1-dependencies-{{ checksum "package.json" }}
+            - v1-dependencies-bowser-{{ checksum "package.json" }}
             # fallback to using the latest cache if no exact match is found
-            - v1-dependencies-
+            - v1-dependencies-bowser-
       - run:
           name: Install dependencies
-          command: |
-            yarn install
+          command: yarn install
       - save_cache:
           name: Save node modules
           paths:
             - node_modules
-          key: v1-dependencies-{{ checksum "package.json" }}
+          key: v1-dependencies-bowser-{{ checksum "package.json" }}
 
   tests:
     <<: *defaults
@@ -43,9 +42,9 @@ jobs:
       - restore_cache:
           name: Restore node modules
           keys:
-            - v1-dependencies-{{ checksum "package.json" }}
+            - v1-dependencies-bowser-{{ checksum "package.json" }}
             # fallback to using the latest cache if no exact match is found
-            - v1-dependencies-
+            - v1-dependencies-bowser-
       - run:
           name: Install dependencies
           command: |
@@ -114,9 +113,9 @@ jobs:
       - restore_cache:
           name: Restore node modules
           keys:
-            - v1-dependencies-{{ checksum "package.json" }}
+            - v1-dependencies-bowser-{{ checksum "package.json" }}
             # fallback to using the latest cache if no exact match is found
-            - v1-dependencies-
+            - v1-dependencies-bowser-
       # Run semantic-release after all the above is set.
       - run:
           name: Publish to NPM
@@ -130,7 +129,7 @@ workflows:
       - tests:
           requires:
             - setup
-      - detox
+      # - detox # disabled until we can figure out detox CircleCI problems
       - publish:
           requires:
             - tests
