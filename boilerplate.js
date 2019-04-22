@@ -68,7 +68,10 @@ async function install(context) {
 
     if (includeDetox) {
       // prettier-ignore
-      print.info(`You'll love Detox for testing your app! There are some additional requirements to install, so make sure to check out ${cyan('e2e/README.md')}!`)
+      print.info(`
+        You'll love Detox for testing your app! There are some additional requirements to
+        install, so make sure to check out ${cyan('e2e/README.md')} in your generated app!
+      `)
     }
   } else {
     if (parameters.options.detox === true) {
@@ -183,9 +186,6 @@ async function install(context) {
   // pass long the debug flag if we're running in that mode
   const debugFlag = parameters.options.debug ? '--debug' : ''
 
-  // -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-  // NOTE(steve): I'm re-adding this here because boilerplates now hold permanent files
-  // -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
   try {
     // boilerplate adds itself to get plugin.js/generators etc
     // Could be directory, npm@version, or just npm name.  Default to passed in values
@@ -230,6 +230,9 @@ async function install(context) {
     )
   } catch (e) {
     ignite.log(e)
+    print.error('
+      There were errors when we were generating the project. Run with --debug to see verbose output.
+    ')
     throw e
   }
 
