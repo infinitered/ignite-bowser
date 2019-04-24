@@ -230,9 +230,9 @@ async function install(context) {
     )
   } catch (e) {
     ignite.log(e)
-    print.error('
+    print.error(`
       There were errors when we were generating the project. Run with --debug to see verbose output.
-    ')
+    `)
     throw e
   }
 
