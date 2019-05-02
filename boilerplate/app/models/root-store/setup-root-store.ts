@@ -11,6 +11,27 @@ import { Api } from "../../services/api"
 const ROOT_STATE_STORAGE_KEY = "root"
 
 /**
+ * Setup the environment that all the models will be sharing.
+ *
+ * The environment includes other functions that will be picked from some
+ * of the models that get created later. This is how we loosly couple things
+ * like events between models.
+ */
+export async function createEnvironment() {
+  const env = new Environment()
+
+  // create each service
+  env.reactotron = new Reactotron()
+  env.api = new Api()
+
+  // allow each service to setup
+  await env.reactotron.setup()
+  await env.api.setup()
+
+  return env
+}
+
+/**
  * Setup the root state.
  */
 export async function setupRootStore() {
@@ -41,25 +62,4 @@ export async function setupRootStore() {
   onSnapshot(rootStore, snapshot => storage.save(ROOT_STATE_STORAGE_KEY, snapshot))
 
   return rootStore
-}
-
-/**
- * Setup the environment that all the models will be sharing.
- *
- * The environment includes other functions that will be picked from some
- * of the models that get created later. This is how we loosly couple things
- * like events between models.
- */
-export async function createEnvironment() {
-  const env = new Environment()
-
-  // create each service
-  env.reactotron = new Reactotron()
-  env.api = new Api()
-
-  // allow each service to setup
-  await env.reactotron.setup()
-  await env.api.setup()
-
-  return env
 }

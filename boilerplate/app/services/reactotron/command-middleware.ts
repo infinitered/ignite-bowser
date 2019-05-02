@@ -4,7 +4,7 @@ import { RootStore } from "../../models/root-store/root-store"
 export type GetRootStore = () => RootStore
 
 export const commandMiddleware = (getRootStore: GetRootStore) => {
-  return tron => {
+  return () => {
     return {
       onCommand: async command => {
         if (command.type !== "custom") return

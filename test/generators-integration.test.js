@@ -24,11 +24,11 @@ describe('a generated app', () => {
   })
 
   test('can yarn install and pass tests', async () => {
-    return execa.shell("yarn install 2>&1")
-    .then(() => execa.shell("yarn test 2>&1"))
-    .catch(error => {
-      expect(error.stdout).toEqual('') // will fail & show the yarn or test errors
-    })
+    return execa.shell('yarn install 2>&1')
+      .then(() => execa.shell('npm test 2>&1'))
+      .catch(error => {
+        expect(error.stdout).toEqual('') // will fail & show the yarn or test errors
+      })
   })
 
   test('does have a linting script', async () => {

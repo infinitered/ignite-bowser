@@ -9,7 +9,7 @@ const { getReactNativeVersion } = require('./lib/react-native-version')
  * @param {*} context - The gluegun context.
  * @returns {boolean}
  */
-const isAndroidInstalled = function (context) {
+const isAndroidInstalled = function(context) {
   const androidHome = process.env['ANDROID_HOME']
   const hasAndroidEnv = !context.strings.isBlank(androidHome)
   const hasAndroid = hasAndroidEnv && context.filesystem.exists(`${androidHome}/tools`) === 'dir'
@@ -32,45 +32,50 @@ async function install(context) {
     system,
     template,
     prompt,
+    patching
   } = context
   const { colors } = print
   const { red, yellow, bold, gray, blue, cyan } = colors
   const isWindows = process.platform === 'win32'
   const isMac = process.platform === 'darwin'
 
-  const perfStart = (new Date()).getTime()
+  const perfStart = new Date().getTime()
 
-  const name = parameters.third
+  const name = parameters.first
   const spinner = print
     .spin(`using the ${red('Infinite Red')} boilerplate v3 (code name 'Bowser')`)
     .succeed()
 
   // attempt to install React Native or die trying
-  const rnInstall = await reactNative.install({
+  let rnInstall = undefined
+  rnInstall = await reactNative.install({
     name,
-    version: getReactNativeVersion(context)
+    version: getReactNativeVersion(context),
+    useNpm: true // CI seems to die without it
   })
   if (rnInstall.exitCode > 0) process.exit(rnInstall.exitCode)
 
   // remove the __tests__ directory, App.js, and unnecessary config files that come with React Native
-  const filesToRemove = [
-    '__tests__',
-    'App.js',
-    '.flowconfig',
-    '.buckconfig',
-  ]
+  const filesToRemove = ['__tests__', 'App.js', '.babelrc', '.flowconfig', '.buckconfig']
   filesToRemove.map(filesystem.remove)
 
   let includeDetox = false
   if (isMac) {
     const askAboutDetox = parameters.options.detox === undefined
-    includeDetox = askAboutDetox ? await prompt.confirm('Would you like to include Detox end-to-end tests?') : parameters.options.detox === true
+    includeDetox = askAboutDetox
+      ? await prompt.confirm('Would you like to include Detox end-to-end tests?')
+      : parameters.options.detox === true
 
     if (includeDetox) {
-      print.info(`You'll love Detox for testing your app! There are some additional requirements to install, so make sure to check out ${cyan('e2e/README.md')}!`)
+      // prettier-ignore
+      print.info(`
+        You'll love Detox for testing your app! There are some additional requirements to
+        install, so make sure to check out ${cyan('e2e/README.md')} in your generated app!
+      `)
     }
   } else {
     if (parameters.options.detox === true) {
+      // prettier-ignore
       if (isWindows) {
         print.info("Skipping Detox because it is only supported on macOS, but you're running Windows")
       } else {
@@ -95,12 +100,13 @@ async function install(context) {
     matching: '!*.ejs'
   })
   filesystem.copy(`${__dirname}/boilerplate/bin`, `${process.cwd()}/bin`, {
-    overwrite: true,
+    overwrite: true
   })
-  includeDetox && filesystem.copy(`${__dirname}/boilerplate/e2e`, `${process.cwd()}/e2e`, {
-    overwrite: true,
-    matching: '!*.ejs'
-  })
+  includeDetox &&
+    filesystem.copy(`${__dirname}/boilerplate/e2e`, `${process.cwd()}/e2e`, {
+      overwrite: true,
+      matching: '!*.ejs'
+    })
   spinner.stop()
 
   // generate some templates
@@ -115,10 +121,15 @@ async function install(context) {
     { template: '.solidarity', target: '.solidarity' },
     { template: '.babelrc', target: '.babelrc' },
     { template: 'tsconfig.json', target: 'tsconfig.json' },
-    { template: 'tslint.json', target: 'tslint.json' },
     { template: 'app/app.tsx.ejs', target: 'app/app.tsx' },
-    { template: 'app/screens/first-example-screen/first-example-screen.tsx.ejs', target: 'app/screens/first-example-screen/first-example-screen.tsx' },
-    { template: 'app/screens/second-example-screen/second-example-screen.tsx.ejs', target: 'app/screens/second-example-screen/second-example-screen.tsx' },
+    {
+      template: 'app/screens/first-example-screen/first-example-screen.tsx.ejs',
+      target: 'app/screens/first-example-screen/first-example-screen.tsx'
+    },
+    {
+      template: 'app/screens/second-example-screen/second-example-screen.tsx.ejs',
+      target: 'app/screens/second-example-screen/second-example-screen.tsx'
+    }
   ]
   const templateProps = {
     name,
@@ -127,7 +138,7 @@ async function install(context) {
     vectorIcons: false,
     animatable: false,
     i18n: false,
-    includeDetox,
+    includeDetox
   }
   await ignite.copyBatch(context, templates, templateProps, {
     quiet: true,
@@ -157,19 +168,13 @@ async function install(context) {
 
     // deep merge, lol
     const newPackage = pipe(
-      assoc(
-        'dependencies',
-        merge(currentPackage.dependencies, newPackageJson.dependencies)
-      ),
+      assoc('dependencies', merge(currentPackage.dependencies, newPackageJson.dependencies)),
       assoc(
         'devDependencies',
         merge(currentPackage.devDependencies, newPackageJson.devDependencies)
       ),
       assoc('scripts', merge(currentPackage.scripts, newPackageJson.scripts)),
-      merge(
-        __,
-        omit(['dependencies', 'devDependencies', 'scripts'], newPackageJson)
-      )
+      merge(__, omit(['dependencies', 'devDependencies', 'scripts'], newPackageJson))
     )(currentPackage)
 
     // write this out
@@ -181,9 +186,6 @@ async function install(context) {
   // pass long the debug flag if we're running in that mode
   const debugFlag = parameters.options.debug ? '--debug' : ''
 
-  // -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-  // NOTE(steve): I'm re-adding this here because boilerplates now hold permanent files
-  // -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
   try {
     // boilerplate adds itself to get plugin.js/generators etc
     // Could be directory, npm@version, or just npm name.  Default to passed in values
@@ -197,30 +199,40 @@ async function install(context) {
     await system.spawn('react-native link', { stdio: 'ignore' })
     spinner.stop()
 
-    await ignite.addModule('react-native-gesture-handler', { version: '1.0.9', link: true })
+    await ignite.addModule('react-native-gesture-handler', { version: '1.1.0', link: true })
 
-    ignite.patchInFile(`${process.cwd()}/android/app/src/main/java/com/${name.toLowerCase()}/MainActivity.java`, {
-      after: 'import com.facebook.react.ReactActivity;',
-      insert: `
+    ignite.patchInFile(
+      `${process.cwd()}/android/app/src/main/java/com/${name.toLowerCase()}/MainActivity.java`,
+      {
+        after: 'import com.facebook.react.ReactActivity;',
+        insert: `
       import com.facebook.react.ReactActivityDelegate;
       import com.facebook.react.ReactRootView;
       import com.swmansion.gesturehandler.react.RNGestureHandlerEnabledRootView;`
-    })
+      }
+    )
 
-    ignite.patchInFile(`${process.cwd()}/android/app/src/main/java/com/${name.toLowerCase()}/MainActivity.java`, {
-      after: `public class MainActivity extends ReactActivity {`,
-      insert: '\n  @Override\n' +
-        '  protected ReactActivityDelegate createReactActivityDelegate() {\n' +
-        '    return new ReactActivityDelegate(this, getMainComponentName()) {\n' +
-        '      @Override\n' +
-        '      protected ReactRootView createRootView() {\n' +
-        '       return new RNGestureHandlerEnabledRootView(MainActivity.this);\n' +
-        '      }\n' +
-        '    };\n' +
-        '  }'
-    })
+    ignite.patchInFile(
+      `${process.cwd()}/android/app/src/main/java/com/${name.toLowerCase()}/MainActivity.java`,
+      {
+        after: `public class MainActivity extends ReactActivity {`,
+        insert:
+          '\n  @Override\n' +
+          '  protected ReactActivityDelegate createReactActivityDelegate() {\n' +
+          '    return new ReactActivityDelegate(this, getMainComponentName()) {\n' +
+          '      @Override\n' +
+          '      protected ReactRootView createRootView() {\n' +
+          '       return new RNGestureHandlerEnabledRootView(MainActivity.this);\n' +
+          '      }\n' +
+          '    };\n' +
+          '  }'
+      }
+    )
   } catch (e) {
     ignite.log(e)
+    print.error(`
+      There were errors while generating the project. Run with --debug to see verbose output.
+    `)
     throw e
   }
 
@@ -246,11 +258,22 @@ async function install(context) {
   await system.spawn('react-native link', { stdio: 'ignore' })
   spinner.succeed(`Linked dependencies`)
 
-  const perfDuration = parseInt(((new Date()).getTime() - perfStart) / 10) / 100
+  // for Windows, fix the settings.gradle file. Ref: https://github.com/oblador/react-native-vector-icons/issues/938#issuecomment-463296401
+  // for ease of use, just replace any backslashes with forward slashes
+  if (isWindows) {
+    await patching.update(`${process.cwd()}/android/settings.gradle`, contents => {
+      return contents.split('\\').join('/')
+    })
+  }
+
+  const perfDuration = parseInt((new Date().getTime() - perfStart) / 10) / 100
   spinner.succeed(`ignited ${yellow(name)} in ${perfDuration}s`)
 
-  const androidInfo = isAndroidInstalled(context) ? ''
-    : `\n\nTo run in Android, make sure you've followed the latest react-native setup instructions at https://facebook.github.io/react-native/docs/getting-started.html before using ignite.\nYou won't be able to run ${bold('react-native run-android')} successfully until you have.`
+  const androidInfo = isAndroidInstalled(context)
+    ? ''
+    : `\n\nTo run in Android, make sure you've followed the latest react-native setup instructions at https://facebook.github.io/react-native/docs/getting-started.html before using ignite.\nYou won't be able to run ${bold(
+        'react-native run-android'
+      )} successfully until you have.`
 
   const successMessage = `
     ${red('Ignite CLI')} ignited ${yellow(name)} in ${gray(`${perfDuration}s`)}
@@ -261,10 +284,14 @@ async function install(context) {
       react-native run-ios
       react-native run-android${androidInfo}
       ignite --help
-    
-    ${blue('Need additional help? Join our Slack community at http://community.infinite.red.')}
+
+    ${cyan('Need additional help? Join our Slack community at http://community.infinite.red.')}
 
     ${bold('Now get cooking! 🍽')}
+
+    ${gray(
+      '(Running yarn install one last time to make sure everything is installed -- please be patient!)'
+    )}
   `
 
   print.info(successMessage)

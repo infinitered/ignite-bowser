@@ -11,7 +11,7 @@ defaults: &defaults
 
 mac: &mac
   macos:
-    xcode: "10.1.0"
+    xcode: '10.1.0'
   working_directory: ~/repo
 
 version: 2
@@ -45,6 +45,10 @@ jobs:
             - v1-dependencies-bowser-{{ checksum "package.json" }}
             # fallback to using the latest cache if no exact match is found
             - v1-dependencies-bowser-
+      - run:
+          name: Install dependencies
+          command: |
+            yarn install
       - run:
           name: Install React Native CLI and Ignite CLI
           command: |
@@ -100,7 +104,6 @@ jobs:
       - run:
           name: Remove temp directory
           command: rm -rf tempApp
-
 
   publish:
     <<: *defaults
