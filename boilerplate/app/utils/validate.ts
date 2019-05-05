@@ -72,7 +72,7 @@ export interface ValidationErrors {
  */
 export function validate(rules: ValidationRules, data: {}): ValidationErrors {
   if (typeof data !== "object") {
-    return {}
+    return {} as ValidationErrors
   }
   return Validate(data, rules, { fullMessages: false }) || {}
 }
