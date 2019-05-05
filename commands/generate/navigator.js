@@ -1,8 +1,8 @@
-const patterns = require('../../lib/patterns')
-
 module.exports = {
   description: 'Generates a React Navigation navigator.',
   run: async function(toolbox) {
+    const patterns = require('../../lib/patterns')
+
     // grab some features
     const {
       parameters,
@@ -14,8 +14,6 @@ module.exports = {
       prompt: { ask },
       filesystem: { list }
     } = toolbox
-
-    const config = ignite.loadIgniteConfig()
 
     // prettier-ignore
     const navigatorTypes = {
@@ -34,9 +32,16 @@ module.exports = {
       return
     }
 
-    // validation
-    if (config.navigation !== 'react-navigation') {
-      print.info('This generator only works with react-navigation.')
+    // grab the closest package.json
+    const packageJSON = await require('read-pkg-up')()
+    if (!packageJSON) {
+      print.error(`Can't find a package.json here or in parent directories.`)
+      return
+    }
+
+    // ensure react-navigation is installed
+    if (Object.keys(packageJSON.dependencies).includes('react-navigation') === false) {
+      print.error('This generator only works with react-navigation.')
       return
     }
 

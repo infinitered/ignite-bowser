@@ -236,19 +236,6 @@ async function install(context) {
     throw e
   }
 
-  // git configuration
-  const gitExists = await filesystem.exists('./.git')
-  if (!gitExists && !parameters.options['skip-git'] && system.which('git')) {
-    // initial git
-    const spinner = print.spin('configuring git')
-
-    // TODO: Make husky hooks optional
-    const huskyCmd = '' // `&& node node_modules/husky/bin/install .`
-    await system.run(`git init . && git add . && git commit -m "Initial commit." ${huskyCmd}`)
-
-    spinner.succeed(`configured git`)
-  }
-
   // re-run yarn
   const installDeps = ignite.useYarn ? 'yarn' : 'npm install'
   await system.run(installDeps)
