@@ -115,7 +115,6 @@ async function install(context) {
   const templates = [
     { template: 'index.js.ejs', target: 'index.js' },
     { template: 'README.md', target: 'README.md' },
-    { template: 'ignite.json.ejs', target: 'ignite/ignite.json' },
     { template: '.gitignore.ejs', target: '.gitignore' },
     { template: '.prettierignore', target: '.prettierignore' },
     { template: '.solidarity', target: '.solidarity' },
