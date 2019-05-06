@@ -51,7 +51,7 @@ async function install(context) {
   rnInstall = await reactNative.install({
     name,
     version: getReactNativeVersion(context),
-    useNpm: true // CI seems to die without it
+    useNpm: !ignite.useYarn,
   })
   if (rnInstall.exitCode > 0) process.exit(rnInstall.exitCode)
 
