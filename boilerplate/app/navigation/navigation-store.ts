@@ -29,10 +29,21 @@ export const NavigationStoreModel = NavigationEvents.named("NavigationStore")
      */
     state: types.optional(types.frozen(), DEFAULT_STATE),
   })
-  .actions(self => ({
+  .preProcessSnapshot(snapshot => {
+    if (!snapshot || !Boolean(snapshot.state)) return snapshot
 
+    try {
+      // make sure react-navigation can handle our state
+      RootNavigator.router.getPathAndParamsForState(snapshot.state)
+      return snapshot
+    } catch (e) {
+      // otherwise restore default state
+      return { ...snapshot, state: DEFAULT_STATE }
+    }
+  })
+  .actions(self => ({
     /**
-     * Return all subscribers 
+     * Return all subscribers
      */
     actionSubscribers(){
       return self.subs
