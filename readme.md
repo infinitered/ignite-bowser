@@ -100,7 +100,7 @@ This is where your React dumb components will live. Each component will have a d
 This is where your translations will live if you are using `react-native-i18n`.
 
 **models**
-This is where your app's models will live. Each model has a directory which will contain the `mobx-state-tree` model file, test file, and any other supporting files like actions, types, etc.
+This is where your app's models will live. Each model has a directory which will contain the `mobx-state-tree` model file, test file, and any other supporting files like actions, types, etc. There's also an extensions directory with useful shared extensions that you can include in your models like `.extend(withRootStore)` or `.extend(withEnvironment)` to access the root store or environment respectively.
 
 **navigation**
 This is where your `react-navigation` navigators will live.
