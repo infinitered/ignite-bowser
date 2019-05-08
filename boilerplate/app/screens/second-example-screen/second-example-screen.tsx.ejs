@@ -1,5 +1,13 @@
 import * as React from "react"
-import { View, Image, ViewStyle, TextStyle, ImageStyle, SafeAreaView } from "react-native"
+import {
+  Image,
+  ImageStyle,
+  Platform,
+  SafeAreaView,
+  TextStyle,
+  View,
+  ViewStyle,
+} from "react-native"
 import { NavigationScreenProps } from "react-navigation"
 import { Screen } from "../../components/screen"
 import { Text } from "../../components/text"
@@ -73,6 +81,12 @@ const HEART: ImageStyle = {
   height: 10,
   resizeMode: "contain",
 }
+const HINT: TextStyle = {
+  color: "#BAB6C8",
+  fontSize: 12,
+  lineHeight: 15,
+  marginVertical: spacing[2],
+}
 
 export interface SecondExampleScreenProps extends NavigationScreenProps<{}> {}
 
@@ -116,14 +130,13 @@ export class SecondExampleScreen extends React.Component<SecondExampleScreenProp
 
   render() {
     return (
-    <% if (props.includeDetox) { -%>
-      <View testID="SecondExampleScreen" style={FULL}>
-    <% } else { -%>
-      <View style={FULL}>
-    <% } -%>
+      <% if (props.includeDetox) { -%><View testID="SecondExampleScreen" style={FULL}><% } else { -%><View style={FULL}><% } %>
         <Wallpaper />
         <SafeAreaView style={FULL}>
-          <Screen style={CONTAINER} backgroundColor={color.transparent} preset="scrollStack">
+          <Screen
+            style={CONTAINER}
+            backgroundColor={color.transparent}
+            preset="scrollStack">
             <Header
               headerTx="secondExampleScreen.howTo"
               leftIcon="back"
@@ -131,17 +144,20 @@ export class SecondExampleScreen extends React.Component<SecondExampleScreenProp
               style={HEADER}
               titleStyle={HEADER_TITLE}
             />
-            <Text style={TITLE} preset="header" tx={"secondExampleScreen.title"} />
-            <Text style={TAGLINE} tx={"secondExampleScreen.tagLine"} />
+            <Text style={TITLE} preset="header" tx="secondExampleScreen.title" />
+            <Text style={TAGLINE} tx="secondExampleScreen.tagLine" />
             <BulletItem text="Load up Reactotron!  You can inspect your app, view the events, interact, and so much more!" />
             <BulletItem text="Integrated here, Navigation with State, TypeScript, Storybook, Solidarity, and i18n." />
-
             <View>
               <Button
                 style={DEMO}
                 textStyle={DEMO_TEXT}
                 tx="secondExampleScreen.reactotron"
                 onPress={this.demoReactotron}
+              />
+              <Text
+                style={HINT}
+                tx={`secondExampleScreen.${Platform.OS}ReactotronHint`}
               />
             </View>
             <Image source={logoIgnite} style={IGNITE} />
