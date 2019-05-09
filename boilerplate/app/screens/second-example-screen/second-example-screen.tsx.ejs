@@ -3,7 +3,6 @@ import {
   Image,
   ImageStyle,
   Platform,
-  SafeAreaView,
   TextStyle,
   View,
   ViewStyle,
@@ -132,42 +131,40 @@ export class SecondExampleScreen extends React.Component<SecondExampleScreenProp
     return (
       <% if (props.includeDetox) { -%><View testID="SecondExampleScreen" style={FULL}><% } else { -%><View style={FULL}><% } %>
         <Wallpaper />
-        <SafeAreaView style={FULL}>
-          <Screen
-            style={CONTAINER}
-            backgroundColor={color.transparent}
-            preset="scrollStack">
-            <Header
-              headerTx="secondExampleScreen.howTo"
-              leftIcon="back"
-              onLeftPress={this.goBack}
-              style={HEADER}
-              titleStyle={HEADER_TITLE}
+        <Screen
+          style={CONTAINER}
+          preset="scroll"
+          backgroundColor={color.transparent}>
+          <Header
+            headerTx="secondExampleScreen.howTo"
+            leftIcon="back"
+            onLeftPress={this.goBack}
+            style={HEADER}
+            titleStyle={HEADER_TITLE}
+          />
+          <Text style={TITLE} preset="header" tx="secondExampleScreen.title" />
+          <Text style={TAGLINE} tx="secondExampleScreen.tagLine" />
+          <BulletItem text="Load up Reactotron!  You can inspect your app, view the events, interact, and so much more!" />
+          <BulletItem text="Integrated here, Navigation with State, TypeScript, Storybook, Solidarity, and i18n." />
+          <View>
+            <Button
+              style={DEMO}
+              textStyle={DEMO_TEXT}
+              tx="secondExampleScreen.reactotron"
+              onPress={this.demoReactotron}
             />
-            <Text style={TITLE} preset="header" tx="secondExampleScreen.title" />
-            <Text style={TAGLINE} tx="secondExampleScreen.tagLine" />
-            <BulletItem text="Load up Reactotron!  You can inspect your app, view the events, interact, and so much more!" />
-            <BulletItem text="Integrated here, Navigation with State, TypeScript, Storybook, Solidarity, and i18n." />
-            <View>
-              <Button
-                style={DEMO}
-                textStyle={DEMO_TEXT}
-                tx="secondExampleScreen.reactotron"
-                onPress={this.demoReactotron}
-              />
-              <Text
-                style={HINT}
-                tx={`secondExampleScreen.${Platform.OS}ReactotronHint`}
-              />
-            </View>
-            <Image source={logoIgnite} style={IGNITE} />
-            <View style={LOVE_WRAPPER}>
-              <Text style={LOVE} text="Made with" />
-              <Image source={heart} style={HEART} />
-              <Text style={LOVE} text="by Infinite Red" />
-            </View>
-          </Screen>
-        </SafeAreaView>
+            <Text
+              style={HINT}
+              tx={`secondExampleScreen.${Platform.OS}ReactotronHint`}
+            />
+          </View>
+          <Image source={logoIgnite} style={IGNITE} />
+          <View style={LOVE_WRAPPER}>
+            <Text style={LOVE} text="Made with" />
+            <Image source={heart} style={HEART} />
+            <Text style={LOVE} text="by Infinite Red" />
+          </View>
+        </Screen>
       </View>
     )
   }

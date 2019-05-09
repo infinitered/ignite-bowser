@@ -1,24 +1,18 @@
-import { ViewStyle, ScrollViewStyle } from "react-native"
+import { ViewStyle } from "react-native"
+import { isNil } from "ramda"
 import { color } from "../../theme"
-import { isEmpty, isNil } from "ramda"
 
 /**
- * The base shape & color.
+ * All screen keyboard offsets.
  */
-const SHAPE: ScrollViewStyle = { backgroundColor: color.background, flex: 1 }
+export const offsets = {
+  none: 0,
+}
 
 /**
- * Governs the default child layout.
+ * The variations of keyboard offsets.
  */
-const CONTENTS: ViewStyle = { justifyContent: "flex-start", alignItems: "flex-start" }
-
-/**
- * Glues the shape & child layout together since there's no restrictions on view style.
- */
-const DOES_NOT_SCROLL: ViewStyle = { ...SHAPE, ...CONTENTS }
-
-// a style-safe value when a preset's sub-style isn't defined
-const NOPE = {}
+export type KeyboardOffsets = keyof typeof offsets
 
 /**
  * All the variations of screens.
@@ -29,27 +23,17 @@ export const presets = {
    * which have built-in scrolling like FlatList.
    */
   fixed: {
-    nonScroll: DOES_NOT_SCROLL,
-    scrollOuter: NOPE,
-    scrollInner: NOPE,
-  },
-
-  /**
-   * No scrolling. Children are stretched to full width.
-   */
-  fixedStack: {
-    nonScroll: { ...DOES_NOT_SCROLL, alignItems: "stretch" } as ViewStyle,
-    scrollOuter: NOPE,
-    scrollInner: NOPE,
-  },
-
-  /**
-   * No scrolling. Content is centered on the screen.
-   */
-  fixedCenter: {
-    nonScroll: { ...DOES_NOT_SCROLL, justifyContent: "center", alignItems: "center" } as ViewStyle,
-    scrollOuter: NOPE,
-    scrollInner: NOPE,
+    outer: {
+      backgroundColor: color.background,
+      flex: 1,
+      height: "100%",
+    } as ViewStyle,
+    inner: {
+      justifyContent: "flex-start",
+      alignItems: "stretch",
+      height: "100%",
+      width: "100%",
+    } as ViewStyle,
   },
 
   /**
@@ -58,18 +42,12 @@ export const presets = {
    * Pick this one if you don't know which one you want yet.
    */
   scroll: {
-    nonScroll: NOPE,
-    scrollOuter: SHAPE,
-    scrollInner: { ...CONTENTS } as ViewStyle,
-  },
-
-  /**
-   * Like scroll, but children are stretched to full width.
-   */
-  scrollStack: {
-    nonScroll: NOPE,
-    scrollOuter: SHAPE,
-    scrollInner: { ...CONTENTS, alignItems: "stretch" } as ViewStyle,
+    outer: {
+      backgroundColor: color.background,
+      flex: 1,
+      height: "100%",
+    } as ViewStyle,
+    inner: { justifyContent: "flex-start", alignItems: "stretch" } as ViewStyle,
   },
 }
 
@@ -85,10 +63,5 @@ export type ScreenPresets = keyof typeof presets
  */
 export function isNonScrolling(preset: ScreenPresets) {
   // any of these things will make you scroll
-  return !(
-    isNil(preset) ||
-    isEmpty(preset) ||
-    isNil(presets[preset]) ||
-    presets[preset].nonScroll === NOPE
-  )
+  return isNil(preset) || !preset.length || isNil(presets[preset]) || preset === "fixed"
 }

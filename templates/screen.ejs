@@ -18,7 +18,7 @@ const ROOT: ViewStyle = {
 export class <%= props.pascalName %> extends React.Component<<%= props.pascalName %>Props, {}> {
   render () {
     return (
-      <Screen style={ROOT} preset="fixedCenter">
+      <Screen style={ROOT} preset="scroll">
         <Text preset="header" tx="<%= props.camelName %>.header" />
       </Screen>
     )

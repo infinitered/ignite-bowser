@@ -1,36 +1,48 @@
 import * as React from "react"
-import { ScrollView, View, ViewStyle } from "react-native"
+import { KeyboardAvoidingView, Platform, ScrollView, StatusBar, View } from "react-native"
+import { SafeAreaView } from "react-navigation"
 import { ScreenProps } from "./screen.props"
-import { presets, isNonScrolling } from "./screen.presets"
+import { isNonScrolling, offsets, presets } from "./screen.presets"
 
-/**
- * This screen does not scroll.
- *
- * @param props The screen props
- */
+const isIos = Platform.OS === "ios"
+
 function ScreenWithoutScrolling(props: ScreenProps) {
-  const preset = presets[props.preset] || presets["fixed"]
-  const style = { ...preset.nonScroll, ...props.style }
+  const preset = presets["fixed"]
+  const style = props.style || {}
   const backgroundStyle = props.backgroundColor ? { backgroundColor: props.backgroundColor } : {}
-
-  return <View style={[style, backgroundStyle]}>{props.children}</View>
-}
-
-/**
- * This screen scrolls.
- *
- * @param props The screen props
- */
-function ScreenWithScrolling(props: ScreenProps) {
-  const preset = presets[props.preset] || presets["scroll"]
-  const outerStyle = preset.scrollOuter
-  const backgroundStyle = props.backgroundColor ? { backgroundColor: props.backgroundColor } : {}
-  const innerStyle = { ...preset.scrollInner, ...props.style } as ViewStyle
+  const Wrapper = props.unsafe ? View : SafeAreaView
 
   return (
-    <ScrollView style={[outerStyle, backgroundStyle]} contentContainerStyle={innerStyle}>
-      {props.children}
-    </ScrollView>
+    <KeyboardAvoidingView
+      style={[preset.outer, backgroundStyle]}
+      behavior={isIos ? "padding" : null}
+      keyboardVerticalOffset={offsets[props.keyboardOffset || "none"]}>
+      <StatusBar barStyle={props.statusBar || "light-content"} />
+      <Wrapper style={[preset.inner, style]}>{props.children}</Wrapper>
+    </KeyboardAvoidingView>
+  )
+}
+
+function ScreenWithScrolling(props: ScreenProps) {
+  const preset = presets["scroll"]
+  const style = props.style || {}
+  const backgroundStyle = props.backgroundColor ? { backgroundColor: props.backgroundColor } : {}
+  const Wrapper = props.unsafe ? View : SafeAreaView
+
+  return (
+    <KeyboardAvoidingView
+      style={[preset.outer, backgroundStyle]}
+      behavior={isIos ? "padding" : null}
+      keyboardVerticalOffset={offsets[props.keyboardOffset || "none"]}>
+      <StatusBar barStyle={props.statusBar || "light-content"} />
+      <Wrapper style={[preset.outer, backgroundStyle]}>
+        <ScrollView
+          style={[preset.outer, backgroundStyle]}
+          contentContainerStyle={[preset.inner, style]}>
+          {props.children}
+        </ScrollView>
+      </Wrapper>
+    </KeyboardAvoidingView>
   )
 }
 
