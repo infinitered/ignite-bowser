@@ -1,5 +1,5 @@
 import { ViewStyle } from "react-native"
-import { ScreenPresets } from "./screen.presets"
+import { KeyboardOffsets, ScreenPresets } from "./screen.presets"
 
 export interface ScreenProps {
   /**
@@ -21,4 +21,19 @@ export interface ScreenProps {
    * An optional background color
    */
   backgroundColor?: string
+
+  /**
+   * An optional status bar setting. Defaults to light-content.
+   */
+  statusBar?: "light-content" | "dark-content"
+
+  /**
+   * Should we not wrap in SafeAreaView? Defaults to false.
+   */
+  unsafe?: boolean
+
+  /**
+   * By how much should we offset the keyboard? Defaults to none.
+   */
+  keyboardOffset?: KeyboardOffsets
 }
