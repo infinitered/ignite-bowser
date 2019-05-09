@@ -47,8 +47,8 @@ module.exports = {
     // and insert the screen into the nav router
     if (config.navigation === 'react-navigation') {
       const appNavFilePath = `${process.cwd()}/app/navigation/root-navigator.ts`
-      const importToAdd = `import { ${pascalName} } from "../screens/${screenName}/${screenName}"`
-      const routeToAdd = `    ${camelName}: { screen: ${pascalName} },`
+      const importToAdd = `\nimport { ${pascalName} } from "../screens/${screenName}/${screenName}"`
+      const routeToAdd = `\n    ${camelName}: { screen: ${pascalName} },`
 
       if (!filesystem.exists(appNavFilePath)) {
         const msg =
