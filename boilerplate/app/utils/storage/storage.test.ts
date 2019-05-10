@@ -1,24 +1,15 @@
+import AsyncStorage from "@react-native-community/async-storage"
 import { load, loadString, save, saveString, clear, remove } from "./storage"
 
 // fixtures
 const VALUE_OBJECT = { x: 1 }
 const VALUE_STRING = JSON.stringify(VALUE_OBJECT)
 
-// mocks
-const mockGetItem = jest.fn().mockReturnValue(Promise.resolve(VALUE_STRING))
-const mockSetItem = jest.fn()
-const mockRemoveItem = jest.fn()
-const mockClear = jest.fn()
+beforeEach(() => {
+  // @ts-ignore
+  AsyncStorage.getItem.mockReturnValue(Promise.resolve(VALUE_STRING))
+})
 
-// replace AsyncStorage
-jest.mock("AsyncStorage", () => ({
-  getItem: mockGetItem,
-  setItem: mockSetItem,
-  removeItem: mockRemoveItem,
-  clear: mockClear,
-}))
-
-// reset mocks after each test
 afterEach(() => jest.clearAllMocks())
 
 test("load", async () => {
@@ -33,20 +24,20 @@ test("loadString", async () => {
 
 test("save", async () => {
   await save("something", VALUE_OBJECT)
-  expect(mockSetItem).toHaveBeenCalledWith("something", VALUE_STRING)
+  expect(AsyncStorage.setItem).toHaveBeenCalledWith("something", VALUE_STRING)
 })
 
 test("saveString", async () => {
   await saveString("something", VALUE_STRING)
-  expect(mockSetItem).toHaveBeenCalledWith("something", VALUE_STRING)
+  expect(AsyncStorage.setItem).toHaveBeenCalledWith("something", VALUE_STRING)
 })
 
 test("remove", async () => {
   await remove("something")
-  expect(mockRemoveItem).toHaveBeenCalledWith("something")
+  expect(AsyncStorage.removeItem).toHaveBeenCalledWith("something")
 })
 
 test("clear", async () => {
   await clear()
-  expect(mockClear).toHaveBeenCalledWith()
+  expect(AsyncStorage.clear).toHaveBeenCalledWith()
 })
