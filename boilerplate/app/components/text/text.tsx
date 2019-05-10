@@ -12,10 +12,10 @@ import { mergeAll, flatten } from "ramda"
  */
 export function Text(props: TextProps) {
   // grab the props
-  const { preset = "default", tx, text, children, style: styleOverride, ...rest } = props
+  const { preset = "default", tx, txOptions, text, children, style: styleOverride, ...rest } = props
 
   // figure out which content to use
-  const i18nText = tx && translate(tx)
+  const i18nText = tx && translate(tx, txOptions)
   const content = i18nText || text || children
 
   const style = mergeAll(flatten([presets[preset] || presets.default, styleOverride]))
