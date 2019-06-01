@@ -51,7 +51,7 @@ async function install(context) {
   rnInstall = await reactNative.install({
     name,
     version: getReactNativeVersion(context),
-    useNpm: !ignite.useYarn,
+    useNpm: !ignite.useYarn
   })
   if (rnInstall.exitCode > 0) process.exit(rnInstall.exitCode)
 
@@ -116,9 +116,9 @@ async function install(context) {
     { template: 'index.js.ejs', target: 'index.js' },
     { template: 'README.md', target: 'README.md' },
     { template: '.gitignore.ejs', target: '.gitignore' },
+    { template: '.env.example', target: '.env' },
     { template: '.prettierignore', target: '.prettierignore' },
     { template: '.solidarity', target: '.solidarity' },
-    { template: '.babelrc', target: '.babelrc' },
     { template: 'tsconfig.json', target: 'tsconfig.json' },
     { template: 'app/app.tsx.ejs', target: 'app/app.tsx' },
     {
@@ -143,6 +143,9 @@ async function install(context) {
     quiet: true,
     directory: `${ignite.ignitePluginPath()}/boilerplate`
   })
+
+  // remove auto-generated babel.config.json, because we use package.json for that
+  filesystem.remove('./babel.config.json')
 
   /**
    * Append to files
