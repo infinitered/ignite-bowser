@@ -1,7 +1,7 @@
-const patterns = require('../../lib/patterns')
+const patterns = require("../../lib/patterns")
 
 module.exports = {
-  description: 'Generates a React Native screen.',
+  description: "Generates a React Native screen.",
   run: async function(toolbox) {
     // grab some features
     const { parameters, print, strings, ignite, filesystem, patching } = toolbox
@@ -10,13 +10,13 @@ module.exports = {
 
     // validation
     if (isBlank(parameters.first)) {
-      print.info('A name is required.')
+      print.info("A name is required.")
       print.info(`ignite generate screen <name>\n`)
       return
     }
 
     const name = parameters.first
-    const screenName = name.endsWith('-screen') ? name : `${name}-screen`
+    const screenName = name.endsWith("-screen") ? name : `${name}-screen`
 
     // prettier-ignore
     if (name.endsWith('-screen')) {
@@ -32,12 +32,12 @@ module.exports = {
     const jobs = [
       {
         template: `screen.ejs`,
-        target: `app/screens/${screenName}/${screenName}.tsx`
+        target: `app/screens/${screenName}/${screenName}.tsx`,
       },
       {
-        template: 'rollup-index.ts.ejs',
-        target: `app/screens/${screenName}/index.ts`
-      }
+        template: "rollup-index.ts.ejs",
+        target: `app/screens/${screenName}/index.ts`,
+      },
     ]
 
     // make the templates
@@ -45,7 +45,7 @@ module.exports = {
 
     // if using `react-navigation` go the extra step
     // and insert the screen into the nav router
-    if (config.navigation === 'react-navigation') {
+    if (config.navigation === "react-navigation") {
       const appNavFilePath = `${process.cwd()}/app/navigation/root-navigator.ts`
       const importToAdd = `\nimport { ${pascalName} } from "../screens/${screenName}/${screenName}"`
       const routeToAdd = `\n    ${camelName}: { screen: ${pascalName} },`
@@ -56,22 +56,21 @@ module.exports = {
           `Add your new screen manually to your navigation.`
         print.error(msg)
         process.exit(1)
-        return
       }
 
       // insert screen import
       await patching.patch(appNavFilePath, {
         after: new RegExp(patterns[patterns.constants.PATTERN_NAV_IMPORTS]),
-        insert: importToAdd
+        insert: importToAdd,
       })
 
       // insert screen route
       await patching.patch(appNavFilePath, {
         after: new RegExp(patterns[patterns.constants.PATTERN_ROOT_NAV_ROUTES]),
-        insert: routeToAdd
+        insert: routeToAdd,
       })
     } else {
       print.info(`Screen ${screenName} created, manually add it to your navigation`)
     }
-  }
+  },
 }
