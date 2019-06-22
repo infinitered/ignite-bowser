@@ -252,6 +252,11 @@ async function install(context) {
     })
   }
 
+  // let eslint and prettier clean things up
+  await system.spawn(`${ignite.useYarn ? "yarn" : "npm run"} lint`)
+  await system.spawn(`${ignite.useYarn ? "yarn" : "npm run"} format`)
+  spinner.succeed("Linted and formatted")
+
   const perfDuration = parseInt((new Date().getTime() - perfStart) / 10) / 100
   spinner.succeed(`ignited ${yellow(name)} in ${perfDuration}s`)
 
