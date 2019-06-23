@@ -33,7 +33,9 @@ describe("a generated app", () => {
   })
 
   test("does have a linting script", async () => {
-    expect(jetpack.read("package.json", "json")["scripts"]["lint"]).toBe("npm-run-all lint:*")
+    expect(jetpack.read("package.json", "json")["scripts"]["lint"]).toBe(
+      "eslint index.js app --fix --ext .js,.ts,.tsx",
+    )
   })
 
   test("generates a component", async () => {
