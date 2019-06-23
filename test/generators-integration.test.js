@@ -14,7 +14,7 @@ describe("a generated app", () => {
   beforeAll(async () => {
     // make sure we are in the temp directory
     process.chdir(appTemp)
-    await execa(IGNITE, ["new", APP, "--no-detox", "--skip-git", "--boilerplate", BOILERPLATE])
+    await execa(IGNITE, ["new", APP, "--no-detox", "--boilerplate", BOILERPLATE])
     process.chdir(APP)
   })
 
@@ -23,16 +23,18 @@ describe("a generated app", () => {
     jetpack.remove(appTemp)
   })
 
-  test("can yarn install and pass tests", async () => {
-    return execa
-      .shell("yarn install 2>&1")
-      .then(() => execa.shell("npm test 2>&1"))
-      .catch(error => {
-        expect(error.stdout).toEqual("") // will fail & show the yarn or test errors
-      })
+  test("can yarn install and pass tests", () => {
+    return expect(
+      execa
+        .shell("yarn test 2>&1")
+        .then(() => execa.shell("git status --porcelain"))
+        .then(({ stdout }) => expect(stdout).toEqual(""))
+        .then(() => execa.shell("yarn format && yarn lint --max-warnings 0"))
+        .then(() => execa.shell("git status --porcelain")),
+    ).resolves.toMatchObject({ stdout: "" }) // will fail & show the yarn or test errors
   })
 
-  test("does have a linting script", async () => {
+  test("does have a linting script", () => {
     expect(jetpack.read("package.json", "json")["scripts"]["lint"]).toBe(
       "eslint index.js app --fix --ext .js,.ts,.tsx",
     )
