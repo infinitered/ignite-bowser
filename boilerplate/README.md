@@ -23,7 +23,7 @@ ignite-project
 ├── app
 │   ├── components
 │   ├── i18n
- │   ├── utils
+│   ├── utils
 │   ├── models
 │   ├── navigation
 │   ├── screens
