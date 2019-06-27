@@ -14,7 +14,7 @@ describe('a generated app', () => {
   beforeAll(async () => {
     // make sure we are in the temp directory
     process.chdir(appTemp)
-    await execa(IGNITE, ['new', APP, '--no-detox','--skip-git', '--boilerplate', BOILERPLATE])
+    await execa(IGNITE, ['new', APP, '--no-detox', '--skip-git', '--boilerplate', BOILERPLATE])
     process.chdir(APP)
   })
 

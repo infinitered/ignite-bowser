@@ -2,8 +2,6 @@ import { onSnapshot } from "mobx-state-tree"
 import { RootStoreModel, RootStore } from "./root-store"
 import { Environment } from "../environment"
 import * as storage from "../../utils/storage"
-import { Reactotron } from "../../services/reactotron"
-import { Api } from "../../services/api"
 
 /**
  * The key we'll be saving our state as within async storage.
@@ -19,15 +17,7 @@ const ROOT_STATE_STORAGE_KEY = "root"
  */
 export async function createEnvironment() {
   const env = new Environment()
-
-  // create each service
-  env.reactotron = new Reactotron()
-  env.api = new Api()
-
-  // allow each service to setup
-  await env.reactotron.setup()
-  await env.api.setup()
-
+  await env.setup()
   return env
 }
 
