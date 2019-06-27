@@ -7,7 +7,7 @@ import { StoryScreen, Story, UseCase } from "../../../storybook/views"
 import { Text } from "../text"
 import { TextField } from "./"
 import { State } from "react-powerplug"
-import { ViewStyle, TextStyle } from "react-native"
+import { ViewStyle, TextStyle, Alert } from "react-native"
 
 const styleArray: ViewStyle[] = [
   {paddingHorizontal: 30},
@@ -154,7 +154,7 @@ storiesOf("TextField", module)
                 if(alertWhenFocused) {
                   // Prevent text field focus from being repeatedly triggering alert
                   alertWhenFocused = false
-                  window.alert("Text field focuesed with forwarded ref!")
+                  Alert.alert("Text field focuesed with forwarded ref!")
                 }
               }}
             />
