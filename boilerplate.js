@@ -122,12 +122,12 @@ async function install(context) {
     { template: 'tsconfig.json', target: 'tsconfig.json' },
     { template: 'app/app.tsx.ejs', target: 'app/app.tsx' },
     {
-      template: 'app/screens/first-example-screen/first-example-screen.tsx.ejs',
-      target: 'app/screens/first-example-screen/first-example-screen.tsx'
+      template: 'app/screens/welcome-screen/welcome-screen.tsx.ejs',
+      target: 'app/screens/welcome-screen/welcome-screen.tsx'
     },
     {
-      template: 'app/screens/second-example-screen/second-example-screen.tsx.ejs',
-      target: 'app/screens/second-example-screen/second-example-screen.tsx'
+      template: 'app/screens/demo-screen/demo-screen.tsx.ejs',
+      target: 'app/screens/demo-screen/demo-screen.tsx'
     }
   ]
   const templateProps = {
