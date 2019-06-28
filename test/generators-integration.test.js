@@ -12,10 +12,16 @@ describe("a generated app", () => {
   // creates a new temp directory
   const appTemp = tempy.directory()
   beforeAll(async () => {
-    // make sure we are in the temp directory
+    // make sure we are in the temp directory. Do the initial git commit
+    // manually, so we can set up the git user first on circleci.
     process.chdir(appTemp)
-    await execa(IGNITE, ["new", APP, "--no-detox", "--boilerplate", BOILERPLATE])
+    await execa(IGNITE, ["new", APP, "--no-detox", "--skip-git", "--boilerplate", BOILERPLATE])
     process.chdir(APP)
+    await execa.shell("git init")
+    await execa.shell('git config user.email "test@example.com"')
+    await execa.shell("git config user.name test")
+    await execa.shell("git add -A")
+    await execa.shell('git commit -m "Initial commit"')
   })
 
   afterAll(() => {
