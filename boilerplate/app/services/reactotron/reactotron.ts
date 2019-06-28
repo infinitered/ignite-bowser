@@ -132,9 +132,9 @@ export class Reactotron {
 
       // Register Custom Commands
       Tron.onCustomCommand({
-        title: 'Reset Root Store',
-        description: 'Resets the MST store',
-        command: 'resetStore',
+        title: "Reset Root Store",
+        description: "Resets the MST store",
+        command: "resetStore",
         handler: () => {
           console.tron.log("resetting store")
           clear()
@@ -142,13 +142,13 @@ export class Reactotron {
       })
 
       Tron.onCustomCommand({
-        title: 'Reset Navigation Store',
-        description: 'Resets the navigation store',
-        command: 'resetNavigation',
+        title: "Reset Navigation Store",
+        description: "Resets the navigation store",
+        command: "resetNavigation",
         handler: () => {
           console.tron.log("resetting navigation store")
           this.rootStore.navigationStore.reset()
-        }
+        },
       })
 
       // clear if we should

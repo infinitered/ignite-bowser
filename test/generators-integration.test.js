@@ -1,20 +1,20 @@
-const execa = require('execa')
-const jetpack = require('fs-jetpack')
-const tempy = require('tempy')
+const execa = require("execa")
+const jetpack = require("fs-jetpack")
+const tempy = require("tempy")
 
-const IGNITE = 'ignite'
-const APP = 'IntegrationTest'
+const IGNITE = "ignite"
+const APP = "IntegrationTest"
 const BOILERPLATE = `${__dirname}/../`
 // calling the ignite cli takes a while
 jasmine.DEFAULT_TIMEOUT_INTERVAL = 800000
 
-describe('a generated app', () => {
+describe("a generated app", () => {
   // creates a new temp directory
   const appTemp = tempy.directory()
   beforeAll(async () => {
     // make sure we are in the temp directory
     process.chdir(appTemp)
-    await execa(IGNITE, ['new', APP, '--no-detox', '--skip-git', '--boilerplate', BOILERPLATE])
+    await execa(IGNITE, ["new", APP, "--no-detox", "--skip-git", "--boilerplate", BOILERPLATE])
     process.chdir(APP)
   })
 
@@ -23,44 +23,49 @@ describe('a generated app', () => {
     jetpack.remove(appTemp)
   })
 
-  test('can yarn install and pass tests', async () => {
-    return execa.shell('yarn install 2>&1')
-      .then(() => execa.shell('npm test 2>&1'))
+  test("can yarn install and pass tests", async () => {
+    return execa
+      .shell("yarn install 2>&1")
+      .then(() => execa.shell("npm test 2>&1"))
       .catch(error => {
-        expect(error.stdout).toEqual('') // will fail & show the yarn or test errors
+        expect(error.stdout).toEqual("") // will fail & show the yarn or test errors
       })
   })
 
-  test('does have a linting script', async () => {
-    expect(jetpack.read('package.json', 'json')['scripts']['lint']).toBe('npm-run-all lint:*')
+  test("does have a linting script", async () => {
+    expect(jetpack.read("package.json", "json")["scripts"]["lint"]).toBe("npm-run-all lint:*")
   })
 
-  test('generates a component', async () => {
-    const simpleComponent = 'Simple'
-    await execa(IGNITE, ['g', 'component', simpleComponent], { preferLocal: false })
-    expect(jetpack.exists(`app/components/${simpleComponent}/${simpleComponent}.tsx`)).toBe('file')
-    expect(jetpack.exists(`app/components/${simpleComponent}/${simpleComponent}.story.tsx`)).toBe('file')
-    expect(jetpack.exists(`app/components/${simpleComponent}/index.ts`)).toBe('file')
-    const lint = await execa('npm', ['-s', 'run', 'lint'])
-    expect(lint.stderr).toBe('')
+  test("generates a component", async () => {
+    const simpleComponent = "Simple"
+    await execa(IGNITE, ["g", "component", simpleComponent], { preferLocal: false })
+    expect(jetpack.exists(`app/components/${simpleComponent}/${simpleComponent}.tsx`)).toBe("file")
+    expect(jetpack.exists(`app/components/${simpleComponent}/${simpleComponent}.story.tsx`)).toBe(
+      "file",
+    )
+    expect(jetpack.exists(`app/components/${simpleComponent}/index.ts`)).toBe("file")
+    const lint = await execa("npm", ["-s", "run", "lint"])
+    expect(lint.stderr).toBe("")
   })
 
-  test('generates a screen', async () => {
-    const simpleScreen = 'test'
-    await execa(IGNITE, ['g', 'screen', simpleScreen], { preferLocal: false })
-    expect(jetpack.exists(`app/screens/${simpleScreen}-screen/${simpleScreen}-screen.tsx`)).toBe('file')
-    expect(jetpack.exists(`app/screens/${simpleScreen}-screen/index.ts`)).toBe('file')
-    const lint = await execa('npm', ['-s', 'run', 'lint'])
-    expect(lint.stderr).toBe('')
+  test("generates a screen", async () => {
+    const simpleScreen = "test"
+    await execa(IGNITE, ["g", "screen", simpleScreen], { preferLocal: false })
+    expect(jetpack.exists(`app/screens/${simpleScreen}-screen/${simpleScreen}-screen.tsx`)).toBe(
+      "file",
+    )
+    expect(jetpack.exists(`app/screens/${simpleScreen}-screen/index.ts`)).toBe("file")
+    const lint = await execa("npm", ["-s", "run", "lint"])
+    expect(lint.stderr).toBe("")
   })
 
-  test('generates a model', async () => {
-    const simpleModel = 'test'
-    await execa(IGNITE, ['g', 'model', simpleModel], { preferLocal: false })
-    expect(jetpack.exists(`app/models/${simpleModel}/${simpleModel}.ts`)).toBe('file')
-    expect(jetpack.exists(`app/models/${simpleModel}/${simpleModel}.test.ts`)).toBe('file')
-    expect(jetpack.exists(`app/models/${simpleModel}/index.ts`)).toBe('file')
-    const lint = await execa('npm', ['-s', 'run', 'lint'])
-    expect(lint.stderr).toBe('')
+  test("generates a model", async () => {
+    const simpleModel = "test"
+    await execa(IGNITE, ["g", "model", simpleModel], { preferLocal: false })
+    expect(jetpack.exists(`app/models/${simpleModel}/${simpleModel}.ts`)).toBe("file")
+    expect(jetpack.exists(`app/models/${simpleModel}/${simpleModel}.test.ts`)).toBe("file")
+    expect(jetpack.exists(`app/models/${simpleModel}/index.ts`)).toBe("file")
+    const lint = await execa("npm", ["-s", "run", "lint"])
+    expect(lint.stderr).toBe("")
   })
 })

@@ -52,5 +52,5 @@ export const NavigationEvents = types.model("NavigationEvents").volatile(() => {
     }
   }
 
-  return { addListener, fireSubscribers, subs}
+  return { addListener, fireSubscribers, subs }
 })

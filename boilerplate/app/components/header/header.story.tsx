@@ -16,9 +16,7 @@ storiesOf("Header", module)
     <Story>
       <UseCase noPad text="default" usage="The default usage">
         <View style={VIEWSTYLE}>
-          <Header
-            headerTx="secondExampleScreen.howTo"
-          />
+          <Header headerTx="secondExampleScreen.howTo" />
         </View>
       </UseCase>
       <UseCase noPad text="leftIcon" usage="A left nav icon">

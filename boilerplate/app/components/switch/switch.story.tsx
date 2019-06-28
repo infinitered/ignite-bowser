@@ -8,12 +8,10 @@ import { StoryScreen, Story, UseCase } from "../../../storybook/views"
 import { Toggle } from "react-powerplug"
 import { Switch } from "."
 
-const styleArray: ViewStyle[] = [
-  {borderColor: "#686868"},
-]
+const styleArray: ViewStyle[] = [{ borderColor: "#686868" }]
 
 const trackOffStyle: ViewStyle[] = [
-  {backgroundColor: "#686868"},
+  { backgroundColor: "#686868" },
   {
     height: 80,
     borderRadius: 0,
@@ -28,7 +26,6 @@ const trackOnStyle: ViewStyle[] = [
     height: 80,
     borderRadius: 0,
   },
-
 ]
 const thumbOffStyle: ViewStyle[] = [
   {
@@ -41,7 +38,7 @@ const thumbOffStyle: ViewStyle[] = [
   },
 ]
 const thumbOnStyle: ViewStyle[] = [
-  {backgroundColor: "#f0c"},
+  { backgroundColor: "#f0c" },
   {
     height: 80,
     borderRadius: 0,
@@ -91,12 +88,10 @@ storiesOf("Switch", module)
             <View>
               <Switch
                 style={styleArray}
-
                 trackOffStyle={trackOffStyle}
                 trackOnStyle={trackOnStyle}
                 thumbOffStyle={thumbOffStyle}
                 thumbOnStyle={thumbOnStyle}
-
                 // trackOnStyle={{ backgroundColor: "green", borderColor: "black" }}
                 // trackOffStyle={{ backgroundColor: "red", borderColor: "maroon" }}
                 // thumbOnStyle={{ backgroundColor: "cyan" }}

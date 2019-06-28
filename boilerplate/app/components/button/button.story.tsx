@@ -4,15 +4,9 @@ import { storiesOf } from "@storybook/react-native"
 import { StoryScreen, Story, UseCase } from "../../../storybook/views"
 import { Button } from "./"
 
-const buttonStyleArray: ViewStyle[] = [
-  {paddingVertical: 100},
-  {borderRadius: 0},
-]
+const buttonStyleArray: ViewStyle[] = [{ paddingVertical: 100 }, { borderRadius: 0 }]
 
-const buttonTextStyleArray: TextStyle[] = [
-  {fontSize: 20},
-  {color: "#a511dc"},
-]
+const buttonTextStyleArray: TextStyle[] = [{ fontSize: 20 }, { color: "#a511dc" }]
 
 storiesOf("Button", module)
   .addDecorator(fn => <StoryScreen>{fn()}</StoryScreen>)
@@ -24,7 +18,7 @@ storiesOf("Button", module)
       <UseCase text="Disabled" usage="The disabled behaviour of the primary button.">
         <Button text="Click It" preset="primary" onPress={() => Alert.alert("pressed")} disabled />
       </UseCase>
-      <UseCase text="Array Style" usage="Button with array style" >
+      <UseCase text="Array Style" usage="Button with array style">
         <Button
           text="Click It"
           preset="primary"
