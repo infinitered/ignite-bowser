@@ -7,12 +7,12 @@
   "errors": {
     "invalidEmail": "Invalid email address."
   },
-  "firstExampleScreen": {
+  "welcomeScreen": {
     "poweredBy": "POWERED BY BOWSER",
     "readyForLaunch": "Ready for launch.",
     "continue": "CONTINUE"
   },
-  "secondExampleScreen": {
+  "demoScreen": {
     "howTo": "HOW TO",
     "title": "What’s In This Stack?",
     "tagLine": "Congratulations, you’ve got a very advanced React Native app template here.  Take advantage of this boilerplate!",

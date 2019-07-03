@@ -1,2 +1,2 @@
-export * from "./first-example-screen"
+export * from "./welcome-screen"
 export const bowserLogo = require("./bowser.png")
