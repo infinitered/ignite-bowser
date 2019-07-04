@@ -45,7 +45,7 @@ export const NavigationStoreModel = NavigationEvents.named("NavigationStore")
     /**
      * Return all subscribers
      */
-    actionSubscribers(){
+    actionSubscribers() {
       return self.subs
     },
 
@@ -84,7 +84,7 @@ export const NavigationStoreModel = NavigationEvents.named("NavigationStore")
      *
      * @param routeName The route name.
      */
-    navigateTo (routeName: string) {
+    navigateTo(routeName: string) {
       self.dispatch(NavigationActions.navigate({ routeName }))
     },
   }))

@@ -12,10 +12,7 @@ import { ViewStyle } from "react-native"
 const TEXT_STYLE_OVERRIDE = {
   color: color.storybookTextColor,
 }
-const arrayStyle: ViewStyle[] = [
-  {borderWidth: 5},
-  {borderColor: "#32cd32"},
-]
+const arrayStyle: ViewStyle[] = [{ borderWidth: 5 }, { borderColor: "#32cd32" }]
 
 storiesOf("FormRow", module)
   .addDecorator(fn => <StoryScreen>{fn()}</StoryScreen>)
@@ -26,7 +23,9 @@ storiesOf("FormRow", module)
         usage="FormRow has many parts designed to fit together.  Here is what it looks like all assembled."
       >
         <FormRow preset="top">
-          <Text preset="fieldLabel" style={TEXT_STYLE_OVERRIDE}>Hello! I am at the top</Text>
+          <Text preset="fieldLabel" style={TEXT_STYLE_OVERRIDE}>
+            Hello! I am at the top
+          </Text>
         </FormRow>
         <FormRow preset="middle">
           <Text style={TEXT_STYLE_OVERRIDE}>
@@ -36,7 +35,9 @@ storiesOf("FormRow", module)
           </Text>
         </FormRow>
         <FormRow preset="middle">
-          <Text preset="secondary" style={TEXT_STYLE_OVERRIDE}>...one more thing</Text>
+          <Text preset="secondary" style={TEXT_STYLE_OVERRIDE}>
+            ...one more thing
+          </Text>
         </FormRow>
         <FormRow preset="bottom">
           <Text style={TEXT_STYLE_OVERRIDE}>🎉 Footers!</Text>

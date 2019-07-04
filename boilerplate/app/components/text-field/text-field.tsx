@@ -29,7 +29,6 @@ const enhance = (style, styleOverride) => {
   return mergeAll(flatten([style, styleOverride]))
 }
 
-
 /**
  * A component which has a label and an input together.
  */
