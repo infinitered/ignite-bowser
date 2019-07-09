@@ -193,13 +193,7 @@ async function install(context) {
 
     await system.spawn(`ignite add ${boilerplate} ${debugFlag}`, { stdio: "inherit" })
 
-    // react native link -- must use spawn & stdio: ignore or it hangs!! :(
-    spinner.text = `▸ linking native libraries`
-    spinner.start()
-    await system.spawn("react-native link", { stdio: "ignore" })
-    spinner.stop()
-
-    await ignite.addModule("react-native-gesture-handler", { version: "1.1.0", link: true })
+    await ignite.addModule("react-native-gesture-handler", { version: "1.1.0", link: false })
 
     ignite.patchInFile(
       `${process.cwd()}/android/app/src/main/java/com/${name.toLowerCase()}/MainActivity.java`,
@@ -236,14 +230,14 @@ async function install(context) {
     throw e
   }
 
-  // re-run yarn
+  // re-run yarn; will also install pods, because of our postInstall script.
   const installDeps = ignite.useYarn ? "yarn" : "npm install"
   await system.run(installDeps)
   spinner.succeed(`Installed dependencies`)
 
-  // re-run react-native link
+  // run react-native link to link assets
   await system.spawn("react-native link", { stdio: "ignore" })
-  spinner.succeed(`Linked dependencies`)
+  spinner.succeed(`Linked assets`)
 
   // for Windows, fix the settings.gradle file. Ref: https://github.com/oblador/react-native-vector-icons/issues/938#issuecomment-463296401
   // for ease of use, just replace any backslashes with forward slashes
