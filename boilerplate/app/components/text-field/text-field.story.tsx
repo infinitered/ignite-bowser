@@ -7,18 +7,16 @@ import { StoryScreen, Story, UseCase } from "../../../storybook/views"
 import { Text } from "../text"
 import { TextField } from "./"
 import { State } from "react-powerplug"
-import { ViewStyle, TextStyle } from "react-native"
+import { ViewStyle, TextStyle, Alert } from "react-native"
 
-const styleArray: ViewStyle[] = [
-  {paddingHorizontal: 30},
-  {borderWidth: 30},
-]
+const styleArray: ViewStyle[] = [{ paddingHorizontal: 30 }, { borderWidth: 30 }]
 
 const inputStyleArray: TextStyle[] = [
   {
     backgroundColor: "rebeccapurple",
     color: "white",
-    padding: 40},
+    padding: 40,
+  },
   {
     borderWidth: 10,
     borderRadius: 4,
@@ -110,10 +108,7 @@ storiesOf("TextField", module)
         <Text text="* attention designers:  i am so sorry" preset="secondary" />
       </UseCase>
 
-      <UseCase
-        text="Style array"
-        usage="Useful for 1-off exceptions, but using style arrays."
-      >
+      <UseCase text="Style array" usage="Useful for 1-off exceptions, but using style arrays.">
         <State initial={{ value: "fancy colour" }}>
           {({ state, setState }) => (
             <TextField
@@ -131,10 +126,7 @@ storiesOf("TextField", module)
   ))
   .add("Ref Forwarding", () => (
     <Story>
-      <UseCase
-        text="Ref Forwarding"
-        usage=""
-      >
+      <UseCase text="Ref Forwarding" usage="">
         <State initial={{ value: "fancy colour" }}>
           {({ state, setState }) => (
             <TextField
@@ -151,10 +143,10 @@ storiesOf("TextField", module)
               }}
               forwardedRef={ref => ref}
               onFocus={() => {
-                if(alertWhenFocused) {
+                if (alertWhenFocused) {
                   // Prevent text field focus from being repeatedly triggering alert
                   alertWhenFocused = false
-                  window.alert("Text field focuesed with forwarded ref!")
+                  Alert.alert("Text field focuesed with forwarded ref!")
                 }
               }}
             />

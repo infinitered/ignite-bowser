@@ -58,12 +58,11 @@ export class App extends React.Component<{}, AppState> {
 
     // otherwise, we're ready to render the app
 
-    // --- am: begin list of stores ---
-    const otherStores = {}
-    // --- am: end list of stores ---
+    // wire stores defined in root-store.ts file
+    const { navigationStore, ...otherStores } = rootStore
 
     return (
-      <Provider rootStore={rootStore} navigationStore={rootStore.navigationStore} {...otherStores}>
+      <Provider rootStore={rootStore} navigationStore={navigationStore} {...otherStores}>
         <BackButtonHandler canExit={this.canExit}>
           <StatefulNavigator />
         </BackButtonHandler>

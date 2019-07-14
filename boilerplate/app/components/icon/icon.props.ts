@@ -9,11 +9,13 @@ export interface IconProps {
 
   /**
    * Style overrides for the icon container
-   */  
+   */
+
   containerStyle?: ViewStyle
-  
+
   /**
    * The name of the icon
-   */  
+   */
+
   icon?: IconTypes
 }

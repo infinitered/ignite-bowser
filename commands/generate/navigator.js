@@ -1,7 +1,7 @@
 module.exports = {
-  description: 'Generates a React Navigation navigator.',
+  description: "Generates a React Navigation navigator.",
   run: async function(toolbox) {
-    const patterns = require('../../lib/patterns')
+    const patterns = require("../../lib/patterns")
 
     // grab some features
     const {
@@ -12,7 +12,7 @@ module.exports = {
       filesystem,
       patching,
       prompt: { ask },
-      filesystem: { list }
+      filesystem: { list },
     } = toolbox
 
     // prettier-ignore
@@ -27,26 +27,26 @@ module.exports = {
 
     // validation
     if (isBlank(parameters.first)) {
-      print.info('A name is required.')
+      print.info("A name is required.")
       print.info(`ignite generate navigator <name>\n`)
       return
     }
 
     // grab the closest package.json
-    const packageJSON = await require('read-pkg-up')()
+    const packageJSON = await require("read-pkg-up")()
     if (!packageJSON) {
       print.error(`Can't find a package.json here or in parent directories.`)
       return
     }
 
     // ensure react-navigation is installed
-    if (Object.keys(packageJSON.dependencies).includes('react-navigation') === false) {
-      print.error('This generator only works with react-navigation.')
+    if (Object.keys(packageJSON.dependencies).includes("react-navigation") === false) {
+      print.error("This generator only works with react-navigation.")
       return
     }
 
     const name = parameters.first
-    const navigatorName = name.endsWith('-navigator') ? name : `${name}-navigator`
+    const navigatorName = name.endsWith("-navigator") ? name : `${name}-navigator`
 
     // prettier-ignore
     if (name.endsWith('-navigator')) {
@@ -59,11 +59,11 @@ module.exports = {
     const camelName = camelCase(navigatorName)
 
     const askForNavigatorType = {
-      type: 'select',
-      name: 'navigatorType',
-      message: 'What type of navigator do you want to create?',
-      initial: 'Stack',
-      choices: Object.keys(navigatorTypes)
+      type: "select",
+      name: "navigatorType",
+      message: "What type of navigator do you want to create?",
+      initial: "Stack",
+      choices: Object.keys(navigatorTypes),
     }
 
     const { navigatorType } = await ask(askForNavigatorType)
@@ -74,37 +74,37 @@ module.exports = {
     let pascalScreens = []
 
     // ask which screens to include in navigator
-    if (!!allKebabScreens) {
+    if (allKebabScreens) {
       const askForScreens = {
-        type: 'multiselect',
-        name: 'screens',
-        message: 'What screens would you like to import to the navigator?',
-        choices: allPascalScreens
+        type: "multiselect",
+        name: "screens",
+        message: "What screens would you like to import to the navigator?",
+        choices: allPascalScreens,
       }
 
-      result = await ask(askForScreens)
+      const result = await ask(askForScreens)
       pascalScreens = result.screens
     }
 
     // get a list of current screens
     const allKebabNavigators = list(`${process.cwd()}/app/navigation/`).filter(
-      n => n.includes('-navigator.') && !n.includes('stateful-') && !n.includes('root-')
+      n => n.includes("-navigator.") && !n.includes("stateful-") && !n.includes("root-"),
     )
     const allPascalNavigators = allKebabNavigators.map(s =>
-      pascalCase(s.replace('.tsx', '').replace('.ts', ''))
+      pascalCase(s.replace(".tsx", "").replace(".ts", "")),
     )
     let pascalNavigators = []
 
     // ask which screens to include in navigator
-    if (!!allKebabNavigators) {
+    if (allKebabNavigators) {
       const askForNavigators = {
-        type: 'multiselect',
-        name: 'screens',
-        message: 'What other navigators would you like to import to the navigator?',
-        choices: allPascalNavigators
+        type: "multiselect",
+        name: "screens",
+        message: "What other navigators would you like to import to the navigator?",
+        choices: allPascalNavigators,
       }
 
-      result = await ask(askForNavigators)
+      const result = await ask(askForNavigators)
       pascalNavigators = result.screens
     }
 
@@ -112,13 +112,13 @@ module.exports = {
       name: navigatorName,
       pascalName,
       camelName,
-      navigatorType: navigatorTypes[navigatorType]
+      navigatorType: navigatorTypes[navigatorType],
     }
     const jobs = [
       {
         template: `navigator.ejs`,
-        target: `app/navigation/${navigatorName}.ts`
-      }
+        target: `app/navigation/${navigatorName}.ts`,
+      },
     ]
 
     // make the template
@@ -134,7 +134,6 @@ module.exports = {
           `Something went wrong with the navigator generator.`
         print.error(msg)
         process.exit(1)
-        return
       }
 
       // insert screen/navigator import
@@ -147,11 +146,11 @@ module.exports = {
         return `\nimport { ${pascalNavigator} } from "./${kebabNavigator}"`
       })
 
-      const toImport = [...screenImports, ...navigatorImports].join('')
+      const toImport = [...screenImports, ...navigatorImports].join("")
 
       await patching.patch(navFilePath, {
         after: new RegExp(patterns[patterns.constants.PATTERN_NAV_IMPORTS]),
-        insert: toImport
+        insert: toImport,
       })
 
       // insert routes
@@ -159,15 +158,15 @@ module.exports = {
         .map(pascalItem => {
           const camelItem = camelCase(pascalItem)
           return `\n  ${camelItem
-            .replace('Screen', '')
-            .replace('Navigator', '')}: { screen: ${pascalItem} },`
+            .replace("Screen", "")
+            .replace("Navigator", "")}: { screen: ${pascalItem} },`
         })
-        .join('')
+        .join("")
 
       await patching.patch(navFilePath, {
         after: new RegExp(patterns[patterns.constants.PATTERN_NAV_ROUTES]),
-        insert: routes
+        insert: routes,
       })
     }
-  }
+  },
 }

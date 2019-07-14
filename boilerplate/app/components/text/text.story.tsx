@@ -12,10 +12,7 @@ const VIEWSTYLE = {
   flex: 1,
   backgroundColor: color.storybookDarkBg,
 }
-const viewStyleArray: ViewStyle[] = [
-  VIEWSTYLE,
-  {backgroundColor: "#7fff00"},
-]
+const viewStyleArray: ViewStyle[] = [VIEWSTYLE, { backgroundColor: "#7fff00" }]
 
 storiesOf("Text", module)
   .addDecorator(fn => <StoryScreen>{fn()}</StoryScreen>)
@@ -81,10 +78,7 @@ storiesOf("Text", module)
   ))
   .add("Styling", () => (
     <Story>
-      <UseCase
-        text="Style array"
-        usage="Text with style array"
-      >
+      <UseCase text="Style array" usage="Text with style array">
         <View style={viewStyleArray}>
           <Text>
             {" "}

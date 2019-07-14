@@ -10,7 +10,7 @@ const WIDTH = 56
 const MARGIN = 2
 const OFF_POSITION = -0.5
 const ON_POSITION = WIDTH - THUMB_SIZE - MARGIN
-const BORDER_RADIUS = THUMB_SIZE * 3 / 4
+const BORDER_RADIUS = (THUMB_SIZE * 3) / 4
 
 // colors
 const ON_COLOR = color.primary
@@ -49,7 +49,6 @@ const THUMB: ViewStyle = {
 const enhance = (style, newStyles) => {
   return mergeAll(flatten([style, newStyles]))
 }
-
 
 interface SwitchState {
   timer: Animated.Value
@@ -97,16 +96,18 @@ export class Switch extends React.PureComponent<SwitchProps, SwitchState> {
     trackStyle = enhance(trackStyle, {
       backgroundColor: this.props.value ? ON_COLOR : OFF_COLOR,
       borderColor: this.props.value ? BORDER_ON_COLOR : BORDER_OFF_COLOR,
-      })
-    trackStyle = enhance(trackStyle,
+    })
+    trackStyle = enhance(
+      trackStyle,
       this.props.value ? this.props.trackOnStyle : this.props.trackOffStyle,
-      )
+    )
 
     let thumbStyle = THUMB
     thumbStyle = enhance(thumbStyle, {
       transform: [{ translateX }],
     })
-    thumbStyle = enhance(thumbStyle,
+    thumbStyle = enhance(
+      thumbStyle,
       this.props.value ? this.props.thumbOnStyle : this.props.thumbOffStyle,
     )
 

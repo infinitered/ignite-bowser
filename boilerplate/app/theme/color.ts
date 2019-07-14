@@ -50,15 +50,15 @@ export const color = {
   error: palette.angry,
 
   /**
-   * Storybook background for Text stories, or any stories where 
+   * Storybook background for Text stories, or any stories where
    * the text color is color.text, which is white by default, and does not show
    * in Stories against the default white background
-  */
+   */
   storybookDarkBg: palette.black,
 
   /**
    * Storybook text color for stories that display Text components against the
    * white background
-  */
-   storybookTextColor: palette.black,
+   */
+  storybookTextColor: palette.black,
 }
