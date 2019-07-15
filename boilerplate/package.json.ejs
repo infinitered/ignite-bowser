@@ -20,7 +20,7 @@
     "hack:types-react-test-renderer": "rimraf node_modules/@types/react-test-renderer/node_modules/@types",
     "lint": "eslint index.js app --fix --ext .js,.ts,.tsx",
     "patch": "patch-package",
-    "postinstall": "solidarity && jetify",
+    "postinstall": "solidarity && jetify && (cd ios; pod install)",
     "prepare": "npm-run-all patch hack:*",
     "storybook": "storybook start -p 9001 --skip-packager",
     "adb": "adb reverse tcp:9090 tcp:9090 && adb reverse tcp:3000 tcp:3000 && adb reverse tcp:9001 tcp:9001 && adb reverse tcp:8081 tcp:8081"
