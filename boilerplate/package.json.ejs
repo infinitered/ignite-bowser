@@ -22,7 +22,9 @@
     "hack:types-react-test-renderer": "rimraf node_modules/@types/react-test-renderer/node_modules/@types",
     "patch": "patch-package",
     "prepare": "npm-run-all patch hack:*",
-    "storybook": "storybook start -p 9001 --skip-packager"
+    "storybook": "storybook start -p 9001 --skip-packager",
+    "adb": "adb reverse tcp:9090 tcp:9090 && adb reverse tcp:3000 tcp:3000 && adb reverse tcp:9001 tcp:9001 && adb reverse tcp:8081 tcp:8081"
+
   },
   "dependencies": {
     "@react-native-community/async-storage": "^1.3.4",
