@@ -159,8 +159,8 @@ MST is...
   - Round-trip store writes are much faster
   - Computed values (views) are only calculated when needed
   - `mobx-react` makes React "MobX-aware" and only re-renders when absolutely necessary
-
-Another
+- Customizable
+  - MST ships with pre-built middlewares, including one which allows for [Redux interoperability](https://github.com/mobxjs/mobx-state-tree/blob/master/packages/mst-middlewares/README.md#redux). These middlewares can also serve as examples to create your own!
 
 ### Downsides
 
@@ -182,11 +182,11 @@ MobX and MobX State Tree can be a lot to learn if you're coming from Redux, so h
 
 - For a great explanation and walkthrough of the basics, check out [State Management with MobX State Tree](https://medium.com/react-native-training/state-management-with-mobx-state-tree-373f9f2dc68a) by React Native Training.
 
-- And for more in-depth reading, the [official documentation](https://github.com/mobxjs/mobx-state-tree/blob/master/README.md) is a great resource
+- And for more in-depth reading, the [official documentation](https://github.com/mobxjs/mobx-state-tree/blob/master/README.md) is a great resource.
 
 - The official docs for [MobX](https://mobx.js.org/) are another important resource, since MST is built on MobX.
 
-- For help from real people in the community, make sure to check out the [Infinite Red Community Slack](https://community.infinite.red) as well as the [MobX State Tree spectrum channel](https://spectrum.chat/mobx-state-tree)
+- For help from real people in the community, make sure to check out the [Infinite Red Community Slack](https://community.infinite.red) as well as the [MobX State Tree spectrum channel](https://spectrum.chat/mobx-state-tree).
 
 - To see example code bases using Bowser (and MST), check out these two:
 - https://github.com/jamonholmgren/PlayerPopularity (simple implementation)
