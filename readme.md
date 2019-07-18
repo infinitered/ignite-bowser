@@ -148,26 +148,27 @@ MST is...
   - Feels similar to relational databases, with concepts like `identifiers` (primary keys), `references` (foreign keys), and `views` (calculated fields)
 - Streamlined
   - No more `actionTypes`, `actionCreators`, or `reducers`
-  - You don't have to declare your usage intentions with `mapStateToProps`, they are inferred
-  - Side-effects are built in, no need for 3rd party libraries like `redux-saga`, `redux-observable`, or `redux-thunk`
+  - You don't have to declare your usage intentions with `mapStateToProps`; they are inferred
+  - Side-effects are built in; no need for 3rd party libraries like `redux-saga`, `redux-observable`, or `redux-thunk`
   - Immutability is built-in - no need for `immutable.js` or `seamless-immutable`
   - `types.compose` and `model.extend` allow for easy code-sharing of common patterns
 - More than state management
-  - Lifecycle hooks like `afterCreate`, `preProcessSnapshot`, and `beforeDestroy` let you have control over your data at various points in it's lifecycle
+  - Lifecycle hooks like `afterCreate`, `preProcessSnapshot`, and `beforeDestroy` let you have control over your data at various points in its lifecycle
   - Dependency injection with `getEnv` allows you to reference your environment (like API or other services)
 - Performant
   - Round-trip store writes are much faster
   - Computed values (views) are only calculated when needed
+  - `mobx-react` makes React "MobX-aware" and only re-renders when absolutely necessary
 
 ### Downsides
 
 We also recognize no state management solution is perfect. MST has some known downfalls:
 
 - Integration with TypeScript is clunky at times. MST's own typing system is sometimes at odds with what TypeScript wants
-- `mobx` and `mobx-state-tree` both tend to have quite a lot of "magic" or "sorcery" that makes issues hard to debug because you don't always have a clear picture of what's happening
-- The user base is small, so finding help on GitHub or Stack overflow is difficult
+- `mobx` and `mobx-state-tree` both seem to have "magic" or "sorcery" that makes issues less straightforward to debug because you don't always have a clear picture of what's happening (but using [Reactotron](https://github.com/infinitered/reactotron), which has `mobx-state-tree` support built-in, helps a lot)
+- The user base is small, so finding help on GitHub or Stack overflow is less convenient (however, the [Infinite Red Slack Community](https://community.infinite.red) is very helpful)
 - Fatal errors are sometimes too-easily triggered and error messages can be verbose and hard to grok
-- The API has a huge surface area and the docs are very technical and unfriendly
+- The API has a large surface area and the docs tend to be technical and unfriendly
 
 ## Learning MobX State Tree
 
@@ -181,9 +182,15 @@ MobX and MobX State Tree can be a bit confusing if you're coming from Redux, so 
 
 - And for more in-depth reading, the [official documentation](https://github.com/mobxjs/mobx-state-tree/blob/master/README.md) is a great resource
 
+- To see example code bases using Bowser (and MST), check out these two:
+ - https://github.com/jamonholmgren/PlayerPopularity (simple implementation)
+ - https://github.com/infinitered/ChainReactApp2019 (more in-depth implementation)
+
 ## TypeScript
 
 In addition to `redux` --> `mobx-state-tree`, we've also transitioned to using `TypeScript` vs plain `JavaScript`. We find that TypeScript streamlines the developer experience by catching errors _before_ you hit refresh on that simulator, and prevents costly bugs by enforcing type safety.
+
+In Bowser, TypeScript is fully set up, so if you know TS, all you need to do is start coding!
 
 ### Resources
 
