@@ -16,7 +16,7 @@ Includes:
 
 - React Native
 - React Navigation
-- MobX State Tree
+- MobX State Tree [(Why MST?)](#About-The-Stack)
 - TypeScript
 - Reactotron (requires 2.x)
 - And more!
