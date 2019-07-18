@@ -4,7 +4,7 @@
 
 _NOTE: This repo has been renamed from ignite-ir-boilerplate-bowser to ignite-bowser. Although web traffic and git operations for the previous name will be redirected, we recommend you update any links and git urls for this repo._
 
-<a href="https://circleci.com/gh/infinitered/ignite-bowser"><img alt="CircleCI" src="https://circleci.com/gh/infinitered/ignite-bowser.svg?style=svg" /></a>
+<a href="https://badge.fury.io/js/ignite-bowser" target="_blank"><img src="https://badge.fury.io/js/ignite-bowser.svg" alt="npm version" height="20"></a>
 
 ## Infinite Red's latest and greatest React Native boilerplate
 
@@ -131,6 +131,68 @@ This is where your stories will be registered and where the Storybook configs wi
 ### ./test directory
 
 This directory will hold your Jest configs and mocks, as well as your [storyshots](https://github.com/storybooks/storybook/tree/master/addons/storyshots) test file. This is a file that contains the snapshots of all your component storybooks.
+
+# About The Stack
+
+## Why this stack?
+
+If you've used Ignite Andross (the first Ignite stack), you know we formerly used Redux for state management, as does much of the community. However, we encountered some pain points with Redux so went in search of a different solution to meet our needs and landed on `mobx-state-tree`. We find that it’s a great middle ground between completely structured (like `redux`) and completely freestyle (like `mobx`). It brings more than just state-management to the table as well (such as dependency injection, serialization, and lifecycle events).
+
+### Some Highlights of MST
+
+MST is...
+
+- Intuitive
+  - With concepts like `props` and `actions`, it feels familiar for React developers
+  - Updating your data means calling functions on objects, rather than dispatching actions.
+  - Feels similar to relational databases, with concepts like `identifiers` (primary keys), `references` (foreign keys), and `views` (calculated fields)
+- Streamlined
+  - No more `actionTypes`, `actionCreators`, or `reducers`
+  - You don't have to declare your usage intentions with `mapStateToProps`, they are inferred
+  - Side-effects are built in, no need for 3rd party libraries like `redux-saga`, `redux-observable`, or `redux-thunk`
+  - Immutability is built-in - no need for `immutable.js` or `seamless-immutable`
+  - `types.compose` and `model.extend` allow for easy code-sharing of common patterns
+- More than state management
+  - Lifecycle hooks like `afterCreate`, `preProcessSnapshot`, and `beforeDestroy` let you have control over your data at various points in it's lifecycle
+  - Dependency injection with `getEnv` allows you to reference your environment (like API or other services)
+- Performant
+  - Round-trip store writes are much faster
+  - Computed values (views) are only calculated when needed
+
+### Downsides
+
+We also recognize no state management solution is perfect. MST has some known downfalls:
+
+- Integration with TypeScript is clunky at times. MST's own typing system is sometimes at odds with what TypeScript wants
+- `mobx` and `mobx-state-tree` both tend to have quite a lot of "magic" or "sorcery" that makes issues hard to debug because you don't always have a clear picture of what's happening
+- The user base is small, so finding help on GitHub or Stack overflow is difficult
+- Fatal errors are sometimes too-easily triggered and error messages can be verbose and hard to grok
+- The API has a huge surface area and the docs are very technical and unfriendly
+
+## Learning MobX State Tree
+
+MobX and MobX State Tree can be a bit confusing if you're coming from Redux, so here are a few of our favorite resources to learn the basics:
+
+- Be sure to check out the official [Getting Started](https://github.com/mobxjs/mobx-state-tree/blob/master/docs/getting-started.md) guide for MobX State Tree.
+
+- There is also a free [egghead.io course](https://egghead.io/courses/manage-application-state-with-mobx-state-tree).
+
+- For a great explanation and walkthrough of the basics, check out [State Management with MobX State Tree](https://medium.com/react-native-training/state-management-with-mobx-state-tree-373f9f2dc68a) by React Native Training.
+
+- And for more in-depth reading, the [official documentation](https://github.com/mobxjs/mobx-state-tree/blob/master/README.md) is a great resource
+
+## TypeScript
+
+In addition to `redux` --> `mobx-state-tree`, we've also transitioned to using `TypeScript` vs plain `JavaScript`. We find that TypeScript streamlines the developer experience by catching errors _before_ you hit refresh on that simulator, and prevents costly bugs by enforcing type safety.
+
+### Resources
+
+If you are new to TypeScript, here are some of our favorite resources:
+
+- [TypeScript in 5 minutes](https://www.typescriptlang.org/docs/handbook/typescript-in-5-minutes.html) for a quick read
+- [TypeScript in 50 minutes](https://youtu.be/WBPrJSw7yQA) for a longer watch
+- [TypeScript and VSCode](https://code.visualstudio.com/docs/typescript/typescript-tutorial) for awesome developer tools
+- [Official Docs](https://www.typescriptlang.org/docs/home.html)
 
 ## Previous Boilerplates
 
