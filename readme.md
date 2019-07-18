@@ -160,19 +160,21 @@ MST is...
   - Computed values (views) are only calculated when needed
   - `mobx-react` makes React "MobX-aware" and only re-renders when absolutely necessary
 
+Another
+
 ### Downsides
 
 We also recognize no state management solution is perfect. MST has some known downfalls:
 
 - Integration with TypeScript is clunky at times. MST's own typing system is sometimes at odds with what TypeScript wants
-- `mobx` and `mobx-state-tree` both seem to have "magic" or "sorcery" that makes issues less straightforward to debug because you don't always have a clear picture of what's happening (but using [Reactotron](https://github.com/infinitered/reactotron), which has `mobx-state-tree` support built-in, helps a lot)
-- The user base is small, so finding help on GitHub or Stack overflow is less convenient (however, the [Infinite Red Slack Community](https://community.infinite.red) is very helpful)
+- `mobx` and `mobx-state-tree` both seem to have "magic" or "sorcery" that makes issues less straightforward to debug because you don't always have a clear picture of what's happening (but using [Reactotron](https://github.com/infinitered/reactotron), which has `mobx-state-tree` support built-in, helps a lot). The [MobX docs](https://mobx.js.org/) can also help illumitate some of the magic.
+- The user base is small, so finding help on GitHub or Stack overflow is less convenient (however, the [Infinite Red Slack Community](https://community.infinite.red), as well as the [MobX State Tree Spectrum channel](https://spectrum.chat/mobx-state-tree) are both very helpful)
 - Fatal errors are sometimes too-easily triggered and error messages can be verbose and hard to grok
 - The API has a large surface area and the docs tend to be technical and unfriendly
 
 ## Learning MobX State Tree
 
-MobX and MobX State Tree can be a bit confusing if you're coming from Redux, so here are a few of our favorite resources to learn the basics:
+MobX and MobX State Tree can be a lot to learn if you're coming from Redux, so here are a few of our favorite resources to learn the basics:
 
 - Be sure to check out the official [Getting Started](https://github.com/mobxjs/mobx-state-tree/blob/master/docs/getting-started.md) guide for MobX State Tree.
 
@@ -182,9 +184,13 @@ MobX and MobX State Tree can be a bit confusing if you're coming from Redux, so 
 
 - And for more in-depth reading, the [official documentation](https://github.com/mobxjs/mobx-state-tree/blob/master/README.md) is a great resource
 
+- The official docs for [MobX](https://mobx.js.org/) are another important resource, since MST is built on MobX.
+
+- For help from real people in the community, make sure to check out the [Infinite Red Community Slack](https://community.infinite.red) as well as the [MobX State Tree spectrum channel](https://spectrum.chat/mobx-state-tree)
+
 - To see example code bases using Bowser (and MST), check out these two:
- - https://github.com/jamonholmgren/PlayerPopularity (simple implementation)
- - https://github.com/infinitered/ChainReactApp2019 (more in-depth implementation)
+- https://github.com/jamonholmgren/PlayerPopularity (simple implementation)
+- https://github.com/infinitered/ChainReactApp2019 (more in-depth implementation)
 
 ## TypeScript
 
