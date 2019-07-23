@@ -21,7 +21,7 @@ Includes:
 - Reactotron (requires 2.x)
 - And more!
 
-To see it in action, check out the Chain React 2019 Conference App [example](https://github.com/infinitered/ChainReactApp2019)!
+To see it in action, check out the [Chain React 2019 Conference App](https://github.com/infinitered/ChainReactApp2019)!
 
 ## Quick Start
 
