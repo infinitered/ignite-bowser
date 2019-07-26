@@ -2,6 +2,13 @@ import React from "react"
 import { getStorybookUI, configure } from "@storybook/react-native"
 import SplashScreen from "react-native-splash-screen"
 
+// when we call storiesOf, we need to pass the module we're in; appease Typescript.
+declare global {
+  var module: {
+    exports: any
+  }
+}
+
 configure(() => {
   require("./storybook-registry")
 })
