@@ -56,7 +56,14 @@ async function install(context) {
   if (rnInstall.exitCode > 0) process.exit(rnInstall.exitCode)
 
   // remove the __tests__ directory, App.js, and unnecessary config files that come with React Native
-  const filesToRemove = ["__tests__", "App.js", ".babelrc", ".flowconfig", ".buckconfig"]
+  const filesToRemove = [
+    ".babelrc",
+    ".buckconfig",
+    ".eslintrc.js",
+    ".flowconfig",
+    "App.js",
+    "__tests__",
+  ]
   filesToRemove.map(filesystem.remove)
 
   let includeDetox = false
@@ -171,7 +178,10 @@ async function install(context) {
       assoc("dependencies", merge(currentPackage.dependencies, newPackageJson.dependencies)),
       assoc(
         "devDependencies",
-        merge(currentPackage.devDependencies, newPackageJson.devDependencies),
+        merge(
+          omit(["@react-native-community/eslint-config"], currentPackage.devDependencies),
+          newPackageJson.devDependencies,
+        ),
       ),
       assoc("scripts", merge(currentPackage.scripts, newPackageJson.scripts)),
       merge(__, omit(["dependencies", "devDependencies", "scripts"], newPackageJson)),
