@@ -1,6 +1,9 @@
 const { merge, pipe, assoc, omit, __ } = require("ramda")
 const { getReactNativeVersion } = require("./lib/react-native-version")
 
+// We need this value here, as well as in our package.json.ejs template
+const REACT_NATIVE_GESTURE_HANDLER_VERSION = "^1.3.0"
+
 /**
  * Is Android installed?
  *
@@ -142,6 +145,7 @@ async function install(context) {
     name,
     igniteVersion: ignite.version,
     reactNativeVersion: rnInstall.version,
+    reactNativeGestureHandlerVersion: REACT_NATIVE_GESTURE_HANDLER_VERSION,
     vectorIcons: false,
     animatable: false,
     i18n: false,
@@ -203,7 +207,9 @@ async function install(context) {
 
     await system.spawn(`ignite add ${boilerplate} ${debugFlag}`, { stdio: "inherit" })
 
-    await ignite.addModule("react-native-gesture-handler", { version: "1.1.0", link: false })
+    await ignite.addModule("react-native-gesture-handler", {
+      version: REACT_NATIVE_GESTURE_HANDLER_VERSION,
+    })
 
     ignite.patchInFile(
       `${process.cwd()}/android/app/src/main/java/com/${name.toLowerCase()}/MainActivity.java`,
