@@ -18,10 +18,22 @@ import { DEFAULT_NAVIGATION_CONFIG } from "./navigation/navigation-config"
  * that we haven't gotten around to replacing yet.
  */
  YellowBox.ignoreWarnings([
-  "Async Storage has been extracted",
   "componentWillMount is deprecated",
   "componentWillReceiveProps is deprecated",
 ])
+
+/**
+ * Storybook still wants to use ReactNative's AsyncStorage instead of the
+ * react-native-community package; this causes a YellowBox warning. This hack
+ * points RN's AsyncStorage at the community one, fixing the warning. Here's the
+ * Storybook issue about this: https://github.com/storybookjs/storybook/issues/6078
+ */
+const ReactNative = require('react-native')
+Object.defineProperty(ReactNative, 'AsyncStorage', {
+  get(): any {
+    return require('@react-native-community/async-storage').default;
+  },
+})
 
 interface AppState {
   rootStore?: RootStore
