@@ -49,6 +49,31 @@ async function install(context) {
     .spin(`using the ${red("Infinite Red")} boilerplate v3 (code name 'Bowser')`)
     .succeed()
 
+  let includeDetox = false
+  if (isMac) {
+    const askAboutDetox = parameters.options.detox === undefined
+    includeDetox = askAboutDetox
+      ? await prompt.confirm("Would you like to include Detox end-to-end tests?")
+      : parameters.options.detox === true
+
+    if (includeDetox) {
+      // prettier-ignore
+      print.info(`
+          You'll love Detox for testing your app! There are some additional requirements to
+          install, so make sure to check out ${cyan('e2e/README.md')} in your generated app!
+        `)
+    }
+  } else {
+    if (parameters.options.detox === true) {
+      // prettier-ignore
+      if (isWindows) {
+          print.info("Skipping Detox because it is only supported on macOS, but you're running Windows")
+        } else {
+          print.info("Skipping Detox because it is only supported on macOS")
+        }
+    }
+  }
+
   // attempt to install React Native or die trying
   let rnInstall
   rnInstall = await reactNative.install({
@@ -68,31 +93,6 @@ async function install(context) {
     "__tests__",
   ]
   filesToRemove.map(filesystem.remove)
-
-  let includeDetox = false
-  if (isMac) {
-    const askAboutDetox = parameters.options.detox === undefined
-    includeDetox = askAboutDetox
-      ? await prompt.confirm("Would you like to include Detox end-to-end tests?")
-      : parameters.options.detox === true
-
-    if (includeDetox) {
-      // prettier-ignore
-      print.info(`
-        You'll love Detox for testing your app! There are some additional requirements to
-        install, so make sure to check out ${cyan('e2e/README.md')} in your generated app!
-      `)
-    }
-  } else {
-    if (parameters.options.detox === true) {
-      // prettier-ignore
-      if (isWindows) {
-        print.info("Skipping Detox because it is only supported on macOS, but you're running Windows")
-      } else {
-        print.info("Skipping Detox because it is only supported on macOS")
-      }
-    }
-  }
 
   // copy our App, Tests & storybook directories
   spinner.text = "▸ copying files"
