@@ -157,6 +157,18 @@ async function install(context) {
   })
 
   /**
+   * Because of https://github.com/react-native-community/cli/issues/462,
+   * we can't detox-test the release configuration. Turn on dead-code stripping
+   * to fix this.
+   */
+  if (includeDetox) {
+    await ignite.patchInFile(`ios/${name}.xcodeproj/xcshareddata/xcschemes/${name}.xcscheme`, {
+      replace: 'buildForRunning = "YES"\n            buildForProfiling = "NO"',
+      insert: 'buildForRunning = "NO"\n            buildForProfiling = "NO"',
+    })
+  }
+
+  /**
    * Append to files
    */
   // https://github.com/facebook/react-native/issues/12724
