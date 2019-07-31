@@ -250,6 +250,11 @@ async function install(context) {
           "  }",
       },
     )
+
+    ignite.patchInFile(`${process.cwd()}/package.json`, {
+      replace: `"postinstall": "solidarity",`,
+      insert: `"postinstall": "solidarity && jetify && (cd ios; pod install)",`,
+    })
   } catch (e) {
     ignite.log(e)
     print.error(`

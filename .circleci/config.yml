@@ -11,7 +11,7 @@ defaults: &defaults
 
 mac: &mac
   macos:
-    xcode: '10.1.0'
+    xcode: "10.1.0"
   working_directory: ~/repo
 
 version: 2
@@ -34,6 +34,16 @@ jobs:
           paths:
             - node_modules
           key: v1-dependencies-bowser-{{ checksum "package.json" }}
+      - run:
+          name: Install Ruby and Cocoapods
+          command: |
+            sudo apt-get update &&
+            sudo apt-get install ruby-full &&
+            sudo gem install cocoapods --no-ri --no-rdoc
+      - run:
+          name: Install CocoaPods Specs
+          command: |
+            curl https://cocoapods-specs.circleci.com/fetch-cocoapods-repo-from-s3.sh | bash -s cf
 
   tests:
     <<: *defaults
