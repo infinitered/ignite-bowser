@@ -15,7 +15,7 @@ describe("a generated app", () => {
     // make sure we are in the temp directory. Do the initial git commit
     // manually, so we can set up the git user first on circleci.
     process.chdir(appTemp)
-    await execa(IGNITE, ["new", APP, "--no-detox", "--skip-git", "--boilerplate", BOILERPLATE])
+    await execa(IGNITE, ["new", APP, "--no-detox", "--skip-git", "--debug", "--boilerplate", BOILERPLATE])
     process.chdir(APP)
     await execa.shell("git init")
     await execa.shell('git config user.email "test@example.com"')

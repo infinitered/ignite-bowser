@@ -206,6 +206,7 @@ async function install(context) {
     // write this out
     filesystem.write("package.json", newPackage, { jsonIndent: 2 })
   }
+  spinner.text = "▸ merging package.jsons"
   await mergePackageJsons()
   spinner.stop()
 
@@ -217,12 +218,16 @@ async function install(context) {
     // Could be directory, npm@version, or just npm name.  Default to passed in values
     const boilerplate = parameters.options.b || parameters.options.boilerplate || "ignite-bowser"
 
+    spinner.text = "▸ adding boilerplate"
+    spinner.start()
     await system.spawn(`ignite add ${boilerplate} ${debugFlag}`, { stdio: "inherit" })
 
+    spinner.text = "▸ adding react-native-gesture-handler"
     await ignite.addModule("react-native-gesture-handler", {
       version: REACT_NATIVE_GESTURE_HANDLER_VERSION,
     })
 
+    spinner.text = "▸ configuring react-native-gesture-handler"
     ignite.patchInFile(
       `${process.cwd()}/android/app/src/main/java/com/${name.toLowerCase()}/MainActivity.java`,
       {
@@ -251,10 +256,12 @@ async function install(context) {
       },
     )
 
+    spinner.text = "▸ Adding jetify & pod install to yarn postinstall"
     ignite.patchInFile(`${process.cwd()}/package.json`, {
       replace: `"postinstall": "solidarity",`,
       insert: `"postinstall": "solidarity && jetify && (cd ios; pod install)",`,
     })
+    spinner.succeed(`Done generating the project`)
   } catch (e) {
     ignite.log(e)
     print.error(`
@@ -264,6 +271,7 @@ async function install(context) {
   }
 
   // re-run yarn; will also install pods, because of our postInstall script.
+  spinner.text = `Installing dependencies`
   const installDeps = ignite.useYarn ? "yarn" : "npm install"
   await system.run(installDeps)
   spinner.succeed(`Installed dependencies`)
