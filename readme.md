@@ -198,6 +198,15 @@ In addition to `redux` --> `mobx-state-tree`, we've also transitioned to using `
 
 In Bowser, TypeScript is fully set up, so if you know TS, all you need to do is start coding!
 
+## Upgrade 
+
+To keep your React Native app updated:
+- [React Native Upgrade Helper](https://react-native-community.github.io/upgrade-helper/) great web based tool
+- [rn-diff-purge](https://github.com/react-native-community/rn-diff-purge) 
+
+To keep your Ignite Bowser based app updated:
+- [ignite-bowser-difff-purge](https://github.com/nirre7/ignite-bowser-diff-purge) To help you see the diffs between versions
+
 ### Resources
 
 If you are new to TypeScript, here are some of our favorite resources:
