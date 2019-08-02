@@ -158,9 +158,6 @@ async function install(context) {
     directory: `${ignite.ignitePluginPath()}/boilerplate`,
   })
 
-  // remove auto-generated babel.config.json, because we use package.json for that
-  filesystem.remove("./babel.config.json")
-
   /**
    * Because of https://github.com/react-native-community/cli/issues/462,
    * we can't detox-test the release configuration. Turn on dead-code stripping
