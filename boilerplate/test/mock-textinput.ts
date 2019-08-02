@@ -4,7 +4,11 @@ jest.mock("TextInput", () => {
 
   class TextInput extends React.Component {
     render() {
-      return React.createElement("TextInput", {...this.props, autoFocus: false}, this.props.children)
+      return React.createElement(
+        "TextInput",
+        { ...this.props, autoFocus: false },
+        this.props.children,
+      )
     }
   }
   TextInput.propTypes = RealComponent.propTypes

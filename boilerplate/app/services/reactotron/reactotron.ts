@@ -1,10 +1,10 @@
 import Tron from "reactotron-react-native"
+import AsyncStorage from "@react-native-community/async-storage"
 import { RootStore } from "../../models/root-store/root-store"
 import { onSnapshot } from "mobx-state-tree"
 import { ReactotronConfig, DEFAULT_REACTOTRON_CONFIG } from "./reactotron-config"
 import { mst } from "reactotron-mst"
 import { clear } from "../../utils/storage"
-import { commandMiddleware } from "./command-middleware"
 
 // Teach TypeScript about the bad things we want to do.
 declare global {
@@ -35,8 +35,12 @@ if (__DEV__) {
     image: noop,
     log: noop,
     logImportant: noop,
+    onCustomCommand: noop,
     overlay: noop,
     reportError: noop,
+    send: noop,
+    startTimer: noop,
+    storybookSwitcher: noop,
     use: noop,
     useReactNative: noop,
     warn: noop,
@@ -50,6 +54,7 @@ if (__DEV__) {
  */
 export class Reactotron {
   config: ReactotronConfig
+
   rootStore: any
 
   /**
@@ -113,6 +118,9 @@ export class Reactotron {
       })
 
       // hookup middleware
+      if (this.config.useAsyncStorage) {
+        Tron.setAsyncStorageHandler(AsyncStorage)
+      }
       Tron.useReactNative({
         asyncStorage: this.config.useAsyncStorage ? undefined : false,
       })
@@ -132,9 +140,9 @@ export class Reactotron {
 
       // Register Custom Commands
       Tron.onCustomCommand({
-        title: 'Reset Root Store',
-        description: 'Resets the MST store',
-        command: 'resetStore',
+        title: "Reset Root Store",
+        description: "Resets the MST store",
+        command: "resetStore",
         handler: () => {
           console.tron.log("resetting store")
           clear()
@@ -142,13 +150,13 @@ export class Reactotron {
       })
 
       Tron.onCustomCommand({
-        title: 'Reset Navigation Store',
-        description: 'Resets the navigation store',
-        command: 'resetNavigation',
+        title: "Reset Navigation Store",
+        description: "Resets the navigation store",
+        command: "resetNavigation",
         handler: () => {
           console.tron.log("resetting navigation store")
           this.rootStore.navigationStore.reset()
-        }
+        },
       })
 
       // clear if we should

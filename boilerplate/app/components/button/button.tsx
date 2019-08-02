@@ -12,10 +12,20 @@ import { mergeAll, flatten } from "ramda"
  */
 export function Button(props: ButtonProps) {
   // grab the props
-  const { preset = "primary", tx, text, style: styleOverride, textStyle: textStyleOverride, children, ...rest } = props
+  const {
+    preset = "primary",
+    tx,
+    text,
+    style: styleOverride,
+    textStyle: textStyleOverride,
+    children,
+    ...rest
+  } = props
 
   const viewStyle = mergeAll(flatten([viewPresets[preset] || viewPresets.primary, styleOverride]))
-  const textStyle = mergeAll(flatten([textPresets[preset] || textPresets.primary, textStyleOverride]))
+  const textStyle = mergeAll(
+    flatten([textPresets[preset] || textPresets.primary, textStyleOverride]),
+  )
 
   const content = children || <Text tx={tx} text={text} style={textStyle} />
 

@@ -1,4 +1,3 @@
-import { IStateTreeNode } from "mobx-state-tree"
 import { observable, IObservableValue } from "mobx"
 
 export type StatusType = "idle" | "pending" | "done" | "error"
@@ -24,11 +23,11 @@ export type StatusType = "idle" | "pending" | "done" | "error"
  *   .status = "done"   // change the status directly
  *   .setStatus("done") // change the status and trigger an mst action
  */
-export const withStatus = (self: IStateTreeNode) => {
+export const withStatus = () => {
   /**
    * The observable backing store for the status field.
    */
-  let status: IObservableValue<string> = observable.box("idle")
+  const status: IObservableValue<string> = observable.box("idle")
 
   return {
     views: {

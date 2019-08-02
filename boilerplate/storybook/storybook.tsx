@@ -2,9 +2,11 @@ import React from "react"
 import { getStorybookUI, configure } from "@storybook/react-native"
 import SplashScreen from "react-native-splash-screen"
 
+declare var module
+
 configure(() => {
   require("./storybook-registry")
-})
+}, module)
 
 const StorybookUI = getStorybookUI({ port: 9001, host: "localhost", onDeviceUI: true })
 

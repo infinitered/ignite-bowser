@@ -10,11 +10,5 @@ import { mergeAll, flatten } from "ramda"
 export function FormRow(props: FormRowProps) {
   const viewStyle = mergeAll(flatten([PRESETS[props.preset], props.style]))
 
-  return (
-    <View
-      style={viewStyle}
-    >
-      {props.children}
-    </View>
-  )
+  return <View style={viewStyle}>{props.children}</View>
 }
