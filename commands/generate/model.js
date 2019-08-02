@@ -1,5 +1,5 @@
 module.exports = {
-  description: 'Generates a model and model test.',
+  description: "Generates a model and model test.",
   run: async function(toolbox) {
     // grab some features
     const { parameters, strings, print, ignite, patching, filesystem } = toolbox
@@ -7,7 +7,7 @@ module.exports = {
 
     // validation
     if (isBlank(parameters.first)) {
-      print.info('A name is required.')
+      print.info("A name is required.")
       print.info(`ignite generate model <name>\n`)
       return
     }
@@ -22,13 +22,13 @@ module.exports = {
 
     const jobs = [
       {
-        template: 'model.ejs',
-        target: `app/models/${name}/${name}.ts`
+        template: "model.ejs",
+        target: `app/models/${name}/${name}.ts`,
       },
       {
-        template: 'model.test.ejs',
-        target: `app/models/${name}/${name}.test.ts`
-      }
+        template: "model.test.ejs",
+        target: `app/models/${name}/${name}.test.ts`,
+      },
     ]
 
     const rollupPath = `app/models/${name}/index.ts`
@@ -37,20 +37,20 @@ module.exports = {
     if (rollupExists) {
       await patching.prepend(rollupPath, `export * from "./${name}"`)
     } else {
-      jobs.push({ template: 'rollup-index.ts.ejs', target: rollupPath })
+      jobs.push({ template: "rollup-index.ts.ejs", target: rollupPath })
     }
 
     await ignite.copyBatch(toolbox, jobs, props)
 
     // include stores in root-store
-    if (name.endsWith('-store')) {
-      const rootStorePath = './app/models/root-store/root-store.ts'
-      const rootStoreDef = 'export const RootStoreModel'
-      const storeTypeImport = `import { ${pascalName}Model } from "../../models/${name}"`
-      const storeType = `  ${camelName}: types.optional(${pascalName}Model, {}),`
+    if (name.endsWith("-store")) {
+      const rootStorePath = "./app/models/root-store/root-store.ts"
+      const rootStoreDef = 'export const RootStoreModel = types.model("RootStore").props({'
+      const storeTypeImport = `import { ${pascalName}Model } from "../../models/${name}"\n`
+      const storeType = `\n  ${camelName}: types.optional(${pascalName}Model, {}),`
 
       await patching.prepend(rootStorePath, storeTypeImport)
       await patching.patch(rootStorePath, { after: rootStoreDef, insert: storeType })
     }
-  }
+  },
 }
