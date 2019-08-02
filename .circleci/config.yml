@@ -39,15 +39,10 @@ jobs:
           command: |
             sudo npm i -g ignite-cli@latest react-native-cli
       - run:
-          name: Install Ruby and Cocoapods
+          # We don't want to install Cocoapods on ubuntu where we run the tests.
+          name: Set up dummy `pod` command
           command: |
-            sudo apt-get update &&
-            sudo apt-get install ruby-full &&
-            sudo gem install cocoapods --no-ri --no-rdoc
-      - run:
-          name: Install CocoaPods Specs
-          command: |
-            curl https://cocoapods-specs.circleci.com/fetch-cocoapods-repo-from-s3.sh | bash -s cf
+            sudo ln /bin/true /usr/local/bin/pod
       - run:
           name: Run tests
           command: yarn ci:test # this command will be added to/found in your package.json scripts
@@ -75,6 +70,16 @@ jobs:
           name: Install React Native CLI and Ignite CLI
           command: |
             sudo npm i -g ignite-cli react-native-cli detox-cli
+      - run:
+          name: Install Ruby and Cocoapods
+          command: |
+            sudo apt-get update &&
+            sudo apt-get install ruby-full &&
+            sudo gem install cocoapods --no-ri --no-rdoc
+      - run:
+          name: Install CocoaPods Specs
+          command: |
+            curl https://cocoapods-specs.circleci.com/fetch-cocoapods-repo-from-s3.sh | bash -s cf
       - run:
           name: Change Permissions
           command: sudo chown -R $(whoami) /Users/distiller/.config/
