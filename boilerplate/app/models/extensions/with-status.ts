@@ -27,7 +27,7 @@ export const withStatus = () => {
   /**
    * The observable backing store for the status field.
    */
-  let status: IObservableValue<string> = observable.box("idle")
+  const status: IObservableValue<string> = observable.box("idle")
 
   return {
     views: {

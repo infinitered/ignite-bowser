@@ -46,7 +46,7 @@ const THUMB: ViewStyle = {
   elevation: 2,
 }
 
-const enhance = (style, newStyles) => {
+const enhance = (style, newStyles): any => {
   return mergeAll(flatten([style, newStyles]))
 }
 

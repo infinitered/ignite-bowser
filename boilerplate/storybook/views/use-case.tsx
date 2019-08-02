@@ -60,7 +60,7 @@ export function UseCase(props: UseCaseProps) {
         <View style={TITLE_WRAPPER}>
           <Text style={TITLE}>{props.text}</Text>
         </View>
-        {props.usage && <Text style={USAGE}>{props.usage}</Text>}
+        {props.usage ? <Text style={USAGE}>{props.usage}</Text> : null}
       </View>
       <View style={style}>{props.children}</View>
     </View>

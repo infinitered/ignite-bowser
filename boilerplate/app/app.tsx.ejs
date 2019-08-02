@@ -4,7 +4,7 @@
 
 import "./i18n"
 import * as React from "react"
-import { AppRegistry } from "react-native"
+import { AppRegistry, YellowBox } from "react-native"
 import { StatefulNavigator } from "./navigation"
 import { StorybookUIRoot } from "../storybook"
 import { RootStore, setupRootStore } from "./models/root-store"
@@ -12,6 +12,28 @@ import { Provider } from "mobx-react"
 import { BackButtonHandler } from "./navigation/back-button-handler"
 import { contains } from "ramda"
 import { DEFAULT_NAVIGATION_CONFIG } from "./navigation/navigation-config"
+
+/**
+ * Ignore some yellowbox warnings. Some of these are for deprecated functions
+ * that we haven't gotten around to replacing yet.
+ */
+ YellowBox.ignoreWarnings([
+  "componentWillMount is deprecated",
+  "componentWillReceiveProps is deprecated",
+])
+
+/**
+ * Storybook still wants to use ReactNative's AsyncStorage instead of the
+ * react-native-community package; this causes a YellowBox warning. This hack
+ * points RN's AsyncStorage at the community one, fixing the warning. Here's the
+ * Storybook issue about this: https://github.com/storybookjs/storybook/issues/6078
+ */
+const ReactNative = require('react-native')
+Object.defineProperty(ReactNative, 'AsyncStorage', {
+  get(): any {
+    return require('@react-native-community/async-storage').default;
+  },
+})
 
 interface AppState {
   rootStore?: RootStore
