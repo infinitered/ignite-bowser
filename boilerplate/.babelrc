@@ -1,24 +1,15 @@
 {
-  "presets": ["module:metro-react-native-babel-preset"],
+  "presets": ["module:metro-react-native-babel-preset", "module:react-native-dotenv"],
   "env": {
-    "production": {
-    }
+    "production": {}
   },
   "plugins": [
-    [
-      "transform-inline-environment-variables",
-      {
-        "include": ["NODE_ENV", "API"]
-      }
-    ],
     [
       "@babel/plugin-proposal-decorators",
       {
         "legacy": true
       }
     ],
-    [
-      "@babel/plugin-proposal-optional-catch-binding"
-    ]
+    ["@babel/plugin-proposal-optional-catch-binding"]
   ]
 }

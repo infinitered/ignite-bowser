@@ -30,7 +30,6 @@ ignite-project
 │   ├── services
 │   ├── theme
 │   ├── app.tsx
-│   ├── environment-variables.ts
 ├── storybook
 │   ├── views
 │   ├── index.ts
@@ -63,7 +62,9 @@ ignite-project
 │   ├── IgniteProject-tvOSTests
 │   ├── IgniteProject.xcodeproj
 │   └── IgniteProjectTests
+├── .env
 └── package.json
+
 ```
 
 ### ./app directory
@@ -82,8 +83,7 @@ app
 ├── services
 ├── theme
 ├── utils
-├── app.tsx
-├── environment-variables.ts
+└── app.tsx
 ```
 
 **components**

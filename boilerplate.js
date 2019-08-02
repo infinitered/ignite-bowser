@@ -81,6 +81,7 @@ async function install(context) {
     version: getReactNativeVersion(context),
     useNpm: !ignite.useYarn,
   })
+
   if (rnInstall.exitCode > 0) process.exit(rnInstall.exitCode)
 
   // remove the __tests__ directory, App.js, and unnecessary config files that come with React Native
@@ -126,6 +127,7 @@ async function install(context) {
     { template: "index.js.ejs", target: "index.js" },
     { template: "README.md", target: "README.md" },
     { template: ".gitignore.ejs", target: ".gitignore" },
+    { template: ".env.example", target: ".env" },
     { template: ".prettierignore", target: ".prettierignore" },
     { template: ".solidarity", target: ".solidarity" },
     { template: ".babelrc", target: ".babelrc" },
