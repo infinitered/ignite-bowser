@@ -9,6 +9,8 @@ import { TextField } from "./"
 import { State } from "react-powerplug"
 import { ViewStyle, TextStyle, Alert } from "react-native"
 
+declare var module
+
 const styleArray: ViewStyle[] = [{ paddingHorizontal: 30 }, { borderWidth: 30 }]
 
 const inputStyleArray: TextStyle[] = [

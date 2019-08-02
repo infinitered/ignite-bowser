@@ -8,6 +8,8 @@ import { StoryScreen, Story, UseCase } from "../../../storybook/views"
 import { Toggle } from "react-powerplug"
 import { Switch } from "."
 
+declare var module
+
 const styleArray: ViewStyle[] = [{ borderColor: "#686868" }]
 
 const trackOffStyle: ViewStyle[] = [

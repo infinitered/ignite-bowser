@@ -1,6 +1,9 @@
 const { merge, pipe, assoc, omit, __ } = require("ramda")
 const { getReactNativeVersion } = require("./lib/react-native-version")
 
+// We need this value here, as well as in our package.json.ejs template
+const REACT_NATIVE_GESTURE_HANDLER_VERSION = "^1.3.0"
+
 /**
  * Is Android installed?
  *
@@ -46,19 +49,6 @@ async function install(context) {
     .spin(`using the ${red("Infinite Red")} boilerplate v3 (code name 'Bowser')`)
     .succeed()
 
-  // attempt to install React Native or die trying
-  let rnInstall
-  rnInstall = await reactNative.install({
-    name,
-    version: getReactNativeVersion(context),
-    useNpm: !ignite.useYarn,
-  })
-  if (rnInstall.exitCode > 0) process.exit(rnInstall.exitCode)
-
-  // remove the __tests__ directory, App.js, and unnecessary config files that come with React Native
-  const filesToRemove = ["__tests__", "App.js", ".babelrc", ".flowconfig", ".buckconfig"]
-  filesToRemove.map(filesystem.remove)
-
   let includeDetox = false
   if (isMac) {
     const askAboutDetox = parameters.options.detox === undefined
@@ -69,20 +59,40 @@ async function install(context) {
     if (includeDetox) {
       // prettier-ignore
       print.info(`
-        You'll love Detox for testing your app! There are some additional requirements to
-        install, so make sure to check out ${cyan('e2e/README.md')} in your generated app!
-      `)
+          You'll love Detox for testing your app! There are some additional requirements to
+          install, so make sure to check out ${cyan('e2e/README.md')} in your generated app!
+        `)
     }
   } else {
     if (parameters.options.detox === true) {
       // prettier-ignore
       if (isWindows) {
-        print.info("Skipping Detox because it is only supported on macOS, but you're running Windows")
-      } else {
-        print.info("Skipping Detox because it is only supported on macOS")
-      }
+          print.info("Skipping Detox because it is only supported on macOS, but you're running Windows")
+        } else {
+          print.info("Skipping Detox because it is only supported on macOS")
+        }
     }
   }
+
+  // attempt to install React Native or die trying
+  let rnInstall
+  rnInstall = await reactNative.install({
+    name,
+    version: getReactNativeVersion(context),
+    useNpm: !ignite.useYarn,
+  })
+  if (rnInstall.exitCode > 0) process.exit(rnInstall.exitCode)
+
+  // remove the __tests__ directory, App.js, and unnecessary config files that come with React Native
+  const filesToRemove = [
+    ".babelrc",
+    ".buckconfig",
+    ".eslintrc.js",
+    ".flowconfig",
+    "App.js",
+    "__tests__",
+  ]
+  filesToRemove.map(filesystem.remove)
 
   // copy our App, Tests & storybook directories
   spinner.text = "▸ copying files"
@@ -119,6 +129,7 @@ async function install(context) {
     { template: ".prettierignore", target: ".prettierignore" },
     { template: ".solidarity", target: ".solidarity" },
     { template: ".babelrc", target: ".babelrc" },
+    { template: "react-native.config.js", target: "react-native.config.js" },
     { template: "tsconfig.json", target: "tsconfig.json" },
     { template: "app/app.tsx.ejs", target: "app/app.tsx" },
     {
@@ -134,6 +145,7 @@ async function install(context) {
     name,
     igniteVersion: ignite.version,
     reactNativeVersion: rnInstall.version,
+    reactNativeGestureHandlerVersion: REACT_NATIVE_GESTURE_HANDLER_VERSION,
     vectorIcons: false,
     animatable: false,
     i18n: false,
@@ -143,6 +155,18 @@ async function install(context) {
     quiet: true,
     directory: `${ignite.ignitePluginPath()}/boilerplate`,
   })
+
+  /**
+   * Because of https://github.com/react-native-community/cli/issues/462,
+   * we can't detox-test the release configuration. Turn on dead-code stripping
+   * to fix this.
+   */
+  if (includeDetox) {
+    await ignite.patchInFile(`ios/${name}.xcodeproj/xcshareddata/xcschemes/${name}.xcscheme`, {
+      replace: 'buildForRunning = "YES"\n            buildForProfiling = "NO"',
+      insert: 'buildForRunning = "NO"\n            buildForProfiling = "NO"',
+    })
+  }
 
   /**
    * Append to files
@@ -170,7 +194,10 @@ async function install(context) {
       assoc("dependencies", merge(currentPackage.dependencies, newPackageJson.dependencies)),
       assoc(
         "devDependencies",
-        merge(currentPackage.devDependencies, newPackageJson.devDependencies),
+        merge(
+          omit(["@react-native-community/eslint-config"], currentPackage.devDependencies),
+          newPackageJson.devDependencies,
+        ),
       ),
       assoc("scripts", merge(currentPackage.scripts, newPackageJson.scripts)),
       merge(__, omit(["dependencies", "devDependencies", "scripts"], newPackageJson)),
@@ -192,13 +219,9 @@ async function install(context) {
 
     await system.spawn(`ignite add ${boilerplate} ${debugFlag}`, { stdio: "inherit" })
 
-    // react native link -- must use spawn & stdio: ignore or it hangs!! :(
-    spinner.text = `▸ linking native libraries`
-    spinner.start()
-    await system.spawn("react-native link", { stdio: "ignore" })
-    spinner.stop()
-
-    await ignite.addModule("react-native-gesture-handler", { version: "1.1.0", link: true })
+    await ignite.addModule("react-native-gesture-handler", {
+      version: REACT_NATIVE_GESTURE_HANDLER_VERSION,
+    })
 
     ignite.patchInFile(
       `${process.cwd()}/android/app/src/main/java/com/${name.toLowerCase()}/MainActivity.java`,
@@ -227,6 +250,11 @@ async function install(context) {
           "  }",
       },
     )
+
+    ignite.patchInFile(`${process.cwd()}/package.json`, {
+      replace: `"postinstall": "solidarity",`,
+      insert: `"postinstall": "solidarity && jetify && (cd ios; pod install)",`,
+    })
   } catch (e) {
     ignite.log(e)
     print.error(`
@@ -235,14 +263,14 @@ async function install(context) {
     throw e
   }
 
-  // re-run yarn
+  // re-run yarn; will also install pods, because of our postInstall script.
   const installDeps = ignite.useYarn ? "yarn" : "npm install"
   await system.run(installDeps)
   spinner.succeed(`Installed dependencies`)
 
-  // re-run react-native link
+  // run react-native link to link assets
   await system.spawn("react-native link", { stdio: "ignore" })
-  spinner.succeed(`Linked dependencies`)
+  spinner.succeed(`Linked assets`)
 
   // for Windows, fix the settings.gradle file. Ref: https://github.com/oblador/react-native-vector-icons/issues/938#issuecomment-463296401
   // for ease of use, just replace any backslashes with forward slashes

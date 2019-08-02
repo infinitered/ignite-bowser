@@ -5,6 +5,8 @@ import { StoryScreen, Story, UseCase } from "../../../storybook/views"
 import { Header } from "./header"
 import { color } from "../../theme"
 
+declare var module
+
 const VIEWSTYLE = {
   flex: 1,
   backgroundColor: color.storybookDarkBg,

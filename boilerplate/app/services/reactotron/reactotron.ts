@@ -1,4 +1,5 @@
 import Tron from "reactotron-react-native"
+import AsyncStorage from "@react-native-community/async-storage"
 import { RootStore } from "../../models/root-store/root-store"
 import { onSnapshot } from "mobx-state-tree"
 import { ReactotronConfig, DEFAULT_REACTOTRON_CONFIG } from "./reactotron-config"
@@ -34,8 +35,12 @@ if (__DEV__) {
     image: noop,
     log: noop,
     logImportant: noop,
+    onCustomCommand: noop,
     overlay: noop,
     reportError: noop,
+    send: noop,
+    startTimer: noop,
+    storybookSwitcher: noop,
     use: noop,
     useReactNative: noop,
     warn: noop,
@@ -49,6 +54,7 @@ if (__DEV__) {
  */
 export class Reactotron {
   config: ReactotronConfig
+
   rootStore: any
 
   /**
@@ -112,6 +118,9 @@ export class Reactotron {
       })
 
       // hookup middleware
+      if (this.config.useAsyncStorage) {
+        Tron.setAsyncStorageHandler(AsyncStorage)
+      }
       Tron.useReactNative({
         asyncStorage: this.config.useAsyncStorage ? undefined : false,
       })
