@@ -9,9 +9,8 @@ import { StatefulNavigator } from "./navigation"
 import { StorybookUIRoot } from "../storybook"
 import { RootStore, setupRootStore } from "./models/root-store"
 import { Provider } from "mobx-react"
-import { BackButtonHandler } from "./navigation/back-button-handler"
+import { BackButtonHandler, exitRoutes } from "./navigation"
 import { contains } from "ramda"
-import { DEFAULT_NAVIGATION_CONFIG } from "./navigation/navigation-config"
 
 /**
  * Ignore some yellowbox warnings. Some of these are for deprecated functions
@@ -60,7 +59,7 @@ export class App extends React.Component<{}, AppState> {
    * @param routeName The currently active route name.
    */
   canExit(routeName: string) {
-    return contains(routeName, DEFAULT_NAVIGATION_CONFIG.exitRoutes)
+    return contains(routeName, exitRoutes)
   }
 
   render() {
