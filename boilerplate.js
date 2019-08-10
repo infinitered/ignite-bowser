@@ -252,11 +252,17 @@ async function install(context) {
           "  }",
       },
     )
-
-    ignite.patchInFile(`${process.cwd()}/package.json`, {
-      replace: `"postinstall": "solidarity",`,
-      insert: `"postinstall": "solidarity && jetify && (cd ios; pod install)",`,
-    })
+    if (isMac) {
+      ignite.patchInFile(`${process.cwd()}/package.json`, {
+        replace: `"postinstall": "solidarity",`,
+        insert: `"postinstall": "solidarity && jetify && (cd ios; pod install)",`,
+      })
+    } else {
+      ignite.patchInFile(`${process.cwd()}/package.json`, {
+        replace: `"postinstall": "solidarity",`,
+        insert: `"postinstall": "solidarity && jetify",`,
+      })
+    }
   } catch (e) {
     ignite.log(e)
     print.error(`
