@@ -17,6 +17,15 @@
         "semver": ">=9.2.0",
         "platform": "darwin"
       }
+    ],
+    "CocoaPods": [
+      {
+        "rule": "cli",
+        "binary": "pod",
+        "version": "--version",
+        "semver": ">=1.7.0",
+        "platform": "darwin"
+      }
     ]
   }
 }
