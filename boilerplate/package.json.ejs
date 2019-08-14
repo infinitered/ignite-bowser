@@ -53,6 +53,13 @@
     "@storybook/addon-storyshots": "^5.1.9",
     "@storybook/react-native": "^5.1.9",
     "babel-core": "7.0.0-bridge.0",
+<%# Work around https://github.com/storybookjs/storybook/issues/5817
+    which results in the "can yarn install and pass tests" test failing
+    with "Cannot find module 'emotion-theming' from 'index.js'".
+    If you upgrade packages, try removing these two: -%>
+    "@emotion/core": "^10.0.15",
+    "emotion-theming": "^10.0.14",
+
     "@types/jest": "24.0.16",
     "@types/ramda": "0.26.18",
     "@types/react": "16.8.23",
