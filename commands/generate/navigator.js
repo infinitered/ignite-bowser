@@ -33,7 +33,7 @@ module.exports = {
     }
 
     // grab the closest package.json
-    const packageJSON = await require("read-pkg-up")()
+    const { package: packageJSON } = await require("read-pkg-up")()
     if (!packageJSON) {
       print.error(`Can't find a package.json here or in parent directories.`)
       return
