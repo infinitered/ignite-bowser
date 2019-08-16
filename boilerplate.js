@@ -89,6 +89,7 @@ async function install(context) {
     ".babelrc",
     ".buckconfig",
     ".eslintrc.js",
+    ".prettierrc.js",
     ".flowconfig",
     "App.js",
     "__tests__",
