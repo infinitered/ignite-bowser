@@ -192,6 +192,15 @@ MobX and MobX State Tree can be a lot to learn if you're coming from Redux, so h
 - https://github.com/jamonholmgren/PlayerPopularity (simple implementation)
 - https://github.com/infinitered/ChainReactApp2019 (more in-depth implementation)
 
+## Upgrade 
+
+To keep your React Native app updated:
+- [React Native Upgrade Helper](https://react-native-community.github.io/upgrade-helper/) great web based tool
+- [rn-diff-purge](https://github.com/react-native-community/rn-diff-purge) 
+
+To keep your Ignite Bowser based app updated:
+- [ignite-bowser-difff-purge](https://github.com/nirre7/ignite-bowser-diff-purge) To help you see the diffs between versions
+
 ## TypeScript
 
 In addition to `redux` --> `mobx-state-tree`, we've also transitioned to using `TypeScript` vs plain `JavaScript`. We find that TypeScript streamlines the developer experience by catching errors _before_ you hit refresh on that simulator, and prevents costly bugs by enforcing type safety.
