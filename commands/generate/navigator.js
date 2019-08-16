@@ -58,54 +58,60 @@ module.exports = {
     const pascalName = pascalCase(navigatorName)
     const camelName = camelCase(navigatorName)
 
-    const askForNavigatorType = {
-      type: "select",
-      name: "navigatorType",
-      message: "What type of navigator do you want to create?",
-      initial: "Stack",
-      choices: Object.keys(navigatorTypes),
-    }
-
-    const { navigatorType } = await ask(askForNavigatorType)
-
-    // get a list of current screens
-    const allKebabScreens = list(`${process.cwd()}/app/screens/`)
-    const allPascalScreens = allKebabScreens.map(s => pascalCase(s))
-    let pascalScreens = []
-
-    // ask which screens to include in navigator
-    if (allKebabScreens) {
-      const askForScreens = {
-        type: "multiselect",
-        name: "screens",
-        message: "What screens would you like to import to the navigator?",
-        choices: allPascalScreens,
+    // what navigator type to generate?
+    let navigatorType = parameters.options["type"]
+    if (!navigatorType) {
+      const askForNavigatorType = {
+        type: "select",
+        name: "navigatorType",
+        message: "What type of navigator do you want to create?",
+        initial: "Stack",
+        choices: Object.keys(navigatorTypes),
       }
 
-      const result = await ask(askForScreens)
-      pascalScreens = result.screens
+      const result = await ask(askForNavigatorType)
+      navigatorType = result.navigatorType
     }
 
-    // get a list of current screens
-    const allKebabNavigators = list(`${process.cwd()}/app/navigation/`).filter(
-      n => n.includes("-navigator.") && !n.includes("stateful-") && !n.includes("root-"),
-    )
-    const allPascalNavigators = allKebabNavigators.map(s =>
-      pascalCase(s.replace(".tsx", "").replace(".ts", "")),
-    )
-    let pascalNavigators = []
+    // which screens to include in the new navigator?
+    let pascalScreens = parameters.options["screens"] && parameters.options["screens"].split(",")
+    if (!pascalScreens) {
+      const allKebabScreens = list(`${process.cwd()}/app/screens/`)
+      const allPascalScreens = allKebabScreens.map(s => pascalCase(s))
 
-    // ask which screens to include in navigator
-    if (allKebabNavigators) {
-      const askForNavigators = {
-        type: "multiselect",
-        name: "screens",
-        message: "What other navigators would you like to import to the navigator?",
-        choices: allPascalNavigators,
+      if (allKebabScreens) {
+        const askForScreens = {
+          type: "multiselect",
+          name: "screens",
+          message: "What screens would you like to import to the navigator?",
+          choices: allPascalScreens,
+        }
+
+        pascalScreens = await ask(askForScreens).screens
       }
+    }
 
-      const result = await ask(askForNavigators)
-      pascalNavigators = result.screens
+    // which screens to include in navigator?
+    let pascalNavigators =
+      parameters.options["navigators"] && parameters.options["navigators"].split(",")
+    if (!pascalNavigators) {
+      const allKebabNavigators = list(`${process.cwd()}/app/navigation/`).filter(
+        n => n.includes("-navigator.") && !n.includes("stateful-") && !n.includes("root-"),
+      )
+      const allPascalNavigators = allKebabNavigators.map(s =>
+        pascalCase(s.replace(".tsx", "").replace(".ts", "")),
+      )
+
+      if (allPascalNavigators) {
+        const askForNavigators = {
+          type: "multiselect",
+          name: "navigators",
+          message: "What other navigators would you like to import to the navigator?",
+          choices: allPascalNavigators,
+        }
+
+        pascalNavigators = await ask(askForNavigators).navigators
+      }
     }
 
     const props = {

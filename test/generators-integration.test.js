@@ -78,4 +78,26 @@ describe("a generated app", () => {
     const lint = await execa("npm", ["-s", "run", "lint"])
     expect(lint.stderr).toBe("")
   })
+
+  test("generates navigation", async () => {
+    const simpleNavigation = "test"
+    await execa(
+      IGNITE,
+      [
+        "g",
+        "navigator",
+        "test",
+        "--type",
+        "Stack",
+        "--screens",
+        "DemoScreen,WelcomeScreen",
+        "--navigators",
+        "PrimaryNavigator",
+      ],
+      { preferLocal: false },
+    )
+    expect(jetpack.exists(`app/navigation/${simpleNavigation}-navigator.ts`)).toBe("file")
+    const lint = await execa("npm", ["-s", "run", "lint"])
+    expect(lint.stderr).toBe("")
+  })
 })
