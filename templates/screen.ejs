@@ -14,7 +14,7 @@ const ROOT: ViewStyle = {
   backgroundColor: color.palette.black,
 }
 
-export const <%= props.pascalName %>: React.FunctionComponent<<%= props.pascalName %>> = observer((props) => {
+export const <%= props.pascalName %>: React.FunctionComponent<<%= props.pascalName %>Props> = observer((props) => {
   // const { someStore } = useStores()
   return (
     <Screen style={ROOT} preset="scroll">
