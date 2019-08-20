@@ -15,6 +15,9 @@
     "readme.md",
     "vanilla"
   ],
+  "bin": {
+    "maybe-pod-install": "bin/maybe-pod-install"
+  },
   "author": {
     "name": "Infinite Red",
     "email": "npm@infinite.red",

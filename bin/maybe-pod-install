@@ -1,0 +1,26 @@
+#!/usr/bin/env node
+
+/**
+ * Run `pod install` if the `pod` executable exists; succeed if it succeeds or
+ * fail if it fails. If it doesn't exist, succeed quietly.
+ */
+
+const childProcess = require("child_process")
+
+// We don't want to just ignore a `pod install` failure, so to distiguish
+// "it doesn't exist" from "it exists but something went wrong", we'll
+// try to run `pod` "innocuously" first; if it succeeds, the executable exists.
+childProcess.exec("pod --version", {}, error => {
+  if (error) {
+    // `pod` doesn't exist; succeed quietly
+    process.exit(0)
+  }
+
+  // Now run it for real, and pass any error along.
+  childProcess.exec("pod install", { cwd: "ios", stdio: "inherit" }, error => {
+    if (error) {
+      console.error("pod install failed:")
+      process.exit(error.code)
+    }
+  })
+})
