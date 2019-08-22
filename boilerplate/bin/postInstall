@@ -15,7 +15,7 @@ const os = require("os")
 
   // Kill the metro bundler if it's running.
   { command: 'pkill -f "cli.js start" || set exit 0', onlyPlatforms: ["darwin", "linux"] },
-  // Help wanted: Add the windows version here. { command: "????", onlyPlatforms: ["windows"] },
+  // Help wanted: Add the windows version here. { command: "????", onlyPlatforms: ["win32"] },
 
   // Make sure our native modules are androidX-happy
   { command: "jetify" },
