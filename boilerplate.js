@@ -65,8 +65,27 @@ async function install(context) {
     .spin(`using the ${red("Infinite Red")} boilerplate v3 (code name 'Bowser')`)
     .succeed()
 
+  let useExpo = parameters.options.expo
+  const askAboutExpo = useExpo === undefined
+  if (askAboutExpo) {
+    useExpo = await prompt.confirm(
+      `Would you like to use Expo on this project?\n${gray(
+        "\n  (Ensure the Expo CLI is installed with\n  `yarn global add expo-cli` or `npm install -g expo-cli`\n  first)\n",
+      )}\n`,
+    )
+    if (useExpo) {
+      printInfo(`
+            We'll initiate your app using Expo. Please note that you won't be able
+            to use native modules unless you "eject". This also ignores any explicit
+            React Native versions.
+  
+            More info here: https://docs.expo.io/versions/latest/expokit/eject/
+        `)
+    }
+  }
+
   let includeDetox = false
-  if (isMac) {
+  if (isMac && !useExpo) {
     const askAboutDetox = parameters.options.detox === undefined
     includeDetox = askAboutDetox
       ? await prompt.confirm("Would you like to include Detox end-to-end tests?")
@@ -81,31 +100,20 @@ async function install(context) {
     }
   } else {
     if (parameters.options.detox === true) {
-      // prettier-ignore
-      if (isWindows) {
-          print.info("Skipping Detox because it is only supported on macOS, but you're running Windows")
+      if (useExpo) {
+        printInfo(`
+          Skipping Detox because you're using Expo.
+          For info on integrating Detox with Expo, go here:
+          https://blog.expo.io/testing-expo-apps-with-detox-and-react-native-testing-library-7fbdbb82ac87
+        `)
+      } else {
+        // prettier-ignore
+        if (isWindows) {
+          printInfo("Skipping Detox because it is only supported on macOS, but you're running Windows")
         } else {
-          print.info("Skipping Detox because it is only supported on macOS")
+          printInfo("Skipping Detox because it is only supported on macOS")
         }
-    }
-  }
-
-  let useExpo = parameters.options.expo
-  const askAboutExpo = useExpo === undefined
-  if (askAboutExpo) {
-    useExpo = await prompt.confirm(
-      `Would you like to use Expo on this project?\n${gray(
-        "\n  (Ensure the Expo CLI is installed with\n  `yarn global add expo-cli` or `npm install -g expo-cli`\n  first)\n",
-      )}\n`,
-    )
-    if (useExpo) {
-      printInfo(`
-          We'll initiate your app using Expo. Please note that you won't be able
-          to use native modules unless you "eject". This also ignores any explicit
-          React Native versions.
-
-          More info here: https://docs.expo.io/versions/latest/expokit/eject/
-      `)
+      }
     }
   }
 
