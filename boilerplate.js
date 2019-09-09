@@ -70,7 +70,9 @@ async function install(context) {
   if (askAboutExpo) {
     useExpo = await prompt.confirm(
       `Would you like to use Expo on this project?\n${gray(
-        "\n  (Ensure the Expo CLI is installed with\n  `yarn global add expo-cli` or `npm install -g expo-cli`\n  first)\n",
+        "\n  Why Expo? Expo (https://expo.io) is the fastest way to get started." +
+          "\n  However, Expo support is experimental at this time. If unsure, select No and we'll install the traditional route." +
+          "\n  Additionally, using Expo means you won't be able to add any custom native modules.",
       )}\n`,
     )
     if (useExpo) {
@@ -136,7 +138,6 @@ async function install(context) {
     const expoInstall = await system.spawn(
       `expo init ${name} --name=${name} --template=blank ${ignite.useYarn ? "--yarn" : ""}`,
     )
-    print.debug(expoInstall)
     rnInstall = {
       exitCode: expoInstall.status,
       version: "expo-cli@${expoVersion}",
@@ -197,7 +198,7 @@ async function install(context) {
     { template: ".env.example", target: ".env" },
     { template: ".prettierignore", target: ".prettierignore" },
     { template: ".solidarity", target: ".solidarity" },
-    { template: ".babelrc", target: ".babelrc" },
+    { template: ".babelrc.ejs", target: ".babelrc" },
     { template: "react-native.config.js", target: "react-native.config.js" },
     { template: "tsconfig.json", target: "tsconfig.json" },
     { template: "app/app.tsx.ejs", target: "app/app.tsx" },
@@ -219,6 +220,7 @@ async function install(context) {
     animatable: false,
     i18n: false,
     includeDetox,
+    expo: useExpo,
   }
   await ignite.copyBatch(context, templates, templateProps, {
     quiet: true,
@@ -230,7 +232,7 @@ async function install(context) {
    * we can't detox-test the release configuration. Turn on dead-code stripping
    * to fix this.
    */
-  if (includeDetox) {
+  if (!useExpo && includeDetox) {
     await ignite.patchInFile(`ios/${name}.xcodeproj/xcshareddata/xcschemes/${name}.xcscheme`, {
       replace: 'buildForRunning = "YES"\n            buildForProfiling = "NO"',
       insert: 'buildForRunning = "NO"\n            buildForProfiling = "NO"',
@@ -292,38 +294,40 @@ async function install(context) {
       version: REACT_NATIVE_GESTURE_HANDLER_VERSION,
     })
 
-    ignite.patchInFile(
-      `${process.cwd()}/android/app/src/main/java/com/${name.toLowerCase()}/MainActivity.java`,
-      {
-        after: "import com.facebook.react.ReactActivity;",
-        insert: `
+    if (!useExpo) {
+      ignite.patchInFile(
+        `${process.cwd()}/android/app/src/main/java/com/${name.toLowerCase()}/MainActivity.java`,
+        {
+          after: "import com.facebook.react.ReactActivity;",
+          insert: `
       import com.facebook.react.ReactActivityDelegate;
       import com.facebook.react.ReactRootView;
       import com.swmansion.gesturehandler.react.RNGestureHandlerEnabledRootView;`,
-      },
-    )
+        },
+      )
 
-    ignite.patchInFile(
-      `${process.cwd()}/android/app/src/main/java/com/${name.toLowerCase()}/MainActivity.java`,
-      {
-        after: `public class MainActivity extends ReactActivity {`,
-        insert:
-          "\n  @Override\n" +
-          "  protected ReactActivityDelegate createReactActivityDelegate() {\n" +
-          "    return new ReactActivityDelegate(this, getMainComponentName()) {\n" +
-          "      @Override\n" +
-          "      protected ReactRootView createRootView() {\n" +
-          "       return new RNGestureHandlerEnabledRootView(MainActivity.this);\n" +
-          "      }\n" +
-          "    };\n" +
-          "  }",
-      },
-    )
+      ignite.patchInFile(
+        `${process.cwd()}/android/app/src/main/java/com/${name.toLowerCase()}/MainActivity.java`,
+        {
+          after: `public class MainActivity extends ReactActivity {`,
+          insert:
+            "\n  @Override\n" +
+            "  protected ReactActivityDelegate createReactActivityDelegate() {\n" +
+            "    return new ReactActivityDelegate(this, getMainComponentName()) {\n" +
+            "      @Override\n" +
+            "      protected ReactRootView createRootView() {\n" +
+            "       return new RNGestureHandlerEnabledRootView(MainActivity.this);\n" +
+            "      }\n" +
+            "    };\n" +
+            "  }",
+        },
+      )
 
-    ignite.patchInFile(`${process.cwd()}/package.json`, {
-      replace: `"postinstall": "solidarity",`,
-      insert: `"postinstall": "solidarity && jetify && if which pod >/dev/null; then (cd ios; pod install); fi",`,
-    })
+      ignite.patchInFile(`${process.cwd()}/package.json`, {
+        replace: `"postinstall": "solidarity",`,
+        insert: `"postinstall": "solidarity && jetify && if which pod >/dev/null; then (cd ios; pod install); fi",`,
+      })
+    }
   } catch (e) {
     ignite.log(e)
     print.error(`
@@ -338,12 +342,14 @@ async function install(context) {
   spinner.succeed(`Installed dependencies`)
 
   // run react-native link to link assets
-  await system.spawn("react-native link", { stdio: "ignore" })
-  spinner.succeed(`Linked assets`)
+  if (!useExpo) {
+    await system.spawn("react-native link", { stdio: "ignore" })
+    spinner.succeed(`Linked assets`)
+  }
 
   // for Windows, fix the settings.gradle file. Ref: https://github.com/oblador/react-native-vector-icons/issues/938#issuecomment-463296401
   // for ease of use, just replace any backslashes with forward slashes
-  if (isWindows) {
+  if (!useExpo && isWindows) {
     await patching.update(`${process.cwd()}/android/settings.gradle`, contents => {
       return contents.split("\\").join("/")
     })
@@ -369,9 +375,12 @@ async function install(context) {
     To get started:
 
       cd ${name}
-      react-native run-ios
-      react-native run-android${androidInfo}
+      ${
+        useExpo ? "yarn start" : "react-native run-ios\
+      react-native run-android${androidInfo}"
+      }
       ignite --help
+      ignite doctor
 
     ${cyan("Need additional help? Join our Slack community at http://community.infinite.red.")}
 
