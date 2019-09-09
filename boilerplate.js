@@ -4,6 +4,11 @@ const { getReactNativeVersion } = require("./lib/react-native-version")
 // We need this value here, as well as in our package.json.ejs template
 const REACT_NATIVE_GESTURE_HANDLER_VERSION = "^1.3.0"
 
+// error codes
+const exitCodes = {
+  EXPO_NOT_FOUND: 1,
+}
+
 /**
  * Is Android installed?
  *
@@ -43,6 +48,17 @@ async function install(context) {
   const isMac = process.platform === "darwin"
 
   const perfStart = new Date().getTime()
+  // prints info in gray, indenting 2 spaces
+  const printInfo = info =>
+    print.info(
+      gray(
+        "  " +
+          info
+            .split("\n")
+            .map(s => s.trim())
+            .join("\n  "),
+      ),
+    )
 
   const name = parameters.first
   const spinner = print
@@ -58,10 +74,10 @@ async function install(context) {
 
     if (includeDetox) {
       // prettier-ignore
-      print.info(`
-          You'll love Detox for testing your app! There are some additional requirements to
-          install, so make sure to check out ${cyan('e2e/README.md')} in your generated app!
-        `)
+      printInfo(`
+        You'll love Detox for testing your app! There are some additional requirements to
+        install, so make sure to check out ${cyan('e2e/README.md')} in your generated app!
+      `)
     }
   } else {
     if (parameters.options.detox === true) {
@@ -74,13 +90,56 @@ async function install(context) {
     }
   }
 
+  let useExpo = parameters.options.expo
+  const askAboutExpo = useExpo === undefined
+  if (askAboutExpo) {
+    useExpo = await prompt.confirm(
+      `Would you like to use Expo on this project?\n${gray(
+        "\n  (Ensure the Expo CLI is installed with\n  `yarn global add expo-cli` or `npm install -g expo-cli`\n  first)\n",
+      )}\n`,
+    )
+    if (useExpo) {
+      printInfo(`
+          We'll initiate your app using Expo. Please note that you won't be able
+          to use native modules unless you "eject". This also ignores any explicit
+          React Native versions.
+
+          More info here: https://docs.expo.io/versions/latest/expokit/eject/
+      `)
+    }
+  }
+
   // attempt to install React Native or die trying
   let rnInstall
-  rnInstall = await reactNative.install({
-    name,
-    version: getReactNativeVersion(context),
-    useNpm: !ignite.useYarn,
-  })
+  if (useExpo) {
+    let expoVersion
+    try {
+      expoVersion = await system.run(`expo --version`)
+    } catch (e) {
+      print.debug(e)
+      printInfo(`
+        You don't appear to have Expo CLI installed.
+        Run \`npm install -g expo-cli\` or \`yarn global add expo-cli\` to install and try again.
+      `)
+      process.exit(exitCodes.EXPO_NOT_FOUND)
+      return
+    }
+    printInfo(`Expo version ${expoVersion}`)
+    const expoInstall = await system.spawn(
+      `expo init ${name} --name=${name} --template=blank ${ignite.useYarn ? "--yarn" : ""}`,
+    )
+    print.debug(expoInstall)
+    rnInstall = {
+      exitCode: expoInstall.status,
+      version: "expo-cli@${expoVersion}",
+    }
+  } else {
+    rnInstall = await reactNative.install({
+      name,
+      version: getReactNativeVersion(context),
+      useNpm: !ignite.useYarn,
+    })
+  }
 
   if (rnInstall.exitCode > 0) process.exit(rnInstall.exitCode)
 
