@@ -142,6 +142,7 @@ async function install(context) {
       template: "app/screens/demo-screen/demo-screen.tsx.ejs",
       target: "app/screens/demo-screen/demo-screen.tsx",
     },
+    { template: "bin/postInstall", target: "bin/postInstall" },
   ]
   const templateProps = {
     name,
@@ -255,7 +256,7 @@ async function install(context) {
 
     ignite.patchInFile(`${process.cwd()}/package.json`, {
       replace: `"postinstall": "solidarity",`,
-      insert: `"postinstall": "solidarity && jetify && if which pod >/dev/null; then (cd ios; pod install); fi",`,
+      insert: `"postinstall": "./bin/postInstall",`,
     })
   } catch (e) {
     ignite.log(e)
