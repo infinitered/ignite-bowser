@@ -36,6 +36,7 @@ async function install(context) {
     template,
     prompt,
     patching,
+    strings,
   } = context
   const { colors } = print
   const { red, yellow, bold, gray, cyan } = colors
@@ -75,8 +76,7 @@ async function install(context) {
   }
 
   // attempt to install React Native or die trying
-  let rnInstall
-  rnInstall = await reactNative.install({
+  const rnInstall = await reactNative.install({
     name,
     version: getReactNativeVersion(context),
     useNpm: !ignite.useYarn,
@@ -89,6 +89,7 @@ async function install(context) {
     ".babelrc",
     ".buckconfig",
     ".eslintrc.js",
+    ".prettierrc.js",
     ".flowconfig",
     "App.js",
     "__tests__",
@@ -181,11 +182,11 @@ async function install(context) {
    * Merge the package.json from our template into the one provided from react-native init.
    */
   async function mergePackageJsons() {
-    // transform our package.json in case we need to replace variables
+    // transform our package.json so we can replace variables
     const rawJson = await template.generate({
       directory: `${ignite.ignitePluginPath()}/boilerplate`,
       template: "package.json.ejs",
-      props: templateProps,
+      props: { ...templateProps, kebabName: strings.kebabCase(templateProps.name) },
     })
     const newPackageJson = JSON.parse(rawJson)
 

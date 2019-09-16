@@ -3,21 +3,19 @@
 // In this file, we'll be kicking off our app or storybook.
 
 import "./i18n"
-import * as React from "react"
+import React, { useState, useEffect } from "react"
 import { AppRegistry, YellowBox } from "react-native"
 import { StatefulNavigator } from "./navigation"
 import { StorybookUIRoot } from "../storybook"
-import { RootStore, setupRootStore } from "./models/root-store"
-import { Provider } from "mobx-react"
-import { BackButtonHandler } from "./navigation/back-button-handler"
+import { RootStore, RootStoreProvider, setupRootStore } from "./models/root-store"
+import { BackButtonHandler, exitRoutes } from "./navigation"
 import { contains } from "ramda"
-import { DEFAULT_NAVIGATION_CONFIG } from "./navigation/navigation-config"
 
 /**
  * Ignore some yellowbox warnings. Some of these are for deprecated functions
  * that we haven't gotten around to replacing yet.
  */
- YellowBox.ignoreWarnings([
+YellowBox.ignoreWarnings([
   "componentWillMount is deprecated",
   "componentWillReceiveProps is deprecated",
 ])
@@ -28,69 +26,48 @@ import { DEFAULT_NAVIGATION_CONFIG } from "./navigation/navigation-config"
  * points RN's AsyncStorage at the community one, fixing the warning. Here's the
  * Storybook issue about this: https://github.com/storybookjs/storybook/issues/6078
  */
-const ReactNative = require('react-native')
-Object.defineProperty(ReactNative, 'AsyncStorage', {
+const ReactNative = require("react-native")
+Object.defineProperty(ReactNative, "AsyncStorage", {
   get(): any {
     return require('@react-native-community/async-storage').default;
   },
 })
 
-interface AppState {
-  rootStore?: RootStore
-}
+/**
+ * Are we allowed to exit the app?  This is called when the back button
+ * is pressed on android.
+ *
+ * @param routeName The currently active route name.
+ */
+const canExit = (routeName: string) => contains(routeName, exitRoutes)
 
 /**
  * This is the root component of our app.
  */
-export class App extends React.Component<{}, AppState> {
-  /**
-   * When the component is mounted. This happens asynchronously and simply
-   * re-renders when we're good to go.
-   */
-  async componentDidMount() {
-    this.setState({
-      rootStore: await setupRootStore(),
-    })
+export const App: React.FunctionComponent<{}> = () => {
+  const [ rootStore, setRootStore ] = useState<RootStore | undefined>(undefined)
+  useEffect(() => { setupRootStore().then(setRootStore) }, [])
+
+  // Before we show the app, we have to wait for our state to be ready.
+  // In the meantime, don't render anything. This will be the background
+  // color set in native by rootView's background color.
+  //
+  // This step should be completely covered over by the splash screen though.
+  //
+  // You're welcome to swap in your own component to render if your boot up
+  // sequence is too slow though.
+  if (!rootStore) {
+    return null
   }
 
-  /**
-   * Are we allowed to exit the app?  This is called when the back button
-   * is pressed on android.
-   *
-   * @param routeName The currently active route name.
-   */
-  canExit(routeName: string) {
-    return contains(routeName, DEFAULT_NAVIGATION_CONFIG.exitRoutes)
-  }
-
-  render() {
-    const rootStore = this.state && this.state.rootStore
-
-    // Before we show the app, we have to wait for our state to be ready.
-    // In the meantime, don't render anything. This will be the background
-    // color set in native by rootView's background color.
-    //
-    // This step should be completely covered over by the splash screen though.
-    //
-    // You're welcome to swap in your own component to render if your boot up
-    // sequence is too slow though.
-    if (!rootStore) {
-      return null
-    }
-
-    // otherwise, we're ready to render the app
-
-    // wire stores defined in root-store.ts file
-    const { navigationStore, ...otherStores } = rootStore
-
-    return (
-      <Provider rootStore={rootStore} navigationStore={navigationStore} {...otherStores}>
-        <BackButtonHandler canExit={this.canExit}>
-          <StatefulNavigator />
-        </BackButtonHandler>
-      </Provider>
-    )
-  }
+  // otherwise, we're ready to render the app
+  return (
+    <RootStoreProvider value={rootStore}>
+      <BackButtonHandler canExit={canExit}>
+        <StatefulNavigator />
+      </BackButtonHandler>
+    </RootStoreProvider>
+  )
 }
 
 /**

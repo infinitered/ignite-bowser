@@ -3,6 +3,7 @@ import { observer } from "mobx-react"
 import { ViewStyle } from "react-native"
 import { Text } from "../../components/text"
 import { Screen } from "../../components/screen"
+// import { useStores } from "../../models/root-store"
 import { color } from "../../theme"
 import { NavigationScreenProps } from "react-navigation"
 
@@ -13,14 +14,11 @@ const ROOT: ViewStyle = {
   backgroundColor: color.palette.black,
 }
 
-// @inject("mobxstuff")
-@observer
-export class <%= props.pascalName %> extends React.Component<<%= props.pascalName %>Props, {}> {
-  render () {
-    return (
-      <Screen style={ROOT} preset="scroll">
-        <Text preset="header" tx="<%= props.camelName %>.header" />
-      </Screen>
-    )
-  }
-}
+export const <%= props.pascalName %>: React.FunctionComponent<<%= props.pascalName %>Props> = observer((props) => {
+  // const { someStore } = useStores()
+  return (
+    <Screen style={ROOT} preset="scroll">
+      <Text preset="header" tx="<%= props.camelName %>.header" />
+    </Screen>
+  )
+})

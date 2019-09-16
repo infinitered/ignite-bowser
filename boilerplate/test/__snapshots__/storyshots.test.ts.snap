@@ -2775,7 +2775,7 @@ exports[`Storyshots Header Behavior 1`] = `
                       }
                     }
                   >
-                    secondExampleScreen.howTo.test
+                    demoScreen.howTo.test
                   </Text>
                 </View>
                 <View
@@ -2938,7 +2938,7 @@ exports[`Storyshots Header Behavior 1`] = `
                       }
                     }
                   >
-                    secondExampleScreen.howTo.test
+                    demoScreen.howTo.test
                   </Text>
                 </View>
                 <View
@@ -3075,7 +3075,7 @@ exports[`Storyshots Header Behavior 1`] = `
                       }
                     }
                   >
-                    secondExampleScreen.howTo.test
+                    demoScreen.howTo.test
                   </Text>
                 </View>
                 <View

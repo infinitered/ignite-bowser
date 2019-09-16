@@ -50,73 +50,66 @@ const enhance = (style, newStyles): any => {
   return mergeAll(flatten([style, newStyles]))
 }
 
-interface SwitchState {
-  timer: Animated.Value
-}
+const makeAnimatedValue = switchOn => new Animated.Value(switchOn ? 1 : 0)
 
-export class Switch extends React.PureComponent<SwitchProps, SwitchState> {
-  state = {
-    timer: new Animated.Value(this.props.value ? 1 : 0),
-  }
+export const Switch: React.FunctionComponent<SwitchProps> = props => {
+  const [timer] = React.useState<Animated.Value>(makeAnimatedValue(props.value))
+  const startAnimation = React.useMemo(
+    () => (newValue: boolean) => {
+      const toValue = newValue ? 1 : 0
+      const easing = Easing.out(Easing.circle)
+      Animated.timing(timer, {
+        toValue,
+        duration: DURATION,
+        easing,
+        useNativeDriver: true,
+      }).start()
+    },
+    [timer],
+  )
 
-  startAnimation(newValue: boolean) {
-    const toValue = newValue ? 1 : 0
-    const easing = Easing.out(Easing.circle)
-    Animated.timing(this.state.timer, {
-      toValue,
-      duration: DURATION,
-      easing,
-      useNativeDriver: true,
-    }).start()
-  }
-
-  componentWillReceiveProps(newProps: SwitchProps) {
-    if (newProps.value !== this.props.value) {
-      this.startAnimation(newProps.value)
+  const [previousValue, setPreviousValue] = React.useState<boolean>(props.value)
+  React.useEffect(() => {
+    if (props.value !== previousValue) {
+      startAnimation(props.value)
+      setPreviousValue(props.value)
     }
+  }, [props.value])
+
+  const handlePress = React.useMemo(() => () => props.onToggle && props.onToggle(!props.value), [
+    props.onToggle,
+    props.value,
+  ])
+
+  if (!timer) {
+    return null
   }
 
-  /**
-   * Fires when we tap the touchable.
-   */
-  handlePress = () => this.props.onToggle && this.props.onToggle(!this.props.value)
+  const translateX = timer.interpolate({
+    inputRange: [0, 1],
+    outputRange: [OFF_POSITION, ON_POSITION],
+  })
 
-  /**
-   * Render the component.
-   */
-  render() {
-    const translateX = this.state.timer.interpolate({
-      inputRange: [0, 1],
-      outputRange: [OFF_POSITION, ON_POSITION],
-    })
+  const style = enhance({}, props.style)
 
-    const style = enhance({}, this.props.style)
+  let trackStyle = TRACK
+  trackStyle = enhance(trackStyle, {
+    backgroundColor: props.value ? ON_COLOR : OFF_COLOR,
+    borderColor: props.value ? BORDER_ON_COLOR : BORDER_OFF_COLOR,
+  })
+  trackStyle = enhance(trackStyle, props.value ? props.trackOnStyle : props.trackOffStyle)
 
-    let trackStyle = TRACK
-    trackStyle = enhance(trackStyle, {
-      backgroundColor: this.props.value ? ON_COLOR : OFF_COLOR,
-      borderColor: this.props.value ? BORDER_ON_COLOR : BORDER_OFF_COLOR,
-    })
-    trackStyle = enhance(
-      trackStyle,
-      this.props.value ? this.props.trackOnStyle : this.props.trackOffStyle,
-    )
+  let thumbStyle = THUMB
+  thumbStyle = enhance(thumbStyle, {
+    transform: [{ translateX }],
+  })
+  thumbStyle = enhance(thumbStyle, props.value ? props.thumbOnStyle : props.thumbOffStyle)
 
-    let thumbStyle = THUMB
-    thumbStyle = enhance(thumbStyle, {
-      transform: [{ translateX }],
-    })
-    thumbStyle = enhance(
-      thumbStyle,
-      this.props.value ? this.props.thumbOnStyle : this.props.thumbOffStyle,
-    )
-
-    return (
-      <TouchableWithoutFeedback onPress={this.handlePress} style={style}>
-        <Animated.View style={trackStyle}>
-          <Animated.View style={thumbStyle} />
-        </Animated.View>
-      </TouchableWithoutFeedback>
-    )
-  }
+  return (
+    <TouchableWithoutFeedback onPress={handlePress} style={style}>
+      <Animated.View style={trackStyle}>
+        <Animated.View style={thumbStyle} />
+      </Animated.View>
+    </TouchableWithoutFeedback>
+  )
 }

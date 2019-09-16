@@ -1,12 +1,5 @@
 import * as React from "react"
-import {
-  Image,
-  ImageStyle,
-  Platform,
-  TextStyle,
-  View,
-  ViewStyle,
-} from "react-native"
+import { Image, ImageStyle, Platform, TextStyle, View, ViewStyle } from "react-native"
 import { NavigationScreenProps } from "react-navigation"
 import { Screen } from "../../components/screen"
 import { Text } from "../../components/text"
@@ -89,83 +82,78 @@ const HINT: TextStyle = {
 
 export interface DemoScreenProps extends NavigationScreenProps<{}> {}
 
-export class DemoScreen extends React.Component<DemoScreenProps, {}> {
-  goBack = () => this.props.navigation.goBack(null)
+export const DemoScreen: React.FunctionComponent<DemoScreenProps> = props => {
+  const goBack = React.useMemo(() => () => props.navigation.goBack(null), [props.navigation])
 
-  demoReactotron = async () => {
-    console.tron.log("Your Friendly tron log message")
-    console.tron.logImportant("I am important")
-    console.tron.display({
-      name: "DISPLAY",
-      value: {
-        numbers: 1,
-        strings: "strings",
-        booleans: true,
-        arrays: [1, 2, 3],
-        objects: {
-          deeper: {
+  const demoReactotron = React.useMemo(
+    () => async () => {
+      console.tron.log("Your Friendly tron log message")
+      console.tron.logImportant("I am important")
+      console.tron.display({
+        name: "DISPLAY",
+        value: {
+          numbers: 1,
+          strings: "strings",
+          booleans: true,
+          arrays: [1, 2, 3],
+          objects: {
             deeper: {
-              yay: "👾",
+              deeper: {
+                yay: "👾",
+              },
             },
           },
+          functionNames: function hello() {},
         },
-        functionNames: function hello() {},
-      },
-      preview: "More control with display()",
-      important: true,
-      image: {
-        uri:
-          "https://avatars2.githubusercontent.com/u/3902527?s=200&u=a0d16b13ed719f35d95ca0f4440f5d07c32c349a&v=4",
-      },
-    })
-    // make an API call for the demo
-    // Don't do API like this, use store's API
-    const demo = new Api()
-    demo.setup()
-    demo.getUser("1")
-    // Let's do some async storage stuff
-    await save("Cool Name", "Boaty McBoatface")
-  }
+        preview: "More control with display()",
+        important: true,
+        image: {
+          uri:
+            "https://avatars2.githubusercontent.com/u/3902527?s=200&u=a0d16b13ed719f35d95ca0f4440f5d07c32c349a&v=4",
+        },
+      })
+      // make an API call for the demo
+      // Don't do API like this, use store's API
+      const demo = new Api()
+      demo.setup()
+      demo.getUser("1")
+      // Let's do some async storage stuff
+      await save("Cool Name", "Boaty McBoatface")
+    },
+    [],
+  )
 
-  render() {
-    return (
-      <% if (props.includeDetox) { -%><View testID="DemoScreen" style={FULL}><% } else { -%><View style={FULL}><% } %>
-        <Wallpaper />
-        <Screen
-          style={CONTAINER}
-          preset="scroll"
-          backgroundColor={color.transparent}>
-          <Header
-            headerTx="demoScreen.howTo"
-            leftIcon="back"
-            onLeftPress={this.goBack}
-            style={HEADER}
-            titleStyle={HEADER_TITLE}
+  return (
+    <% if (props.includeDetox) { -%><View testID="DemoScreen" style={FULL}><% } else { -%><View style={FULL}><% } %>
+      <Wallpaper />
+      <Screen style={CONTAINER} preset="scroll" backgroundColor={color.transparent}>
+        <Header
+          headerTx="demoScreen.howTo"
+          leftIcon="back"
+          onLeftPress={goBack}
+          style={HEADER}
+          titleStyle={HEADER_TITLE}
+        />
+        <Text style={TITLE} preset="header" tx="demoScreen.title" />
+        <Text style={TAGLINE} tx="demoScreen.tagLine" />
+        <BulletItem text="Load up Reactotron!  You can inspect your app, view the events, interact, and so much more!" />
+        <BulletItem text="Integrated here, Navigation with State, TypeScript, Storybook, Solidarity, and i18n." />
+        <View>
+          <Button
+            style={DEMO}
+            textStyle={DEMO_TEXT}
+            tx="demoScreen.reactotron"
+            onPress={demoReactotron}
           />
-          <Text style={TITLE} preset="header" tx="demoScreen.title" />
-          <Text style={TAGLINE} tx="demoScreen.tagLine" />
-          <BulletItem text="Load up Reactotron!  You can inspect your app, view the events, interact, and so much more!" />
-          <BulletItem text="Integrated here, Navigation with State, TypeScript, Storybook, Solidarity, and i18n." />
-          <View>
-            <Button
-              style={DEMO}
-              textStyle={DEMO_TEXT}
-              tx="demoScreen.reactotron"
-              onPress={this.demoReactotron}
-            />
-            <Text
-              style={HINT}
-              tx={`demoScreen.${Platform.OS}ReactotronHint`}
-            />
-          </View>
-          <Image source={logoIgnite} style={IGNITE} />
-          <View style={LOVE_WRAPPER}>
-            <Text style={LOVE} text="Made with" />
-            <Image source={heart} style={HEART} />
-            <Text style={LOVE} text="by Infinite Red" />
-          </View>
-        </Screen>
-      </View>
-    )
-  }
+          <Text style={HINT} tx={`demoScreen.${Platform.OS}ReactotronHint`} />
+        </View>
+        <Image source={logoIgnite} style={IGNITE} />
+        <View style={LOVE_WRAPPER}>
+          <Text style={LOVE} text="Made with" />
+          <Image source={heart} style={HEART} />
+          <Text style={LOVE} text="by Infinite Red" />
+        </View>
+      </Screen>
+    </View>
+  )
 }
