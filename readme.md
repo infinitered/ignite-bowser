@@ -1,14 +1,12 @@
 <p align="center"><img src="http://ir_public.s3.amazonaws.com/projects/ignite/ignite-bowser-launch-screen.png" alt="logo" width="414px"></p>
 
-# Ignite IR Boilerplate ("Bowser")
-
-_NOTE: This repo has been renamed from ignite-ir-boilerplate-bowser to ignite-bowser. Although web traffic and git operations for the previous name will be redirected, we recommend you update any links and git urls for this repo._
+# Ignite Bowser - the hottest React Native boilerplate
 
 <a href="https://badge.fury.io/js/ignite-bowser" target="_blank"><img src="https://badge.fury.io/js/ignite-bowser.svg" alt="npm version" height="20"></a>
 
 ## Infinite Red's latest and greatest React Native boilerplate
 
-Once you've installed the [Ignite CLI](https://github.com/infinitered/ignite), you can get started with this boilerplate.
+Once you've installed [React Native](https://shift.infinite.red/painless-react-native-setup-for-mac-windows-linux-956c23d2abf9) and the [Ignite CLI](https://github.com/infinitered/ignite), you can get started with this boilerplate.
 
 This is the boilerplate that the [Infinite Red](https://infinite.red) team recommends and uses on a day-to-day basis. Prior art includes [Ignite Andross](https://github.com/infinitered/ignite-andross).
 
@@ -36,6 +34,14 @@ Then spin up a new Bowser-powered React Native app:
 ```
 $ ignite new MyApp -b bowser
 ```
+
+`cd` into your new app and run `react-native run-ios` or `react-native run-android` (note: in Android you'll need an Android emulator running or an Android phone attached).
+
+You should see this!
+
+Next step -- follow this tutorial to learn how to create a trivia app with Ignite Bowser: https://shift.infinite.red/creating-a-trivia-app-with-ignite-bowser-part-1-1987cc6e93a1
+
+## Explanation of folder structure
 
 The Ignite Bowser boilerplate project's structure will look similar to this:
 
@@ -91,7 +97,6 @@ app
 ├── theme
 ├── utils
 ├── app.tsx
-├── environment-variables.ts
 ```
 
 **components**
@@ -213,6 +218,7 @@ If you are new to TypeScript, here are some of our favorite resources:
 
 - [TypeScript in 5 minutes](https://www.typescriptlang.org/docs/handbook/typescript-in-5-minutes.html) for a quick read
 - [TypeScript in 50 minutes](https://youtu.be/WBPrJSw7yQA) for a longer watch
+- [Execute Program -- TypeScript course](https://www.executeprogram.com/course/typescript) -- free course by Gary Bernhardt
 - [TypeScript and VSCode](https://code.visualstudio.com/docs/typescript/typescript-tutorial) for awesome developer tools
 - [Official Docs](https://www.typescriptlang.org/docs/home.html)
 
