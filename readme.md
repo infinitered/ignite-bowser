@@ -35,6 +35,14 @@ Then spin up a new Bowser-powered React Native app:
 $ ignite new MyApp -b bowser
 ```
 
+`cd` into your new app and run `react-native run-ios` or `react-native run-android` (note: in Android you'll need an Android emulator running or an Android phone attached).
+
+You should see this!
+
+Next step -- follow this tutorial to learn how to create a trivia app with Ignite Bowser: https://shift.infinite.red/creating-a-trivia-app-with-ignite-bowser-part-1-1987cc6e93a1
+
+## Explanation of folder structure
+
 The Ignite Bowser boilerplate project's structure will look similar to this:
 
 ```
@@ -89,7 +97,6 @@ app
 ├── theme
 ├── utils
 ├── app.tsx
-├── environment-variables.ts
 ```
 
 **components**
