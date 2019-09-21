@@ -113,7 +113,7 @@ async function install(context) {
     { template: '.gitignore.ejs', target: '.gitignore' },
     { template: '.prettierignore', target: '.prettierignore' },
     { template: '.solidarity', target: '.solidarity' },
-    { template: '.babelrc', target: '.babelrc' },
+    { template: 'babel.config.js', target: 'babel.config.js' },
     { template: 'tsconfig.json', target: 'tsconfig.json' },
     { template: 'tslint.json', target: 'tslint.json' },
     { template: 'app/app.tsx.ejs', target: 'app/app.tsx' },
