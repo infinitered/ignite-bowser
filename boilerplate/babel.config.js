@@ -1,20 +1,20 @@
 {
-  "presets": ["module:metro-react-native-babel-preset"],
-  "env": {
+  presets: ["module:metro-react-native-babel-preset"],
+  env: {
     "production": {
     }
   },
-  "plugins": [
+  plugins: [
     [
       "transform-inline-environment-variables",
       {
-        "include": ["NODE_ENV", "API"]
+        include: ["NODE_ENV", "API"]
       }
     ],
     [
       "@babel/plugin-proposal-decorators",
       {
-        "legacy": true
+        legacy: true
       }
     ],
     [
