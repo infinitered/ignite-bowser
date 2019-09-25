@@ -257,7 +257,7 @@ async function install(context) {
 
     ignite.patchInFile(`${process.cwd()}/package.json`, {
       replace: `"postinstall": "solidarity",`,
-      insert: `"postinstall": "./bin/postInstall",`,
+      insert: `"postinstall": "node ./bin/postInstall",`,
     })
   } catch (e) {
     ignite.log(e)
