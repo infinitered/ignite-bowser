@@ -21,6 +21,8 @@ Includes:
 
 To see it in action, check out the [Chain React 2019 Conference App](https://github.com/infinitered/ChainReactApp2019)!
 
+Or watch a [live coding demo](https://www.youtube.com/watch?v=Pb8MWkQ9GOc) at React Live Amsterdam where Jamon Holmgren codes an Ignite Bowser app in less than 30 minutes.
+
 ## Quick Start
 
 First, install Ignite CLI:
