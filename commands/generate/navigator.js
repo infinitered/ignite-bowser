@@ -87,7 +87,8 @@ module.exports = {
           choices: allPascalScreens,
         }
 
-        pascalScreens = await ask(askForScreens).screens
+        const result = await ask(askForScreens)
+        pascalScreens = result.screens
       }
     }
 
@@ -110,7 +111,8 @@ module.exports = {
           choices: allPascalNavigators,
         }
 
-        pascalNavigators = await ask(askForNavigators).navigators
+        const result = await ask(askForNavigators)
+        pascalNavigators = result.navigators
       }
     }
 
