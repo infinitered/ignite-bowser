@@ -23,16 +23,20 @@ To see it in action, check out the [Chain React 2019 Conference App](https://git
 
 ## Quick Start
 
-First, install Ignite CLI:
+Prerequisite: [install the React Native CLI](https://facebook.github.io/react-native/docs/getting-started) -- choose React Native CLI, not Expo.
+
+First, install Ignite CLI globally:
 
 ```
-$ yarn global add ignite-cli
+npm install -g ignite-cli
+# or
+yarn global add ignite-cli
 ```
 
 Then spin up a new Bowser-powered React Native app:
 
 ```
-$ ignite new MyApp -b bowser
+ignite new MyApp -b bowser
 ```
 
 `cd` into your new app and run `react-native run-ios` or `react-native run-android` (note: in Android you'll need an Android emulator running or an Android phone attached).
@@ -198,13 +202,15 @@ MobX and MobX State Tree can be a lot to learn if you're coming from Redux, so h
 - https://github.com/jamonholmgren/TrailBlazers (simple implementation with hooks)
 - https://github.com/infinitered/ChainReactApp2019 (more in-depth implementation)
 
-## Upgrade 
+## Upgrade
 
 To keep your React Native app updated:
+
 - [React Native Upgrade Helper](https://react-native-community.github.io/upgrade-helper/) great web based tool
-- [rn-diff-purge](https://github.com/react-native-community/rn-diff-purge) 
+- [rn-diff-purge](https://github.com/react-native-community/rn-diff-purge)
 
 To keep your Ignite Bowser based app updated:
+
 - [ignite-bowser-difff-purge](https://github.com/nirre7/ignite-bowser-diff-purge) To help you see the diffs between versions
 
 ## TypeScript
