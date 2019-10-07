@@ -87,6 +87,7 @@ async function install(context) {
   // remove the __tests__ directory, App.js, and unnecessary config files that come with React Native
   const filesToRemove = [
     ".babelrc",
+    "babel.config.js",
     ".buckconfig",
     ".eslintrc.js",
     ".prettierrc.js",
@@ -131,7 +132,7 @@ async function install(context) {
     { template: ".env.example", target: ".env" },
     { template: ".prettierignore", target: ".prettierignore" },
     { template: ".solidarity", target: ".solidarity" },
-    { template: ".babelrc", target: ".babelrc" },
+    { template: "babel.config.js", target: "babel.config.js" },
     { template: "react-native.config.js", target: "react-native.config.js" },
     { template: "tsconfig.json", target: "tsconfig.json" },
     { template: "app/app.tsx.ejs", target: "app/app.tsx" },
