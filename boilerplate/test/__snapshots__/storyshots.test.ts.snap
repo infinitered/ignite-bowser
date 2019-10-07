@@ -104,7 +104,7 @@ exports[`Storyshots Button Style Presets 1`] = `
           >
             <View
               accessible={true}
-              clickable={true}
+              focusable={true}
               isTVSelectable={true}
               onClick={[Function]}
               onResponderGrant={[Function]}
@@ -220,7 +220,7 @@ exports[`Storyshots Button Style Presets 1`] = `
           >
             <View
               accessible={true}
-              clickable={true}
+              focusable={true}
               isTVSelectable={true}
               onClick={[Function]}
               onResponderGrant={[Function]}
@@ -336,7 +336,7 @@ exports[`Storyshots Button Style Presets 1`] = `
           >
             <View
               accessible={true}
-              clickable={true}
+              focusable={true}
               isTVSelectable={true}
               onClick={[Function]}
               onResponderGrant={[Function]}
@@ -482,7 +482,7 @@ exports[`Storyshots Checkbox Behaviour 1`] = `
           >
             <View
               accessible={true}
-              clickable={true}
+              focusable={true}
               isTVSelectable={true}
               onClick={[Function]}
               onResponderGrant={[Function]}
@@ -610,7 +610,7 @@ exports[`Storyshots Checkbox Behaviour 1`] = `
           >
             <View
               accessible={true}
-              clickable={true}
+              focusable={true}
               isTVSelectable={true}
               onClick={[Function]}
               onResponderGrant={[Function]}
@@ -748,7 +748,7 @@ exports[`Storyshots Checkbox Behaviour 1`] = `
           >
             <View
               accessible={true}
-              clickable={true}
+              focusable={true}
               isTVSelectable={true}
               onClick={[Function]}
               onResponderGrant={[Function]}
@@ -907,7 +907,7 @@ exports[`Storyshots Checkbox Styling 1`] = `
             <View>
               <View
                 accessible={true}
-                clickable={true}
+                focusable={true}
                 isTVSelectable={true}
                 onClick={[Function]}
                 onResponderGrant={[Function]}
@@ -1037,7 +1037,7 @@ exports[`Storyshots Checkbox Styling 1`] = `
             <View>
               <View
                 accessible={true}
-                clickable={true}
+                focusable={true}
                 isTVSelectable={true}
                 onClick={[Function]}
                 onResponderGrant={[Function]}
@@ -1170,7 +1170,7 @@ exports[`Storyshots Checkbox Styling 1`] = `
             <View>
               <View
                 accessible={true}
-                clickable={true}
+                focusable={true}
                 isTVSelectable={true}
                 onClick={[Function]}
                 onResponderGrant={[Function]}
@@ -1300,7 +1300,7 @@ exports[`Storyshots Checkbox Styling 1`] = `
             <View>
               <View
                 accessible={true}
-                clickable={true}
+                focusable={true}
                 isTVSelectable={true}
                 onClick={[Function]}
                 onResponderGrant={[Function]}
@@ -1430,7 +1430,7 @@ exports[`Storyshots Checkbox Styling 1`] = `
             <View>
               <View
                 accessible={true}
-                clickable={true}
+                focusable={true}
                 isTVSelectable={true}
                 onClick={[Function]}
                 onResponderGrant={[Function]}
@@ -2889,7 +2889,7 @@ exports[`Storyshots Header Behavior 1`] = `
               >
                 <View
                   accessible={true}
-                  clickable={true}
+                  focusable={true}
                   isTVSelectable={true}
                   onClick={[Function]}
                   onResponderGrant={[Function]}
@@ -2911,7 +2911,11 @@ exports[`Storyshots Header Behavior 1`] = `
                 >
                   <View>
                     <Image
-                      source={1}
+                      source={
+                        Object {
+                          "testUri": "../../../app/components/icon/icons/arrow-left@2x.png",
+                        }
+                      }
                       style={
                         Object {
                           "resizeMode": "contain",
@@ -3080,7 +3084,7 @@ exports[`Storyshots Header Behavior 1`] = `
                 </View>
                 <View
                   accessible={true}
-                  clickable={true}
+                  focusable={true}
                   isTVSelectable={true}
                   onClick={[Function]}
                   onResponderGrant={[Function]}
@@ -3102,7 +3106,11 @@ exports[`Storyshots Header Behavior 1`] = `
                 >
                   <View>
                     <Image
-                      source={1}
+                      source={
+                        Object {
+                          "testUri": "../../../app/components/icon/icons/bullet@2x.png",
+                        }
+                      }
                       style={
                         Object {
                           "resizeMode": "contain",
@@ -3225,7 +3233,11 @@ exports[`Storyshots Icon Names 1`] = `
           >
             <View>
               <Image
-                source={1}
+                source={
+                  Object {
+                    "testUri": "../../../app/components/icon/icons/arrow-left@2x.png",
+                  }
+                }
                 style={
                   Object {
                     "resizeMode": "contain",
@@ -3315,7 +3327,11 @@ exports[`Storyshots Icon Names 1`] = `
           >
             <View>
               <Image
-                source={1}
+                source={
+                  Object {
+                    "testUri": "../../../app/components/icon/icons/bullet@2x.png",
+                  }
+                }
                 style={
                   Object {
                     "resizeMode": "contain",
@@ -3435,7 +3451,7 @@ exports[`Storyshots Switch Behaviour 1`] = `
           >
             <View
               accessible={true}
-              clickable={true}
+              focusable={true}
               onClick={[Function]}
               onResponderGrant={[Function]}
               onResponderMove={[Function]}
@@ -3563,7 +3579,7 @@ exports[`Storyshots Switch Behaviour 1`] = `
           >
             <View
               accessible={true}
-              clickable={true}
+              focusable={true}
               onClick={[Function]}
               onResponderGrant={[Function]}
               onResponderMove={[Function]}
@@ -3691,7 +3707,7 @@ exports[`Storyshots Switch Behaviour 1`] = `
           >
             <View
               accessible={true}
-              clickable={true}
+              focusable={true}
               onClick={[Function]}
               onResponderGrant={[Function]}
               onResponderMove={[Function]}
@@ -3850,7 +3866,7 @@ exports[`Storyshots Switch Styling 1`] = `
             <View>
               <View
                 accessible={true}
-                clickable={true}
+                focusable={true}
                 onClick={[Function]}
                 onResponderGrant={[Function]}
                 onResponderMove={[Function]}
@@ -3980,7 +3996,7 @@ exports[`Storyshots Switch Styling 1`] = `
             <View>
               <View
                 accessible={true}
-                clickable={true}
+                focusable={true}
                 onClick={[Function]}
                 onResponderGrant={[Function]}
                 onResponderMove={[Function]}
@@ -5133,10 +5149,11 @@ exports[`Storyshots TextField Labelling 1`] = `
                 Name
               </Text>
               <TextInput
-                autoFocus={false}
+                allowFontScaling={true}
                 onChangeText={[Function]}
                 placeholder="omg your name"
                 placeholderTextColor="#CDD4DA"
+                rejectResponderTermination={true}
                 style={
                   Object {
                     "backgroundColor": "#ffffff",
@@ -5249,10 +5266,11 @@ exports[`Storyshots TextField Labelling 1`] = `
                 storybook.field.test
               </Text>
               <TextInput
-                autoFocus={false}
+                allowFontScaling={true}
                 onChangeText={[Function]}
                 placeholder="storybook.placeholder.test"
                 placeholderTextColor="#CDD4DA"
+                rejectResponderTermination={true}
                 style={
                   Object {
                     "backgroundColor": "#ffffff",
@@ -5384,10 +5402,11 @@ exports[`Storyshots TextField Ref Forwarding 1`] = `
                 Name
               </Text>
               <TextInput
-                autoFocus={false}
+                allowFontScaling={true}
                 onChangeText={[Function]}
                 onFocus={[Function]}
                 placeholderTextColor="#CDD4DA"
+                rejectResponderTermination={true}
                 style={
                   Object {
                     "backgroundColor": "rebeccapurple",
@@ -5547,9 +5566,10 @@ exports[`Storyshots TextField Style Overrides 1`] = `
                 First Name
               </Text>
               <TextInput
-                autoFocus={false}
+                allowFontScaling={true}
                 onChangeText={[Function]}
                 placeholderTextColor="#CDD4DA"
+                rejectResponderTermination={true}
                 style={
                   Object {
                     "backgroundColor": "#ffffff",
@@ -5583,9 +5603,10 @@ exports[`Storyshots TextField Style Overrides 1`] = `
                 Last Name
               </Text>
               <TextInput
-                autoFocus={false}
+                allowFontScaling={true}
                 onChangeText={[Function]}
                 placeholderTextColor="#CDD4DA"
+                rejectResponderTermination={true}
                 style={
                   Object {
                     "backgroundColor": "#ffffff",
@@ -5698,9 +5719,10 @@ exports[`Storyshots TextField Style Overrides 1`] = `
                 Name
               </Text>
               <TextInput
-                autoFocus={false}
+                allowFontScaling={true}
                 onChangeText={[Function]}
                 placeholderTextColor="#CDD4DA"
+                rejectResponderTermination={true}
                 style={
                   Object {
                     "backgroundColor": "rebeccapurple",
@@ -5830,9 +5852,10 @@ exports[`Storyshots TextField Style Overrides 1`] = `
                 Name
               </Text>
               <TextInput
-                autoFocus={false}
+                allowFontScaling={true}
                 onChangeText={[Function]}
                 placeholderTextColor="#CDD4DA"
+                rejectResponderTermination={true}
                 style={
                   Object {
                     "backgroundColor": "rebeccapurple",
@@ -5972,7 +5995,11 @@ exports[`Storyshots Wallpaper Style Presets 1`] = `
             }
           >
             <Image
-              source={1}
+              source={
+                Object {
+                  "testUri": "../../../app/components/wallpaper/bg@2x.png",
+                }
+              }
               style={
                 Object {
                   "bottom": 0,
