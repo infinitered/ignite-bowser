@@ -33,7 +33,7 @@ export const withStatus = () => {
     views: {
       // a getter
       get status() {
-        return status.get() as StatusType
+        return status.get<StatusType>()
       },
       // as setter
       set status(value: StatusType) {
