@@ -1,5 +1,5 @@
 import * as React from "react"
-import { observer } from "mobx-react"
+import { observer } from "mobx-react-lite"
 // @ts-ignore: until they update @type/react-navigation
 import { getNavigation, NavigationScreenProp, NavigationState } from "react-navigation"
 import { useStores } from "../models/root-store"

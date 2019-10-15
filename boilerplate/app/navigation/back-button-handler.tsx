@@ -1,6 +1,6 @@
 import { FunctionComponent, useEffect } from "react"
 import { BackHandler } from "react-native"
-import { observer } from "mobx-react"
+import { observer } from "mobx-react-lite"
 import { NavigationActions } from "react-navigation"
 import { useStores } from "../models/root-store"
 
