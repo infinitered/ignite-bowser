@@ -167,7 +167,7 @@ MST is...
 - Performant
   - Round-trip store writes are much faster
   - Computed values (views) are only calculated when needed
-  - `mobx-react-light` makes React "MobX-aware" and only re-renders when absolutely necessary
+  - `mobx-react-lite` makes React "MobX-aware" and only re-renders when absolutely necessary
 - Customizable
   - MST ships with pre-built middlewares, including one which allows for [Redux interoperability](https://github.com/mobxjs/mobx-state-tree/blob/master/packages/mst-middlewares/README.md#redux). These middlewares can also serve as examples to create your own!
 
