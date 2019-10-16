@@ -10,6 +10,9 @@ import { StorybookUIRoot } from "../storybook"
 import { RootStore, RootStoreProvider, setupRootStore } from "./models/root-store"
 import { BackButtonHandler, exitRoutes } from "./navigation"
 import { contains } from "ramda"
+import { enableScreens } from "react-native-screens"
+
+enableScreens();
 
 /**
  * Ignore some yellowbox warnings. Some of these are for deprecated functions
