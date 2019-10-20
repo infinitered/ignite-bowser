@@ -21,6 +21,8 @@ Includes:
 
 To see it in action, check out the [Chain React 2019 Conference App](https://github.com/infinitered/ChainReactApp2019)!
 
+Or watch a [live coding demo](https://www.youtube.com/watch?v=Pb8MWkQ9GOc) at React Live Amsterdam where Jamon Holmgren codes an Ignite Bowser app in less than 30 minutes.
+
 ## Quick Start
 
 Prerequisite: [install the React Native CLI](https://facebook.github.io/react-native/docs/getting-started) -- choose React Native CLI, not Expo.
@@ -32,6 +34,9 @@ npm install -g ignite-cli
 # or
 yarn global add ignite-cli
 ```
+
+**Note:**
+Make sure you have [CocoaPods](https://guides.cocoapods.org/using/getting-started.html) installed because otherwise React Native installation will fail.
 
 Then spin up a new Bowser-powered React Native app:
 

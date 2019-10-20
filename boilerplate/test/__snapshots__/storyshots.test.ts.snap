@@ -2913,7 +2913,7 @@ exports[`Storyshots Header Behavior 1`] = `
                     <Image
                       source={
                         Object {
-                          "testUri": "../../../app/components/icon/icons/arrow-left@2x.png",
+                          "testUri": "../../../app/components/icon/icons/arrow-left.png",
                         }
                       }
                       style={
@@ -3108,7 +3108,7 @@ exports[`Storyshots Header Behavior 1`] = `
                     <Image
                       source={
                         Object {
-                          "testUri": "../../../app/components/icon/icons/bullet@2x.png",
+                          "testUri": "../../../app/components/icon/icons/bullet.png",
                         }
                       }
                       style={
@@ -3235,7 +3235,7 @@ exports[`Storyshots Icon Names 1`] = `
               <Image
                 source={
                   Object {
-                    "testUri": "../../../app/components/icon/icons/arrow-left@2x.png",
+                    "testUri": "../../../app/components/icon/icons/arrow-left.png",
                   }
                 }
                 style={
@@ -3329,7 +3329,7 @@ exports[`Storyshots Icon Names 1`] = `
               <Image
                 source={
                   Object {
-                    "testUri": "../../../app/components/icon/icons/bullet@2x.png",
+                    "testUri": "../../../app/components/icon/icons/bullet.png",
                   }
                 }
                 style={
@@ -5997,7 +5997,7 @@ exports[`Storyshots Wallpaper Style Presets 1`] = `
             <Image
               source={
                 Object {
-                  "testUri": "../../../app/components/wallpaper/bg@2x.png",
+                  "testUri": "../../../app/components/wallpaper/bg.png",
                 }
               }
               style={
