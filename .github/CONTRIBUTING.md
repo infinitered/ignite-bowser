@@ -10,7 +10,6 @@ _These examples assume you're using yarn rather than npm. If you're not using ya
 
 - Everything works on iOS/Android
 - Jest Tests pass in the root folder (`yarn test`)
-- Integration tests pass (`yarn run integration`)
 - New tests are included for any new functionality
 - Code is compliant with StandardJS (`yarn lint`)
 - Branch has already been [synced with the upstream repo](https://help.github.com/articles/syncing-a-fork/) and any merge-conflicts have been resolved.
@@ -32,7 +31,6 @@ Test your changes by creating a new boilerplate using [ignite-cli](https://githu
 
 ```sh
 $ ignite new <YOUR_BOILERPLATE_NAME> -b /full/path/to/boilerplate
-...
 ```
 
 Now you're ready to check out a new branch and get hacking on Ignite Bowser!
