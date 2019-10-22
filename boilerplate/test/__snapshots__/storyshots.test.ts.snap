@@ -4281,7 +4281,7 @@ exports[`Storyshots Text Passing Content 1`] = `
                   }
                 }
               >
-                omglol.test
+                common.cancel.test
               </Text>
             </View>
           </View>
