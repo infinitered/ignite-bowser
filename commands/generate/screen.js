@@ -32,22 +32,31 @@ module.exports = {
     const jobs = [
       {
         template: `screen.ejs`,
-        target: `app/screens/${screenName}/${screenName}.tsx`,
-      },
-      {
-        template: "rollup-index.ts.ejs",
-        target: `app/screens/${screenName}/index.ts`,
+        target: `app/screens/${screenName}.tsx`,
       },
     ]
 
     // make the templates
     await ignite.copyBatch(toolbox, jobs, props)
 
+    // patch the barrel export file
+    const barrelExportPath = `${process.cwd()}/app/screens/index.ts`
+    const exportToAdd = `export * from "./${screenName}"\n`
+
+    if (!filesystem.exists(barrelExportPath)) {
+      const msg =
+      `No '${barrelExportPath}' file found. Can't export screen.` +
+      `Export your new screen manually.`
+      print.error(msg)
+      process.exit(1)
+    }
+    await patching.append(barrelExportPath, exportToAdd)
+
     // if using `react-navigation` go the extra step
     // and insert the screen into the nav router
     if (config.navigation === "react-navigation") {
       const appNavFilePath = `${process.cwd()}/app/navigation/root-navigator.ts`
-      const importToAdd = `\nimport { ${pascalName} } from "../screens/${screenName}/${screenName}"`
+      const importToAdd = `  ${pascalName},\n`
       const routeToAdd = `\n    ${camelName}: { screen: ${pascalName} },`
 
       if (!filesystem.exists(appNavFilePath)) {
@@ -60,7 +69,7 @@ module.exports = {
 
       // insert screen import
       await patching.patch(appNavFilePath, {
-        after: new RegExp(patterns[patterns.constants.PATTERN_NAV_IMPORTS]),
+        before: new RegExp(patterns[patterns.constants.PATTERN_NAV_IMPORTS]),
         insert: importToAdd,
       })
 

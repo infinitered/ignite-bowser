@@ -1,6 +1,6 @@
 import * as React from "react"
 import { TouchableOpacity } from "react-native"
-import { Text } from "../text"
+import { Text } from "../"
 import { viewPresets, textPresets } from "./button.presets"
 import { ButtonProps } from "./button.props"
 import { mergeAll, flatten } from "ramda"
