@@ -75,6 +75,9 @@
   },
   "devDependencies": {
     "@semantic-release/git": "^7.0.5",
+    "@types/jest": "^24.0.19",
+    "@types/node": "^12.11.6",
+    "@types/ramda": "^0.26.33",
     "babel-eslint": "^10.0.1",
     "eslint": "^6.1.0",
     "eslint-config-prettier": "^6.0.0",
@@ -84,13 +87,15 @@
     "eslint-plugin-promise": "^4.0.1",
     "eslint-plugin-standard": "^4.0.0",
     "fs-jetpack": "^2.2.2",
+    "gluegun": "^4.0.2",
     "jest": "^24.8.0",
     "np": "^3.0.4",
     "npm-run-all": "4.1.5",
     "prettier": "1.18.2",
     "semantic-release": "^15.12.3",
     "sinon": "^7.3.2",
-    "tempy": "^0.3.0"
+    "tempy": "^0.3.0",
+    "typescript": "^3.6.4"
   },
   "dependencies": {
     "ramda": "^0.26.1",
@@ -100,6 +105,12 @@
     "testPathIgnorePatterns": [
       "/node_modules",
       "/boilerplate"
+    ],
+    "moduleFileExtensions": [
+      "ts",
+      "tsx",
+      "js",
+      "jsx"
     ]
   }
 }

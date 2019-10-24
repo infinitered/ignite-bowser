@@ -1,5 +1,6 @@
-const { merge, pipe, assoc, omit, __ } = require("ramda")
-const { getReactNativeVersion } = require("./lib/react-native-version")
+import { merge, pipe, assoc, omit, __ } from "ramda"
+import { getReactNativeVersion } from "./lib/react-native-version"
+import { GluegunRunContext } from "gluegun"
 
 // We need this value here, as well as in our package.json.ejs template
 const REACT_NATIVE_GESTURE_HANDLER_VERSION = "^1.3.0"
@@ -8,11 +9,8 @@ const REACT_NATIVE_GESTURE_HANDLER_VERSION = "^1.3.0"
  * Is Android installed?
  *
  * $ANDROID_HOME/tools folder has to exist.
- *
- * @param {*} context - The gluegun context.
- * @returns {boolean}
  */
-const isAndroidInstalled = function(context) {
+export const isAndroidInstalled = (context: GluegunRunContext): boolean => {
   const androidHome = process.env["ANDROID_HOME"]
   const hasAndroidEnv = !context.strings.isBlank(androidHome)
   const hasAndroid = hasAndroidEnv && context.filesystem.exists(`${androidHome}/tools`) === "dir"
@@ -22,10 +20,8 @@ const isAndroidInstalled = function(context) {
 
 /**
  * Let's install.
- *
- * @param {any} context - The gluegun context.
  */
-async function install(context) {
+export const install = async (context: GluegunRunContext) => {
   const {
     filesystem,
     parameters,
@@ -292,7 +288,7 @@ async function install(context) {
   await system.spawn(`${ignite.useYarn ? "yarn" : "npm run"} format`)
   spinner.succeed("Linted and formatted")
 
-  const perfDuration = parseInt((new Date().getTime() - perfStart) / 10) / 100
+  const perfDuration = ((new Date().getTime() - perfStart) / 10) / 100
   spinner.succeed(`ignited ${yellow(name)} in ${perfDuration}s`)
 
   const androidInfo = isAndroidInstalled(context)
@@ -321,8 +317,4 @@ async function install(context) {
   `
 
   print.info(successMessage)
-}
-
-module.exports = {
-  install,
 }
