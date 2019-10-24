@@ -69,7 +69,7 @@ module.exports = {
 
       // insert screen import
       await patching.patch(appNavFilePath, {
-        before: new RegExp(patterns[patterns.constants.PATTERN_NAV_IMPORTS]),
+        before: new RegExp(patterns[patterns.constants.PATTERN_NAV_IMPORTS_SCREENS]),
         insert: importToAdd,
       })
 
