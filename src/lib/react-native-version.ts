@@ -20,7 +20,7 @@ const getVersionFromContext = pathOr(REACT_NATIVE_VERSION, pathToVersion)
  *
  * @param {*} context - The gluegun context.
  */
-export const getReactNativeVersion = (context: GluegunRunContext) => {
+export const getReactNativeVersion = (context?: GluegunRunContext) => {
   const version = getVersionFromContext(context || {})
   return is(String, version) ? version : REACT_NATIVE_VERSION
 }

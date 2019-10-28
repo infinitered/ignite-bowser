@@ -98,6 +98,7 @@
     "semantic-release": "^15.12.3",
     "sinon": "^7.3.2",
     "tempy": "^0.3.0",
+    "ts-jest": "^24.1.0",
     "typescript": "^3.6.4"
   },
   "dependencies": {
@@ -110,6 +111,9 @@
       "/boilerplate"
     ],
     "testEnvironment": "node",
+    "transform": {
+      "^.+\\.ts$": "ts-jest"
+    },
     "moduleFileExtensions": [
       "ts",
       "tsx",
