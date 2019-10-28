@@ -27,12 +27,15 @@
     "format:md": "prettier --write {.,**}/*.md",
     "format:ts": "prettier --write {.,**}/*.{ts,tsx}",
     "lint": "eslint commands lib test *.js --fix",
-    "test": "jest --runInBand",
+    "test": "yarn build && jest --runInBand && yarn clean",
     "watch": "jest --runInBand --watch",
     "coverage": "jest --runInBand --coverage",
     "ci:test": "yarn test",
-    "ci:publish": "yarn semantic-release",
-    "semantic-release": "semantic-release"
+    "ci:publish": "yarn build && yarn semantic-release && yarn clean",
+    "semantic-release": "semantic-release",
+    "build": "yarn compile",
+    "compile": "tsc -p .",
+    "clean": "rm -rf ./commands ./lib ./boilerplate.js ./boilerplate.js.map"
   },
   "eslintConfig": {
     "extends": [
@@ -106,6 +109,7 @@
       "/node_modules",
       "/boilerplate"
     ],
+    "testEnvironment": "node",
     "moduleFileExtensions": [
       "ts",
       "tsx",
