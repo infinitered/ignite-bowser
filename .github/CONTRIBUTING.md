@@ -1,6 +1,5 @@
 # Contributing to Ignite CLI
 
-[![js-standard-style](https://img.shields.io/badge/code%20style-standard-brightgreen.svg?style=flat)](http://standardjs.com/)
 
 We welcome all contributors to Ignite Bowser! This contributing guide will help you get up and running to submit your first pull request.
 
@@ -11,7 +10,7 @@ _These examples assume you're using yarn rather than npm. If you're not using ya
 - Everything works on iOS/Android
 - Jest Tests pass in the root folder (`yarn test`)
 - New tests are included for any new functionality
-- Code is compliant with StandardJS (`yarn lint`)
+- Our linter passes (`yarn lint`)
 - Branch has already been [synced with the upstream repo](https://help.github.com/articles/syncing-a-fork/) and any merge-conflicts have been resolved.
 
 ## Requirements
@@ -51,13 +50,11 @@ $ yarn test
 ```
 
 
-## :no_entry_sign: Standard Compliant
+## ⛔ Make sure lint passes.
 
-[![js-standard-style](https://cdn.rawgit.com/feross/standard/master/badge.svg)](https://github.com/feross/standard)
+Our CI enforces lint to pass, so we suggest you enable linting to keep your project compliant during development.
 
-This project adheres to Standard. Our CI enforces this, so we suggest you enable linting to keep your project compliant during development.
-
-**To Run Lint** from ignite-base:
+**To Run Lint** from ignite-bowser's root directory:
 
 ```
 $ yarn lint
@@ -74,4 +71,4 @@ If you have to bypass lint for a special commit that you will come back and clea
 
 **Understanding Linting Errors**
 
-The linting rules are from JS Standard and React-Standard. [Regular JS errors can be found with descriptions here](http://eslint.org/docs/rules/), while [React errors and descriptions can be found here](https://github.com/yannickcr/eslint-plugin-react).
+The linting rules can be found in the package.json's `eslintConfig`. [Regular JS errors can be found with descriptions here](http://eslint.org/docs/rules/), while [React errors and descriptions can be found here](https://github.com/yannickcr/eslint-plugin-react).
