@@ -41,7 +41,7 @@ describe("a generated app", () => {
   })
 
   test("does have a linting script", () => {
-    expect(jetpack.read("package.json", "json")["scripts"]["lint"]).toBe(
+    expect(jetpack.read("package.json", "json").scripts.lint).toBe(
       "eslint index.js app --fix --ext .js,.ts,.tsx",
     )
   })

@@ -13,7 +13,7 @@ const REACT_NATIVE_GESTURE_HANDLER_VERSION = "^1.3.0"
  * @returns {boolean}
  */
 const isAndroidInstalled = function(context) {
-  const androidHome = process.env["ANDROID_HOME"]
+  const androidHome = process.env.ANDROID_HOME
   const hasAndroidEnv = !context.strings.isBlank(androidHome)
   const hasAndroid = hasAndroidEnv && context.filesystem.exists(`${androidHome}/tools`) === "dir"
 
