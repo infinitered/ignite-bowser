@@ -6,7 +6,6 @@ import "./i18n"
 import React, { useState, useEffect } from "react"
 import { AppRegistry, YellowBox } from "react-native"
 import { StatefulNavigator } from "./navigation"
-import { StorybookUIRoot } from "../storybook"
 import { RootStore, RootStoreProvider, setupRootStore } from "./models/root-store"
 import { BackButtonHandler, exitRoutes } from "./navigation"
 import { contains } from "ramda"
@@ -89,5 +88,11 @@ const APP_NAME = "<%= props.name %>"
 // ⚠️ Leave this as `false` when checking into git.
 const SHOW_STORYBOOK = false
 
-const RootComponent = SHOW_STORYBOOK && __DEV__ ? StorybookUIRoot : App
+let RootComponent = App
+if (__DEV__) {
+  // Only include Storybook if we're in dev mode
+  const { StorybookUIRoot } = require("../storybook")
+
+  if (SHOW_STORYBOOK) RootComponent = StorybookUIRoot
+}
 AppRegistry.registerComponent(APP_NAME, () => RootComponent)
