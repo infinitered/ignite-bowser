@@ -9,13 +9,12 @@ import { StatefulNavigator } from "./navigation"
 import { RootStore, RootStoreProvider, setupRootStore } from "./models/root-store"
 import { BackButtonHandler, exitRoutes } from "./navigation"
 import { contains } from "ramda"
-// import { enableScreens } from "react-native-screens"
+import { enableScreens } from "react-native-screens"
 
 // This puts screens in a native ViewController or Activity. If you want fully native
 // stack navigation, use `createNativeStackNavigator` in place of `createStackNavigator`:
 // https://github.com/kmagiera/react-native-screens#using-native-stack-navigator
-// Disabled due to this issue: https://github.com/kmagiera/react-native-screens/issues/208
-// enableScreens();
+enableScreens();
 
 /**
  * Ignore some yellowbox warnings. Some of these are for deprecated functions
