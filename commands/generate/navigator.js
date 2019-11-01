@@ -77,6 +77,8 @@ module.exports = {
     let pascalScreens = parameters.options.screens && parameters.options.screens.split(",")
     if (!pascalScreens) {
       const allKebabScreens = list(`${process.cwd()}/app/screens/`)
+        .filter(s => !RegExp("index").test(s))
+        .map(s => s.replace(/\..{0,3}/, ""))
       const allPascalScreens = allKebabScreens.map(s => pascalCase(s))
 
       if (allKebabScreens) {
@@ -144,20 +146,21 @@ module.exports = {
         process.exit(1)
       }
 
-      // insert screen/navigator import
-      const screenImports = pascalScreens.map(pascalScreen => {
-        const kebabScreen = kebabCase(pascalScreen)
-        return `\nimport { ${pascalScreen} } from "../screens/${kebabScreen}"`
+      screenImport = pascalScreens.join(',\n  ')
+      await patching.patch(navFilePath, {
+        before: new RegExp(patterns[patterns.constants.PATTERN_NAV_IMPORTS_SCREENS]),
+        insert: `  ${screenImport},\n`,
       })
+
       const navigatorImports = pascalNavigators.map(pascalNavigator => {
         const kebabNavigator = kebabCase(pascalNavigator)
         return `\nimport { ${pascalNavigator} } from "./${kebabNavigator}"`
       })
 
-      const toImport = [...screenImports, ...navigatorImports].join("")
+      const toImport = navigatorImports.join("")
 
       await patching.patch(navFilePath, {
-        after: new RegExp(patterns[patterns.constants.PATTERN_NAV_IMPORTS]),
+        after: new RegExp(patterns[patterns.constants.PATTERN_NAV_IMPORTS_NAVIGATORS]),
         insert: toImport,
       })
 

@@ -53,7 +53,6 @@ describe("a generated app", () => {
     expect(jetpack.exists(`app/components/${simpleComponent}/${simpleComponent}.story.tsx`)).toBe(
       "file",
     )
-    expect(jetpack.exists(`app/components/${simpleComponent}/index.ts`)).toBe("file")
     const lint = await execa("npm", ["-s", "run", "lint"])
     expect(lint.stderr).toBe("")
   })
@@ -61,10 +60,9 @@ describe("a generated app", () => {
   test("generates a screen", async () => {
     const simpleScreen = "test"
     await execa(IGNITE, ["g", "screen", simpleScreen], { preferLocal: false })
-    expect(jetpack.exists(`app/screens/${simpleScreen}-screen/${simpleScreen}-screen.tsx`)).toBe(
+    expect(jetpack.exists(`app/screens/${simpleScreen}-screen.tsx`)).toBe(
       "file",
     )
-    expect(jetpack.exists(`app/screens/${simpleScreen}-screen/index.ts`)).toBe("file")
     const lint = await execa("npm", ["-s", "run", "lint"])
     expect(lint.stderr).toBe("")
   })

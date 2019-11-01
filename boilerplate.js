@@ -161,6 +161,8 @@ async function install(context) {
     directory: `${ignite.ignitePluginPath()}/boilerplate`,
   })
 
+  await ignite.setIgniteConfig("navigation", "react-navigation")
+
   /**
    * Because of https://github.com/react-native-community/cli/issues/462,
    * we can't detox-test the release configuration. Turn on dead-code stripping
