@@ -37,7 +37,7 @@ module.exports = {
       const msg =
       `No '${barrelExportPath}' file found. Can't export component.` +
       `Export your new component manually.`
-      print.error(msg)
+      print.warning(msg)
       process.exit(1)
     }
     await patching.append(barrelExportPath, exportToAdd)
