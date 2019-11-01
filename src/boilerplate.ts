@@ -1,6 +1,6 @@
 import { merge, pipe, assoc, omit, __ } from "ramda"
 import { getReactNativeVersion } from "./lib/react-native-version"
-import { GluegunRunContext } from "gluegun"
+import { GluegunToolbox } from "gluegun"
 
 // We need this value here, as well as in our package.json.ejs template
 const REACT_NATIVE_GESTURE_HANDLER_VERSION = "^1.3.0"
@@ -10,10 +10,10 @@ const REACT_NATIVE_GESTURE_HANDLER_VERSION = "^1.3.0"
  *
  * $ANDROID_HOME/tools folder has to exist.
  */
-export const isAndroidInstalled = (context: GluegunRunContext): boolean => {
+export const isAndroidInstalled = (toolbox: GluegunToolbox): boolean => {
   const androidHome = process.env.ANDROID_HOME
-  const hasAndroidEnv = !context.strings.isBlank(androidHome)
-  const hasAndroid = hasAndroidEnv && context.filesystem.exists(`${androidHome}/tools`) === "dir"
+  const hasAndroidEnv = !toolbox.strings.isBlank(androidHome)
+  const hasAndroid = hasAndroidEnv && toolbox.filesystem.exists(`${androidHome}/tools`) === "dir"
 
   return Boolean(hasAndroid)
 }
@@ -21,7 +21,7 @@ export const isAndroidInstalled = (context: GluegunRunContext): boolean => {
 /**
  * Let's install.
  */
-export const install = async (context: GluegunRunContext) => {
+export const install = async (toolbox: GluegunToolbox) => {
   const {
     filesystem,
     parameters,
@@ -33,7 +33,7 @@ export const install = async (context: GluegunRunContext) => {
     prompt,
     patching,
     strings,
-  } = context
+  } = toolbox
   const { colors } = print
   const { red, yellow, bold, gray, cyan } = colors
   const isWindows = process.platform === "win32"
@@ -74,7 +74,7 @@ export const install = async (context: GluegunRunContext) => {
   // attempt to install React Native or die trying
   const rnInstall = await reactNative.install({
     name,
-    version: getReactNativeVersion(context),
+    version: getReactNativeVersion(toolbox),
     useNpm: !ignite.useYarn,
   })
 
@@ -152,7 +152,7 @@ export const install = async (context: GluegunRunContext) => {
     i18n: false,
     includeDetox,
   }
-  await ignite.copyBatch(context, templates, templateProps, {
+  await ignite.copyBatch(toolbox, templates, templateProps, {
     quiet: true,
     directory: `${ignite.ignitePluginPath()}/boilerplate`,
   })
@@ -291,7 +291,7 @@ export const install = async (context: GluegunRunContext) => {
   const perfDuration = (new Date().getTime() - perfStart) / 10 / 100
   spinner.succeed(`ignited ${yellow(name)} in ${perfDuration}s`)
 
-  const androidInfo = isAndroidInstalled(context)
+  const androidInfo = isAndroidInstalled(toolbox)
     ? ""
     : `\n\nTo run in Android, make sure you've followed the latest react-native setup instructions at https://facebook.github.io/react-native/docs/getting-started.html before using ignite.\nYou won't be able to run ${bold(
         "react-native run-android",
