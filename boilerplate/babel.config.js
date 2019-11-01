@@ -1,15 +1,15 @@
 module.exports = {
   presets: ["module:metro-react-native-babel-preset", "module:react-native-dotenv"],
   env: {
-    production: {}
+    production: {},
   },
   plugins: [
     [
       "@babel/plugin-proposal-decorators",
       {
-        legacy: true
-      }
+        legacy: true,
+      },
     ],
-    ["@babel/plugin-proposal-optional-catch-binding"]
-  ]
+    ["@babel/plugin-proposal-optional-catch-binding"],
+  ],
 }

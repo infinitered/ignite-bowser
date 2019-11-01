@@ -10,7 +10,8 @@
     "noImplicitThis": true,
     "noUnusedLocals": true,
     "sourceMap": true,
-    "outDir": "./"
+    "outDir": "./",
+    "types": ["node"]
   },
   "include": ["./src/commands/**/*.ts", "src/lib/**/*.ts", "src/boilerplate.ts"],
   "exclude": ["./boilerplate", "./templates", "./boilerplate"]

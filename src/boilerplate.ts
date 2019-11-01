@@ -11,7 +11,7 @@ const REACT_NATIVE_GESTURE_HANDLER_VERSION = "^1.3.0"
  * $ANDROID_HOME/tools folder has to exist.
  */
 export const isAndroidInstalled = (context: GluegunRunContext): boolean => {
-  const androidHome = process.env["ANDROID_HOME"]
+  const androidHome = process.env.ANDROID_HOME
   const hasAndroidEnv = !context.strings.isBlank(androidHome)
   const hasAndroid = hasAndroidEnv && context.filesystem.exists(`${androidHome}/tools`) === "dir"
 
@@ -288,7 +288,7 @@ export const install = async (context: GluegunRunContext) => {
   await system.spawn(`${ignite.useYarn ? "yarn" : "npm run"} format`)
   spinner.succeed("Linted and formatted")
 
-  const perfDuration = ((new Date().getTime() - perfStart) / 10) / 100
+  const perfDuration = (new Date().getTime() - perfStart) / 10 / 100
   spinner.succeed(`ignited ${yellow(name)} in ${perfDuration}s`)
 
   const androidInfo = isAndroidInstalled(context)
