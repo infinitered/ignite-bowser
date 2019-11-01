@@ -4,7 +4,9 @@ import { exec } from "child_process"
 
 // Use this array for keys that for whatever reason aren't greppable so they
 // don't hold your test suite hostage by always failing.
-const EXCEPTIONS = []
+const EXCEPTIONS = [
+  // "welcomeScreen.readyForLaunch",
+]
 
 /**
  * This tests your codebase for missing i18n strings so you can avoid error strings at render time
@@ -37,6 +39,7 @@ describe("i18n", () => {
 
       for (let i = 0; i < allTranslationsUsed.length; i += 1) {
         if (!EXCEPTIONS.includes(allTranslationsUsed[i])) {
+          // You can add keys to EXCEPTIONS (above) if you don't want them included in the test
           expect(allTranslationsDefined).toContainEqual(allTranslationsUsed[i])
         }
       }
