@@ -146,7 +146,7 @@ module.exports = {
         process.exit(1)
       }
 
-      screenImport = pascalScreens.join(',\n  ')
+      const screenImport = pascalScreens.join(',\n  ')
       await patching.patch(navFilePath, {
         before: new RegExp(patterns[patterns.constants.PATTERN_NAV_IMPORTS_SCREENS]),
         insert: `  ${screenImport},\n`,
