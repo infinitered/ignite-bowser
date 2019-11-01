@@ -80,7 +80,7 @@
     "@semantic-release/git": "^7.0.17",
     "@types/jest": "^24.0.19",
     "@types/node": "^12.12.4",
-    "@types/ramda": "^0.26.33",
+    "@types/ramda": "0.26.23",
     "babel-eslint": "^10.0.3",
     "eslint": "^6.6.0",
     "eslint-config-prettier": "^6.5.0",
