@@ -33,14 +33,14 @@ export const run = async function(toolbox: GluegunToolbox) {
   }
 
   // grab the closest package.json
-  const { package: packageJSON } = await require("read-pkg-up")()
-  if (!packageJSON) {
+  const { packageJson } = await require("read-pkg-up")()
+  if (!packageJson) {
     print.error(`Can't find a package.json here or in parent directories.`)
     return
   }
 
   // ensure react-navigation is installed
-  if (Object.keys(packageJSON.dependencies).includes("react-navigation") === false) {
+  if (Object.keys(packageJson.dependencies).includes("react-navigation") === false) {
     print.error("This generator only works with react-navigation.")
     return
   }
@@ -146,7 +146,7 @@ export const run = async function(toolbox: GluegunToolbox) {
       process.exit(1)
     }
 
-    const screenImport = pascalScreens.join(',\n  ')
+    const screenImport = pascalScreens.join(",\n  ")
     await patching.patch(navFilePath, {
       before: new RegExp(Patterns.NAV_IMPORTS_SCREENS),
       insert: `  ${screenImport},\n`,

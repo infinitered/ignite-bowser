@@ -10,7 +10,7 @@
     "noImplicitThis": true,
     "noUnusedLocals": true,
     "sourceMap": true,
-    "outDir": "./",
+    "outDir": "./build",
     "types": ["node", "jest"]
   },
   "include": ["./src/commands/**/*.ts", "src/lib/**/*.ts", "src/boilerplate.ts"],

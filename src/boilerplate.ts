@@ -3,7 +3,7 @@ import { getReactNativeVersion } from "./lib/react-native-version"
 import { GluegunToolbox } from "gluegun"
 
 // We need this value here, as well as in our package.json.ejs template
-const REACT_NATIVE_GESTURE_HANDLER_VERSION = "^1.3.0"
+const REACT_NATIVE_GESTURE_HANDLER_VERSION = "^1.5.0"
 
 /**
  * Is Android installed?
@@ -38,6 +38,8 @@ export const install = async (toolbox: GluegunToolbox) => {
   const { red, yellow, bold, gray, cyan } = colors
   const isWindows = process.platform === "win32"
   const isMac = process.platform === "darwin"
+
+  if (parameters.options["dry-run"]) return
 
   const perfStart = new Date().getTime()
 
@@ -96,31 +98,18 @@ export const install = async (toolbox: GluegunToolbox) => {
   // copy our App, Tests & storybook directories
   spinner.text = "▸ copying files"
   spinner.start()
-  filesystem.copy(`${__dirname}/boilerplate/app`, `${process.cwd()}/app`, {
-    overwrite: true,
-    matching: "!*.ejs",
-  })
-  filesystem.copy(`${__dirname}/boilerplate/test`, `${process.cwd()}/test`, {
-    overwrite: true,
-    matching: "!*.ejs",
-  })
-  filesystem.copy(`${__dirname}/boilerplate/storybook`, `${process.cwd()}/storybook`, {
-    overwrite: true,
-    matching: "!*.ejs",
-  })
-  filesystem.copy(`${__dirname}/boilerplate/bin`, `${process.cwd()}/bin`, {
-    overwrite: true,
-  })
-  includeDetox &&
-    filesystem.copy(`${__dirname}/boilerplate/e2e`, `${process.cwd()}/e2e`, {
-      overwrite: true,
-      matching: "!*.ejs",
-    })
+  const boilerplatePath = `${__dirname}/../boilerplate`
+  const copyOpts = { overwrite: true, matching: "!*.ejs" }
+  filesystem.copy(`${boilerplatePath}/app`, `${process.cwd()}/app`, copyOpts)
+  filesystem.copy(`${boilerplatePath}/test`, `${process.cwd()}/test`, copyOpts)
+  filesystem.copy(`${boilerplatePath}/storybook`, `${process.cwd()}/storybook`, copyOpts)
+  filesystem.copy(`${boilerplatePath}/bin`, `${process.cwd()}/bin`, copyOpts)
+  includeDetox && filesystem.copy(`${boilerplatePath}/e2e`, `${process.cwd()}/e2e`, copyOpts)
   spinner.stop()
 
   // generate some templates
   spinner.text = "▸ generating files"
-  //
+
   const templates = [
     { template: "index.js.ejs", target: "index.js" },
     { template: "README.md", target: "README.md" },
@@ -182,6 +171,7 @@ export const install = async (toolbox: GluegunToolbox) => {
    */
   async function mergePackageJsons() {
     // transform our package.json so we can replace variables
+    ignite.log("merging Bowser package.json with React Native package.json")
     const rawJson = await template.generate({
       directory: `${ignite.ignitePluginPath()}/boilerplate`,
       template: "package.json.ejs",
@@ -192,7 +182,12 @@ export const install = async (toolbox: GluegunToolbox) => {
     // read in the react-native created package.json
     const currentPackage = filesystem.read("package.json", "json")
 
-    // deep merge, lol
+    console.log("currentPackage:")
+    console.dir(currentPackage)
+    console.log("newPackageJson:")
+    console.dir(newPackageJson)
+
+    // deep merge
     const newPackage = pipe(
       assoc("dependencies", merge(currentPackage.dependencies, newPackageJson.dependencies)),
       assoc(
@@ -207,6 +202,7 @@ export const install = async (toolbox: GluegunToolbox) => {
     )(currentPackage)
 
     // write this out
+    ignite.log("writing newly merged package.json")
     filesystem.write("package.json", newPackage, { jsonIndent: 2 })
   }
   await mergePackageJsons()
@@ -218,13 +214,17 @@ export const install = async (toolbox: GluegunToolbox) => {
   try {
     // boilerplate adds itself to get plugin.js/generators etc
     // Could be directory, npm@version, or just npm name.  Default to passed in values
-    const boilerplate = parameters.options.b || parameters.options.boilerplate || "ignite-bowser"
+    ignite.log("adding boilerplate to project for generator commands")
 
+    const boilerplate = parameters.options.b || parameters.options.boilerplate || "ignite-bowser"
     await system.spawn(`ignite add ${boilerplate} ${debugFlag}`, { stdio: "inherit" })
 
+    ignite.log("adding react-native-gesture-handler")
     await ignite.addModule("react-native-gesture-handler", {
       version: REACT_NATIVE_GESTURE_HANDLER_VERSION,
     })
+
+    ignite.log("patching MainActivity.java to add RNGestureHandler")
 
     ignite.patchInFile(
       `${process.cwd()}/android/app/src/main/java/com/${name.toLowerCase()}/MainActivity.java`,
@@ -236,7 +236,6 @@ export const install = async (toolbox: GluegunToolbox) => {
       import com.swmansion.gesturehandler.react.RNGestureHandlerEnabledRootView;`,
       },
     )
-
     ignite.patchInFile(
       `${process.cwd()}/android/app/src/main/java/com/${name.toLowerCase()}/MainActivity.java`,
       {
@@ -254,6 +253,7 @@ export const install = async (toolbox: GluegunToolbox) => {
       },
     )
 
+    ignite.log("patching package.json to add solidarity postInstall")
     ignite.patchInFile(`${process.cwd()}/package.json`, {
       replace: `"postinstall": "solidarity",`,
       insert: `"postinstall": "node ./bin/postInstall",`,
@@ -278,13 +278,16 @@ export const install = async (toolbox: GluegunToolbox) => {
   // for Windows, fix the settings.gradle file. Ref: https://github.com/oblador/react-native-vector-icons/issues/938#issuecomment-463296401
   // for ease of use, just replace any backslashes with forward slashes
   if (isWindows) {
+    ignite.log("patching Android settings.gradle file for running on Windows")
     await patching.update(`${process.cwd()}/android/settings.gradle`, contents => {
       return contents.split("\\").join("/")
     })
   }
 
   // let eslint and prettier clean things up
+  ignite.log("linting")
   await system.spawn(`${ignite.useYarn ? "yarn" : "npm run"} lint`)
+  ignite.log("formatting")
   await system.spawn(`${ignite.useYarn ? "yarn" : "npm run"} format`)
   spinner.succeed("Linted and formatted")
 

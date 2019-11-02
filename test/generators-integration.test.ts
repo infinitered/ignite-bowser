@@ -17,7 +17,16 @@ describe("a generated app", () => {
     // make sure we are in the temp directory. Do the initial git commit
     // manually, so we can set up the git user first on circleci.
     process.chdir(appTemp)
-    await execa(IGNITE, ["new", APP, "--no-detox", "--skip-git", "--boilerplate", BOILERPLATE])
+    await execa(IGNITE, [
+      "new",
+      APP,
+      "--no-detox",
+      "--skip-git",
+      "--debug",
+      "--overwrite",
+      "--boilerplate",
+      BOILERPLATE,
+    ])
     process.chdir(APP)
     await execaShell("git init")
     await execaShell('git config user.email "test@example.com"')
@@ -61,9 +70,7 @@ describe("a generated app", () => {
   test("generates a screen", async () => {
     const simpleScreen = "test"
     await execa(IGNITE, ["g", "screen", simpleScreen], { preferLocal: false })
-    expect(jetpack.exists(`app/screens/${simpleScreen}-screen.tsx`)).toBe(
-      "file",
-    )
+    expect(jetpack.exists(`app/screens/${simpleScreen}-screen.tsx`)).toBe("file")
     const lint = await execa("npm", ["-s", "run", "lint"])
     expect(lint.stderr).toBe("")
   })

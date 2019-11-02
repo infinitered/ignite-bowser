@@ -18,9 +18,4 @@ ios/Pods
 package-lock.json
 
 # TS build
-*.map
-/commands/
-/lib/
-boilerplate.js
-*.map
-
+/build

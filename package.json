@@ -7,13 +7,9 @@
   "version": "4.9.0",
   "files": [
     "boilerplate",
-    "commands",
-    "lib",
-    "templates",
-    "boilerplate.js",
+    "build",
     "plugin.js",
-    "readme.md",
-    "vanilla"
+    "readme.md"
   ],
   "author": {
     "name": "Infinite Red",
@@ -26,7 +22,7 @@
     "format:json": "prettier --write {.,**}/*.json",
     "format:md": "prettier --write {.,**}/*.md",
     "format:ts": "prettier --write {.,**}/*.{ts,tsx}",
-    "lint": "eslint commands lib test *.js --fix",
+    "lint": "eslint build test *.js --fix",
     "test": "yarn build && jest --runInBand && yarn clean",
     "watch": "jest --runInBand --watch",
     "coverage": "jest --runInBand --coverage",
@@ -35,7 +31,7 @@
     "semantic-release": "semantic-release",
     "build": "yarn compile",
     "compile": "tsc -p .",
-    "clean": "rm -rf ./commands ./lib ./boilerplate.js ./boilerplate.js.map"
+    "clean": "rm -rf ./build"
   },
   "eslintConfig": {
     "extends": [
