@@ -6,6 +6,7 @@
   "homepage": "https://github.com/infinitered/ignite-bowser",
   "version": "4.10.0",
   "files": [
+    "boilerplate.js",
     "boilerplate",
     "build",
     "plugin.js",
