@@ -1,5 +1,5 @@
-const boilerplate = require("../boilerplate")
-const plugin = require("../plugin")
+import * as boilerplate from "../boilerplate"
+import * as plugin from "../plugin"
 
 test("boilerplate interface", async () => {
   expect(typeof boilerplate.install).toBe("function")

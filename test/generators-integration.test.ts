@@ -8,6 +8,8 @@ const BOILERPLATE = `${__dirname}/../`
 // calling the ignite cli takes a while
 jasmine.DEFAULT_TIMEOUT_INTERVAL = 800000
 
+const execaShell = (command, opts = {}) => execa(command, { shell: true, ...opts })
+
 describe("a generated app", () => {
   // creates a new temp directory
   const appTemp = tempy.directory()
@@ -15,13 +17,22 @@ describe("a generated app", () => {
     // make sure we are in the temp directory. Do the initial git commit
     // manually, so we can set up the git user first on circleci.
     process.chdir(appTemp)
-    await execa(IGNITE, ["new", APP, "--no-detox", "--skip-git", "--boilerplate", BOILERPLATE])
+    await execa(IGNITE, [
+      "new",
+      APP,
+      "--no-detox",
+      "--skip-git",
+      "--debug",
+      "--overwrite",
+      "--boilerplate",
+      BOILERPLATE,
+    ])
     process.chdir(APP)
-    await execa.shell("git init")
-    await execa.shell('git config user.email "test@example.com"')
-    await execa.shell("git config user.name test")
-    await execa.shell("git add -A")
-    await execa.shell('git commit -m "Initial commit"')
+    await execaShell("git init")
+    await execaShell('git config user.email "test@example.com"')
+    await execaShell("git config user.name test")
+    await execaShell("git add -A")
+    await execaShell('git commit -m "Initial commit"')
   })
 
   afterAll(() => {
@@ -31,12 +42,11 @@ describe("a generated app", () => {
 
   test("can yarn install and pass tests", () => {
     return expect(
-      execa
-        .shell("yarn test 2>&1")
-        .then(() => execa.shell("git status --porcelain"))
+      execaShell("yarn test 2>&1")
+        .then(() => execaShell("git status --porcelain"))
         .then(({ stdout }) => expect(stdout).toEqual(""))
-        .then(() => execa.shell("yarn compile && yarn format && yarn lint --max-warnings 0"))
-        .then(() => execa.shell("git status --porcelain")),
+        .then(() => execaShell("yarn compile && yarn format && yarn lint --max-warnings 0"))
+        .then(() => execaShell("git status --porcelain")),
     ).resolves.toMatchObject({ stdout: "" }) // will fail & show the yarn or test errors
   })
 
@@ -60,9 +70,7 @@ describe("a generated app", () => {
   test("generates a screen", async () => {
     const simpleScreen = "test"
     await execa(IGNITE, ["g", "screen", simpleScreen], { preferLocal: false })
-    expect(jetpack.exists(`app/screens/${simpleScreen}-screen.tsx`)).toBe(
-      "file",
-    )
+    expect(jetpack.exists(`app/screens/${simpleScreen}-screen.tsx`)).toBe("file")
     const lint = await execa("npm", ["-s", "run", "lint"])
     expect(lint.stderr).toBe("")
   })
