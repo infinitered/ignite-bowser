@@ -4,16 +4,14 @@
   "license": "MIT",
   "repository": "infinitered/ignite-bowser",
   "homepage": "https://github.com/infinitered/ignite-bowser",
-  "version": "4.8.1",
+  "version": "4.11.1",
   "files": [
-    "boilerplate",
-    "commands",
-    "lib",
-    "templates",
     "boilerplate.js",
+    "boilerplate",
+    "build",
+    "templates",
     "plugin.js",
-    "readme.md",
-    "vanilla"
+    "readme.md"
   ],
   "author": {
     "name": "Infinite Red",
@@ -26,13 +24,16 @@
     "format:json": "prettier --write {.,**}/*.json",
     "format:md": "prettier --write {.,**}/*.md",
     "format:ts": "prettier --write {.,**}/*.{ts,tsx}",
-    "lint": "eslint commands lib test *.js --fix",
-    "test": "jest --runInBand",
+    "lint": "eslint build test *.js --fix",
+    "test": "yarn build && jest --runInBand && yarn clean",
     "watch": "jest --runInBand --watch",
     "coverage": "jest --runInBand --coverage",
     "ci:test": "yarn test",
-    "ci:publish": "yarn semantic-release",
-    "semantic-release": "semantic-release"
+    "ci:publish": "yarn build && yarn semantic-release && yarn clean",
+    "semantic-release": "semantic-release",
+    "build": "yarn compile",
+    "compile": "tsc -p .",
+    "clean": "rm -rf ./build"
   },
   "eslintConfig": {
     "extends": [
@@ -74,33 +75,48 @@
     ]
   },
   "devDependencies": {
-    "@semantic-release/git": "^7.0.5",
-    "babel-eslint": "^10.0.1",
-    "eslint": "^6.1.0",
-    "eslint-config-prettier": "^6.0.0",
-    "eslint-config-standard": "^13.0.1",
-    "eslint-plugin-import": "^2.15.0",
-    "eslint-plugin-node": "^9.1.0",
-    "eslint-plugin-promise": "^4.0.1",
+    "@semantic-release/git": "^7.0.17",
+    "@types/jest": "^24.0.19",
+    "@types/node": "^12.12.4",
+    "@types/ramda": "0.26.23",
+    "babel-eslint": "^10.0.3",
+    "eslint": "^6.6.0",
+    "eslint-config-prettier": "^6.5.0",
+    "eslint-config-standard": "^14.1.0",
+    "eslint-plugin-import": "^2.18.2",
+    "eslint-plugin-node": "^10.0.0",
+    "eslint-plugin-promise": "^4.2.1",
     "eslint-plugin-react-hooks": "^2.1.2",
-    "eslint-plugin-standard": "^4.0.0",
-    "fs-jetpack": "^2.2.2",
-    "jest": "^24.8.0",
-    "np": "^3.0.4",
+    "eslint-plugin-standard": "^4.0.1",
+    "fs-jetpack": "^2.2.3",
+    "gluegun": "^4.0.2",
+    "jest": "^24.9.0",
     "npm-run-all": "4.1.5",
     "prettier": "1.18.2",
-    "semantic-release": "^15.12.3",
-    "sinon": "^7.3.2",
-    "tempy": "^0.3.0"
+    "semantic-release": "^15.13.28",
+    "sinon": "^7.5.0",
+    "tempy": "^0.3.0",
+    "ts-jest": "^24.1.0",
+    "typescript": "^3.6.4"
   },
   "dependencies": {
     "ramda": "^0.26.1",
-    "read-pkg-up": "^6.0.0"
+    "read-pkg-up": "^7.0.0"
   },
   "jest": {
     "testPathIgnorePatterns": [
       "/node_modules",
       "/boilerplate"
+    ],
+    "testEnvironment": "node",
+    "transform": {
+      "^.+\\.ts$": "ts-jest"
+    },
+    "moduleFileExtensions": [
+      "ts",
+      "tsx",
+      "js",
+      "jsx"
     ]
   }
 }

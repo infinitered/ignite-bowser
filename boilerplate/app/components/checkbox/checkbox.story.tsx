@@ -5,7 +5,7 @@ import * as React from "react"
 import { View, ViewStyle } from "react-native"
 import { storiesOf } from "@storybook/react-native"
 import { StoryScreen, Story, UseCase } from "../../../storybook/views"
-import { Checkbox } from "./"
+import { Checkbox } from "./checkbox"
 import { Toggle } from "react-powerplug"
 
 declare var module

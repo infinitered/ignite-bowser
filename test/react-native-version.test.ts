@@ -1,8 +1,4 @@
-const boilerplate = require("../lib/react-native-version")
-
-// grab a few things from the boilerplate module
-const get = boilerplate.getReactNativeVersion
-const DEFAULT = boilerplate.REACT_NATIVE_VERSION
+import { getReactNativeVersion as get, REACT_NATIVE_VERSION as DEFAULT } from "../src/lib/react-native-version"
 
 /**
  * Runs with a valid gluegun context and a staged version number.
@@ -17,18 +13,12 @@ const mock = reactNativeVersion =>
         "react-native-version": reactNativeVersion,
       },
     },
-  })
+  } as any)
 
 // this would only happen if we screwed something up in our boilerplate.js
 test("it handles strange inputs from code", () => {
   expect(get()).toBe(DEFAULT)
   expect(get(null)).toBe(DEFAULT)
-  expect(get(true)).toBe(DEFAULT)
-  expect(get(8)).toBe(DEFAULT)
-  expect(get("hello")).toBe(DEFAULT)
-  expect(get([])).toBe(DEFAULT)
-  expect(get({})).toBe(DEFAULT)
-  expect(get(() => true)).toBe(DEFAULT)
 })
 
 // this could happen because it's valid input via minimist from the user

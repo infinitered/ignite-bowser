@@ -36,7 +36,7 @@ yarn global add ignite-cli
 ```
 
 **Note:**
-Make sure you have [CocoaPods](https://guides.cocoapods.org/using/getting-started.html) installed because otherwise React Native installation will fail.
+Make sure you have [CocoaPods](https://guides.cocoapods.org/using/getting-started.html) installed because otherwise, React Native installation will fail.
 
 Then spin up a new Bowser-powered React Native app:
 
@@ -44,7 +44,7 @@ Then spin up a new Bowser-powered React Native app:
 ignite new MyApp -b bowser
 ```
 
-`cd` into your new app and run `react-native run-ios` or `react-native run-android` (note: in Android you'll need an Android emulator running or an Android phone attached).
+`cd` into your new app and run `react-native run-ios` or `react-native run-android` (note: in Android, you'll need an Android emulator running or an Android phone attached).
 
 You should see an app that looks like the screenshot above!
 
@@ -136,7 +136,7 @@ This is a great place to put miscellaneous helpers and utilities. Things like da
 
 ### ./ignite directory
 
-The `ignite` directory stores all things Ignite, including CLI and boilerplate items. Here you will find generators, plugins and examples to help you get started with React Native.
+The `ignite` directory stores all things Ignite, including CLI and boilerplate items. Here you will find generators, plugins, and examples to help you get started with React Native.
 
 ### ./storybook directory
 
@@ -150,7 +150,7 @@ This directory will hold your Jest configs and mocks, as well as your [storyshot
 
 ## Why this stack?
 
-If you've used Ignite Andross (the first Ignite stack), you know we formerly used Redux for state management, as does much of the community. However, we encountered some pain points with Redux so went in search of a different solution to meet our needs and landed on `mobx-state-tree`. We find that it’s a great middle ground between completely structured (like `redux`) and completely freestyle (like `mobx`). It brings more than just state-management to the table as well (such as dependency injection, serialization, and lifecycle events).
+If you've used Ignite Andross (the first Ignite stack), you know we formerly used Redux for state management, as does much of the community. However, we encountered some pain points with Redux so went in search of a different solution to meet our needs and landed on `mobx-state-tree`. We find that it’s a great middle-ground between completely structured (like `redux`) and completely freestyle (like `mobx`). It brings more than just state-management to the table as well (such as dependency injection, serialization, and lifecycle events).
 
 ### Some Highlights of MST
 
@@ -163,7 +163,7 @@ MST is...
 - Streamlined
   - No more `actionTypes`, `actionCreators`, or `reducers`
   - You don't have to declare your usage intentions with `mapStateToProps`; they are inferred
-  - Side-effects are built in; no need for 3rd party libraries like `redux-saga`, `redux-observable`, or `redux-thunk`
+  - Side-effects are built-in; no need for 3rd party libraries like `redux-saga`, `redux-observable`, or `redux-thunk`
   - Immutability is built-in - no need for `immutable.js` or `seamless-immutable`
   - `types.compose` and `model.extend` allow for easy code-sharing of common patterns
 - More than state management
@@ -242,3 +242,6 @@ If you are new to TypeScript, here are some of our favorite resources:
 ## Premium Support
 
 [Ignite CLI](https://infinite.red/ignite), [Ignite Andross](https://github.com/infinitered/ignite-andross), and [Ignite Bowser](https://github.com/infinitered/ignite-bowser), as open source projects, are free to use and always will be. [Infinite Red](https://infinite.red/) offers premium Ignite CLI support and general mobile app design/development services. Email us at [hello@infinite.red](mailto:hello@infinite.red) to get in touch with us for more details.
+
+## Contribute
+#### [Contribute to Ignite Bowser](https://github.com/infinitered/ignite-bowser/blob/master/.github/CONTRIBUTING.md) - Getting up and running for your first pull request

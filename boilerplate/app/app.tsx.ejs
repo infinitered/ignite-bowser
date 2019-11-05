@@ -6,10 +6,15 @@ import "./i18n"
 import React, { useState, useEffect } from "react"
 import { AppRegistry, YellowBox } from "react-native"
 import { StatefulNavigator } from "./navigation"
-import { StorybookUIRoot } from "../storybook"
 import { RootStore, RootStoreProvider, setupRootStore } from "./models/root-store"
 import { BackButtonHandler, exitRoutes } from "./navigation"
 import { contains } from "ramda"
+import { enableScreens } from "react-native-screens"
+
+// This puts screens in a native ViewController or Activity. If you want fully native
+// stack navigation, use `createNativeStackNavigator` in place of `createStackNavigator`:
+// https://github.com/kmagiera/react-native-screens#using-native-stack-navigator
+enableScreens();
 
 /**
  * Ignore some yellowbox warnings. Some of these are for deprecated functions
@@ -29,7 +34,7 @@ YellowBox.ignoreWarnings([
 const ReactNative = require("react-native")
 Object.defineProperty(ReactNative, "AsyncStorage", {
   get(): any {
-    return require('@react-native-community/async-storage').default;
+    return require("@react-native-community/async-storage").default
   },
 })
 
@@ -45,8 +50,10 @@ const canExit = (routeName: string) => contains(routeName, exitRoutes)
  * This is the root component of our app.
  */
 export const App: React.FunctionComponent<{}> = () => {
-  const [ rootStore, setRootStore ] = useState<RootStore | undefined>(undefined)
-  useEffect(() => { setupRootStore().then(setRootStore) }, [])
+  const [rootStore, setRootStore] = useState<RootStore | undefined>(undefined) // prettier-ignore
+  useEffect(() => {
+    setupRootStore().then(setRootStore)
+  }, [])
 
   // Before we show the app, we have to wait for our state to be ready.
   // In the meantime, don't render anything. This will be the background
@@ -80,6 +87,11 @@ const APP_NAME = "<%= props.name %>"
 // ⚠️ Leave this as `false` when checking into git.
 const SHOW_STORYBOOK = false
 
-const RootComponent = SHOW_STORYBOOK && __DEV__ ? StorybookUIRoot : App
-AppRegistry.registerComponent(APP_NAME, () => RootComponent)
+let RootComponent = App
+if (__DEV__) {
+  // Only include Storybook if we're in dev mode
+  const { StorybookUIRoot } = require("../storybook")
 
+  if (SHOW_STORYBOOK) RootComponent = StorybookUIRoot
+}
+AppRegistry.registerComponent(APP_NAME, () => RootComponent)
