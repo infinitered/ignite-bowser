@@ -182,11 +182,6 @@ export const install = async (toolbox: GluegunToolbox) => {
     // read in the react-native created package.json
     const currentPackage = filesystem.read("package.json", "json")
 
-    console.log("currentPackage:")
-    console.dir(currentPackage)
-    console.log("newPackageJson:")
-    console.dir(newPackageJson)
-
     // deep merge
     const newPackage = pipe(
       assoc("dependencies", merge(currentPackage.dependencies, newPackageJson.dependencies)),
