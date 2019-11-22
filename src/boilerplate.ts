@@ -212,7 +212,7 @@ export const install = async (toolbox: GluegunToolbox) => {
     ignite.log("adding boilerplate to project for generator commands")
 
     const boilerplate = parameters.options.b || parameters.options.boilerplate || "ignite-bowser"
-    await system.spawn(`ignite add ${boilerplate} ${debugFlag}`, { stdio: "inherit" })
+    await system.exec(`ignite add ${boilerplate} ${debugFlag}`)
 
     ignite.log("adding react-native-gesture-handler")
     await ignite.addModule("react-native-gesture-handler", {
@@ -267,7 +267,7 @@ export const install = async (toolbox: GluegunToolbox) => {
   spinner.succeed(`Installed dependencies`)
 
   // run react-native link to link assets
-  await system.spawn("react-native link", { stdio: "ignore" })
+  await system.exec("npx react-native link")
   spinner.succeed(`Linked assets`)
 
   // for Windows, fix the settings.gradle file. Ref: https://github.com/oblador/react-native-vector-icons/issues/938#issuecomment-463296401
@@ -301,8 +301,8 @@ export const install = async (toolbox: GluegunToolbox) => {
     To get started:
 
       cd ${name}
-      react-native run-ios
-      react-native run-android${androidInfo}
+      npx react-native run-ios
+      npx react-native run-android${androidInfo}
       ignite --help
 
     ${cyan("Need additional help? Join our Slack community at http://community.infinite.red.")}
