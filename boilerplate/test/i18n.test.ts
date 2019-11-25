@@ -1,6 +1,5 @@
 const en = require("../app/i18n/en.json")
-
-import { exec } from "child_process"
+const { exec } = require("child_process")
 
 // Use this array for keys that for whatever reason aren't greppable so they
 // don't hold your test suite hostage by always failing.
@@ -29,9 +28,9 @@ const EXCEPTIONS = [
 
 describe("i18n", () => {
   test("There are no missing keys", done => {
-  // Actual command output:
-  // grep "Tx=\"\S*\"\|tx=\"\S*\"\|translate(\"\S*\"" -ohr './app' | grep -o "\".*\""
-  const command = `grep "Tx=\\"\\S*\\"\\|tx=\\"\\S*\\"\\|translate(\\"\\S*\\"" -ohr '../app' | grep -o "\\".*\\""`
+    // Actual command output:
+    // grep "Tx=\"\S*\"\|tx=\"\S*\"\|translate(\"\S*\"" -ohr './app' | grep -o "\".*\""
+    const command = `grep "Tx=\\"\\S*\\"\\|tx=\\"\\S*\\"\\|translate(\\"\\S*\\"" -ohr '../app' | grep -o "\\".*\\""`
     exec(command, (_, stdout) => {
       const allTranslationsDefined = iterate(en, "", [])
       const allTranslationsUsed = stdout.replace(new RegExp('"', "g"), "").split("\n")

@@ -45,7 +45,9 @@ describe("a generated app", () => {
       execaShell("yarn test 2>&1")
         .then(() => execaShell("git status --porcelain"))
         .then(({ stdout }) => expect(stdout).toEqual(""))
-        .then(() => execaShell("yarn compile && yarn format && yarn lint --max-warnings 0"))
+        .then(() =>
+          execaShell("yarn compile 2>&1 && yarn format 2>&1 && yarn lint --max-warnings 0 2>&1"),
+        )
         .then(() => execaShell("git status --porcelain")),
     ).resolves.toMatchObject({ stdout: "" }) // will fail & show the yarn or test errors
   })
