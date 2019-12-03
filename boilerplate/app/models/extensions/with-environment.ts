@@ -11,7 +11,7 @@ export const withEnvironment = (self: IStateTreeNode) => ({
      * The environment.
      */
     get environment() {
-      return getEnv(self) as Environment
+      return getEnv<Environment>(self)
     },
   },
 })
