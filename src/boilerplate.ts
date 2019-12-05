@@ -1,21 +1,17 @@
 import { merge, pipe, assoc, omit, __ } from "ramda"
 import { getReactNativeVersion } from "./lib/react-native-version"
-import { GluegunToolbox } from "gluegun"
+import { IgniteToolbox, IgniteRNInstallResult } from "./types"
+import { expo } from "./lib/expo"
 
 // We need this value here, as well as in our package.json.ejs template
 const REACT_NATIVE_GESTURE_HANDLER_VERSION = "^1.5.0"
-
-// error codes
-const exitCodes = {
-  EXPO_NOT_FOUND: 1,
-}
 
 /**
  * Is Android installed?
  *
  * $ANDROID_HOME/tools folder has to exist.
  */
-export const isAndroidInstalled = (toolbox: GluegunToolbox): boolean => {
+export const isAndroidInstalled = (toolbox: IgniteToolbox): boolean => {
   const androidHome = process.env.ANDROID_HOME
   const hasAndroidEnv = !toolbox.strings.isBlank(androidHome)
   const hasAndroid = hasAndroidEnv && toolbox.filesystem.exists(`${androidHome}/tools`) === "dir"
@@ -26,7 +22,7 @@ export const isAndroidInstalled = (toolbox: GluegunToolbox): boolean => {
 /**
  * Let's install.
  */
-export const install = async (toolbox: GluegunToolbox) => {
+export const install = async (toolbox: IgniteToolbox) => {
   const {
     filesystem,
     parameters,
@@ -38,6 +34,7 @@ export const install = async (toolbox: GluegunToolbox) => {
     prompt,
     patching,
     strings,
+    meta,
   } = toolbox
   const { colors } = print
   const { red, yellow, bold, gray, cyan } = colors
@@ -69,11 +66,13 @@ export const install = async (toolbox: GluegunToolbox) => {
   const askAboutExpo = useExpo === undefined
   if (askAboutExpo) {
     useExpo = await prompt.confirm(
-      `Would you like to use Expo on this project?\n${gray(
-        "\n  Why Expo? Expo (https://expo.io) is the fastest way to get started." +
-          "\n  However, Expo support is experimental at this time. If unsure, select No and we'll install the traditional route." +
-          "\n  Additionally, using Expo means you won't be able to add any custom native modules.",
-      )}\n`,
+      `Would you like to use Expo on this project?\n${gray(`
+
+        Why Expo? Expo (https://expo.io) is the fastest way to get started.
+        However, Expo support is experimental at this time. If unsure, select No and we'll install the traditional route.
+        Additionally, using Expo means you won't be able to add any custom native modules.
+
+      `)}`,
     )
     if (useExpo) {
       printInfo(`
@@ -116,28 +115,9 @@ export const install = async (toolbox: GluegunToolbox) => {
   }
 
   // attempt to install React Native or die trying
-  let rnInstall
+  let rnInstall: IgniteRNInstallResult
   if (useExpo) {
-    let expoVersion
-    try {
-      expoVersion = await system.run(`expo --version`)
-    } catch (e) {
-      print.debug(e)
-      printInfo(`
-        You don't appear to have Expo CLI installed.
-        Run \`npm install -g expo-cli\` or \`yarn global add expo-cli\` to install and try again.
-      `)
-      process.exit(exitCodes.EXPO_NOT_FOUND)
-      return
-    }
-    printInfo(`Expo version ${expoVersion}`)
-    const expoInstall = await system.spawn(
-      `expo init ${name} --name=${name} --template=blank ${ignite.useYarn ? "--yarn" : ""}`,
-    )
-    rnInstall = {
-      exitCode: expoInstall.status,
-      version: "expo-cli@${expoVersion}",
-    }
+    rnInstall = await expo.install({ name, toolbox })
   } else {
     rnInstall = await reactNative.install({
       name,
@@ -177,7 +157,7 @@ export const install = async (toolbox: GluegunToolbox) => {
   spinner.text = "▸ generating files"
 
   const templates = [
-    { template: "index.js.ejs", target: "index.js" },
+    { template: "index.js.ejs", target: useExpo ? "App.js" : "index.js" },
     { template: "README.md", target: "README.md" },
     { template: ".gitignore.ejs", target: ".gitignore" },
     { template: ".env.example", target: ".env" },
@@ -199,14 +179,14 @@ export const install = async (toolbox: GluegunToolbox) => {
   ]
   const templateProps = {
     name,
-    igniteVersion: ignite.version,
+    igniteVersion: meta.version(),
     reactNativeVersion: rnInstall.version,
     reactNativeGestureHandlerVersion: REACT_NATIVE_GESTURE_HANDLER_VERSION,
     vectorIcons: false,
     animatable: false,
     i18n: false,
     includeDetox,
-    expo: useExpo,
+    useExpo,
   }
   await ignite.copyBatch(toolbox, templates, templateProps, {
     quiet: true,
@@ -231,7 +211,7 @@ export const install = async (toolbox: GluegunToolbox) => {
    * Append to files
    */
   // https://github.com/facebook/react-native/issues/12724
-  filesystem.appendAsync(".gitattributes", "*.bat text eol=crlf")
+  await filesystem.appendAsync(".gitattributes", "*.bat text eol=crlf")
 
   /**
    * Merge the package.json from our template into the one provided from react-native init.
@@ -268,6 +248,7 @@ export const install = async (toolbox: GluegunToolbox) => {
     filesystem.write("package.json", newPackage, { jsonIndent: 2 })
   }
   await mergePackageJsons()
+  // spinner.stop()
   spinner.stop()
 
   // pass long the debug flag if we're running in that mode
@@ -281,12 +262,12 @@ export const install = async (toolbox: GluegunToolbox) => {
     const boilerplate = parameters.options.b || parameters.options.boilerplate || "ignite-bowser"
     await system.exec(`ignite add ${boilerplate} ${debugFlag}`)
 
-    ignite.log("adding react-native-gesture-handler")
-    await ignite.addModule("react-native-gesture-handler", {
-      version: REACT_NATIVE_GESTURE_HANDLER_VERSION,
-    })
-
     if (!useExpo) {
+      ignite.log("adding react-native-gesture-handler")
+      await ignite.addModule("react-native-gesture-handler", {
+        version: REACT_NATIVE_GESTURE_HANDLER_VERSION,
+      })
+
       ignite.log("patching MainActivity.java to add RNGestureHandler")
 
       ignite.patchInFile(
@@ -366,16 +347,17 @@ export const install = async (toolbox: GluegunToolbox) => {
         "react-native run-android",
       )} successfully until you have.`
 
+  const runInfo = useExpo
+    ? "yarn start"
+    : `react-native run-ios\nreact-native run-android${androidInfo}`
+
   const successMessage = `
     ${red("Ignite CLI")} ignited ${yellow(name)} in ${gray(`${perfDuration}s`)}
 
     To get started:
 
       cd ${name}
-      ${
-        useExpo ? "yarn start" : "react-native run-ios\
-      react-native run-android${androidInfo}"
-      }
+      ${runInfo}
       ignite --help
       ignite doctor
 
