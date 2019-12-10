@@ -1,4 +1,8 @@
+<% if (props.useExpo) { -%>
+import * as Localization from "expo-localization"
+<% } else { -%>
 import * as RNLocalize from "react-native-localize"
+<% } -%>
 import i18n from "i18n-js"
 
 const en = require("./en")
@@ -8,6 +12,11 @@ i18n.fallbacks = true
 i18n.translations = { en, ja }
 
 const fallback = { languageTag: "en", isRTL: false }
+
+<% if (props.useExpo) { -%>
+i18n.locale = Localization.locale || fallback
+<% } else { -%>
 const { languageTag } =
   RNLocalize.findBestAvailableLanguage(Object.keys(i18n.translations)) || fallback
 i18n.locale = languageTag
+<% } -%>

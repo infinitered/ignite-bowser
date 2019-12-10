@@ -318,9 +318,8 @@ export const install = async (toolbox: IgniteToolbox) => {
   // install dependencies for Expo
   ignite.log("adding Expo-compatible dependencies")
   await system.run(`expo install \
-      @react-native-community/async-storage \
+      expo-localization \
       react-native-gesture-handler \
-      react-native-localize \
       react-native-screens \
       react-native-keychain \
       react-navigation \
