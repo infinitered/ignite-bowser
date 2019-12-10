@@ -1,4 +1,4 @@
-import createStackNavigator from "react-navigation-stack"
+import { createStackNavigator } from "react-navigation-stack"
 import { WelcomeScreen, DemoScreen } from "../screens"
 
 export const PrimaryNavigator = createStackNavigator(

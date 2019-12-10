@@ -56,7 +56,11 @@ const canExit = (routeName: string) => contains(routeName, exitRoutes)
 /**
  * This is the root component of our app.
  */
+<% if (!props.useExpo) { %>
 export const App: React.FunctionComponent<{}> = () => {
+<% } else { %>
+export default function App() {
+<% } %>
   const [rootStore, setRootStore] = useState<RootStore | undefined>(undefined) // prettier-ignore
   useEffect(() => {
 <% if (props.useExpo) { %>
