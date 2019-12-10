@@ -36,12 +36,14 @@ YellowBox.ignoreWarnings([
  * points RN's AsyncStorage at the community one, fixing the warning. Here's the
  * Storybook issue about this: https://github.com/storybookjs/storybook/issues/6078
  */
+<% if (!props.useExpo) { %>
 const ReactNative = require("react-native")
 Object.defineProperty(ReactNative, "AsyncStorage", {
   get(): any {
     return require("@react-native-community/async-storage").default
   },
 })
+<% } %>
 
 /**
  * Are we allowed to exit the app?  This is called when the back button
