@@ -7,5 +7,9 @@
 // side effect of breaking other tooling like mobile-center and react-native-rename.
 //
 // It's easier just to leave it here.
-
+<% if (props.useExpo) { %>
+import App from "./app/app.tsx"
+export default App
+<% } else { %>
 import "./app/app.tsx"
+<% } %>

@@ -4,7 +4,11 @@
 
 import "./i18n"
 import React, { useState, useEffect } from "react"
+<% if (!props.useExpo) { %>
 import { AppRegistry, YellowBox } from "react-native"
+<% } else { %>
+import { YellowBox } from "react-native"
+<% } %>
 import { StatefulNavigator } from "./navigation"
 import { RootStore, RootStoreProvider, setupRootStore } from "./models/root-store"
 import { BackButtonHandler, exitRoutes } from "./navigation"
@@ -77,21 +81,23 @@ export const App: React.FunctionComponent<{}> = () => {
   )
 }
 
-/**
- * This needs to match what's found in your app_delegate.m and MainActivity.java.
- */
-const APP_NAME = "<%= props.name %>"
+<% if (!props.useExpo) { %>
+  /**
+   * This needs to match what's found in your app_delegate.m and MainActivity.java.
+   */
+  const APP_NAME = "<%= props.name %>"
 
-// Should we show storybook instead of our app?
-//
-// ⚠️ Leave this as `false` when checking into git.
-const SHOW_STORYBOOK = false
+  // Should we show storybook instead of our app?
+  //
+  // ⚠️ Leave this as `false` when checking into git.
+  const SHOW_STORYBOOK = false
 
-let RootComponent = App
-if (__DEV__) {
-  // Only include Storybook if we're in dev mode
-  const { StorybookUIRoot } = require("../storybook")
+  let RootComponent = App
+  if (__DEV__) {
+    // Only include Storybook if we're in dev mode
+    const { StorybookUIRoot } = require("../storybook")
 
-  if (SHOW_STORYBOOK) RootComponent = StorybookUIRoot
-}
-AppRegistry.registerComponent(APP_NAME, () => RootComponent)
+    if (SHOW_STORYBOOK) RootComponent = StorybookUIRoot
+  }
+  AppRegistry.registerComponent(APP_NAME, () => RootComponent)
+<% } %>
