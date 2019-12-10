@@ -4,10 +4,11 @@
 
 import "./i18n"
 import React, { useState, useEffect } from "react"
-<% if (!props.useExpo) { %>
-import { AppRegistry, YellowBox } from "react-native"
-<% } else { %>
+<% if (props.useExpo) { %>
 import { YellowBox } from "react-native"
+import { initFonts } from "./theme/fonts"
+<% } else { %>
+import { AppRegistry, YellowBox } from "react-native"
 <% } %>
 import { StatefulNavigator } from "./navigation"
 import { RootStore, RootStoreProvider, setupRootStore } from "./models/root-store"
@@ -56,7 +57,14 @@ const canExit = (routeName: string) => contains(routeName, exitRoutes)
 export const App: React.FunctionComponent<{}> = () => {
   const [rootStore, setRootStore] = useState<RootStore | undefined>(undefined) // prettier-ignore
   useEffect(() => {
+<% if (props.useExpo) { %>
+    (async () => {
+      await initFonts()
+      setupRootStore().then(setRootStore)
+    })()
+<% } else { %>
     setupRootStore().then(setRootStore)
+<% } %>
   }, [])
 
   // Before we show the app, we have to wait for our state to be ready.

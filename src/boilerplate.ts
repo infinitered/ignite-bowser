@@ -151,6 +151,9 @@ export const install = async (toolbox: IgniteToolbox) => {
   filesystem.copy(`${boilerplatePath}/storybook`, `${process.cwd()}/storybook`, copyOpts)
   filesystem.copy(`${boilerplatePath}/bin`, `${process.cwd()}/bin`, copyOpts)
   includeDetox && filesystem.copy(`${boilerplatePath}/e2e`, `${process.cwd()}/e2e`, copyOpts)
+  if (useExpo) {
+    filesystem.remove(`${boilerplatePath}/app/theme/fonts/index.ts`)
+  }
   spinner.stop()
 
   // generate some templates
