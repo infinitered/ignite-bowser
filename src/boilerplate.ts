@@ -170,6 +170,9 @@ export const install = async (toolbox: IgniteToolbox) => {
     { template: "react-native.config.js", target: "react-native.config.js" },
     { template: "tsconfig.json", target: "tsconfig.json" },
     { template: "app/app.tsx.ejs", target: "app/app.tsx" },
+    { template: "app/i18n/i18n.ts.ejs", target: "app/i18n/i18n.ts" },
+    { template: "app/services/reactotron/reactotron.ts.ejs", target: "app/services/reactotron/reactotron.ts" },
+    { template: "app/utils/storage/storage.ts.ejs", target: "app/utils/storage/storage.ts" },
     {
       template: "app/screens/welcome-screen/welcome-screen.tsx.ejs",
       target: "app/screens/welcome-screen/welcome-screen.tsx",
