@@ -78,7 +78,7 @@ export const install = async (toolbox: IgniteToolbox) => {
       printInfo(`
               We'll initiate your app using Expo. Please note that you won't be able
               to use native modules unless you "eject".
-    
+
               More info here: https://docs.expo.io/versions/latest/expokit/eject/
           `)
     }
@@ -314,6 +314,18 @@ export const install = async (toolbox: IgniteToolbox) => {
   // re-run yarn; will also install pods, because of our postInstall script.
   const installDeps = ignite.useYarn ? "yarn" : "npm install"
   await system.run(installDeps)
+
+  // install dependencies for Expo
+  ignite.log("adding Expo-compatible dependencies")
+  await system.run(`expo install \
+      @react-native-community/async-storage \
+      react-native-gesture-handler \
+      react-native-localize \
+      react-native-screens \
+      react-native-keychain \
+      react-navigation \
+      react-navigation-stack`)
+
   spinner.succeed(`Installed dependencies`)
 
   // run react-native link to link assets
