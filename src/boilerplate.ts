@@ -146,14 +146,14 @@ export const install = async (toolbox: IgniteToolbox) => {
   spinner.start()
   const boilerplatePath = `${__dirname}/../boilerplate`
   const copyOpts = { overwrite: true, matching: "!*.ejs" }
-  if (!useExpo) {
-    filesystem.remove(`${boilerplatePath}/app/theme/fonts/index.ts`)
-  }
   filesystem.copy(`${boilerplatePath}/app`, `${process.cwd()}/app`, copyOpts)
   filesystem.copy(`${boilerplatePath}/test`, `${process.cwd()}/test`, copyOpts)
   filesystem.copy(`${boilerplatePath}/storybook`, `${process.cwd()}/storybook`, copyOpts)
   filesystem.copy(`${boilerplatePath}/bin`, `${process.cwd()}/bin`, copyOpts)
   includeDetox && filesystem.copy(`${boilerplatePath}/e2e`, `${process.cwd()}/e2e`, copyOpts)
+  if (!useExpo) {
+    filesystem.remove(`${process.cwd()}/app/theme/fonts/index.ts`)
+  }
   spinner.stop()
 
   // generate some templates

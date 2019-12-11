@@ -1,9 +1,9 @@
 import Tron from "reactotron-react-native"
-<% if (props.useExpo) { %>
+<% if (props.useExpo) { -%>
 import { AsyncStorage } from "react-native"
-<% } else { %>
+<% } else { -%>
 import AsyncStorage from "@react-native-community/async-storage"
-<% } %>
+<% } -%>
 import { RootStore } from "../../models/root-store/root-store"
 import { onSnapshot } from "mobx-state-tree"
 import { ReactotronConfig, DEFAULT_REACTOTRON_CONFIG } from "./reactotron-config"
