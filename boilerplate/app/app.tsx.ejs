@@ -4,10 +4,13 @@
 
 import "./i18n"
 import React, { useState, useEffect } from "react"
-import { AppRegistry, YellowBox } from "react-native"
+import { YellowBox } from "react-native"
 import { StatefulNavigator } from "./navigation"
 import { RootStore, RootStoreProvider, setupRootStore } from "./models/root-store"
 import { BackButtonHandler, exitRoutes } from "./navigation"
+<% if (props.useExpo) { -%>
+import { initFonts } from "./theme/fonts"
+<% } -%>
 import { contains } from "ramda"
 import { enableScreens } from "react-native-screens"
 
@@ -25,6 +28,7 @@ YellowBox.ignoreWarnings([
   "componentWillReceiveProps is deprecated",
 ])
 
+<% if (!props.useExpo) { -%>
 /**
  * Storybook still wants to use ReactNative's AsyncStorage instead of the
  * react-native-community package; this causes a YellowBox warning. This hack
@@ -37,6 +41,7 @@ Object.defineProperty(ReactNative, "AsyncStorage", {
     return require("@react-native-community/async-storage").default
   },
 })
+<% } -%>
 
 /**
  * Are we allowed to exit the app?  This is called when the back button
@@ -49,10 +54,15 @@ const canExit = (routeName: string) => contains(routeName, exitRoutes)
 /**
  * This is the root component of our app.
  */
-export const App: React.FunctionComponent<{}> = () => {
+export default function App() {
   const [rootStore, setRootStore] = useState<RootStore | undefined>(undefined) // prettier-ignore
   useEffect(() => {
-    setupRootStore().then(setRootStore)
+    (async () => {
+    <% if (props.useExpo) { -%>
+      await initFonts()
+    <% } -%>
+      setupRootStore().then(setRootStore)
+    })()
   }, [])
 
   // Before we show the app, we have to wait for our state to be ready.
@@ -77,21 +87,3 @@ export const App: React.FunctionComponent<{}> = () => {
   )
 }
 
-/**
- * This needs to match what's found in your app_delegate.m and MainActivity.java.
- */
-const APP_NAME = "<%= props.name %>"
-
-// Should we show storybook instead of our app?
-//
-// ⚠️ Leave this as `false` when checking into git.
-const SHOW_STORYBOOK = false
-
-let RootComponent = App
-if (__DEV__) {
-  // Only include Storybook if we're in dev mode
-  const { StorybookUIRoot } = require("../storybook")
-
-  if (SHOW_STORYBOOK) RootComponent = StorybookUIRoot
-}
-AppRegistry.registerComponent(APP_NAME, () => RootComponent)

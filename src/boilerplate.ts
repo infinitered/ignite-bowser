@@ -78,7 +78,7 @@ export const install = async (toolbox: IgniteToolbox) => {
       printInfo(`
               We'll initiate your app using Expo. Please note that you won't be able
               to use native modules unless you "eject".
-    
+
               More info here: https://docs.expo.io/versions/latest/expokit/eject/
           `)
     }
@@ -151,6 +151,9 @@ export const install = async (toolbox: IgniteToolbox) => {
   filesystem.copy(`${boilerplatePath}/storybook`, `${process.cwd()}/storybook`, copyOpts)
   filesystem.copy(`${boilerplatePath}/bin`, `${process.cwd()}/bin`, copyOpts)
   includeDetox && filesystem.copy(`${boilerplatePath}/e2e`, `${process.cwd()}/e2e`, copyOpts)
+  if (!useExpo) {
+    filesystem.remove(`${process.cwd()}/app/theme/fonts/index.ts`)
+  }
   spinner.stop()
 
   // generate some templates
@@ -167,6 +170,9 @@ export const install = async (toolbox: IgniteToolbox) => {
     { template: "react-native.config.js", target: "react-native.config.js" },
     { template: "tsconfig.json", target: "tsconfig.json" },
     { template: "app/app.tsx.ejs", target: "app/app.tsx" },
+    { template: "app/i18n/i18n.ts.ejs", target: "app/i18n/i18n.ts" },
+    { template: "app/services/reactotron/reactotron.ts.ejs", target: "app/services/reactotron/reactotron.ts" },
+    { template: "app/utils/storage/storage.ts.ejs", target: "app/utils/storage/storage.ts" },
     {
       template: "app/screens/welcome-screen/welcome-screen.tsx.ejs",
       target: "app/screens/welcome-screen/welcome-screen.tsx",
@@ -314,6 +320,18 @@ export const install = async (toolbox: IgniteToolbox) => {
   // re-run yarn; will also install pods, because of our postInstall script.
   const installDeps = ignite.useYarn ? "yarn" : "npm install"
   await system.run(installDeps)
+
+  // install dependencies for Expo
+  if (useExpo) {
+    ignite.log("adding Expo-compatible dependencies")
+    await system.run(`expo install \
+        expo-localization \
+        react-native-gesture-handler \
+        react-native-screens \
+        react-native-keychain \
+        react-navigation \
+        react-navigation-stack`)
+  }
   spinner.succeed(`Installed dependencies`)
 
   // run react-native link to link assets
