@@ -190,7 +190,7 @@ We also recognize no state management solution is perfect. MST has some known do
 
 MobX and MobX State Tree can be a lot to learn if you're coming from Redux, so here are a few of our favorite resources to learn the basics:
 
-- Be sure to check out the official [Getting Started](https://github.com/mobxjs/mobx-state-tree/blob/master/docs/getting-started.md) guide for MobX State Tree.
+- Be sure to check out the official [Getting Started](https://mobx-state-tree.js.org/intro/getting-started) guide for MobX State Tree.
 
 - There is also a free [egghead.io course](https://egghead.io/courses/manage-application-state-with-mobx-state-tree).
 
