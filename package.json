@@ -36,9 +36,16 @@
     "clean": "rm -rf ./build"
   },
   "eslintConfig": {
+    "parser": "@typescript-eslint/parser",
     "extends": [
       "standard",
       "prettier"
+    ],
+    "parserOptions": {
+      "project": "./tsconfig.json"
+    },
+    "plugins": [
+      "@typescript-eslint"
     ],
     "globals": {
       "__DEV__": false,
@@ -79,6 +86,8 @@
     "@types/jest": "^24.0.19",
     "@types/node": "^12.12.4",
     "@types/ramda": "0.26.36",
+    "@typescript-eslint/eslint-plugin": "^2.11.0",
+    "@typescript-eslint/parser": "^2.11.0",
     "babel-eslint": "^10.0.3",
     "eslint": "^6.6.0",
     "eslint-config-prettier": "^6.5.0",
