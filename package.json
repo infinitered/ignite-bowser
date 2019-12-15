@@ -38,8 +38,9 @@
   "eslintConfig": {
     "parser": "@typescript-eslint/parser",
     "extends": [
-      "standard",
-      "prettier"
+      "prettier",
+      "plugin:@typescript-eslint/recommended",
+      "standard"
     ],
     "parserOptions": {
       "project": "./tsconfig.eslint.json"
@@ -53,11 +54,27 @@
       "beforeAll": false,
       "afterAll": false,
       "beforeEach": false,
+      "afterEach": false,
       "test": false,
       "expect": false,
       "describe": false,
       "jest": false,
       "it": false
+    },
+    "rules": {
+      "comma-dangle": 0,
+      "no-unused-vars": 0,
+      "no-undef": 0,
+      "quotes": 0,
+      "space-before-function-paren": 0,
+      "@typescript-eslint/indent": 0,
+      "@typescript-eslint/explicit-member-accessibility": 0,
+      "@typescript-eslint/explicit-function-return-type": 0,
+      "@typescript-eslint/member-delimiter-style": 0,
+      "@typescript-eslint/no-explicit-any": 0,
+      "@typescript-eslint/no-object-literal-type-assertion": 0,
+      "@typescript-eslint/no-empty-interface": 0,
+      "@typescript-eslint/no-var-requires": 0
     }
   },
   "prettier": {
