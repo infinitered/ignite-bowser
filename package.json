@@ -24,7 +24,7 @@
     "format:json": "prettier --write {.,**}/*.json",
     "format:md": "prettier --write {.,**}/*.md",
     "format:ts": "prettier --write {.,**}/*.{ts,tsx}",
-    "lint": "eslint build test *.js --fix",
+    "lint": "eslint src test --ext .ts",
     "test": "yarn build && jest --runInBand && yarn clean",
     "watch": "jest --runInBand --watch",
     "coverage": "jest --runInBand --coverage",
@@ -42,7 +42,7 @@
       "prettier"
     ],
     "parserOptions": {
-      "project": "./tsconfig.json"
+      "project": "./tsconfig.eslint.json"
     },
     "plugins": [
       "@typescript-eslint"
