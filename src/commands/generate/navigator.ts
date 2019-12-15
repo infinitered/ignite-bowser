@@ -17,10 +17,10 @@ export const run = async function(toolbox: GluegunToolbox) {
 
   // prettier-ignore
   const navigatorTypes = {
-    'Stack': "createStackNavigator",
-    'Tab': "createBottomTabNavigator",
-    'Switch': "createSwitchNavigator",
-    'Drawer': "createDrawerNavigator",
+    Stack: "createStackNavigator",
+    Tab: "createBottomTabNavigator",
+    Switch: "createSwitchNavigator",
+    Drawer: "createDrawerNavigator",
     'Material Bottom Tab': "createMaterialBottomTabNavigator",
     'Material Top Tab': "createMaterialTopTabNavigator"
   }
@@ -59,7 +59,7 @@ export const run = async function(toolbox: GluegunToolbox) {
   const camelName = camelCase(navigatorName)
 
   // what navigator type to generate?
-  let navigatorType = parameters.options["type"]
+  let navigatorType = parameters.options.type
   if (!navigatorType) {
     const askForNavigatorType = {
       type: "select",
@@ -74,7 +74,7 @@ export const run = async function(toolbox: GluegunToolbox) {
   }
 
   // which screens to include in the new navigator?
-  let pascalScreens = parameters.options["screens"] && parameters.options["screens"].split(",")
+  let pascalScreens = parameters.options.screens && parameters.options.screens.split(",")
   if (!pascalScreens) {
     const allKebabScreens = list(`${process.cwd()}/app/screens/`)
       .filter(s => !RegExp("index").test(s))
@@ -96,7 +96,7 @@ export const run = async function(toolbox: GluegunToolbox) {
 
   // which screens to include in navigator?
   let pascalNavigators =
-    parameters.options["navigators"] && parameters.options["navigators"].split(",")
+    parameters.options.navigators && parameters.options.navigators.split(",")
   if (!pascalNavigators) {
     const allKebabNavigators = list(`${process.cwd()}/app/navigation/`).filter(
       n => n.includes("-navigator.") && !n.includes("stateful-") && !n.includes("root-"),

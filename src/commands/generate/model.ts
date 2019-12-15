@@ -54,4 +54,3 @@ export const run = async function(toolbox: GluegunToolbox) {
     await patching.patch(rootStorePath, { after: rootStoreDef, insert: storeType })
   }
 }
-
