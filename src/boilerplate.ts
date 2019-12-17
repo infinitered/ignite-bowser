@@ -66,10 +66,10 @@ export const install = async (toolbox: GluegunToolbox) => {
     if (parameters.options.detox === true) {
       // prettier-ignore
       if (isWindows) {
-          print.info("Skipping Detox because it is only supported on macOS, but you're running Windows")
-        } else {
-          print.info("Skipping Detox because it is only supported on macOS")
-        }
+        print.info("Skipping Detox because it is only supported on macOS, but you're running Windows")
+      } else {
+        print.info("Skipping Detox because it is only supported on macOS")
+      }
     }
   }
 

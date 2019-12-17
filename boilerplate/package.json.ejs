@@ -25,7 +25,6 @@
     "prepare": "npm-run-all patch hack:*",
     "storybook": "storybook start -p 9001 --skip-packager",
     "adb": "adb reverse tcp:9090 tcp:9090 && adb reverse tcp:3000 tcp:3000 && adb reverse tcp:9001 tcp:9001 && adb reverse tcp:8081 tcp:8081"
-
   },
   "dependencies": {
     "@react-native-community/async-storage": "^1.5.1",
@@ -64,8 +63,8 @@
     "@types/react-native": "0.60.19",
     "@types/react-navigation": "3.0.7",
     "@types/react-test-renderer": "16.8.3",
-    "@typescript-eslint/eslint-plugin": "^1.1.0",
-    "@typescript-eslint/parser": "^1.1.0",
+    "@typescript-eslint/eslint-plugin": "^2.11.0",
+    "@typescript-eslint/parser": "^2.11.0",
 <% if (props.includeDetox) { -%>
     "detox": "^14.0.1",
 <% } -%>
@@ -177,6 +176,7 @@
       "react/prop-types": "off",
       "react-native/no-raw-text": 0,
       "space-before-function-paren": 0,
+      "@typescript-eslint/ban-ts-ignore": 0,
       "@typescript-eslint/indent": 0,
       "@typescript-eslint/explicit-member-accessibility": 0,
       "@typescript-eslint/explicit-function-return-type": 0,
