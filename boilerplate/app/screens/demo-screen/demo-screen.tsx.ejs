@@ -1,6 +1,6 @@
 import * as React from "react"
 import { Image, ImageStyle, Platform, TextStyle, View, ViewStyle } from "react-native"
-import { NavigationScreenProps } from "react-navigation"
+import { NavigationScreenProp } from "react-navigation"
 import { BulletItem, Button, Header, Text, Screen, Wallpaper } from "../../components"
 import { color, spacing } from "../../theme"
 import { Api } from "../../services/api"
@@ -76,7 +76,9 @@ const HINT: TextStyle = {
   marginVertical: spacing[2],
 }
 
-export interface DemoScreenProps extends NavigationScreenProps<{}> {}
+export interface DemoScreenProps {
+  navigation: NavigationScreenProp<{}>
+}
 
 export const DemoScreen: React.FunctionComponent<DemoScreenProps> = props => {
   const goBack = React.useMemo(() => () => props.navigation.goBack(null), [props.navigation])
