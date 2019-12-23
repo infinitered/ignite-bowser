@@ -23,7 +23,6 @@ describe("a generated app", () => {
     await execaShell(`${IGNITE_COMMAND} new ${APP} ${flags} --boilerplate ${BOILERPLATE}`)
 
     process.chdir(APP)
-    console.error(appTemp + "/" + APP)
 
     await execaShell("git init")
     await execaShell('git config user.email "test@example.com"')
