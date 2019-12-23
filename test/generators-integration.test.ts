@@ -23,6 +23,7 @@ describe("a generated app", () => {
     await execaShell(`${IGNITE_COMMAND} new ${APP} ${flags} --boilerplate ${BOILERPLATE}`)
 
     process.chdir(APP)
+    console.error(appTemp + "/" + APP)
 
     await execaShell("git init")
     await execaShell('git config user.email "test@example.com"')
@@ -33,7 +34,7 @@ describe("a generated app", () => {
 
   afterAll(() => {
     // clean up generated test app
-    jetpack.remove(appTemp)
+    // jetpack.remove(appTemp)
   })
 
   test.only("can yarn install and pass tests", () => {

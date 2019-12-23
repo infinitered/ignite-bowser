@@ -38,7 +38,6 @@ export const expo = {
         Run \`npm install -g expo-cli\` or \`yarn global add expo-cli\` to install and try again.
       `)
       process.exit(exitCodes.EXPO_NOT_FOUND)
-      return
     }
 
     const spinner = print.spin(
@@ -67,7 +66,7 @@ export const expo = {
 
     return {
       exitCode: expoInstall.status,
-      version: "expo-cli@${expoVersion}",
+      version: `expo-cli@${expoVersion}`,
       template: "ignite-bowser",
     }
   },
