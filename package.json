@@ -4,7 +4,7 @@
   "license": "MIT",
   "repository": "infinitered/ignite-bowser",
   "homepage": "https://github.com/infinitered/ignite-bowser",
-  "version": "4.11.3",
+  "version": "4.11.4",
   "files": [
     "boilerplate.js",
     "boilerplate",
@@ -24,11 +24,12 @@
     "format:json": "prettier --write {.,**}/*.json",
     "format:md": "prettier --write {.,**}/*.md",
     "format:ts": "prettier --write {.,**}/*.{ts,tsx}",
-    "lint": "eslint build test *.js --fix",
-    "test": "yarn build && jest --runInBand && yarn clean",
+    "lint": "eslint src test --ext .ts --fix",
+    "test": "yarn build && jest --runInBand && yarn lint && yarn clean",
     "watch": "jest --runInBand --watch",
     "coverage": "jest --runInBand --coverage",
-    "ci:test": "yarn test",
+    "ci:lint": "eslint src test --ext .ts",
+    "ci:test": "yarn build && jest --runInBand && yarn ci:lint && yarn clean",
     "ci:publish": "yarn build && yarn semantic-release && yarn clean",
     "semantic-release": "semantic-release",
     "build": "yarn compile",
@@ -36,9 +37,17 @@
     "clean": "rm -rf ./build"
   },
   "eslintConfig": {
+    "parser": "@typescript-eslint/parser",
     "extends": [
-      "standard",
-      "prettier"
+      "prettier",
+      "plugin:@typescript-eslint/recommended",
+      "standard"
+    ],
+    "parserOptions": {
+      "project": "./tsconfig.eslint.json"
+    },
+    "plugins": [
+      "@typescript-eslint"
     ],
     "globals": {
       "__DEV__": false,
@@ -46,11 +55,27 @@
       "beforeAll": false,
       "afterAll": false,
       "beforeEach": false,
+      "afterEach": false,
       "test": false,
       "expect": false,
       "describe": false,
       "jest": false,
       "it": false
+    },
+    "rules": {
+      "comma-dangle": 0,
+      "no-unused-vars": 0,
+      "no-undef": 0,
+      "quotes": 0,
+      "space-before-function-paren": 0,
+      "@typescript-eslint/indent": 0,
+      "@typescript-eslint/explicit-member-accessibility": 0,
+      "@typescript-eslint/explicit-function-return-type": 0,
+      "@typescript-eslint/member-delimiter-style": 0,
+      "@typescript-eslint/no-explicit-any": 0,
+      "@typescript-eslint/no-object-literal-type-assertion": 0,
+      "@typescript-eslint/no-empty-interface": 0,
+      "@typescript-eslint/no-var-requires": 0
     }
   },
   "prettier": {
@@ -79,6 +104,8 @@
     "@types/jest": "^24.0.19",
     "@types/node": "^12.12.4",
     "@types/ramda": "0.26.36",
+    "@typescript-eslint/eslint-plugin": "^2.11.0",
+    "@typescript-eslint/parser": "^2.11.0",
     "babel-eslint": "^10.0.3",
     "eslint": "^6.6.0",
     "eslint-config-prettier": "^6.5.0",

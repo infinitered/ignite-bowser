@@ -13,6 +13,6 @@
     "outDir": "./build",
     "types": ["node", "jest"]
   },
-  "include": ["./src/commands/**/*.ts", "src/lib/**/*.ts", "src/boilerplate.ts"],
-  "exclude": ["./boilerplate", "./templates", "./boilerplate"]
+  "include": ["./src"],
+  "exclude": ["./boilerplate", "./templates"]
 }

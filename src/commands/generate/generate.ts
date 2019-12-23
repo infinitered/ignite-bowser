@@ -13,4 +13,3 @@ export const run = () => {
     please report issue at https://github.com/infinitered/ignite
   `)
 }
-
