@@ -2,7 +2,7 @@ import * as React from "react"
 import { View, TextInput, TextStyle, ViewStyle } from "react-native"
 import { color, spacing, typography } from "../../theme"
 import { translate } from "../../i18n"
-import { Text } from "../text"
+import { Text } from "../"
 import { TextFieldProps } from "./text-field.props"
 import { mergeAll, flatten } from "ramda"
 
@@ -32,38 +32,36 @@ const enhance = (style, styleOverride) => {
 /**
  * A component which has a label and an input together.
  */
-export class TextField extends React.Component<TextFieldProps, {}> {
-  render() {
-    const {
-      placeholderTx,
-      placeholder,
-      labelTx,
-      label,
-      preset = "default",
-      style: styleOverride,
-      inputStyle: inputStyleOverride,
-      forwardedRef,
-      ...rest
-    } = this.props
-    let containerStyle: ViewStyle = { ...CONTAINER, ...PRESETS[preset] }
-    containerStyle = enhance(containerStyle, styleOverride)
+export const TextField: React.FunctionComponent<TextFieldProps> = props => {
+  const {
+    placeholderTx,
+    placeholder,
+    labelTx,
+    label,
+    preset = "default",
+    style: styleOverride,
+    inputStyle: inputStyleOverride,
+    forwardedRef,
+    ...rest
+  } = props
+  let containerStyle: ViewStyle = { ...CONTAINER, ...PRESETS[preset] }
+  containerStyle = enhance(containerStyle, styleOverride)
 
-    let inputStyle: TextStyle = INPUT
-    inputStyle = enhance(inputStyle, inputStyleOverride)
-    const actualPlaceholder = placeholderTx ? translate(placeholderTx) : placeholder
+  let inputStyle: TextStyle = INPUT
+  inputStyle = enhance(inputStyle, inputStyleOverride)
+  const actualPlaceholder = placeholderTx ? translate(placeholderTx) : placeholder
 
-    return (
-      <View style={containerStyle}>
-        <Text preset="fieldLabel" tx={labelTx} text={label} />
-        <TextInput
-          placeholder={actualPlaceholder}
-          placeholderTextColor={color.palette.lighterGrey}
-          underlineColorAndroid={color.transparent}
-          {...rest}
-          style={inputStyle}
-          ref={forwardedRef}
-        />
-      </View>
-    )
-  }
+  return (
+    <View style={containerStyle}>
+      <Text preset="fieldLabel" tx={labelTx} text={label} />
+      <TextInput
+        placeholder={actualPlaceholder}
+        placeholderTextColor={color.palette.lighterGrey}
+        underlineColorAndroid={color.transparent}
+        {...rest}
+        style={inputStyle}
+        ref={forwardedRef}
+      />
+    </View>
+  )
 }

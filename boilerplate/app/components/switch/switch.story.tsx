@@ -6,7 +6,9 @@ import { View, ViewStyle } from "react-native"
 import { storiesOf } from "@storybook/react-native"
 import { StoryScreen, Story, UseCase } from "../../../storybook/views"
 import { Toggle } from "react-powerplug"
-import { Switch } from "."
+import { Switch } from "./switch"
+
+declare var module
 
 const styleArray: ViewStyle[] = [{ borderColor: "#686868" }]
 

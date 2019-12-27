@@ -1,7 +1,9 @@
 import * as React from "react"
 import { storiesOf } from "@storybook/react-native"
 import { StoryScreen, Story, UseCase } from "../../../storybook/views"
-import { <%= props.pascalName %> } from "./"
+import { <%= props.pascalName %> } from "./<%= props.name %>"
+
+declare var module
 
 storiesOf("<%= props.pascalName %>", module)
   .addDecorator(fn => <StoryScreen>{fn()}</StoryScreen>)

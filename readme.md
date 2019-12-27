@@ -1,14 +1,12 @@
 <p align="center"><img src="http://ir_public.s3.amazonaws.com/projects/ignite/ignite-bowser-launch-screen.png" alt="logo" width="414px"></p>
 
-# Ignite IR Boilerplate ("Bowser")
-
-_NOTE: This repo has been renamed from ignite-ir-boilerplate-bowser to ignite-bowser. Although web traffic and git operations for the previous name will be redirected, we recommend you update any links and git urls for this repo._
+# Ignite Bowser - the hottest React Native boilerplate
 
 <a href="https://badge.fury.io/js/ignite-bowser" target="_blank"><img src="https://badge.fury.io/js/ignite-bowser.svg" alt="npm version" height="20"></a>
 
 ## Infinite Red's latest and greatest React Native boilerplate
 
-Once you've installed the [Ignite CLI](https://github.com/infinitered/ignite), you can get started with this boilerplate.
+Once you've installed [React Native](https://shift.infinite.red/painless-react-native-setup-for-mac-windows-linux-956c23d2abf9) and the [Ignite CLI](https://github.com/infinitered/ignite), you can get started with this boilerplate.
 
 This is the boilerplate that the [Infinite Red](https://infinite.red) team recommends and uses on a day-to-day basis. Prior art includes [Ignite Andross](https://github.com/infinitered/ignite-andross).
 
@@ -23,19 +21,36 @@ Includes:
 
 To see it in action, check out the [Chain React 2019 Conference App](https://github.com/infinitered/ChainReactApp2019)!
 
+Or watch a [live coding demo](https://www.youtube.com/watch?v=Pb8MWkQ9GOc) at React Live Amsterdam where Jamon Holmgren codes an Ignite Bowser app in less than 30 minutes.
+
 ## Quick Start
 
-First, install Ignite CLI:
+Prerequisite: [install the React Native CLI](https://facebook.github.io/react-native/docs/getting-started) -- choose React Native CLI, not Expo.
+
+First, install Ignite CLI globally:
 
 ```
-$ yarn global add ignite-cli
+npm install -g ignite-cli
+# or
+yarn global add ignite-cli
 ```
+
+**Note:**
+Make sure you have [CocoaPods](https://guides.cocoapods.org/using/getting-started.html) installed because otherwise, React Native installation will fail.
 
 Then spin up a new Bowser-powered React Native app:
 
 ```
-$ ignite new MyApp -b bowser
+ignite new MyApp -b bowser
 ```
+
+`cd` into your new app and run `react-native run-ios` or `react-native run-android` (note: in Android, you'll need an Android emulator running or an Android phone attached).
+
+You should see an app that looks like the screenshot above!
+
+Next step -- follow this tutorial to learn how to create a trivia app with Ignite Bowser: https://shift.infinite.red/creating-a-trivia-app-with-ignite-bowser-part-1-1987cc6e93a1
+
+## Explanation of folder structure
 
 The Ignite Bowser boilerplate project's structure will look similar to this:
 
@@ -91,7 +106,6 @@ app
 ├── theme
 ├── utils
 ├── app.tsx
-├── environment-variables.ts
 ```
 
 **components**
@@ -122,7 +136,7 @@ This is a great place to put miscellaneous helpers and utilities. Things like da
 
 ### ./ignite directory
 
-The `ignite` directory stores all things Ignite, including CLI and boilerplate items. Here you will find generators, plugins and examples to help you get started with React Native.
+The `ignite` directory stores all things Ignite, including CLI and boilerplate items. Here you will find generators, plugins, and examples to help you get started with React Native.
 
 ### ./storybook directory
 
@@ -136,7 +150,7 @@ This directory will hold your Jest configs and mocks, as well as your [storyshot
 
 ## Why this stack?
 
-If you've used Ignite Andross (the first Ignite stack), you know we formerly used Redux for state management, as does much of the community. However, we encountered some pain points with Redux so went in search of a different solution to meet our needs and landed on `mobx-state-tree`. We find that it’s a great middle ground between completely structured (like `redux`) and completely freestyle (like `mobx`). It brings more than just state-management to the table as well (such as dependency injection, serialization, and lifecycle events).
+If you've used Ignite Andross (the first Ignite stack), you know we formerly used Redux for state management, as does much of the community. However, we encountered some pain points with Redux so went in search of a different solution to meet our needs and landed on `mobx-state-tree`. We find that it’s a great middle-ground between completely structured (like `redux`) and completely freestyle (like `mobx`). It brings more than just state-management to the table as well (such as dependency injection, serialization, and lifecycle events).
 
 ### Some Highlights of MST
 
@@ -149,7 +163,7 @@ MST is...
 - Streamlined
   - No more `actionTypes`, `actionCreators`, or `reducers`
   - You don't have to declare your usage intentions with `mapStateToProps`; they are inferred
-  - Side-effects are built in; no need for 3rd party libraries like `redux-saga`, `redux-observable`, or `redux-thunk`
+  - Side-effects are built-in; no need for 3rd party libraries like `redux-saga`, `redux-observable`, or `redux-thunk`
   - Immutability is built-in - no need for `immutable.js` or `seamless-immutable`
   - `types.compose` and `model.extend` allow for easy code-sharing of common patterns
 - More than state management
@@ -158,7 +172,7 @@ MST is...
 - Performant
   - Round-trip store writes are much faster
   - Computed values (views) are only calculated when needed
-  - `mobx-react` makes React "MobX-aware" and only re-renders when absolutely necessary
+  - `mobx-react-lite` makes React "MobX-aware" and only re-renders when absolutely necessary
 - Customizable
   - MST ships with pre-built middlewares, including one which allows for [Redux interoperability](https://github.com/mobxjs/mobx-state-tree/blob/master/packages/mst-middlewares/README.md#redux). These middlewares can also serve as examples to create your own!
 
@@ -168,7 +182,7 @@ We also recognize no state management solution is perfect. MST has some known do
 
 - Integration with TypeScript is clunky at times. MST's own typing system is sometimes at odds with what TypeScript wants
 - `mobx` and `mobx-state-tree` both seem to have "magic" or "sorcery" that makes issues less straightforward to debug because you don't always have a clear picture of what's happening (but using [Reactotron](https://github.com/infinitered/reactotron), which has `mobx-state-tree` support built-in, helps a lot). The [MobX docs](https://mobx.js.org/) can also help illumitate some of the magic.
-- The user base is small, so finding help on GitHub or Stack overflow is less convenient (however, the [Infinite Red Slack Community](https://community.infinite.red), as well as the [MobX State Tree Spectrum channel](https://spectrum.chat/mobx-state-tree) are both very helpful)
+- The user base is small, so finding help on GitHub or Stack overflow is less convenient (however, the [Infinite Red Slack Community](http://community.infinite.red), as well as the [MobX State Tree Spectrum channel](https://spectrum.chat/mobx-state-tree) are both very helpful)
 - Fatal errors are sometimes too-easily triggered and error messages can be verbose and hard to grok
 - The API has a large surface area and the docs tend to be technical and unfriendly
 
@@ -176,7 +190,7 @@ We also recognize no state management solution is perfect. MST has some known do
 
 MobX and MobX State Tree can be a lot to learn if you're coming from Redux, so here are a few of our favorite resources to learn the basics:
 
-- Be sure to check out the official [Getting Started](https://github.com/mobxjs/mobx-state-tree/blob/master/docs/getting-started.md) guide for MobX State Tree.
+- Be sure to check out the official [Getting Started](https://mobx-state-tree.js.org/intro/getting-started) guide for MobX State Tree.
 
 - There is also a free [egghead.io course](https://egghead.io/courses/manage-application-state-with-mobx-state-tree).
 
@@ -188,18 +202,21 @@ MobX and MobX State Tree can be a lot to learn if you're coming from Redux, so h
 
 - For help from real people in the community, make sure to check out the [Infinite Red Community Slack](https://community.infinite.red) as well as the [MobX State Tree spectrum channel](https://spectrum.chat/mobx-state-tree).
 
-- To see example code bases using Bowser (and MST), check out these two:
+- To see example code bases using Bowser (and MST), check out these repositories:
 - https://github.com/jamonholmgren/PlayerPopularity (simple implementation)
+- https://github.com/jamonholmgren/TrailBlazers (simple implementation with hooks)
 - https://github.com/infinitered/ChainReactApp2019 (more in-depth implementation)
 
-## Upgrade 
+## Upgrade
 
 To keep your React Native app updated:
+
 - [React Native Upgrade Helper](https://react-native-community.github.io/upgrade-helper/) great web based tool
-- [rn-diff-purge](https://github.com/react-native-community/rn-diff-purge) 
+- [rn-diff-purge](https://github.com/react-native-community/rn-diff-purge)
 
 To keep your Ignite Bowser based app updated:
-- [ignite-bowser-difff-purge](https://github.com/nirre7/ignite-bowser-diff-purge) To help you see the diffs between versions
+
+- [ignite-bowser-diff-purge](https://github.com/nirre7/ignite-bowser-diff-purge) To help you see the diffs between versions
 
 ## TypeScript
 
@@ -213,6 +230,7 @@ If you are new to TypeScript, here are some of our favorite resources:
 
 - [TypeScript in 5 minutes](https://www.typescriptlang.org/docs/handbook/typescript-in-5-minutes.html) for a quick read
 - [TypeScript in 50 minutes](https://youtu.be/WBPrJSw7yQA) for a longer watch
+- [Execute Program -- TypeScript course](https://www.executeprogram.com/course/typescript) -- free course by Gary Bernhardt
 - [TypeScript and VSCode](https://code.visualstudio.com/docs/typescript/typescript-tutorial) for awesome developer tools
 - [Official Docs](https://www.typescriptlang.org/docs/home.html)
 
@@ -224,3 +242,6 @@ If you are new to TypeScript, here are some of our favorite resources:
 ## Premium Support
 
 [Ignite CLI](https://infinite.red/ignite), [Ignite Andross](https://github.com/infinitered/ignite-andross), and [Ignite Bowser](https://github.com/infinitered/ignite-bowser), as open source projects, are free to use and always will be. [Infinite Red](https://infinite.red/) offers premium Ignite CLI support and general mobile app design/development services. Email us at [hello@infinite.red](mailto:hello@infinite.red) to get in touch with us for more details.
+
+## Contribute
+#### [Contribute to Ignite Bowser](https://github.com/infinitered/ignite-bowser/blob/master/.github/CONTRIBUTING.md) - Getting up and running for your first pull request

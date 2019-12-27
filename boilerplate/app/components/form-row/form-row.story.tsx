@@ -4,10 +4,11 @@
 import * as React from "react"
 import { storiesOf } from "@storybook/react-native"
 import { StoryScreen, Story, UseCase } from "../../../storybook/views"
-import { FormRow } from "./form-row"
-import { Text } from "../text"
+import { Text, FormRow } from "../"
 import { color } from "../../theme/color"
 import { ViewStyle } from "react-native"
+
+declare var module
 
 const TEXT_STYLE_OVERRIDE = {
   color: color.storybookTextColor,

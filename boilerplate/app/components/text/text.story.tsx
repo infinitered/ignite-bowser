@@ -8,6 +8,8 @@ import { StoryScreen, Story, UseCase } from "../../../storybook/views"
 import { color } from "../../theme"
 import { Text } from "./text"
 
+declare var module
+
 const VIEWSTYLE = {
   flex: 1,
   backgroundColor: color.storybookDarkBg,
@@ -55,7 +57,7 @@ storiesOf("Text", module)
       <UseCase text="tx" usage="Used for looking up i18n keys.">
         <View style={VIEWSTYLE}>
           <Text tx="common.ok" />
-          <Text tx="omglol" />
+          <Text tx="common.cancel" />
         </View>
       </UseCase>
       <UseCase

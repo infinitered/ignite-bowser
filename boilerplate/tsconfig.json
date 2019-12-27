@@ -11,8 +11,10 @@
     "noImplicitThis": true,
     "noUnusedLocals": true,
     "sourceMap": true,
-    "target": "es2015"
+    "target": "es2015",
+    "lib": ["es7"],
+    "skipLibCheck": true
   },
   "exclude": ["node_modules"],
-  "include": ["app", "test", "storybook"]
+  "include": ["index.js", "app", "test", "storybook"]
 }

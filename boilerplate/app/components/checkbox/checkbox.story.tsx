@@ -5,8 +5,10 @@ import * as React from "react"
 import { View, ViewStyle } from "react-native"
 import { storiesOf } from "@storybook/react-native"
 import { StoryScreen, Story, UseCase } from "../../../storybook/views"
-import { Checkbox } from "./"
+import { Checkbox } from "./checkbox"
 import { Toggle } from "react-powerplug"
+
+declare var module
 
 const arrayStyle: ViewStyle[] = [{ paddingVertical: 40 }, { alignSelf: "flex-end" }]
 const arrayOutlineStyle: ViewStyle[] = [{ borderColor: "#b443c9" }, { borderWidth: 25 }]
