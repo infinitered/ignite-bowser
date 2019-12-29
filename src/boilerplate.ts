@@ -162,6 +162,7 @@ export const install = async (toolbox: IgniteToolbox) => {
       "__snapshots__"
     ]
     mocksToRemove.map(mock => filesystem.remove(`${process.cwd()}/test/${mock}`))
+    filesystem.remove(`${process.cwd()}/bin/postInstall`)
   }
   spinner.stop()
 
