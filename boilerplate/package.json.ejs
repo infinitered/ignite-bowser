@@ -24,6 +24,9 @@
     "postinstall": "solidarity",
     "prepare": "npm-run-all patch hack:*",
     "storybook": "storybook start -p 9001 --skip-packager",
+<% if (!props.useExpo) { -%>
+    "test: "jest",
+<% } -%>
     "adb": "adb reverse tcp:9090 tcp:9090 && adb reverse tcp:3000 tcp:3000 && adb reverse tcp:9001 tcp:9001 && adb reverse tcp:8081 tcp:8081"
   },
   "dependencies": {
@@ -36,7 +39,7 @@
     "i18n-js": "^3.0.11",
     "reactotron-mst": "^3.1.1",
     "reactotron-react-native": "^4.0.0-beta.1",
-    <% if (!props.useExpo) { -%>
+<% if (!props.useExpo) { -%>
       "@react-native-community/async-storage": "^1.5.1",
       "react-native-gesture-handler": "<%= props.reactNativeGestureHandlerVersion %>",
       "react-native-localize": "^1.0.0",
@@ -44,7 +47,7 @@
       "react-native-keychain": "3.1.3",
       "react-navigation": "4.0.10",
       "react-navigation-stack": "^1.10.3",
-    <% } -%>
+<% } -%>
     "validate.js": "0.13.1"
   },
   "devDependencies": {
@@ -79,6 +82,10 @@
     "eslint-plugin-react": "^7.12.4",
     "eslint-plugin-react-native": "^3.6.0",
     "eslint-plugin-standard": "^4.0.0",
+<% if (props.useExpo) { -%>
+    "jest": "^24.9.0",
+    "jest-expo": "^36.0.1",
+<% } -%>
     "jetifier": "^1.6.1",
     "npm-run-all": "4.1.5",
     "patch-package": "6.1.2",
@@ -92,6 +99,7 @@
     "typescript": "3.7.3"
   },
   "jest": {
+<% if (!props.useExpo) { -%>
     "preset": "react-native",
     "setupFiles": [
       "<rootDir>/node_modules/react-native/jest/setup.js",
@@ -104,6 +112,22 @@
     "transformIgnorePatterns": [
       "node_modules/(?!(jest-)?react-native|react-native|react-navigation|@react-navigation|@storybook|@react-native-community)"
     ]
+<% } else { -%>
+    "projects": [
+      {
+        "preset": "jest-expo/ios",
+        "transformIgnorePatterns": [
+          "node_modules/(?!(jest-)?react-native|react-clone-referenced-element|@react-native-community|expo(nent)?|@expo(nent)?/.*|react-navigation|@react-navigation/.*|@unimodules/.*|native-base|@storybook)"
+        ]
+      },
+      {
+        "preset": "jest-expo/android",
+        "transformIgnorePatterns": [
+          "node_modules/(?!(jest-)?react-native|react-clone-referenced-element|@react-native-community|expo(nent)?|@expo(nent)?/.*|react-navigation|@react-navigation/.*|@unimodules/.*|native-base|@storybook)"
+        ]
+      }
+    ]
+<% } -%>
   },
   "prettier": {
     "printWidth": 100,
