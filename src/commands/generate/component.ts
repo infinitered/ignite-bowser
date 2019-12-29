@@ -3,7 +3,7 @@ import { GluegunToolbox } from "gluegun"
 export const description = "Generates a component, supporting files, and a storybook test."
 export const run = async function(toolbox: GluegunToolbox) {
   // grab some features
-  const { parameters, strings, print, ignite, patching, filesystem } = toolbox
+  const { parameters, strings, print, ignite, patching, filesystem, prompt } = toolbox
   const { pascalCase, isBlank } = strings
 
   // validation
@@ -13,20 +13,56 @@ export const run = async function(toolbox: GluegunToolbox) {
     return
   }
 
+  const componentTypes = [
+    {
+      name: 'functionComponent',
+      message: 'React.FunctionComponent, aka "hooks component"'
+    },
+    {
+      name: 'statelessFunction',
+      message: 'Stateless function, aka the "classic" ignite-bowser component'
+    }
+  ]
+
+  const { componentType } = await prompt.ask([
+    {
+      name: 'componentType',
+      message: 'Which type of component do you want to generate?',
+      type: 'select',
+      choices: componentTypes,
+    },
+  ])
+
   const name = parameters.first
   const pascalName = pascalCase(name)
-
   const props = { name, pascalName }
+
   const jobs = [
-    {
-      template: 'component.tsx.ejs',
-      target: `app/components/${name}/${name}.tsx`
-    },
     {
       template: 'component.story.tsx.ejs',
       target: `app/components/${name}/${name}.story.tsx`
+    },
+    {
+      template: 'styles.ts.ejs',
+      target: `app/components/${name}/${name}.styles.ts`
     }
   ]
+
+  if (componentType === "functionComponent") {
+    jobs.push(
+      {
+        template: 'function-component.tsx.ejs',
+        target: `app/components/${name}/${name}.tsx`
+      }
+    )
+  } else if (componentType === "statelessFunction") {
+    jobs.push(
+      {
+        template: 'component.tsx.ejs',
+        target: `app/components/${name}/${name}.tsx`
+      }
+    )
+  }
 
   await ignite.copyBatch(toolbox, jobs, props)
 
