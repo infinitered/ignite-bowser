@@ -185,6 +185,7 @@ export const install = async (toolbox: IgniteToolbox) => {
       target: "app/services/reactotron/reactotron.ts",
     },
     { template: "app/utils/storage/storage.ts.ejs", target: "app/utils/storage/storage.ts" },
+    { template: "app/utils/storage/storage.test.ts.ejs", target: "app/utils/storage/storage.test.ts" },
     {
       template: "app/screens/welcome-screen/welcome-screen.tsx.ejs",
       target: "app/screens/welcome-screen/welcome-screen.tsx",
