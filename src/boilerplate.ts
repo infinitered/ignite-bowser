@@ -153,6 +153,15 @@ export const install = async (toolbox: IgniteToolbox) => {
   includeDetox && filesystem.copy(`${boilerplatePath}/e2e`, `${process.cwd()}/e2e`, copyOpts)
   if (!useExpo) {
     filesystem.remove(`${process.cwd()}/app/theme/fonts/index.ts`)
+  } else {
+    const mocksToRemove = [
+      "mock-async-storage.ts",
+      "mock-i18n.ts",
+      "mock-react-native-localize.ts",
+      "mock-reactotron",
+      "__snapshots__"
+    ]
+    mocksToRemove.map(mock => filesystem.remove(`${process.cwd()}/test/${mock}`))
   }
   spinner.stop()
 
