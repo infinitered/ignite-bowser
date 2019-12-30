@@ -153,6 +153,16 @@ export const install = async (toolbox: IgniteToolbox) => {
   includeDetox && filesystem.copy(`${boilerplatePath}/e2e`, `${process.cwd()}/e2e`, copyOpts)
   if (!useExpo) {
     filesystem.remove(`${process.cwd()}/app/theme/fonts/index.ts`)
+  } else {
+    const mocksToRemove = [
+      "__snapshots__",
+      "mock-async-storage.ts",
+      "mock-i18n.ts",
+      "mock-react-native-localize.ts",
+      "mock-reactotron.ts",
+      "setup.ts",
+    ]
+    mocksToRemove.map(mock => filesystem.remove(`${process.cwd()}/test/${mock}`))
   }
   spinner.stop()
 
@@ -176,6 +186,7 @@ export const install = async (toolbox: IgniteToolbox) => {
       target: "app/services/reactotron/reactotron.ts",
     },
     { template: "app/utils/storage/storage.ts.ejs", target: "app/utils/storage/storage.ts" },
+    { template: "app/utils/storage/storage.test.ts.ejs", target: "app/utils/storage/storage.test.ts" },
     {
       template: "app/screens/welcome-screen/welcome-screen.tsx.ejs",
       target: "app/screens/welcome-screen/welcome-screen.tsx",
@@ -184,6 +195,7 @@ export const install = async (toolbox: IgniteToolbox) => {
       template: "app/screens/demo-screen/demo-screen.tsx.ejs",
       target: "app/screens/demo-screen/demo-screen.tsx",
     },
+    { template: "storybook/storybook.tsx.ejs", target: "storybook/storybook.tsx" },
     { template: "bin/postInstall", target: "bin/postInstall" },
   ]
   const templateProps = {
@@ -307,11 +319,15 @@ export const install = async (toolbox: IgniteToolbox) => {
       )
     }
 
-    ignite.log("patching package.json to add solidarity postInstall")
-    ignite.patchInFile(`${process.cwd()}/package.json`, {
-      replace: `"postinstall": "solidarity",`,
-      insert: `"postinstall": "node ./bin/postInstall",`,
-    })
+    if (!useExpo) {
+      ignite.log("patching package.json to add solidarity postInstall")
+      ignite.patchInFile(`${process.cwd()}/package.json`, {
+        replace: `"postinstall": "solidarity",`,
+        insert: `"postinstall": "node ./bin/postInstall",`,
+      })
+    } else {
+      filesystem.remove(`${process.cwd()}/bin/postInstall`)
+    }
   } catch (e) {
     ignite.log(e)
     print.error(`
