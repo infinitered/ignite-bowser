@@ -155,14 +155,14 @@ export const install = async (toolbox: IgniteToolbox) => {
     filesystem.remove(`${process.cwd()}/app/theme/fonts/index.ts`)
   } else {
     const mocksToRemove = [
+      "__snapshots__",
       "mock-async-storage.ts",
       "mock-i18n.ts",
       "mock-react-native-localize.ts",
-      "mock-reactotron",
-      "__snapshots__"
+      "mock-reactotron.ts",
+      "setup.ts",
     ]
     mocksToRemove.map(mock => filesystem.remove(`${process.cwd()}/test/${mock}`))
-    filesystem.remove(`${process.cwd()}/bin/postInstall`)
   }
   spinner.stop()
 
@@ -195,6 +195,7 @@ export const install = async (toolbox: IgniteToolbox) => {
       template: "app/screens/demo-screen/demo-screen.tsx.ejs",
       target: "app/screens/demo-screen/demo-screen.tsx",
     },
+    { template: "storybook/storybook.tsx.ejs", target: "storybook/storybook.tsx" },
     { template: "bin/postInstall", target: "bin/postInstall" },
   ]
   const templateProps = {
@@ -318,11 +319,15 @@ export const install = async (toolbox: IgniteToolbox) => {
       )
     }
 
-    ignite.log("patching package.json to add solidarity postInstall")
-    ignite.patchInFile(`${process.cwd()}/package.json`, {
-      replace: `"postinstall": "solidarity",`,
-      insert: `"postinstall": "node ./bin/postInstall",`,
-    })
+    if (!useExpo) {
+      ignite.log("patching package.json to add solidarity postInstall")
+      ignite.patchInFile(`${process.cwd()}/package.json`, {
+        replace: `"postinstall": "solidarity",`,
+        insert: `"postinstall": "node ./bin/postInstall",`,
+      })
+    } else {
+      filesystem.remove(`${process.cwd()}/bin/postInstall`)
+    }
   } catch (e) {
     ignite.log(e)
     print.error(`

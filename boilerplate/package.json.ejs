@@ -25,7 +25,7 @@
     "prepare": "npm-run-all patch hack:*",
     "storybook": "storybook start -p 9001 --skip-packager",
 <% if (props.useExpo) { -%>
-    "test: "jest",
+    "test": "jest",
 <% } -%>
     "adb": "adb reverse tcp:9090 tcp:9090 && adb reverse tcp:3000 tcp:3000 && adb reverse tcp:9001 tcp:9001 && adb reverse tcp:8081 tcp:8081"
   },
