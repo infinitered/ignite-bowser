@@ -8,10 +8,10 @@
 //
 // It's easier just to leave it here.
 import App from "./app/app.tsx"
-<% if (props.useExpo) { -%>
-export default App
-<% } else { -%>
+<% if (!props.useExpo) { -%>
 import { AppRegistry } from "react-native"
+<% } -%>
+
 /**
  * This needs to match what's found in your app_delegate.m and MainActivity.java.
  */
@@ -29,5 +29,9 @@ if (__DEV__) {
 
   if (SHOW_STORYBOOK) RootComponent = StorybookUIRoot
 }
+
+<% if (props.useExpo) { -%>
+export default RootComponent
+<% } else { -%>
 AppRegistry.registerComponent(APP_NAME, () => RootComponent)
 <% } -%>
