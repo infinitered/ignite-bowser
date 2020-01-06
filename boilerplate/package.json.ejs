@@ -23,7 +23,7 @@
     <%# We'll add to postinstall later in boilerplate, but it needs to be simple to start with. -%>
     "postinstall": "solidarity",
     "prepare": "npm-run-all patch hack:*",
-    "storybook": "storybook start -p 9001 --skip-packager",
+    "storybook": "start-storybook -p 9001 -c ./storybook",
     "adb": "adb reverse tcp:9090 tcp:9090 && adb reverse tcp:3000 tcp:3000 && adb reverse tcp:9001 tcp:9001 && adb reverse tcp:8081 tcp:8081"
   },
   "dependencies": {
@@ -48,15 +48,9 @@
   "devDependencies": {
     "@babel/plugin-proposal-decorators": "^7.0.0",
     "@babel/plugin-proposal-optional-catch-binding": "^7.0.0",
-    "@storybook/addon-storyshots": "5.1.11",
-    "@storybook/react-native": "5.1.11",
-<%# Work around https://github.com/storybookjs/storybook/issues/5817
-    which results in the "can yarn install and pass tests" test failing
-    with "Cannot find module 'emotion-theming' from 'index.js'".
-    If you upgrade packages, try removing these two: -%>
-    "@emotion/core": "^10.0.15",
-    "emotion-theming": "^10.0.14",
-
+    "@storybook/addon-storyshots": "5.2.8",
+    "@storybook/react-native": "5.2.8",
+    "@storybook/react-native-server": "5.2.8",
     "@types/jest": "24.0.18",
     "@types/ramda": "0.26.18",
     "@types/react": "16.8.24",
