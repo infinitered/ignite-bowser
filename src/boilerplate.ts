@@ -349,7 +349,11 @@ export const install = async (toolbox: IgniteToolbox) => {
         react-native-screens \
         react-native-keychain \
         react-navigation \
-        react-navigation-stack`)
+        react-navigation-stack\
+        @react-native-community/masked-view \
+        react-native-safe-area-context \
+        react-native-safe-area-view \
+      `)
   }
   spinner.succeed(`Installed dependencies`)
 
