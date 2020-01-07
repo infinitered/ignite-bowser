@@ -50,6 +50,56 @@ You should see an app that looks like the screenshot above!
 
 Next step -- follow this tutorial to learn how to create a trivia app with Ignite Bowser: https://shift.infinite.red/creating-a-trivia-app-with-ignite-bowser-part-1-1987cc6e93a1
 
+## Generators
+The true gem of Ignite Bowser. Generators help you scaffold your app very quick, be it for a poc, a demo or a production app, generators are there to save you time and help you with the basic structure for your app.
+```
+ignite generate
+```
+Will give you information of what generators are present
+
+### Component generator
+This is the generator you will be using most often.
+There are 2 flavors:
+- React.FunctionComponent i.e "hooks enabled component"
+- Stateless function aka the "classic ignite-bowser component"
+```
+ignite generate component awesome-component
+```
+- Creates the component/function
+- Creates a style file
+- Creates a storybook test  
+- Will make the required additions to configuration files.
+
+You can also bypass the choice by providing which component type you want to create:
+```
+ignite generate component awesome-component --function-component
+```
+Or
+```
+ignite generate component awesome-component --stateless-function
+```
+### Screen generator 
+Generates a "hooks enabled" screen.
+```
+ignite generate screen awesome-screen
+```
+- Creates the screen
+- Will make the required additions to configuration files.
+ 
+ 
+### Model generator
+Creates a Mobx-State-Tree model
+```
+ignite generate model awesome-model
+```
+- Creates the model
+- Creates a unit test file
+- Will make the required additions to configuration files.
+
+### Advanced
+The built in generators aren't enough? Fret not, you can create your own generators that suit your project/company. These generators can live with the default ignite-bowser generators.
+Please refer to the [documentation on how to create your own generators.](https://github.com/infinitered/ignite/blob/master/docs/advanced-guides/creating-generators.md)
+ 
 ## Explanation of folder structure
 
 The Ignite Bowser boilerplate project's structure will look similar to this:
