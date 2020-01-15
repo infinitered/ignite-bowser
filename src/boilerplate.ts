@@ -269,8 +269,6 @@ export const install = async (toolbox: IgniteToolbox) => {
     filesystem.write("package.json", newPackage, { jsonIndent: 2 })
   }
   await mergePackageJsons()
-  // spinner.stop()
-  spinner.stop()
 
   // pass long the debug flag if we're running in that mode
   const debugFlag = parameters.options.debug ? "--debug" : ""
@@ -278,6 +276,8 @@ export const install = async (toolbox: IgniteToolbox) => {
   try {
     // boilerplate adds itself to get plugin.js/generators etc
     // Could be directory, npm@version, or just npm name.  Default to passed in values
+    spinner.stop()
+
     ignite.log("adding boilerplate to project for generator commands")
 
     const boilerplate = parameters.options.b || parameters.options.boilerplate || "ignite-bowser"
@@ -343,7 +343,7 @@ export const install = async (toolbox: IgniteToolbox) => {
   // install dependencies for Expo
   if (useExpo) {
     ignite.log("adding Expo-compatible dependencies")
-    await system.run(`expo install \
+    await system.run(`npx expo-cli install \
         expo-localization \
         react-native-gesture-handler \
         react-native-screens \
@@ -359,6 +359,8 @@ export const install = async (toolbox: IgniteToolbox) => {
 
   // run react-native link to link assets
   if (!useExpo) {
+    spinner.text = "linking assets"
+    spinner.start()
     await system.exec("npx react-native link")
     spinner.succeed(`Linked assets`)
   }
@@ -374,8 +376,10 @@ export const install = async (toolbox: IgniteToolbox) => {
 
   // let eslint and prettier clean things up
   ignite.log("linting")
+  spinner.text = "linting"
   await system.spawn(`${ignite.useYarn ? "yarn" : "npm run"} lint`)
   ignite.log("formatting")
+  spinner.text = "formatting"
   await system.spawn(`${ignite.useYarn ? "yarn" : "npm run"} format`)
   spinner.succeed("Linted and formatted")
 
@@ -399,8 +403,8 @@ export const install = async (toolbox: IgniteToolbox) => {
 
       cd ${name}
       ${runInfo}
-      ignite --help
-      ignite doctor
+      npx ignite-cli --help
+      npx ignite-cli doctor
 
     ${cyan("Need additional help? Join our Slack community at http://community.infinite.red.")}
 

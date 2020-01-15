@@ -10,21 +10,23 @@ type ExpoInstallParams = { name: string; toolbox: IgniteToolbox }
 export const expo = {
   async install({ name, toolbox }: ExpoInstallParams): Promise<IgniteRNInstallResult> {
     const { system, ignite, print, filesystem, parameters } = toolbox
-    const { gray } = print.colors
-
-    const printInfo = info =>
-      print.info(
-        gray(
-          "  " +
-            info
-              .split("\n")
-              .map(s => s.trim())
-              .join("\n  "),
-        ),
-      )
+    
+    // const { gray } = print.colors
+    // const printInfo = info =>
+    //   print.info(
+    //     gray(
+    //       "  " +
+    //         info
+    //           .split("\n")
+    //           .map(s => s.trim())
+    //           .join("\n  "),
+    //     ),
+    //   )
 
     const perfStart = new Date().getTime()
 
+    const spinner = print.spin(`checking expo CLI status and version`)
+    
     let expoVersion: string
     try {
       const cmd = `npx expo-cli --version`
@@ -32,19 +34,11 @@ export const expo = {
       expoVersion = (await system.run(cmd)).trim()
     } catch (e) {
       ignite.log(e)
-
-      printInfo(`
-        You don't appear to have Expo CLI installed.
-        Run \`npm install -g expo-cli\` or \`yarn global add expo-cli\` to install and try again.
-      `)
       process.exit(exitCodes.EXPO_NOT_FOUND)
     }
 
-    const spinner = print.spin(
-      `initializing ${print.colors.cyan(
-        `Expo app (CLI version ${expoVersion})`,
-      )} ${print.colors.muted(" (30 seconds-ish)")}`,
-    )
+    const expoVersionString = print.colors.cyan(`Expo app (CLI version ${expoVersion})`)
+    spinner.text = `initializing ${expoVersionString} ${print.colors.muted(" (30 seconds-ish)")}`
     if (parameters.options.debug) spinner.stop()
 
     const cmd = `npx expo-cli init ${name} --name=${name} --template=blank ${
