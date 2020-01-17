@@ -2,7 +2,7 @@ import { pathOr, is } from "ramda"
 import { GluegunRunContext } from "gluegun"
 
 // the default React Native version for this boilerplate
-export const REACT_NATIVE_VERSION = "0.61.2"
+export const REACT_NATIVE_VERSION = "0.61.5"
 
 // where the version lives under gluegun
 const pathToVersion = ["parameters", "options", "react-native-version"]
