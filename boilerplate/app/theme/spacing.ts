@@ -1,7 +1,7 @@
 /**
  * NOTE TO DEVS:
  *
- * Spacing should consistent and whitespace thought of as a first class technique up
+ * Spacing should be consistent and whitespace thought of as a first class technique up
  * there with color and typefaces.
  *
  * Which type of scale you use is based on the design.
