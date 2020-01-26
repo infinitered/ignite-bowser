@@ -5,13 +5,11 @@
  *
  * We mainly want this command to allow for the "ignite g" alias.
  */
-module.exports = {
-  alias: ['g'],
-  run: () => {
-    throw new Error(`
-      Error with "ignite generate" in ignite-bowser
-      
-      please report issue at https://github.com/infinitered/ignite
-    `)
-  }
+export const alias = ['g']
+export const run = () => {
+  throw new Error(`
+    Error with "ignite generate" in ignite-bowser
+
+    please report issue at https://github.com/infinitered/ignite
+  `)
 }

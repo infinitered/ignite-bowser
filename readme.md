@@ -36,7 +36,7 @@ yarn global add ignite-cli
 ```
 
 **Note:**
-Make sure you have [CocoaPods](https://guides.cocoapods.org/using/getting-started.html) installed because otherwise React Native installation will fail.
+Make sure you have [CocoaPods](https://guides.cocoapods.org/using/getting-started.html) installed because otherwise, React Native installation will fail.
 
 Then spin up a new Bowser-powered React Native app:
 
@@ -44,12 +44,90 @@ Then spin up a new Bowser-powered React Native app:
 ignite new MyApp -b bowser
 ```
 
-`cd` into your new app and run `react-native run-ios` or `react-native run-android` (note: in Android you'll need an Android emulator running or an Android phone attached).
+`cd` into your new app and run `react-native run-ios` or `react-native run-android` (note: in Android, you'll need an Android emulator running or an Android phone attached).
 
 You should see an app that looks like the screenshot above!
 
 Next step -- follow this tutorial to learn how to create a trivia app with Ignite Bowser: https://shift.infinite.red/creating-a-trivia-app-with-ignite-bowser-part-1-1987cc6e93a1
 
+## Generators
+
+The true gem of Ignite Bowser. Generators help you scaffold your app very quickly, be it for a proof-of-concept, a demo, or a production app. Generators are there to save you time, keep your code consistent, and help you with the basic structure of your app.
+
+```
+ignite generate
+```
+
+Will give you information of what generators are present.
+
+### Component generator
+
+This is the generator you will be using most often. There are 2 flavors:
+
+- React.FunctionComponent (i.e. "hooks enabled component")
+- Stateless function (i.e. the "classic ignite-bowser component")
+
+```
+ignite generate component awesome-component
+```
+
+- Creates the component/function
+- Creates a style file
+- Creates a storybook test  
+- Will make the required additions to configuration files.
+
+You can also bypass the choice by providing which component type you want to create:
+
+```
+ignite generate component awesome-component --function-component
+```
+
+Or
+
+```
+ignite generate component awesome-component --stateless-function
+```
+
+### Screen generator 
+
+Generates a "hooks enabled" screen.
+
+```
+ignite generate screen awesome-screen
+```
+
+- Creates the screen
+- Will make the required additions to configuration files.
+
+### Navigator generator
+
+Helps you in a "wizard-style" create a new [react-navigation](https://reactnavigation.org/docs/en/getting-started.html) navigator.
+
+```
+ignite generate navigator awesome-navigator
+```
+
+- Creates the navigator
+- Will make the required additions to configuration files.
+  
+### Model generator
+
+Creates a Mobx-State-Tree model.
+
+```
+ignite generate model awesome-model
+```
+
+- Creates the model
+- Creates a unit test file
+- Will make the required additions to configuration files.
+
+### Advanced
+
+The built in generators aren't enough? Fret not, you can create your own generators that suit your project/company. These generators can live with the default ignite-bowser generators.
+
+Please refer to the [documentation on how to create your own generators.](https://github.com/infinitered/ignite/blob/master/docs/advanced-guides/creating-generators.md)
+ 
 ## Explanation of folder structure
 
 The Ignite Bowser boilerplate project's structure will look similar to this:
@@ -136,7 +214,7 @@ This is a great place to put miscellaneous helpers and utilities. Things like da
 
 ### ./ignite directory
 
-The `ignite` directory stores all things Ignite, including CLI and boilerplate items. Here you will find generators, plugins and examples to help you get started with React Native.
+The `ignite` directory stores all things Ignite, including CLI and boilerplate items. Here you will find generators, plugins, and examples to help you get started with React Native.
 
 ### ./storybook directory
 
@@ -150,7 +228,7 @@ This directory will hold your Jest configs and mocks, as well as your [storyshot
 
 ## Why this stack?
 
-If you've used Ignite Andross (the first Ignite stack), you know we formerly used Redux for state management, as does much of the community. However, we encountered some pain points with Redux so went in search of a different solution to meet our needs and landed on `mobx-state-tree`. We find that it’s a great middle ground between completely structured (like `redux`) and completely freestyle (like `mobx`). It brings more than just state-management to the table as well (such as dependency injection, serialization, and lifecycle events).
+If you've used Ignite Andross (the first Ignite stack), you know we formerly used Redux for state management, as does much of the community. However, we encountered some pain points with Redux so went in search of a different solution to meet our needs and landed on `mobx-state-tree`. We find that it’s a great middle-ground between completely structured (like `redux`) and completely freestyle (like `mobx`). It brings more than just state-management to the table as well (such as dependency injection, serialization, and lifecycle events).
 
 ### Some Highlights of MST
 
@@ -163,7 +241,7 @@ MST is...
 - Streamlined
   - No more `actionTypes`, `actionCreators`, or `reducers`
   - You don't have to declare your usage intentions with `mapStateToProps`; they are inferred
-  - Side-effects are built in; no need for 3rd party libraries like `redux-saga`, `redux-observable`, or `redux-thunk`
+  - Side-effects are built-in; no need for 3rd party libraries like `redux-saga`, `redux-observable`, or `redux-thunk`
   - Immutability is built-in - no need for `immutable.js` or `seamless-immutable`
   - `types.compose` and `model.extend` allow for easy code-sharing of common patterns
 - More than state management
@@ -182,7 +260,7 @@ We also recognize no state management solution is perfect. MST has some known do
 
 - Integration with TypeScript is clunky at times. MST's own typing system is sometimes at odds with what TypeScript wants
 - `mobx` and `mobx-state-tree` both seem to have "magic" or "sorcery" that makes issues less straightforward to debug because you don't always have a clear picture of what's happening (but using [Reactotron](https://github.com/infinitered/reactotron), which has `mobx-state-tree` support built-in, helps a lot). The [MobX docs](https://mobx.js.org/) can also help illumitate some of the magic.
-- The user base is small, so finding help on GitHub or Stack overflow is less convenient (however, the [Infinite Red Slack Community](https://community.infinite.red), as well as the [MobX State Tree Spectrum channel](https://spectrum.chat/mobx-state-tree) are both very helpful)
+- The user base is small, so finding help on GitHub or Stack overflow is less convenient (however, the [Infinite Red Slack Community](http://community.infinite.red), as well as the [MobX State Tree Spectrum channel](https://spectrum.chat/mobx-state-tree) are both very helpful)
 - Fatal errors are sometimes too-easily triggered and error messages can be verbose and hard to grok
 - The API has a large surface area and the docs tend to be technical and unfriendly
 
@@ -190,7 +268,7 @@ We also recognize no state management solution is perfect. MST has some known do
 
 MobX and MobX State Tree can be a lot to learn if you're coming from Redux, so here are a few of our favorite resources to learn the basics:
 
-- Be sure to check out the official [Getting Started](https://github.com/mobxjs/mobx-state-tree/blob/master/docs/getting-started.md) guide for MobX State Tree.
+- Be sure to check out the official [Getting Started](https://mobx-state-tree.js.org/intro/getting-started) guide for MobX State Tree.
 
 - There is also a free [egghead.io course](https://egghead.io/courses/manage-application-state-with-mobx-state-tree).
 
@@ -216,7 +294,7 @@ To keep your React Native app updated:
 
 To keep your Ignite Bowser based app updated:
 
-- [ignite-bowser-difff-purge](https://github.com/nirre7/ignite-bowser-diff-purge) To help you see the diffs between versions
+- [ignite-bowser-diff-purge](https://github.com/nirre7/ignite-bowser-diff-purge) To help you see the diffs between versions
 
 ## TypeScript
 

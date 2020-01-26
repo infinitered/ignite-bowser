@@ -1,16 +1,12 @@
 import * as React from "react"
 import { Image, ImageStyle, Platform, TextStyle, View, ViewStyle } from "react-native"
-import { NavigationScreenProps } from "react-navigation"
-import { Screen } from "../../components/screen"
-import { Text } from "../../components/text"
-import { Button } from "../../components/button"
-import { Wallpaper } from "../../components/wallpaper"
-import { Header } from "../../components/header"
+import { NavigationInjectedProps } from "react-navigation"
+import { BulletItem, Button, Header, Text, Screen, Wallpaper } from "../../components"
 import { color, spacing } from "../../theme"
-import { logoIgnite, heart } from "./"
-import { BulletItem } from "../../components/bullet-item"
 import { Api } from "../../services/api"
 import { save } from "../../utils/storage"
+export const logoIgnite = require("./logo-ignite.png")
+export const heart = require("./heart.png")
 
 const FULL: ViewStyle = { flex: 1 }
 const CONTAINER: ViewStyle = {
@@ -80,7 +76,7 @@ const HINT: TextStyle = {
   marginVertical: spacing[2],
 }
 
-export interface DemoScreenProps extends NavigationScreenProps<{}> {}
+export interface DemoScreenProps extends NavigationInjectedProps<{}> {}
 
 export const DemoScreen: React.FunctionComponent<DemoScreenProps> = props => {
   const goBack = React.useMemo(() => () => props.navigation.goBack(null), [props.navigation])
@@ -103,7 +99,7 @@ export const DemoScreen: React.FunctionComponent<DemoScreenProps> = props => {
               },
             },
           },
-          functionNames: function hello() {},
+          functionNames: function hello() { /* dummy function */ },
         },
         preview: "More control with display()",
         important: true,

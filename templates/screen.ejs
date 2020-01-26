@@ -1,10 +1,9 @@
 import * as React from "react"
 import { observer } from "mobx-react-lite"
 import { ViewStyle } from "react-native"
-import { Text } from "../../components/text"
-import { Screen } from "../../components/screen"
-// import { useStores } from "../../models/root-store"
-import { color } from "../../theme"
+import { Screen, Text } from "../components"
+// import { useStores } from "../models/root-store"
+import { color } from "../theme"
 import { NavigationScreenProps } from "react-navigation"
 
 export interface <%= props.pascalName %>Props extends NavigationScreenProps<{}> {

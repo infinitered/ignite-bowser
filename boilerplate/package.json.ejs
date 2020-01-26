@@ -23,51 +23,49 @@
     <%# We'll add to postinstall later in boilerplate, but it needs to be simple to start with. -%>
     "postinstall": "solidarity",
     "prepare": "npm-run-all patch hack:*",
-    "storybook": "storybook start -p 9001 --skip-packager",
+    "storybook": "start-storybook -p 9001 -c ./storybook",
     "adb": "adb reverse tcp:9090 tcp:9090 && adb reverse tcp:3000 tcp:3000 && adb reverse tcp:9001 tcp:9001 && adb reverse tcp:8081 tcp:8081"
-
   },
   "dependencies": {
     "@react-native-community/async-storage": "^1.5.1",
+    "@react-native-community/masked-view": "0.1.5",
     "apisauce": "1.0.3",
+    "i18n-js": "^3.0.11",
     "lodash.throttle": "4.1.1",
     "mobx": "^4.13.0",
     "mobx-react-lite": "^1.4.1",
     "mobx-state-tree": "^3.14.1",
     "ramda": "0.26.1",
     "react-native-localize": "^1.0.0",
-    "i18n-js": "^3.0.11",
+    "react-native-safe-area-context": "0.6.2",
+    "react-native-safe-area-view": "1.0.0",
     "react-native-gesture-handler": "<%= props.reactNativeGestureHandlerVersion %>",
     "react-native-keychain": "3.1.3",
     "react-native-splash-screen": "3.1.1",
-    "react-navigation": "3.11.1",
+    "react-navigation": "4.0.10",
+    "react-navigation-stack": "2.0.9",
     "reactotron-mst": "^3.1.1",
     "reactotron-react-native": "^4.0.0-beta.1",
-    "validate.js": "0.13.1"
+    "validate.js": "0.13.1",
+    "react-native-screens": "^2.0.0-alpha.6"
   },
   "devDependencies": {
     "@babel/plugin-proposal-decorators": "^7.0.0",
     "@babel/plugin-proposal-optional-catch-binding": "^7.0.0",
-    "@storybook/addon-storyshots": "5.1.11",
-    "@storybook/react-native": "5.1.11",
-<%# Work around https://github.com/storybookjs/storybook/issues/5817
-    which results in the "can yarn install and pass tests" test failing
-    with "Cannot find module 'emotion-theming' from 'index.js'".
-    If you upgrade packages, try removing these two: -%>
-    "@emotion/core": "^10.0.15",
-    "emotion-theming": "^10.0.14",
-
+    "@storybook/addon-storyshots": "5.2.8",
+    "@storybook/react-native": "5.2.8",
+    "@storybook/react-native-server": "5.2.8",
     "@types/jest": "24.0.18",
     "@types/ramda": "0.26.18",
     "@types/react": "16.8.24",
     "@types/react-native": "0.60.19",
-    "@types/react-navigation": "3.0.7",
     "@types/react-test-renderer": "16.8.3",
-    "@typescript-eslint/eslint-plugin": "^1.1.0",
-    "@typescript-eslint/parser": "^1.1.0",
+    "@typescript-eslint/eslint-plugin": "^2.11.0",
+    "@typescript-eslint/parser": "^2.11.0",
 <% if (props.includeDetox) { -%>
     "detox": "^14.0.1",
 <% } -%>
+    "eslint": "^6.6.0",
     "eslint-config-prettier": "^6.0.0",
     "eslint-config-standard": "^13.0.1",
     "eslint-plugin-import": "^2.15.0",
@@ -175,6 +173,7 @@
       "react/prop-types": "off",
       "react-native/no-raw-text": 0,
       "space-before-function-paren": 0,
+      "@typescript-eslint/ban-ts-ignore": 0,
       "@typescript-eslint/indent": 0,
       "@typescript-eslint/explicit-member-accessibility": 0,
       "@typescript-eslint/explicit-function-return-type": 0,

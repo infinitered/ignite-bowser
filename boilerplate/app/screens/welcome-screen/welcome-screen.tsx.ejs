@@ -1,13 +1,9 @@
 import * as React from "react"
 import { View, Image, ViewStyle, TextStyle, ImageStyle, SafeAreaView } from "react-native"
-import { NavigationScreenProps } from "react-navigation"
-import { Text } from "../../components/text"
-import { Button } from "../../components/button"
-import { Screen } from "../../components/screen"
-import { Wallpaper } from "../../components/wallpaper"
-import { Header } from "../../components/header"
+import { NavigationInjectedProps } from "react-navigation"
+import { Button, Header, Screen, Text, Wallpaper } from "../../components"
 import { color, spacing } from "../../theme"
-import { bowserLogo } from "./"
+const bowserLogo = require("./bowser.png")
 
 const FULL: ViewStyle = { flex: 1 }
 const CONTAINER: ViewStyle = {
@@ -78,7 +74,7 @@ const FOOTER_CONTENT: ViewStyle = {
   paddingHorizontal: spacing[4],
 }
 
-export interface WelcomeScreenProps extends NavigationScreenProps<{}> {}
+export interface WelcomeScreenProps extends NavigationInjectedProps<{}> {}
 
 export const WelcomeScreen: React.FunctionComponent<WelcomeScreenProps> = props => {
   const nextScreen = React.useMemo(() => () => props.navigation.navigate("demo"), [
