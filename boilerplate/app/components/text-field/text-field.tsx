@@ -2,7 +2,7 @@ import * as React from "react"
 import { View, TextInput, TextStyle, ViewStyle } from "react-native"
 import { color, spacing, typography } from "../../theme"
 import { translate } from "../../i18n"
-import { Text } from "../"
+import { Text } from "../text/text"
 import { TextFieldProps } from "./text-field.props"
 import { mergeAll, flatten } from "ramda"
 
