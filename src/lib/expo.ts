@@ -10,23 +10,11 @@ type ExpoInstallParams = { name: string; toolbox: IgniteToolbox }
 export const expo = {
   async install({ name, toolbox }: ExpoInstallParams): Promise<IgniteRNInstallResult> {
     const { system, ignite, print, filesystem, parameters } = toolbox
-    
-    // const { gray } = print.colors
-    // const printInfo = info =>
-    //   print.info(
-    //     gray(
-    //       "  " +
-    //         info
-    //           .split("\n")
-    //           .map(s => s.trim())
-    //           .join("\n  "),
-    //     ),
-    //   )
 
     const perfStart = new Date().getTime()
 
     const spinner = print.spin(`checking expo CLI status and version`)
-    
+
     let expoVersion: string
     try {
       const cmd = `npx expo-cli --version`
