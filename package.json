@@ -1,54 +1,139 @@
 {
-  "name": "ignite-bowser",
-  "description": "Infinite Red's hot boilerplate for React Native.",
-  "license": "MIT",
-  "repository": "infinitered/ignite-bowser",
-  "homepage": "https://github.com/infinitered/ignite-bowser",
-  "version": "4.13.0",
-  "files": [
-    "boilerplate.js",
-    "boilerplate",
-    "build",
-    "templates",
-    "plugin.js",
-    "readme.md"
-  ],
-  "author": {
-    "name": "Infinite Red",
-    "email": "npm@infinite.red",
-    "url": "https://github.com/infinitered/ignite-bowser"
-  },
+  "name": "ignite-navigation",
+  "version": "0.0.1",
+  "private": true,
   "scripts": {
+    "android": "react-native run-android",
+    "ios": "react-native run-ios",
+    "start": "react-native start",
+    "test": "jest",
+    "lint": "eslint index.js app --fix --ext .js,.ts,.tsx",
+    "compile": "tsc --noEmit -p . --pretty",
     "format": "npm-run-all format:*",
-    "format:js": "prettier --write '{.,**}/*.js'",
-    "format:json": "prettier --write '{.,**}/*.json'",
-    "format:md": "prettier --write '{.,**}/*.md'",
-    "format:ts": "prettier --write '{.,**}/*.{ts,tsx}'",
-    "lint": "eslint src test --ext .ts --fix",
-    "test": "yarn build && jest --runInBand && yarn lint && yarn clean",
-    "watch": "jest --runInBand --watch",
-    "coverage": "jest --runInBand --coverage",
-    "ci:lint": "eslint src test --ext .ts",
-    "ci:test": "yarn build && jest --runInBand && yarn ci:lint && yarn clean",
-    "ci:publish": "yarn build && yarn semantic-release && yarn clean",
-    "semantic-release": "semantic-release",
-    "build": "yarn compile",
-    "compile": "tsc -p .",
-    "clean": "rm -rf ./build"
+    "format:js": "prettier --write {.,**}/*.js",
+    "format:json": "prettier --write {.,**}/*.json",
+    "format:md": "prettier --write {.,**}/*.md",
+    "format:ts": "prettier --write {.,**}/*.{ts,tsx}",
+    "hack:types-react-native": "rimraf node_modules/@types/react-native/node_modules/@types",
+    "hack:types-react-test-renderer": "rimraf node_modules/@types/react-test-renderer/node_modules/@types",
+    "patch": "patch-package",
+    "postinstall": "node ./bin/postInstall",
+    "prepare": "npm-run-all patch hack:*",
+    "storybook": "start-storybook -p 9001 -c ./storybook",
+    "adb": "adb reverse tcp:9090 tcp:9090 && adb reverse tcp:3000 tcp:3000 && adb reverse tcp:9001 tcp:9001 && adb reverse tcp:8081 tcp:8081"
+  },
+  "dependencies": {
+    "@react-native-community/async-storage": "^1.5.1",
+    "@react-native-community/masked-view": "0.1.5",
+    "@react-navigation/native": "^5.0.0",
+    "@react-navigation/native-stack": "^5.0.0",
+    "apisauce": "1.0.3",
+    "i18n-js": "^3.0.11",
+    "lodash.throttle": "4.1.1",
+    "mobx": "^4.13.0",
+    "mobx-react-lite": "^1.4.1",
+    "mobx-state-tree": "^3.14.1",
+    "ramda": "0.26.1",
+    "react": "16.9.0",
+    "react-native": "0.61.2",
+    "react-native-gesture-handler": "^1.5.0",
+    "react-native-keychain": "3.1.3",
+    "react-native-localize": "^1.0.0",
+    "react-native-safe-area-context": "0.6.2",
+    "react-native-safe-area-view": "1.0.0",
+    "react-native-screens": "^2.0.0-alpha.6",
+    "react-native-splash-screen": "3.1.1",
+    "reactotron-mst": "^3.1.1",
+    "reactotron-react-native": "^4.0.0-beta.1",
+    "validate.js": "0.13.1"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.8.4",
+    "@babel/plugin-proposal-decorators": "^7.0.0",
+    "@babel/plugin-proposal-optional-catch-binding": "^7.0.0",
+    "@babel/runtime": "^7.8.4",
+    "@storybook/addon-storyshots": "5.2.8",
+    "@storybook/react-native": "5.2.8",
+    "@storybook/react-native-server": "5.2.8",
+    "@types/jest": "24.0.18",
+    "@types/ramda": "0.26.18",
+    "@types/react": "16.8.24",
+    "@types/react-native": "0.60.19",
+    "@types/react-test-renderer": "16.8.3",
+    "@typescript-eslint/eslint-plugin": "^2.11.0",
+    "@typescript-eslint/parser": "^2.11.0",
+    "babel-jest": "^25.1.0",
+    "eslint": "^6.6.0",
+    "eslint-config-prettier": "^6.0.0",
+    "eslint-config-standard": "^13.0.1",
+    "eslint-plugin-import": "^2.15.0",
+    "eslint-plugin-node": "^9.1.0",
+    "eslint-plugin-promise": "^4.0.1",
+    "eslint-plugin-react": "^7.12.4",
+    "eslint-plugin-react-native": "^3.6.0",
+    "eslint-plugin-standard": "^4.0.0",
+    "ignite-bowser": "^4.13.0",
+    "jest": "^25.1.0",
+    "jetifier": "^1.6.1",
+    "metro-react-native-babel-preset": "^0.58.0",
+    "npm-run-all": "4.1.5",
+    "patch-package": "6.1.2",
+    "postinstall-prepare": "1.0.1",
+    "prettier": "1.18.2",
+    "react-devtools-core": "3.6.3",
+    "react-native-dotenv": "^0.2.0",
+    "react-powerplug": "1.0.0",
+    "react-test-renderer": "16.9.0",
+    "rimraf": "2.6.3",
+    "solidarity": "2.3.1",
+    "typescript": "3.5.3"
+  },
+  "jest": {
+    "preset": "react-native",
+    "setupFiles": [
+      "<rootDir>/node_modules/react-native/jest/setup.js",
+      "<rootDir>/test/setup.ts"
+    ],
+    "testPathIgnorePatterns": [
+      "/node_modules/",
+      "/e2e"
+    ],
+    "transformIgnorePatterns": [
+      "node_modules/(?!(jest-)?react-native|react-native|@react-navigation|@storybook|@react-native-community)"
+    ]
+  },
+  "prettier": {
+    "printWidth": 100,
+    "semi": false,
+    "singleQuote": false,
+    "trailingComma": "all"
   },
   "eslintConfig": {
     "parser": "@typescript-eslint/parser",
     "extends": [
       "prettier",
       "plugin:@typescript-eslint/recommended",
+      "plugin:react/recommended",
+      "plugin:react-native/all",
       "standard"
     ],
     "parserOptions": {
-      "project": "./tsconfig.eslint.json"
+      "ecmaFeatures": {
+        "jsx": true
+      },
+      "project": "./tsconfig.json"
     },
     "plugins": [
-      "@typescript-eslint"
+      "@typescript-eslint",
+      "react",
+      "react-native"
     ],
+    "settings": {
+      "react": {
+        "pragma": "React",
+        "version": "detect"
+      }
+    },
     "globals": {
       "__DEV__": false,
       "jasmine": false,
@@ -67,7 +152,11 @@
       "no-unused-vars": 0,
       "no-undef": 0,
       "quotes": 0,
+      "react/no-unescaped-entities": 0,
+      "react/prop-types": "off",
+      "react-native/no-raw-text": 0,
       "space-before-function-paren": 0,
+      "@typescript-eslint/ban-ts-ignore": 0,
       "@typescript-eslint/indent": 0,
       "@typescript-eslint/explicit-member-accessibility": 0,
       "@typescript-eslint/explicit-function-return-type": 0,
@@ -77,72 +166,5 @@
       "@typescript-eslint/no-empty-interface": 0,
       "@typescript-eslint/no-var-requires": 0
     }
-  },
-  "prettier": {
-    "printWidth": 100,
-    "semi": false,
-    "singleQuote": false,
-    "trailingComma": "all"
-  },
-  "release": {
-    "plugins": [
-      "@semantic-release/commit-analyzer",
-      "@semantic-release/release-notes-generator",
-      "@semantic-release/npm",
-      "@semantic-release/github",
-      [
-        "@semantic-release/git",
-        {
-          "assets": "package.json",
-          "message": "chore(release): ${nextRelease.version} [skip ci]\n\n${nextRelease.notes}"
-        }
-      ]
-    ]
-  },
-  "devDependencies": {
-    "@semantic-release/git": "^7.0.17",
-    "@types/jest": "^24.0.19",
-    "@types/node": "^12.12.4",
-    "@types/ramda": "0.26.36",
-    "@typescript-eslint/eslint-plugin": "^2.11.0",
-    "@typescript-eslint/parser": "^2.11.0",
-    "babel-eslint": "^10.0.3",
-    "eslint": "^6.6.0",
-    "eslint-config-prettier": "^6.5.0",
-    "eslint-config-standard": "^14.1.0",
-    "eslint-plugin-import": "^2.18.2",
-    "eslint-plugin-node": "^10.0.0",
-    "eslint-plugin-promise": "^4.2.1",
-    "eslint-plugin-standard": "^4.0.1",
-    "fs-jetpack": "^2.2.3",
-    "gluegun": "^4.0.2",
-    "jest": "^24.9.0",
-    "npm-run-all": "4.1.5",
-    "prettier": "1.18.2",
-    "semantic-release": "^15.13.28",
-    "sinon": "^7.5.0",
-    "tempy": "^0.3.0",
-    "ts-jest": "^24.1.0",
-    "typescript": "^3.6.4"
-  },
-  "dependencies": {
-    "ramda": "^0.26.1",
-    "read-pkg-up": "^7.0.0"
-  },
-  "jest": {
-    "testPathIgnorePatterns": [
-      "/node_modules",
-      "/boilerplate"
-    ],
-    "testEnvironment": "node",
-    "transform": {
-      "^.+\\.ts$": "ts-jest"
-    },
-    "moduleFileExtensions": [
-      "ts",
-      "tsx",
-      "js",
-      "jsx"
-    ]
   }
 }

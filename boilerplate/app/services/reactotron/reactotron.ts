@@ -5,6 +5,7 @@ import { onSnapshot } from "mobx-state-tree"
 import { ReactotronConfig, DEFAULT_REACTOTRON_CONFIG } from "./reactotron-config"
 import { mst } from "reactotron-mst"
 import { clear } from "../../utils/storage"
+import { RootNavigation } from "../../navigation"
 
 // Teach TypeScript about the bad things we want to do.
 declare global {
@@ -150,12 +151,22 @@ export class Reactotron {
       })
 
       Tron.onCustomCommand({
-        title: "Reset Navigation Store",
-        description: "Resets the navigation store",
+        title: "Reset Navigation State",
+        description: "Resets the navigation state",
         command: "resetNavigation",
         handler: () => {
-          console.tron.log("resetting navigation store")
-          this.rootStore.navigationStore.reset()
+          console.tron.log("resetting navigation state")
+          RootNavigation.resetRoot({ routes: [] })
+        },
+      })
+
+      Tron.onCustomCommand({
+        title: "Go Back",
+        description: "Goes back",
+        command: "goBack",
+        handler: () => {
+          console.tron.log("Going back")
+          RootNavigation.goBack()
         },
       })
 

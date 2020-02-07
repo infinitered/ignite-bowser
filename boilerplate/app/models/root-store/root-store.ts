@@ -1,12 +1,9 @@
 import { Instance, SnapshotOut, types } from "mobx-state-tree"
-import { NavigationStoreModel } from "../../navigation/navigation-store"
 
 /**
  * A RootStore model.
  */
-export const RootStoreModel = types.model("RootStore").props({
-  navigationStore: types.optional(NavigationStoreModel, {}),
-})
+export const RootStoreModel = types.model("RootStore").props({})
 
 /**
  * The RootStore instance.
