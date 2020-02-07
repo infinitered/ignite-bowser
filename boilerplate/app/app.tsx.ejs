@@ -71,7 +71,13 @@ export const App: React.FunctionComponent<{}> = () => {
    */
   const routeNameRef = useRef()
   const onNavigationStateChange = state => {
+    const previousRouteName = routeNameRef.current
     const currentRouteName = getActiveRouteName(state)
+
+    if (previousRouteName !== currentRouteName) {
+      // track screens.
+      __DEV__ && console.tron.log(currentRouteName)
+    }
 
     // Save the current route name for later comparision
     routeNameRef.current = currentRouteName
