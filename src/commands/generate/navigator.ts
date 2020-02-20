@@ -17,7 +17,7 @@ export const run = async function(toolbox: GluegunToolbox) {
 
   // prettier-ignore
   const navigatorTypes = {
-    Stack: "createStackNavigator",
+    Stack: "createNativeStackNavigator",
     Tab: "createBottomTabNavigator",
     Switch: "createSwitchNavigator",
     Drawer: "createDrawerNavigator",
@@ -40,7 +40,7 @@ export const run = async function(toolbox: GluegunToolbox) {
   }
 
   // ensure react-navigation is installed
-  if (Object.keys(packageJson.dependencies).includes("react-navigation") === false) {
+  if (Object.keys(packageJson.dependencies).filter((s) => s.startsWith("@react-navigation/") )) {
     print.error("This generator only works with react-navigation.")
     return
   }
@@ -127,7 +127,7 @@ export const run = async function(toolbox: GluegunToolbox) {
   const jobs = [
     {
       template: `navigator.ejs`,
-      target: `app/navigation/${navigatorName}.ts`,
+      target: `app/navigation/${navigatorName}.tsx`,
     },
   ]
 
@@ -136,7 +136,7 @@ export const run = async function(toolbox: GluegunToolbox) {
 
   // import screens/navigators to newly created navigator
   if (!!pascalScreens.length || !!pascalNavigators.length) {
-    const navFilePath = `${process.cwd()}/app/navigation/${navigatorName}.ts`
+    const navFilePath = `${process.cwd()}/app/navigation/${navigatorName}.tsx`
 
     if (!filesystem.exists(navFilePath)) {
       const msg =
