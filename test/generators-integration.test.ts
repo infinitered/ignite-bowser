@@ -96,7 +96,9 @@ describe("a generated app", () => {
   test("generates a screen", async () => {
     const simpleScreen = "test"
     await execaShell(`${IGNITE_COMMAND} g screen ${simpleScreen}`, { preferLocal: false })
-    expect(jetpack.exists(`app/screens/${simpleScreen}-screen.tsx`)).toBe("file")
+    expect(jetpack.exists(`app/screens/${simpleScreen}-screen/${simpleScreen}-screen.tsx`)).toBe(
+      "file",
+    )
     const lint = await execa("npm", ["-s", "run", "lint"])
     expect(lint.stderr).toBe("")
   })
