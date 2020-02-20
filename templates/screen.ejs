@@ -1,13 +1,14 @@
 import React, { FunctionComponent as Component } from "react"
 import { observer } from "mobx-react-lite"
 import { ViewStyle } from "react-native"
-import { Screen, Text } from "../components"
+import { Screen, Text } from "../../components"
 // import { useNavigation } from "@react-navigation/native"
-// import { useStores } from "../models"
-import { color } from "../theme"
+// import { useStores } from "../../models"
+import { color } from "../../theme"
 
 const ROOT: ViewStyle = {
   backgroundColor: color.palette.black,
+  flex: 1,
 }
 
 export const <%= props.pascalName %>: Component = observer(function <%= props.pascalName %>() {
@@ -15,12 +16,12 @@ export const <%= props.pascalName %>: Component = observer(function <%= props.pa
   // const { someStore, anotherStore } = useStores()
   // OR
   // const rootStore = useStores()
-  
+
   // Pull in navigation via hook
   // const navigation = useNavigation()
   return (
     <Screen style={ROOT} preset="scroll">
-      <Text preset="header" tx="<%= props.camelName %>.header" />
+      <Text preset="header" text="<%= props.camelName %>" />
     </Screen>
   )
 })
