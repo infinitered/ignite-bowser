@@ -4,9 +4,10 @@ import { ViewStyle } from "react-native"
 import { Screen, Text } from "../components"
 // import { useStores } from "../models/root-store"
 import { color } from "../theme"
-import { NavigationScreenProps } from "react-navigation"
+import { NavigationScreenProp } from "react-navigation"
 
-export interface <%= props.pascalName %>Props extends NavigationScreenProps<{}> {
+export interface <%= props.pascalName %>Props {
+  navigation: NavigationScreenProp<{}>
 }
 
 const ROOT: ViewStyle = {

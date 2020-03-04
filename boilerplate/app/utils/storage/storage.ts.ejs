@@ -1,4 +1,8 @@
+<% if (props.useExpo) { -%>
+import { AsyncStorage } from "react-native"
+<% } else { -%>
 import AsyncStorage from "@react-native-community/async-storage"
+<% } -%>
 
 /**
  * Loads a string from storage.
