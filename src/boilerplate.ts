@@ -186,7 +186,10 @@ export const install = async (toolbox: IgniteToolbox) => {
       target: "app/services/reactotron/reactotron.ts",
     },
     { template: "app/utils/storage/storage.ts.ejs", target: "app/utils/storage/storage.ts" },
-    { template: "app/utils/storage/storage.test.ts.ejs", target: "app/utils/storage/storage.test.ts" },
+    {
+      template: "app/utils/storage/storage.test.ts.ejs",
+      target: "app/utils/storage/storage.test.ts",
+    },
     {
       template: "app/screens/welcome-screen/welcome-screen.tsx.ejs",
       target: "app/screens/welcome-screen/welcome-screen.tsx",
@@ -281,7 +284,9 @@ export const install = async (toolbox: IgniteToolbox) => {
     ignite.log("adding boilerplate to project for generator commands")
 
     const boilerplate = parameters.options.b || parameters.options.boilerplate || "ignite-bowser"
-    await system.exec(`ignite add ${boilerplate} ${debugFlag}`)
+    const isIgniteInstalled = await system.which(`ignite`)
+    const igniteCommand = isIgniteInstalled ? "ignite" : "npx ignite-cli"
+    await system.exec(`${igniteCommand} add ${boilerplate} ${debugFlag}`)
 
     if (!useExpo) {
       ignite.log("adding react-native-gesture-handler")
