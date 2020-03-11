@@ -60,20 +60,36 @@ describe("a generated app", () => {
 
   test("generates a stateless function", async () => {
     const statelessFunction = "Stateless"
-    await execa(IGNITE, ["g", "component", statelessFunction, "--stateless-function"], { preferLocal: false })
-    expect(jetpack.exists(`app/components/${statelessFunction}/${statelessFunction}.tsx`)).toBe("file")
-    expect(jetpack.exists(`app/components/${statelessFunction}/${statelessFunction}.story.tsx`)).toBe("file")
-    expect(jetpack.exists(`app/components/${statelessFunction}/${statelessFunction}.styles.ts`)).toBe("file")
+    await execa(IGNITE, ["g", "component", statelessFunction, "--stateless-function"], {
+      preferLocal: false,
+    })
+    expect(jetpack.exists(`app/components/${statelessFunction}/${statelessFunction}.tsx`)).toBe(
+      "file",
+    )
+    expect(
+      jetpack.exists(`app/components/${statelessFunction}/${statelessFunction}.story.tsx`),
+    ).toBe("file")
+    expect(
+      jetpack.exists(`app/components/${statelessFunction}/${statelessFunction}.styles.ts`),
+    ).toBe("file")
     const lint = await execa("npm", ["-s", "run", "lint"])
     expect(lint.stderr).toBe("")
   })
 
   test("generates a function component", async () => {
     const functionComponent = "FunctionComponent"
-    await execa(IGNITE, ["g", "component", functionComponent, "--function-component"], { preferLocal: false })
-    expect(jetpack.exists(`app/components/${functionComponent}/${functionComponent}.tsx`)).toBe("file")
-    expect(jetpack.exists(`app/components/${functionComponent}/${functionComponent}.story.tsx`)).toBe("file")
-    expect(jetpack.exists(`app/components/${functionComponent}/${functionComponent}.styles.ts`)).toBe("file")
+    await execa(IGNITE, ["g", "component", functionComponent, "--function-component"], {
+      preferLocal: false,
+    })
+    expect(jetpack.exists(`app/components/${functionComponent}/${functionComponent}.tsx`)).toBe(
+      "file",
+    )
+    expect(
+      jetpack.exists(`app/components/${functionComponent}/${functionComponent}.story.tsx`),
+    ).toBe("file")
+    expect(
+      jetpack.exists(`app/components/${functionComponent}/${functionComponent}.styles.ts`),
+    ).toBe("file")
     const lint = await execa("npm", ["-s", "run", "lint"])
     expect(lint.stderr).toBe("")
   })
@@ -113,7 +129,7 @@ describe("a generated app", () => {
       ],
       { preferLocal: false },
     )
-    expect(jetpack.exists(`app/navigation/${simpleNavigation}-navigator.ts`)).toBe("file")
+    expect(jetpack.exists(`app/navigation/${simpleNavigation}-navigator.tsx`)).toBe("file")
     const lint = await execa("npm", ["-s", "run", "lint"])
     expect(lint.stderr).toBe("")
   })

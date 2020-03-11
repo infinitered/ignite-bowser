@@ -73,7 +73,7 @@ ignite generate component awesome-component
 
 - Creates the component/function
 - Creates a style file
-- Creates a storybook test  
+- Creates a storybook test
 - Will make the required additions to configuration files.
 
 You can also bypass the choice by providing which component type you want to create:
@@ -88,7 +88,7 @@ Or
 ignite generate component awesome-component --stateless-function
 ```
 
-### Screen generator 
+### Screen generator
 
 Generates a "hooks enabled" screen.
 
@@ -109,7 +109,7 @@ ignite generate navigator awesome-navigator
 
 - Creates the navigator
 - Will make the required additions to configuration files.
-  
+
 ### Model generator
 
 Creates a Mobx-State-Tree model.
@@ -127,7 +127,7 @@ ignite generate model awesome-model
 The built in generators aren't enough? Fret not, you can create your own generators that suit your project/company. These generators can live with the default ignite-bowser generators.
 
 Please refer to the [documentation on how to create your own generators.](https://github.com/infinitered/ignite/blob/master/docs/advanced-guides/creating-generators.md)
- 
+
 ## Explanation of folder structure
 
 The Ignite Bowser boilerplate project's structure will look similar to this:
@@ -322,4 +322,5 @@ If you are new to TypeScript, here are some of our favorite resources:
 [Ignite CLI](https://infinite.red/ignite), [Ignite Andross](https://github.com/infinitered/ignite-andross), and [Ignite Bowser](https://github.com/infinitered/ignite-bowser), as open source projects, are free to use and always will be. [Infinite Red](https://infinite.red/) offers premium Ignite CLI support and general mobile app design/development services. Email us at [hello@infinite.red](mailto:hello@infinite.red) to get in touch with us for more details.
 
 ## Contribute
+
 #### [Contribute to Ignite Bowser](https://github.com/infinitered/ignite-bowser/blob/master/.github/CONTRIBUTING.md) - Getting up and running for your first pull request
