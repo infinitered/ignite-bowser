@@ -11,6 +11,7 @@ function ScreenWithoutScrolling(props: ScreenProps) {
   const preset = presets["fixed"]
   const style = props.style || {}
   const backgroundStyle = props.backgroundColor ? { backgroundColor: props.backgroundColor } : {}
+  const insetStyle = { paddingTop: props.unsafe ? 0 : insets.top }
 
   return (
     <KeyboardAvoidingView
@@ -19,7 +20,7 @@ function ScreenWithoutScrolling(props: ScreenProps) {
       keyboardVerticalOffset={offsets[props.keyboardOffset || "none"]}
     >
       <StatusBar barStyle={props.statusBar || "light-content"} />
-      <View style={[preset.inner, style, { paddingTop: props.unsafe ? 0 : insets.top }]}>
+      <View style={[preset.inner, style, insetStyle]}>
         {props.children}
       </View>
     </KeyboardAvoidingView>
@@ -31,6 +32,7 @@ function ScreenWithScrolling(props: ScreenProps) {
   const preset = presets["scroll"]
   const style = props.style || {}
   const backgroundStyle = props.backgroundColor ? { backgroundColor: props.backgroundColor } : {}
+  const insetStyle = { paddingTop: props.unsafe ? 0 : insets.top }
 
   return (
     <KeyboardAvoidingView
@@ -39,7 +41,7 @@ function ScreenWithScrolling(props: ScreenProps) {
       keyboardVerticalOffset={offsets[props.keyboardOffset || "none"]}
     >
       <StatusBar barStyle={props.statusBar || "light-content"} />
-      <View style={[preset.outer, backgroundStyle, { paddingTop: props.unsafe ? 0 : insets.top }]}>
+      <View style={[preset.outer, backgroundStyle, insetStyle]}>
         <ScrollView
           style={[preset.outer, backgroundStyle]}
           contentContainerStyle={[preset.inner, style]}
