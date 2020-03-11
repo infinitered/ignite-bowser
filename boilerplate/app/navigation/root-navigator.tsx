@@ -37,3 +37,5 @@ export const RootNavigator = React.forwardRef<
     </NavigationContainer>
   )
 })
+
+RootNavigator.displayName = "RootNavigator"
