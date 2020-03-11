@@ -11,6 +11,7 @@ import { NavigationContainerRef } from "@react-navigation/native"
 <% } -%>
 import { contains } from "ramda"
 import { enableScreens } from "react-native-screens"
+import { SafeAreaProvider, initialWindowSafeAreaInsets } from "react-native-safe-area-context"
 
 import { RootNavigator, exitRoutes, setRootNavigation } from "./navigation"
 import { useBackButtonHandler } from "./navigation/use-back-button-handler"
@@ -134,11 +135,13 @@ export const App: React.FunctionComponent<{}> = () => {
   // otherwise, we're ready to render the app
   return (
     <RootStoreProvider value={rootStore}>
-      <RootNavigator
-        ref={navigationRef}
-        initialState={initialNavigationState}
-        onStateChange={onNavigationStateChange}
-      />
+      <SafeAreaProvider initialSafeAreaInsets={initialWindowSafeAreaInsets}>
+        <RootNavigator
+          ref={navigationRef}
+          initialState={initialNavigationState}
+          onStateChange={onNavigationStateChange}
+        />
+      </SafeAreaProvider>
     </RootStoreProvider>
   )
 }
