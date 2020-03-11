@@ -40,7 +40,7 @@ export const run = async function(toolbox: GluegunToolbox) {
   }
 
   // ensure react-navigation is installed
-  if (Object.keys(packageJson.dependencies).filter(s => s.startsWith("@react-navigation/"))) {
+  if (!Object.keys(packageJson.dependencies).filter(s => s.startsWith("@react-navigation/"))) {
     print.error("This generator only works with react-navigation.")
     return
   }
