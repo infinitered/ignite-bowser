@@ -25,7 +25,11 @@ Or watch a [live coding demo](https://www.youtube.com/watch?v=Pb8MWkQ9GOc) at Re
 
 ## Quick Start
 
-Prerequisite: [install the React Native CLI](https://facebook.github.io/react-native/docs/getting-started) -- choose React Native CLI, not Expo.
+Prerequisites: 
+
+- For classic React Native: [install the React Native CLI](https://facebook.github.io/react-native/docs/getting-started) -- choose React Native CLI
+- For Expo: [install the Expo CLI](https://facebook.github.io/react-native/docs/getting-started) -- choose Expo CLI
+  - *Note:* Expo support is experimental.
 
 First, install Ignite CLI globally:
 

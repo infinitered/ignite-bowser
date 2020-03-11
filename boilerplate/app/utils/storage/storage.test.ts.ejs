@@ -1,4 +1,22 @@
+<% if (props.useExpo) { -%>
+import { AsyncStorage } from "react-native"
+<% } else { -%>
 import AsyncStorage from "@react-native-community/async-storage"
+<% } -%>
+
+<% if (props.useExpo) { -%>
+jest.mock("react-native", () => ({
+  AsyncStorage: {
+    getItem: jest.fn(),
+    setItem: jest.fn(),
+    removeItem: jest.fn(),
+    multiSet: jest.fn(),
+    multiRemove: jest.fn(),
+    clear: jest.fn(),
+  },
+}))
+<% } -%>
+
 import { load, loadString, save, saveString, clear, remove } from "./storage"
 
 // fixtures
