@@ -37,7 +37,7 @@ describe("a generated app", () => {
   })
 
   test.only("can yarn install and pass tests", () => {
-    return expect( 
+    return expect(
       execaShell("yarn test 2>&1")
         .then(() => execaShell("git status --porcelain"))
         .then(({ stdout }) => expect(stdout).toEqual(""))
