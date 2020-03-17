@@ -33,7 +33,7 @@ describe("a generated app", () => {
 
   afterAll(() => {
     // clean up generated test app
-    // jetpack.remove(appTemp)
+    jetpack.remove(appTemp)
   })
 
   test.only("can yarn install and pass tests", () => {
@@ -44,7 +44,8 @@ describe("a generated app", () => {
         .then(() =>
           execaShell("yarn compile 2>&1 && yarn format 2>&1 && yarn lint --max-warnings 0 2>&1"),
         )
-        .then(() => execaShell("git status --porcelain")),
+        .then(() => execaShell("git status --porcelain"))
+        .catch(error => error),
     ).resolves.toMatchObject({ stdout: "" }) // will fail & show the yarn or test errors
   })
 
