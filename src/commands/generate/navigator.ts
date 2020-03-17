@@ -95,8 +95,7 @@ export const run = async function(toolbox: GluegunToolbox) {
   }
 
   // which screens to include in navigator?
-  let pascalNavigators =
-    parameters.options.navigators && parameters.options.navigators.split(",")
+  let pascalNavigators = parameters.options.navigators && parameters.options.navigators.split(",")
   if (!pascalNavigators) {
     const allKebabNavigators = list(`${process.cwd()}/app/navigation/`).filter(
       n => n.includes("-navigator.") && !n.includes("stateful-") && !n.includes("root-"),

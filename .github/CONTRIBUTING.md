@@ -1,6 +1,5 @@
 # Contributing to Ignite CLI
 
-
 We welcome all contributors to Ignite Bowser! This contributing guide will help you get up and running to submit your first pull request.
 
 Before submitting a pull request, you will want to make sure that your branch meets the following requirements:
@@ -34,7 +33,6 @@ $ ignite new <YOUR_BOILERPLATE_NAME> -b /full/path/to/boilerplate
 
 Now you're ready to check out a new branch and get hacking on Ignite Bowser!
 
-
 ## How to Build and Run App
 
 Refer to [this guide](https://github.com/infinitered/ignite/blob/master/.github/CONTRIBUTING.md#how-to-build-and-run-app)
@@ -48,7 +46,6 @@ To run tests from the ignite-bowser folder:
 ```
 $ yarn test
 ```
-
 
 ## ⛔ Make sure lint passes.
 

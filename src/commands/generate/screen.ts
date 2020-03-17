@@ -45,8 +45,8 @@ export const run = async function(toolbox: GluegunToolbox) {
 
   if (!filesystem.exists(barrelExportPath)) {
     const msg =
-    `No '${barrelExportPath}' file found. Can't export screen.` +
-    `Export your new screen manually.`
+      `No '${barrelExportPath}' file found. Can't export screen.` +
+      `Export your new screen manually.`
     print.warning(msg)
     process.exit(1)
   }
