@@ -1,10 +1,9 @@
 ---
 name: Bug report
 about: Create a report to help us improve
-title: ''
-labels: ''
-assignees: ''
-
+title: ""
+labels: ""
+assignees: ""
 ---
 
 ### Hey there! Ignite Bowser seems to be having a problem, eh?
@@ -18,10 +17,13 @@ get some help. If you've identified that it's really an Ignite Bowser issue, the
 - Delete these instructions! We don't want to look at them. ;)
 
 ---
+
 What's going on?
 
 ---
+
 Steps to reproduce
 
 ---
+
 `ignite doctor` results:

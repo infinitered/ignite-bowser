@@ -1,4 +1,7 @@
-import { getReactNativeVersion as get, REACT_NATIVE_VERSION as DEFAULT } from "../src/lib/react-native-version"
+import {
+  getReactNativeVersion as get,
+  REACT_NATIVE_VERSION as DEFAULT,
+} from "../src/lib/react-native-version"
 
 /**
  * Runs with a valid gluegun context and a staged version number.

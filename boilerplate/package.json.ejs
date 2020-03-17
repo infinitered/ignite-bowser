@@ -11,10 +11,10 @@
 <% } -%>
     "compile": "tsc --noEmit -p . --pretty",
     "format": "npm-run-all format:*",
-    "format:js": "prettier --write {.,**}/*.js",
-    "format:json": "prettier --write {.,**}/*.json",
-    "format:md": "prettier --write {.,**}/*.md",
-    "format:ts": "prettier --write {.,**}/*.{ts,tsx}",
+    "format:js": "prettier --write '**/*.js'",
+    "format:json": "prettier --write '**/*.json'",
+    "format:md": "prettier --write '**/*.md'",
+    "format:ts": "prettier --write '**/*.ts{,x}'",
     "hack:types-react-navigation": "rimraf node_modules/@types/react-navigation/node_modules/@types",
     "hack:types-react-native": "rimraf node_modules/@types/react-native/node_modules/@types",
     "hack:types-react-test-renderer": "rimraf node_modules/@types/react-test-renderer/node_modules/@types",
@@ -65,8 +65,8 @@
     "@types/react": "16.8.24",
     "@types/react-native": "0.60.19",
     "@types/react-test-renderer": "16.8.3",
-    "@typescript-eslint/eslint-plugin": "^2.11.0",
-    "@typescript-eslint/parser": "^2.11.0",
+    "@typescript-eslint/eslint-plugin": "^2.24.0",
+    "@typescript-eslint/parser": "^2.24.0",
 <% if (props.includeDetox) { -%>
     "detox": "^14.0.1",
 <% } -%>
@@ -92,7 +92,7 @@
     "react-powerplug": "1.0.0",
     "rimraf": "2.6.3",
     "solidarity": "2.3.1",
-    "typescript": "3.7.3"
+    "typescript": "3.8.3"
   },
   "jest": {
 <% if (!props.useExpo) { -%>

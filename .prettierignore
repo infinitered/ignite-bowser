@@ -1,0 +1,3 @@
+# Since prettier doesn't understand the templating mechanism, don't let it
+# reformat templated files
+*.ejs
