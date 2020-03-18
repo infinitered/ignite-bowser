@@ -36,7 +36,7 @@ describe("a generated app", () => {
     jetpack.remove(appTemp)
   })
 
-  test.only("can yarn install and pass tests", () => {
+  test("can yarn install and pass tests", () => {
     return expect(
       execaShell("yarn test 2>&1")
         .then(() => execaShell("git status --porcelain"))
@@ -51,13 +51,13 @@ describe("a generated app", () => {
 
   test("does have a linting script", () => {
     expect(jetpack.read("package.json", "json").scripts.lint).toBe(
-      "eslint index.js app --fix --ext .js,.ts,.tsx",
+      "eslint index.js app storybook test --fix --ext .js,.ts,.tsx",
     )
   })
 
   test("generates a stateless function", async () => {
     const statelessFunction = "Stateless"
-    await execa(IGNITE_COMMAND, ["g", "component", statelessFunction, "--stateless-function"], {
+    await execaShell(`${IGNITE_COMMAND} g component ${statelessFunction} --stateless-function`, {
       preferLocal: false,
     })
     expect(jetpack.exists(`app/components/${statelessFunction}/${statelessFunction}.tsx`)).toBe(
@@ -75,7 +75,7 @@ describe("a generated app", () => {
 
   test("generates a function component", async () => {
     const functionComponent = "FunctionComponent"
-    await execa(IGNITE_COMMAND, ["g", "component", functionComponent, "--function-component"], {
+    await execaShell(`${IGNITE_COMMAND} g component ${functionComponent} --function-component`, {
       preferLocal: false,
     })
     expect(jetpack.exists(`app/components/${functionComponent}/${functionComponent}.tsx`)).toBe(
@@ -93,7 +93,7 @@ describe("a generated app", () => {
 
   test("generates a screen", async () => {
     const simpleScreen = "test"
-    await execa(IGNITE_COMMAND, ["g", "screen", simpleScreen], { preferLocal: false })
+    await execaShell(`${IGNITE_COMMAND} g screen ${simpleScreen}`, { preferLocal: false })
     expect(jetpack.exists(`app/screens/${simpleScreen}-screen.tsx`)).toBe("file")
     const lint = await execa("npm", ["-s", "run", "lint"])
     expect(lint.stderr).toBe("")
@@ -101,7 +101,7 @@ describe("a generated app", () => {
 
   test("generates a model", async () => {
     const simpleModel = "test"
-    await execa(IGNITE_COMMAND, ["g", "model", simpleModel], { preferLocal: false })
+    await execaShell(`${IGNITE_COMMAND} g model ${simpleModel}`, { preferLocal: false })
     expect(jetpack.exists(`app/models/${simpleModel}/${simpleModel}.ts`)).toBe("file")
     expect(jetpack.exists(`app/models/${simpleModel}/${simpleModel}.test.ts`)).toBe("file")
     expect(jetpack.exists(`app/models/${simpleModel}/index.ts`)).toBe("file")
@@ -111,19 +111,8 @@ describe("a generated app", () => {
 
   test("generates navigation", async () => {
     const simpleNavigation = "test"
-    await execa(
-      IGNITE_COMMAND,
-      [
-        "g",
-        "navigator",
-        "test",
-        "--type",
-        "Stack",
-        "--screens",
-        "DemoScreen,WelcomeScreen",
-        "--navigators",
-        "PrimaryNavigator",
-      ],
+    await execaShell(
+      `${IGNITE_COMMAND} g navigator test --type Stack --screens DemoScreen,WelcomeScreen --navigators PrimaryNavigator`,
       { preferLocal: false },
     )
     expect(jetpack.exists(`app/navigation/${simpleNavigation}-navigator.ts`)).toBe("file")
