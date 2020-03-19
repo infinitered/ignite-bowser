@@ -25,8 +25,8 @@ export async function load(server?: string) {
   if (server) {
     const creds = await ReactNativeKeychain.getInternetCredentials(server)
     return {
-      username: creds.username,
-      password: creds.password,
+      username: creds ? creds.username : null,
+      password: creds ? creds.password : null,
       server,
     }
   } else {
