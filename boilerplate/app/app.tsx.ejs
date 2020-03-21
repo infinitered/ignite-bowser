@@ -34,21 +34,6 @@ YellowBox.ignoreWarnings([
   "Require cycle:",
 ])
 
-<% if (!props.useExpo) { -%>
-/**
- * Storybook still wants to use ReactNative's AsyncStorage instead of the
- * react-native-community package; this causes a YellowBox warning. This hack
- * points RN's AsyncStorage at the community one, fixing the warning. Here's the
- * Storybook issue about this: https://github.com/storybookjs/storybook/issues/6078
- */
-const ReactNative = require("react-native")
-Object.defineProperty(ReactNative, "AsyncStorage", {
-  get(): any {
-    return require("@react-native-community/async-storage").default
-  },
-})
-<% } -%>
-
 /**
  * Are we allowed to exit the app?  This is called when the back button
  * is pressed on android.

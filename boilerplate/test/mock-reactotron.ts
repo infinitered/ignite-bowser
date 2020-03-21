@@ -1,2 +1,1 @@
-declare var tron
-tron = null
+declare const tron
