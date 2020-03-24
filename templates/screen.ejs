@@ -1,14 +1,16 @@
 import * as React from "react"
 import { observer } from "mobx-react-lite"
 import { ViewStyle } from "react-native"
+import { ParamListBase } from "@react-navigation/native"
+import { NativeStackNavigationProp } from "@react-navigation/native-stack"
 import { Screen, Text } from "../components"
 // import { useStores } from "../models/root-store"
 import { color } from "../theme"
-import { NavigationScreenProp } from "react-navigation"
 
 export interface <%= props.pascalName %>Props {
-  navigation: NavigationScreenProp<{}>
+  navigation: NativeStackNavigationProp<ParamListBase>
 }
+
 
 const ROOT: ViewStyle = {
   backgroundColor: color.palette.black,

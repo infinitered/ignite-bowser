@@ -1,84 +1,181 @@
 import { GluegunToolbox } from "gluegun"
 import { Patterns } from "../../lib/patterns"
 
-export const description = "Generates a React Native screen."
+export const description = "Generates a React Navigation navigator."
 export const run = async function(toolbox: GluegunToolbox) {
   // grab some features
-  const { parameters, print, strings, ignite, filesystem, patching } = toolbox
-  const { pascalCase, isBlank, camelCase } = strings
-  const config = ignite.loadIgniteConfig()
+  const {
+    parameters,
+    print,
+    strings: { pascalCase, isBlank, camelCase, kebabCase },
+    ignite,
+    filesystem,
+    patching,
+    prompt: { ask },
+    filesystem: { list },
+  } = toolbox
+
+  // prettier-ignore
+  const navigatorTypes = {
+    Stack: "createNativeStackNavigator",
+    Tab: "createBottomTabNavigator",
+    Switch: "createSwitchNavigator",
+    Drawer: "createDrawerNavigator",
+    'Material Bottom Tab': "createMaterialBottomTabNavigator",
+    'Material Top Tab': "createMaterialTopTabNavigator"
+  }
 
   // validation
   if (isBlank(parameters.first)) {
     print.info("A name is required.")
-    print.info(`ignite generate screen <name>\n`)
+    print.info(`ignite generate navigator <name>\n`)
+    return
+  }
+
+  // grab the closest package.json
+  const { packageJson } = await require("read-pkg-up")()
+  if (!packageJson) {
+    print.error(`Can't find a package.json here or in parent directories.`)
+    return
+  }
+
+  // ensure react-navigation is installed
+  if (!Object.keys(packageJson.dependencies).filter(s => s.startsWith("@react-navigation/"))) {
+    print.error("This generator only works with react-navigation.")
     return
   }
 
   const name = parameters.first
-  const screenName = name.endsWith("-screen") ? name : `${name}-screen`
+  const navigatorName = name.endsWith("-navigator") ? name : `${name}-navigator`
 
   // prettier-ignore
-  if (name.endsWith('-screen')) {
-    print.info(`Note: For future reference, the \`-screen\` suffix is automatically added for you.`)
+  if (name.endsWith('-navigator')) {
+    print.info(`Note: For future reference, the \`-navigator\` suffix is automatically added for you.`)
     print.info(`You're welcome to add it manually, but we wanted you to know you don't have to. :)`)
   }
 
-  // get permutations of the given model name
-  const pascalName = pascalCase(screenName)
-  const camelName = camelCase(screenName)
+  // get permutations of the given navigator name
+  const pascalName = pascalCase(navigatorName)
+  const camelName = camelCase(navigatorName)
 
-  const props = { name: screenName, pascalName, camelName }
+  // what navigator type to generate?
+  let navigatorType = parameters.options.type
+  if (!navigatorType) {
+    const askForNavigatorType = {
+      type: "select",
+      name: "navigatorType",
+      message: "What type of navigator do you want to create?",
+      initial: "Stack",
+      choices: Object.keys(navigatorTypes),
+    }
+
+    const result = await ask(askForNavigatorType)
+    navigatorType = result.navigatorType
+  }
+
+  // which screens to include in the new navigator?
+  let pascalScreens = parameters.options.screens && parameters.options.screens.split(",")
+  if (!pascalScreens) {
+    const allKebabScreens = list(`${process.cwd()}/app/screens/`)
+      .filter(s => !RegExp("index").test(s))
+      .map(s => s.replace(/\..{0,3}/, ""))
+    const allPascalScreens = allKebabScreens.map(s => pascalCase(s))
+
+    if (allKebabScreens) {
+      const askForScreens = {
+        type: "multiselect",
+        name: "screens",
+        message: "What screens would you like to import to the navigator?",
+        choices: allPascalScreens,
+      }
+
+      const result = await ask(askForScreens)
+      pascalScreens = result.screens
+    }
+  }
+
+  // which screens to include in navigator?
+  let pascalNavigators = parameters.options.navigators && parameters.options.navigators.split(",")
+  if (!pascalNavigators) {
+    const allKebabNavigators = list(`${process.cwd()}/app/navigation/`).filter(
+      n => n.includes("-navigator.") && !n.includes("stateful-") && !n.includes("root-"),
+    )
+    const allPascalNavigators = allKebabNavigators.map(s =>
+      pascalCase(s.replace(".tsx", "").replace(".ts", "")),
+    )
+
+    if (allPascalNavigators) {
+      const askForNavigators = {
+        type: "multiselect",
+        name: "navigators",
+        message: "What other navigators would you like to import to the navigator?",
+        choices: allPascalNavigators,
+      }
+
+      const result = await ask(askForNavigators)
+      pascalNavigators = result.navigators
+    }
+  }
+
+  const props = {
+    name: navigatorName,
+    pascalName,
+    camelName,
+    navigatorType: navigatorTypes[navigatorType],
+  }
   const jobs = [
     {
-      template: `screen.ejs`,
-      target: `app/screens/${screenName}.tsx`,
+      template: `navigator.ejs`,
+      target: `app/navigation/${navigatorName}.tsx`,
     },
   ]
 
-  // make the templates
+  // make the template
   await ignite.copyBatch(toolbox, jobs, props)
 
-  // patch the barrel export file
-  const barrelExportPath = `${process.cwd()}/app/screens/index.ts`
-  const exportToAdd = `export * from "./${screenName}"\n`
+  // import screens/navigators to newly created navigator
+  if (!!pascalScreens.length || !!pascalNavigators.length) {
+    const navFilePath = `${process.cwd()}/app/navigation/${navigatorName}.tsx`
 
-  if (!filesystem.exists(barrelExportPath)) {
-    const msg =
-      `No '${barrelExportPath}' file found. Can't export screen.` +
-      `Export your new screen manually.`
-    print.warning(msg)
-    process.exit(1)
-  }
-  await patching.append(barrelExportPath, exportToAdd)
-
-  // if using `react-navigation` go the extra step
-  // and insert the screen into the nav router
-  if (config.navigation === "react-navigation") {
-    const appNavFilePath = `${process.cwd()}/app/navigation/root-navigator.ts`
-    const importToAdd = `  ${pascalName},\n`
-    const routeToAdd = `\n    ${camelName}: { screen: ${pascalName} },`
-
-    if (!filesystem.exists(appNavFilePath)) {
+    if (!filesystem.exists(navFilePath)) {
       const msg =
-        `No '${appNavFilePath}' file found.  Can't insert screen.` +
-        `Add your new screen manually to your navigation.`
+        `No '${navFilePath}' file found.  Can't insert screen.` +
+        `Something went wrong with the navigator generator.`
       print.error(msg)
       process.exit(1)
     }
 
-    // insert screen import
-    await patching.patch(appNavFilePath, {
+    const screenImport = pascalScreens.join(",\n  ")
+    await patching.patch(navFilePath, {
       before: new RegExp(Patterns.NAV_IMPORTS_SCREENS),
-      insert: importToAdd,
+      insert: `  ${screenImport},\n`,
     })
 
-    // insert screen route
-    await patching.patch(appNavFilePath, {
-      after: new RegExp(Patterns.ROOT_NAV_ROUTES),
-      insert: routeToAdd,
+    const navigatorImports = pascalNavigators.map(pascalNavigator => {
+      const kebabNavigator = kebabCase(pascalNavigator)
+      return `\nimport { ${pascalNavigator} } from "./${kebabNavigator}"`
     })
-  } else {
-    print.info(`Screen ${screenName} created, manually add it to your navigation`)
+
+    const toImport = navigatorImports.join("")
+
+    await patching.patch(navFilePath, {
+      after: new RegExp(Patterns.NAV_IMPORTS_NAVIGATORS),
+      insert: toImport,
+    })
+
+    // insert routes
+    const routes = [...pascalScreens, ...pascalNavigators]
+      .map(pascalItem => {
+        const camelItem = camelCase(pascalItem)
+        return `\n  ${camelItem
+          .replace("Screen", "")
+          .replace("Navigator", "")}: { screen: ${pascalItem} },`
+      })
+      .join("")
+
+    await patching.patch(navFilePath, {
+      after: new RegExp(Patterns.NAV_ROUTES),
+      insert: routes,
+    })
   }
 }
