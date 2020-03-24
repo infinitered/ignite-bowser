@@ -1,7 +1,11 @@
-import React, { useEffect } from "react"
+import React, { useEffect, useState } from "react"
 import { getStorybookUI, configure } from "@storybook/react-native"
 <% if (props.useExpo) { -%>
 import { initFonts } from "../app/theme/fonts"
+
+declare global {
+  let __TEST__
+}
 <% } -%>
 
 declare var module
@@ -14,10 +18,15 @@ const StorybookUI = getStorybookUI({
   port: 9001,
   host: "localhost",
   onDeviceUI: true,
+<% if (props.useExpo) { -%>
+  asyncStorage: null
+<% } else { -%>
   asyncStorage: require("@react-native-community/async-storage")
+<% } -%>
 })
 
 export const StorybookUIRoot: React.FunctionComponent = () => {
+  const [initialized, setInitialized] = useState(false)
   useEffect(() => {
     (async () => {
 <% if (props.useExpo) { -%>
@@ -28,8 +37,9 @@ export const StorybookUIRoot: React.FunctionComponent = () => {
         const reactotron = new Reactotron.Reactotron()
         reactotron.setup()
       }
+      setInitialized(true)
     })()
   }, [])
 
-  return <StorybookUI />
+  return (initialized) ? <StorybookUI /> : null
 }
