@@ -46,6 +46,7 @@ jobs:
       - run:
           name: Run tests
           command: yarn ci:test # this command will be added to/found in your package.json scripts
+          no_output_timeout: 15m
 
   detox:
     <<: *mac
