@@ -2,7 +2,7 @@ const execa = require("execa")
 const jetpack = require("fs-jetpack")
 const tempy = require("tempy")
 
-const IGNITE_COMMAND = "npx ignite-cli"
+const IGNITE_COMMAND = "./node_modules/.bin/ignite"
 const APP = "IntegrationTest"
 const BOILERPLATE = `${__dirname}/../`
 
@@ -33,7 +33,7 @@ expoFlags.forEach(expoFlag => {
       process.chdir(appTemp)
 
       const flags = ["--no-detox", expoFlag, "--skip-git", "--debug", "--overwrite"].join(" ")
-      await execaShell(`${IGNITE_COMMAND} new ${APP} ${flags} --boilerplate ${BOILERPLATE}`)
+      await execaShell(`npx ignite-cli new ${APP} ${flags} --boilerplate ${BOILERPLATE}`)
 
       process.chdir(APP)
 
