@@ -91,14 +91,6 @@ describe("a generated app", () => {
     expect(lint.stderr).toBe("")
   })
 
-  test("generates a screen", async () => {
-    const simpleScreen = "test"
-    await execaShell(`${IGNITE_COMMAND} g screen ${simpleScreen}`, { preferLocal: false })
-    expect(jetpack.exists(`app/screens/${simpleScreen}-screen.tsx`)).toBe("file")
-    const lint = await execa("npm", ["-s", "run", "lint"])
-    expect(lint.stderr).toBe("")
-  })
-
   test("generates a model", async () => {
     const simpleModel = "test"
     await execaShell(`${IGNITE_COMMAND} g model ${simpleModel}`, { preferLocal: false })
