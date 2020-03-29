@@ -92,6 +92,16 @@ Or
 ignite generate component awesome-component --stateless-function
 ```
 
+### Screen generator
+
+Generates a "hooks enabled" screen.
+
+```
+ignite generate screen awesome-screen
+```
+
+- Creates the screen
+
 ### Model generator
 
 Creates a Mobx-State-Tree model.
