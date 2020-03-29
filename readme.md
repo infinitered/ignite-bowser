@@ -101,18 +101,6 @@ ignite generate screen awesome-screen
 ```
 
 - Creates the screen
-- Will make the required additions to configuration files.
-
-### Navigator generator
-
-Helps you in a "wizard-style" create a new [react-navigation](https://reactnavigation.org/docs/en/getting-started.html) navigator.
-
-```
-ignite generate navigator awesome-navigator
-```
-
-- Creates the navigator
-- Will make the required additions to configuration files.
 
 ### Model generator
 

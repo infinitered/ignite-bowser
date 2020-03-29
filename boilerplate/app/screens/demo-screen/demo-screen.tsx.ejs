@@ -1,6 +1,7 @@
 import * as React from "react"
 import { Image, ImageStyle, Platform, TextStyle, View, ViewStyle } from "react-native"
-import { NavigationInjectedProps } from "react-navigation"
+import { ParamListBase } from "@react-navigation/native"
+import { NativeStackNavigationProp } from "@react-navigation/native-stack"
 import { BulletItem, Button, Header, Text, Screen, Wallpaper } from "../../components"
 import { color, spacing } from "../../theme"
 import { Api } from "../../services/api"
@@ -76,10 +77,12 @@ const HINT: TextStyle = {
   marginVertical: spacing[2],
 }
 
-export interface DemoScreenProps extends NavigationInjectedProps<{}> {}
+export interface DemoScreenProps {
+  navigation: NativeStackNavigationProp<ParamListBase>
+}
 
 export const DemoScreen: React.FunctionComponent<DemoScreenProps> = props => {
-  const goBack = React.useMemo(() => () => props.navigation.goBack(null), [props.navigation])
+  const goBack = React.useMemo(() => () => props.navigation.goBack(), [props.navigation])
 
   const demoReactotron = React.useMemo(
     () => async () => {
@@ -99,7 +102,9 @@ export const DemoScreen: React.FunctionComponent<DemoScreenProps> = props => {
               },
             },
           },
-          functionNames: function hello() { /* dummy function */ },
+          functionNames: function hello() {
+            /* dummy function */
+          },
         },
         preview: "More control with display()",
         important: true,

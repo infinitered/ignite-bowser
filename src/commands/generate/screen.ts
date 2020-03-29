@@ -1,12 +1,10 @@
 import { GluegunToolbox } from "gluegun"
-import { Patterns } from "../../lib/patterns"
 
 export const description = "Generates a React Native screen."
 export const run = async function(toolbox: GluegunToolbox) {
   // grab some features
   const { parameters, print, strings, ignite, filesystem, patching } = toolbox
   const { pascalCase, isBlank, camelCase } = strings
-  const config = ignite.loadIgniteConfig()
 
   // validation
   if (isBlank(parameters.first)) {
@@ -52,33 +50,5 @@ export const run = async function(toolbox: GluegunToolbox) {
   }
   await patching.append(barrelExportPath, exportToAdd)
 
-  // if using `react-navigation` go the extra step
-  // and insert the screen into the nav router
-  if (config.navigation === "react-navigation") {
-    const appNavFilePath = `${process.cwd()}/app/navigation/root-navigator.ts`
-    const importToAdd = `  ${pascalName},\n`
-    const routeToAdd = `\n    ${camelName}: { screen: ${pascalName} },`
-
-    if (!filesystem.exists(appNavFilePath)) {
-      const msg =
-        `No '${appNavFilePath}' file found.  Can't insert screen.` +
-        `Add your new screen manually to your navigation.`
-      print.error(msg)
-      process.exit(1)
-    }
-
-    // insert screen import
-    await patching.patch(appNavFilePath, {
-      before: new RegExp(Patterns.NAV_IMPORTS_SCREENS),
-      insert: importToAdd,
-    })
-
-    // insert screen route
-    await patching.patch(appNavFilePath, {
-      after: new RegExp(Patterns.ROOT_NAV_ROUTES),
-      insert: routeToAdd,
-    })
-  } else {
-    print.info(`Screen ${screenName} created, manually add it to your navigation`)
-  }
+  print.info(`Screen ${screenName} created`)
 }
