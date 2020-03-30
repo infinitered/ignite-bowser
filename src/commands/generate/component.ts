@@ -8,7 +8,7 @@ export const run = async function(toolbox: GluegunToolbox) {
 
   // validation
   if (isBlank(parameters.first)) {
-    print.info('A name is required.')
+    print.info("A name is required.")
     print.info(`ignite generate component <name>\n`)
     return
   }
@@ -18,11 +18,11 @@ export const run = async function(toolbox: GluegunToolbox) {
     const componentTypes = [
       {
         name: "functionComponent",
-        message: "React.FunctionComponent, aka \"hooks component\"",
+        message: 'React.FunctionComponent, aka "hooks component"',
       },
       {
         name: "statelessFunction",
-        message: "Stateless function, aka the \"classic\" ignite-bowser component",
+        message: 'Stateless function, aka the "classic" ignite-bowser component',
       },
     ]
 
@@ -44,29 +44,25 @@ export const run = async function(toolbox: GluegunToolbox) {
 
   const jobs = [
     {
-      template: 'component.story.tsx.ejs',
-      target: `app/components/${name}/${name}.story.tsx`
+      template: "component.story.tsx.ejs",
+      target: `app/components/${name}/${name}.story.tsx`,
     },
     {
-      template: 'styles.ts.ejs',
-      target: `app/components/${name}/${name}.styles.ts`
-    }
+      template: "styles.ts.ejs",
+      target: `app/components/${name}/${name}.styles.ts`,
+    },
   ]
 
   if (componentType === "functionComponent" || parameters.options["function-component"]) {
-    jobs.push(
-      {
-        template: 'function-component.tsx.ejs',
-        target: `app/components/${name}/${name}.tsx`
-      }
-    )
+    jobs.push({
+      template: "function-component.tsx.ejs",
+      target: `app/components/${name}/${name}.tsx`,
+    })
   } else if (componentType === "statelessFunction" || parameters.options["stateless-function"]) {
-    jobs.push(
-      {
-        template: 'component.tsx.ejs',
-        target: `app/components/${name}/${name}.tsx`
-      }
-    )
+    jobs.push({
+      template: "component.tsx.ejs",
+      target: `app/components/${name}/${name}.tsx`,
+    })
   }
 
   await ignite.copyBatch(toolbox, jobs, props)
@@ -77,8 +73,8 @@ export const run = async function(toolbox: GluegunToolbox) {
 
   if (!filesystem.exists(barrelExportPath)) {
     const msg =
-    `No '${barrelExportPath}' file found. Can't export component.` +
-    `Export your new component manually.`
+      `No '${barrelExportPath}' file found. Can't export component.` +
+      `Export your new component manually.`
     print.warning(msg)
     process.exit(1)
   }
@@ -86,7 +82,7 @@ export const run = async function(toolbox: GluegunToolbox) {
 
   // wire up example
   await patching.prepend(
-    './storybook/storybook-registry.ts',
-    `require("../app/components/${name}/${name}.story")\n`
+    "./storybook/storybook-registry.ts",
+    `require("../app/components/${name}/${name}.story")\n`,
   )
 }

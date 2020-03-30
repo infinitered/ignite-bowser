@@ -16,7 +16,7 @@ const getVersionFromContext = pathOr(REACT_NATIVE_VERSION, pathToVersion)
  * Attempts to read it from the command line, and if not there, falls back
  * to the version we want for this boilerplate.  For example:
  *
- *   $ ignite new Custom --react-native-version 0.61.2
+ *   $ ignite new Custom --react-native-version 0.61.5
  *
  * @param {*} context - The gluegun context.
  */

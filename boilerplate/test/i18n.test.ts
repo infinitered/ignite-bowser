@@ -7,6 +7,20 @@ const EXCEPTIONS = [
   // "welcomeScreen.readyForLaunch",
 ]
 
+function iterate(obj, stack, array) {
+  for (const property in obj) {
+    if (Object.prototype.hasOwnProperty.call(obj, property)) {
+      if (typeof obj[property] === "object") {
+        iterate(obj[property], `${stack}.${property}`, array)
+      } else {
+        array.push(`${stack.slice(1)}.${property}`)
+      }
+    }
+  }
+
+  return array
+}
+
 /**
  * This tests your codebase for missing i18n strings so you can avoid error strings at render time
  *
@@ -46,17 +60,3 @@ describe("i18n", () => {
     })
   }, 240000)
 })
-
-function iterate(obj, stack, array) {
-  for (const property in obj) {
-    if (obj.hasOwnProperty(property)) {
-      if (typeof obj[property] === "object") {
-        iterate(obj[property], `${stack}.${property}`, array)
-      } else {
-        array.push(`${stack.slice(1)}.${property}`)
-      }
-    }
-  }
-
-  return array
-}
