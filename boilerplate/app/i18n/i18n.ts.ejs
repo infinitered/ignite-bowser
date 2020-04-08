@@ -1,0 +1,28 @@
+<% /*
+For now, we separated these packages that works the same because:
+1. "react-native-localize" doesn't work on Expo
+2. "expo-localization" depends on "react-native-unimodules" and it requires
+manual setup.
+*/ -%>
+<% if (props.useExpo) { -%>
+import * as Localization from "expo-localization"
+<% } else { -%>
+import * as RNLocalize from "react-native-localize"
+<% } -%>
+import i18n from "i18n-js"
+
+const en = require("./en")
+const ja = require("./ja")
+
+i18n.fallbacks = true
+i18n.translations = { en, ja }
+
+const fallback = { languageTag: "en", isRTL: false }
+
+<% if (props.useExpo) { -%>
+i18n.locale = Localization.locale || fallback
+<% } else { -%>
+const { languageTag } =
+  RNLocalize.findBestAvailableLanguage(Object.keys(i18n.translations)) || fallback
+i18n.locale = languageTag
+<% } -%>

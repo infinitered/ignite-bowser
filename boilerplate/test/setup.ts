@@ -8,5 +8,5 @@ import "./mock-react-native-localize"
 import "./mock-reactotron"
 
 declare global {
-  var __TEST__
+  let __TEST__
 }
