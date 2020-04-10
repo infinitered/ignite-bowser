@@ -30,7 +30,7 @@ export const run = async function(toolbox: GluegunToolbox) {
   const jobs = [
     {
       template: `screen.ejs`,
-      target: `app/screens/${screenName}.tsx`,
+      target: `app/screens/${screenName}/${screenName}.tsx`,
     },
   ]
 
