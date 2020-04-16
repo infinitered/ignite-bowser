@@ -13,11 +13,11 @@ import { RootParamList } from "./types"
 import { PrimaryNavigator } from "./primary-navigator"
 
 <% if (!props.useExpo) { -%>
-const Stack = createNativeStackNavigator<PrimaryParamList>()
+const Stack = createNativeStackNavigator<RootParamList>()
 <% } -%>
 
 <% if (props.useExpo) { -%>
-const Stack = createStackNavigator<PrimaryParamList>()
+const Stack = createStackNavigator<RootParamList>()
 <% } -%>
 
 const RootStack = () => {
