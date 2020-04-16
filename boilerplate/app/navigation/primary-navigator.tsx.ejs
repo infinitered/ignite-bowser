@@ -1,9 +1,22 @@
 import React from "react"
-import { createNativeStackNavigator } from "react-native-screens/native-stack"
+<% if (!props.useExpo) { -%>
+  import { createNativeStackNavigator } from "react-native-screens/native-stack"
+<% } -%>
+
+<% if (props.useExpo) { -%>
+  import { createStackNavigator } from "@react-navigation/stack"
+<% } -%>
+
 import { WelcomeScreen, DemoScreen } from "../screens"
 import { PrimaryParamList } from "./types"
 
+<% if (!props.useExpo) { -%>
 const Stack = createNativeStackNavigator<PrimaryParamList>()
+<% } -%>
+
+<% if (props.useExpo) { -%>
+const Stack = createStackNavigator<PrimaryParamList>()
+<% } -%>
 
 export function PrimaryNavigator() {
   return (

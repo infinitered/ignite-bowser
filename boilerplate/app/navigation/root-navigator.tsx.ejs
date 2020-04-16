@@ -1,11 +1,24 @@
 import React from "react"
 import { NavigationContainer, NavigationContainerRef } from "@react-navigation/native"
-import { createNativeStackNavigator } from "react-native-screens/native-stack"
+
+<% if (!props.useExpo) { -%>
+  import { createNativeStackNavigator } from "react-native-screens/native-stack"
+<% } -%>
+
+<% if (props.useExpo) { -%>
+  import { createStackNavigator } from "@react-navigation/stack"
+<% } -%>
 
 import { RootParamList } from "./types"
 import { PrimaryNavigator } from "./primary-navigator"
 
-const Stack = createNativeStackNavigator<RootParamList>()
+<% if (!props.useExpo) { -%>
+const Stack = createNativeStackNavigator<PrimaryParamList>()
+<% } -%>
+
+<% if (props.useExpo) { -%>
+const Stack = createStackNavigator<PrimaryParamList>()
+<% } -%>
 
 const RootStack = () => {
   return (

@@ -198,6 +198,14 @@ export const install = async (toolbox: IgniteToolbox) => {
       template: "app/screens/demo-screen/demo-screen.tsx.ejs",
       target: "app/screens/demo-screen/demo-screen.tsx",
     },
+    {
+      template: "app/navigation/root-navigator.tsx.ejs",
+      target: "app/navigation/root-navigator.tsx",
+    },
+    {
+      template: "app/navigation/primary-navigator.tsx.ejs",
+      target: "app/navigation/primary-navigator.tsx",
+    },
     { template: "storybook/storybook.tsx.ejs", target: "storybook/storybook.tsx" },
     { template: "bin/postInstall", target: "bin/postInstall" },
   ]
