@@ -44,17 +44,16 @@
     "react-native-screens": "^2.5.0",
     "react-native-safe-area-context": "0.7.3",
     "@react-navigation/native": "^5.1.5",
-<% if (!props.useExpo) { -%>
+    <% if(props.useExpo){ %>
+      "@react-navigation/stack": "^5.2.10",
+    <% } else{ %>  
       "@react-native-community/async-storage": "^1.5.1",
       "@react-native-community/masked-view": "0.1.5",
       "react-native-safe-area-view": "1.0.0",
       "react-native-gesture-handler": "<%= props.reactNativeGestureHandlerVersion %>",
       "react-native-localize": "^1.0.0",
       "react-native-keychain": "5.0.1",
-<% } -%>
-<% if (props.useExpo) { -%>
-      "@react-navigation/stack": "^5.2.10",
-<% } -%>
+    <% } %>
     "validate.js": "0.13.1"
   },
   "devDependencies": {
