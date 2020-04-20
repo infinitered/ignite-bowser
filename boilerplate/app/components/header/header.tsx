@@ -1,7 +1,9 @@
 import * as React from "react"
 import { View, ViewStyle, TextStyle } from "react-native"
 import { HeaderProps } from "./header.props"
-import { Button, Icon, Text } from "../"
+import { Button } from "../button/button"
+import { Text } from "../text/text"
+import { Icon } from "../icon/icon"
 import { spacing } from "../../theme"
 import { translate } from "../../i18n/"
 
