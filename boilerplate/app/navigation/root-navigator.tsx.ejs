@@ -8,9 +8,9 @@ import { createNativeStackNavigator } from "react-native-screens/native-stack"
 import { RootParamList } from "./types"
 import { PrimaryNavigator } from "./primary-navigator"
 
-<% if (props.useExpo) { %>
+<% if (props.useExpo) { -%>
 const Stack = createStackNavigator<RootParamList>()
-<% } else { %>  
+<% } else { -%>  
 const Stack = createNativeStackNavigator<RootParamList>()
 <% } -%>
 
