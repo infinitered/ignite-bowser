@@ -1,11 +1,19 @@
 import React from "react"
 import { NavigationContainer, NavigationContainerRef } from "@react-navigation/native"
+<% if (props.useExpo) { -%>
+import { createStackNavigator } from "@react-navigation/stack"
+<% } else { -%>  
 import { createNativeStackNavigator } from "react-native-screens/native-stack"
-
+<% } -%>
 import { RootParamList } from "./types"
 import { PrimaryNavigator } from "./primary-navigator"
 
+<% if (props.useExpo) { -%>
+const Stack = createStackNavigator<RootParamList>()
+<% } else { -%>  
 const Stack = createNativeStackNavigator<RootParamList>()
+<% } -%>
+
 
 const RootStack = () => {
   return (
@@ -13,7 +21,9 @@ const RootStack = () => {
       screenOptions={{
         headerShown: false,
         gestureEnabled: true,
+        <% if(!props.useExpo){ %>
         stackPresentation: "modal",
+        <% } -%>
       }}
     >
       <Stack.Screen
