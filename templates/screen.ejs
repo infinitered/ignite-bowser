@@ -17,7 +17,9 @@ const ROOT: ViewStyle = {
 }
 
 export const <%= props.pascalName %>: React.FunctionComponent<<%= props.pascalName %>Props> = observer((props) => {
-  // const { someStore } = useStores()
+  // const { someStore, anotherStore } = useStores()
+  // OR
+  // const rootStore = useStores()
   return (
     <Screen style={ROOT} preset="scroll">
       <Text preset="header" tx="<%= props.camelName %>.header" />
