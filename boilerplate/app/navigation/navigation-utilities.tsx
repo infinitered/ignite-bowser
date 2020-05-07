@@ -1,14 +1,4 @@
-/**
- * This service allows us to "control" the navigation globally by importing
- * it and using it like so:
- *
- * import { RootNavigation } from '../navigation'
- *
- * RootNavigation.navigate('some-route')
- *
- * If no navigator has been set, it will simply ignore all commands sent to it.
- */
-import React, { useEffect, useRef } from "react"
+import React, { useState, useEffect, useRef } from "react"
 import { BackHandler } from "react-native"
 import { PartialState, NavigationState, NavigationContainerRef } from "@react-navigation/native"
 
@@ -48,27 +38,30 @@ export function useBackButtonHandler(
   }, [canExit])
 
   useEffect(() => {
-    // This fires when the back button is pressed on Android.
+    // We'll fire this when the back button is pressed on Android.
     const onBackPress = () => {
       const navigation = ref.current
 
-      // no navigation is active, so ignore it
-      if (navigation == null) return false
+      if (navigation == null) {
+        return false
+      }
 
       // grab the current route
       const routeName = getActiveRouteName(navigation.getRootState())
 
-      // are we allowed to exit? If so, let the system know we didn't handle this
-      if (canExitRef.current(routeName)) return false
+      // are we allowed to exit?
+      if (canExitRef.current(routeName)) {
+        // let the system know we've not handled this event
+        return false
+      }
 
       // we can't exit, so let's turn this into a back action
       if (navigation.canGoBack()) {
         navigation.goBack()
-        // let the system know we handled it, and to ignore the back press
+
         return true
       }
 
-      // we can't go back anymore, so we're just going to have to exit anyway
       return false
     }
 
@@ -83,7 +76,7 @@ export function useBackButtonHandler(
 /**
  * Gets the current screen from any navigation state.
  */
-export default function getActiveRouteName(state: NavigationState | PartialState<NavigationState>) {
+export function getActiveRouteName(state: NavigationState | PartialState<NavigationState>) {
   const route = state.routes[state.index]
 
   if (route.state) {
@@ -92,4 +85,44 @@ export default function getActiveRouteName(state: NavigationState | PartialState
   }
 
   return route.name
+}
+
+/**
+ * Custom hook for persisting navigation state.
+ */
+export function useNavigationPersistence(storage: any, persistenceKey: string) {
+  const [initialNavigationState, setInitialNavigationState] = useState()
+  const [isRestoringNavigationState, setIsRestoringNavigationState] = useState(true)
+
+  const routeNameRef = useRef()
+  const onNavigationStateChange = state => {
+    const previousRouteName = routeNameRef.current
+    const currentRouteName = getActiveRouteName(state)
+
+    if (previousRouteName !== currentRouteName) {
+      // track screens.
+      __DEV__ && console.tron.log(currentRouteName)
+    }
+
+    // Save the current route name for later comparision
+    routeNameRef.current = currentRouteName
+
+    // Persist state to storage
+    storage.save(persistenceKey, state)
+  }
+
+  const restoreState = async () => {
+    try {
+      const state = await storage.load(persistenceKey)
+      if (state) setInitialNavigationState(state)
+    } finally {
+      setIsRestoringNavigationState(false)
+    }
+  }
+
+  useEffect(() => {
+    if (isRestoringNavigationState) restoreState()
+  }, [isRestoringNavigationState])
+
+  return { onNavigationStateChange, restoreState, initialNavigationState }
 }
