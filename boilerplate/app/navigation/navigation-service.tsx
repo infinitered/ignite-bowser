@@ -1,7 +1,21 @@
+/**
+ * This service allows us to "control" the navigation globally by importing
+ * it and using it like so:
+ *
+ * import { RootNavigation } from '../navigation'
+ *
+ * RootNavigation.navigate('some-route')
+ *
+ * If no navigator has been set, it will simply ignore all commands sent to it.
+ */
 import React from "react"
 import { PartialState, NavigationState, NavigationContainerRef } from "@react-navigation/native"
 
-export const RootNavigation = {
+/**
+ * This is a "dummy" root navigator that will be superceded by a real navigation
+ * object once it's set by `setRootNavigation` below.
+ */
+const DummyRootNavigation = {
   navigate(name: string) {
     name // eslint-disable-line no-unused-expressions
   },
@@ -12,6 +26,14 @@ export const RootNavigation = {
   },
 }
 
+export const RootNavigation = DummyRootNavigation
+
+/**
+ * This acts as sort of a "proxy" object and calls the corresponding method on the ref.
+ *
+ * Basically, if there's a ref set to the _real_ navigation object, then let's go ahead
+ * and call methods on it.
+ */
 export const setRootNavigation = (ref: React.RefObject<NavigationContainerRef>) => {
   for (const method in RootNavigation) {
     RootNavigation[method] = (...args: any) => {
