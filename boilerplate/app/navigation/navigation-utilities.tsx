@@ -24,6 +24,19 @@ export const setRootNavigation = (ref: React.RefObject<NavigationContainerRef>) 
 }
 
 /**
+ * Gets the current screen from any navigation state.
+ */
+export function getActiveRouteName(state: NavigationState | PartialState<NavigationState>) {
+  const route = state.routes[state.index]
+
+  // Found the active route -- return the name
+  if (!route.state) return route.name
+
+  // Recursive call to deal with nested routers
+  return getActiveRouteName(route.state)
+}
+
+/**
  * Hook that handles Android back button presses and forwards those on to
  * the navigation or allows exiting the app.
  */
@@ -71,20 +84,6 @@ export function useBackButtonHandler(
     // Unsubscribe when we're done
     return () => BackHandler.removeEventListener("hardwareBackPress", onBackPress)
   }, [ref])
-}
-
-/**
- * Gets the current screen from any navigation state.
- */
-export function getActiveRouteName(state: NavigationState | PartialState<NavigationState>) {
-  const route = state.routes[state.index]
-
-  if (route.state) {
-    // Dive into nested navigators
-    return getActiveRouteName(route.state)
-  }
-
-  return route.name
 }
 
 /**
