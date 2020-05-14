@@ -13,7 +13,7 @@ This is the boilerplate that the [Infinite Red](https://infinite.red) team recom
 Includes:
 
 - React Native
-- React Navigation
+- React Navigation 5
 - MobX State Tree [(Why MST?)](#About-The-Stack)
 - TypeScript
 - Reactotron (requires 2.x)

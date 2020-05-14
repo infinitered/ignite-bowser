@@ -1,6 +1,6 @@
 import React, { FunctionComponent as Component } from "react"
 import { View, Image, ViewStyle, TextStyle, ImageStyle, SafeAreaView } from "react-native"
-import { useNavigation, ParamListBase } from "@react-navigation/native"
+import { useNavigation } from "@react-navigation/native"
 import { observer } from "mobx-react-lite"
 import { Button, Header, Screen, Text, Wallpaper } from "../../components"
 import { color, spacing } from "../../theme"
@@ -76,7 +76,7 @@ const FOOTER_CONTENT: ViewStyle = {
 }
 
 export const WelcomeScreen: Component = observer(function WelcomeScreen() {
-  const navigation = useNavigation<ParamListBase>()
+  const navigation = useNavigation()
   const nextScreen = () => navigation.navigate("demo")
 
   return (
