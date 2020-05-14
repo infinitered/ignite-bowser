@@ -19,9 +19,9 @@ Includes:
 - Reactotron (requires 2.x)
 - And more!
 
-To see it in action, check out the [Chain React 2019 Conference App](https://github.com/infinitered/ChainReactApp2019)!
+To see it in action, check out the blog post by Robin Heinze here: [CCreating a Trivia App with Ignite Bowser](https://shift.infinite.red/creating-a-trivia-app-with-ignite-bowser-part-1-1987cc6e93a1).
 
-Or watch a [live coding demo](https://www.youtube.com/watch?v=Pb8MWkQ9GOc) at React Live Amsterdam where Jamon Holmgren codes an Ignite Bowser app in less than 30 minutes.
+You can also watch a [live coding demo](https://www.youtube.com/watch?v=Pb8MWkQ9GOc) at React Live Amsterdam where Jamon Holmgren codes an Ignite Bowser app in less than 30 minutes.
 
 ## Quick Start
 
@@ -189,6 +189,8 @@ This is where your app's models will live. Each model has a directory which will
 
 **navigation**
 This is where your `react-navigation` navigators will live.
+
+For a walkthrough about how React Navigation v5 works, check out Harris Robin's post: [Getting Started with the New React Navigation v5 and Ignite Bowser v5](https://shift.infinite.red/getting-started-with-the-new-react-navigation-v5-and-ignite-bowser-v5-31fb4a57f2b9).
 
 **screens**
 This is where your screen components will live. A screen is a React component which will take up the entire screen and be part of the navigation hierarchy. Each screen will have a directory containing the `.tsx` file, along with any assets or other helper files.
