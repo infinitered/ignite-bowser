@@ -11,7 +11,12 @@ const ROOT: ViewStyle = {
 }
 
 export const <%= props.pascalName %>: Component = observer(function <%= props.pascalName %>() {
-  // const { someStore } = useStores()
+  // Pull in one of our MST stores
+  // const { someStore, anotherStore } = useStores()
+  // OR
+  // const rootStore = useStores()
+  
+  // Pull in navigation via hook
   // const navigation = useNavigation()
   return (
     <Screen style={ROOT} preset="scroll">
