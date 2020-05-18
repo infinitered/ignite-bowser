@@ -40,6 +40,7 @@ export const install = async (toolbox: IgniteToolbox) => {
   const { red, yellow, bold, gray, cyan } = colors
   const isWindows = process.platform === "win32"
   const isMac = process.platform === "darwin"
+  const reactNativeVersion = getReactNativeVersion(toolbox)
 
   if (parameters.options["dry-run"]) return
 
@@ -86,6 +87,18 @@ export const install = async (toolbox: IgniteToolbox) => {
 
   let includeDetox = false
   if (isMac && !useExpo) {
+    const isCocoapodsInstalled = await system.which(`pod`)
+    if (!isCocoapodsInstalled && reactNativeVersion >= "0.60") {
+      print.error(`
+Error: Cocoapods is not installed, but is required for React Native
+0.60 or later, when not using Expo.
+
+More info here: https://reactnative.dev/docs/environment-setup
+And here: https://guides.cocoapods.org/using/getting-started.html
+      `)
+      process.exit(1)
+    }
+
     const askAboutDetox = parameters.options.detox === undefined
     includeDetox = askAboutDetox
       ? await prompt.confirm("Would you like to include Detox end-to-end tests?")
@@ -121,7 +134,7 @@ export const install = async (toolbox: IgniteToolbox) => {
   } else {
     rnInstall = await reactNative.install({
       name,
-      version: getReactNativeVersion(toolbox),
+      version: reactNativeVersion,
       useNpm: !ignite.useYarn,
     })
 
@@ -197,6 +210,14 @@ export const install = async (toolbox: IgniteToolbox) => {
     {
       template: "app/screens/demo-screen/demo-screen.tsx.ejs",
       target: "app/screens/demo-screen/demo-screen.tsx",
+    },
+    {
+      template: "app/navigation/root-navigator.tsx.ejs",
+      target: "app/navigation/root-navigator.tsx",
+    },
+    {
+      template: "app/navigation/primary-navigator.tsx.ejs",
+      target: "app/navigation/primary-navigator.tsx",
     },
     { template: "storybook/storybook.tsx.ejs", target: "storybook/storybook.tsx" },
     { template: "bin/postInstall", target: "bin/postInstall" },
