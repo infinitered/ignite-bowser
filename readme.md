@@ -137,6 +137,7 @@ ignite-project
 │   ├── utils
 │   ├── app.tsx
 │   ├── environment-variables.ts
+|   ├── assets/fonts/
 ├── storybook
 │   ├── views
 │   ├── index.ts
@@ -197,7 +198,7 @@ This is where your screen components will live. A screen is a React component wh
 Any services that interface with the outside world will live here (think REST APIs, Push Notifications, etc.).
 
 **theme**
-Here lives the theme for your application, including spacing, colors, and typography.
+Here lives the theme for your application, including spacing, colors, and typography. For help with adding custom fonts to your application, [check out the readme in ./assets/fonts/](./boilerplate/assets/fonts/custom-fonts.md).
 
 **utils**
 This is a great place to put miscellaneous helpers and utilities. Things like date helpers, formatters, etc. are often found here. However, it should only be used for things that are truely shared across your application. If a helper or utility is only used by a specific component or model, consider co-locating your helper with that component or model.
