@@ -6,9 +6,6 @@ import "./i18n"
 import React, { useState, useEffect, useRef } from "react"
 import { YellowBox } from "react-native"
 import { NavigationContainerRef } from "@react-navigation/native"
-<% if (props.useExpo) { -%>
-  import { initFonts } from "./theme/fonts"
-<% } -%>
 import { contains } from "ramda"
 import { enableScreens } from "react-native-screens"
 import { SafeAreaProvider, initialWindowSafeAreaInsets } from "react-native-safe-area-context"
@@ -80,9 +77,6 @@ const App: React.FunctionComponent<{}> = () => {
 
   useEffect(() => {
     (async () => {
-    <% if (props.useExpo) { -%>
-      await initFonts()
-    <% } -%>
       setupRootStore().then(setRootStore)
     })()
   }, [])

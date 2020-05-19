@@ -3,7 +3,7 @@ import { View, Image, ViewStyle, TextStyle, ImageStyle, SafeAreaView } from "rea
 import { ParamListBase } from "@react-navigation/native"
 import { NativeStackNavigationProp } from "react-native-screens/native-stack"
 import { Button, Header, Screen, Text, Wallpaper } from "../../components"
-import { color, spacing } from "../../theme"
+import { color, spacing, typography } from "../../theme"
 const bowserLogo = require("./bowser.png")
 
 const FULL: ViewStyle = { flex: 1 }
@@ -13,7 +13,7 @@ const CONTAINER: ViewStyle = {
 }
 const TEXT: TextStyle = {
   color: color.palette.white,
-  fontFamily: "Montserrat",
+  fontFamily: typography.primary,
 }
 const BOLD: TextStyle = { fontWeight: "bold" }
 const HEADER: TextStyle = {
