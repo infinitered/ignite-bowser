@@ -160,6 +160,7 @@ And here: https://guides.cocoapods.org/using/getting-started.html
   const boilerplatePath = `${__dirname}/../boilerplate`
   const copyOpts = { overwrite: true, matching: "!*.ejs" }
   filesystem.copy(`${boilerplatePath}/app`, `${process.cwd()}/app`, copyOpts)
+  filesystem.copy(`${boilerplatePath}/assets`, `${process.cwd()}/assets`, copyOpts)
   filesystem.copy(`${boilerplatePath}/test`, `${process.cwd()}/test`, copyOpts)
   filesystem.copy(`${boilerplatePath}/storybook`, `${process.cwd()}/storybook`, copyOpts)
   filesystem.copy(`${boilerplatePath}/bin`, `${process.cwd()}/bin`, copyOpts)
