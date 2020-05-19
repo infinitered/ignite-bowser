@@ -11,8 +11,8 @@
     "noImplicitThis": true,
     "noUnusedLocals": true,
     "sourceMap": true,
-    "target": "es2015",
-    "lib": ["es7"],
+    "target": "esnext",
+    "lib": ["esnext"],
     "skipLibCheck": true
   },
   "exclude": ["node_modules"],
