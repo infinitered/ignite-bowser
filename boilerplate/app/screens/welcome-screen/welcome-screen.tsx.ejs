@@ -1,7 +1,7 @@
-import * as React from "react"
+import React, { FunctionComponent as Component } from "react"
 import { View, Image, ViewStyle, TextStyle, ImageStyle, SafeAreaView } from "react-native"
-import { ParamListBase } from "@react-navigation/native"
-import { NativeStackNavigationProp } from "react-native-screens/native-stack"
+import { useNavigation } from "@react-navigation/native"
+import { observer } from "mobx-react-lite"
 import { Button, Header, Screen, Text, Wallpaper } from "../../components"
 import { color, spacing, typography } from "../../theme"
 const bowserLogo = require("./bowser.png")
@@ -75,14 +75,9 @@ const FOOTER_CONTENT: ViewStyle = {
   paddingHorizontal: spacing[4],
 }
 
-export interface WelcomeScreenProps {
-  navigation: NativeStackNavigationProp<ParamListBase>
-}
-
-export const WelcomeScreen: React.FunctionComponent<WelcomeScreenProps> = props => {
-  const nextScreen = React.useMemo(() => () => props.navigation.navigate("demo"), [
-    props.navigation,
-  ])
+export const WelcomeScreen: Component = observer(function WelcomeScreen() {
+  const navigation = useNavigation()
+  const nextScreen = () => navigation.navigate("demo")
 
   return (
     <% if (props.includeDetox) { -%>
@@ -124,4 +119,4 @@ export const WelcomeScreen: React.FunctionComponent<WelcomeScreenProps> = props 
       </SafeAreaView>
     </View>
   )
-}
+})

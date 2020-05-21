@@ -1,4 +1,4 @@
-import * as React from "react"
+import React, { FunctionComponent as Component } from "react"
 import { View, ViewStyle, TextStyle } from "react-native"
 import { HeaderProps } from "./header.props"
 import { Button } from "../button/button"
@@ -24,7 +24,7 @@ const RIGHT: ViewStyle = { width: 32 }
 /**
  * Header that appears on many screens. Will hold navigation buttons and screen title.
  */
-export const Header: React.FunctionComponent<HeaderProps> = props => {
+export const Header: Component<HeaderProps> = props => {
   const {
     onLeftPress,
     onRightPress,
