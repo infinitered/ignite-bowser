@@ -1,4 +1,4 @@
-import * as React from "react"
+import React, { FunctionComponent as Component } from "react"
 import { View, TextInput, TextStyle, ViewStyle } from "react-native"
 import { color, spacing, typography } from "../../theme"
 import { translate } from "../../i18n"
@@ -32,7 +32,7 @@ const enhance = (style, styleOverride) => {
 /**
  * A component which has a label and an input together.
  */
-export const TextField: React.FunctionComponent<TextFieldProps> = props => {
+export const TextField: Component<TextFieldProps> = props => {
   const {
     placeholderTx,
     placeholder,
