@@ -19,7 +19,7 @@ Includes:
 - Reactotron (requires 2.x)
 - And more!
 
-To see it in action, check out the blog post by Robin Heinze here: [CCreating a Trivia App with Ignite Bowser](https://shift.infinite.red/creating-a-trivia-app-with-ignite-bowser-part-1-1987cc6e93a1).
+To see it in action, check out the blog post by Robin Heinze here: [Creating a Trivia App with Ignite Bowser](https://shift.infinite.red/creating-a-trivia-app-with-ignite-bowser-part-1-1987cc6e93a1).
 
 You can also watch a [live coding demo](https://www.youtube.com/watch?v=Pb8MWkQ9GOc) at React Live Amsterdam where Jamon Holmgren codes an Ignite Bowser app in less than 30 minutes.
 
