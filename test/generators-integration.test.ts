@@ -14,6 +14,8 @@ const execaShell = (command: string, opts = {}) => execa(command, { shell: true,
 describe("a generated app", () => {
   // creates a new temp directory
   const appTemp: string = tempy.directory()
+  console.log("Test app directory:", appTemp)
+
   beforeAll(async () => {
     // make sure we are in the temp directory. Do the initial git commit
     // manually, so we can set up the git user first on circleci.

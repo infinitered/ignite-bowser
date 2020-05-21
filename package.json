@@ -25,7 +25,7 @@
     "format:md": "prettier --write '**/*.md'",
     "format:ts": "prettier --write '**/*.ts{,x}'",
     "lint": "eslint src test --ext .ts --fix",
-    "test": "yarn build && jest --runInBand && yarn lint && yarn clean",
+    "test": "yarn build && yarn lint && jest --runInBand && yarn clean",
     "watch": "jest --runInBand --watch",
     "coverage": "jest --runInBand --coverage",
     "ci:lint": "eslint src test --ext .ts",
