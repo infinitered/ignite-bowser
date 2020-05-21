@@ -18,7 +18,7 @@ export const run = async function(toolbox: GluegunToolbox) {
     const componentTypes = [
       {
         name: "functionComponent",
-        message: 'React.FunctionComponent, aka "hooks component"',
+        message: 'React.FunctionComponent, aka "hooks component" (recommended)',
       },
       {
         name: "statelessFunction",
