@@ -32,14 +32,18 @@ export const run = async function(toolbox: GluegunToolbox) {
     },
   ]
 
-  const rollupPath = `app/models/${name}/index.ts`
-  const rollupExists = filesystem.exists(rollupPath)
+  // patch the barrel export file
+  const barrelExportPath = `${process.cwd()}/app/models/index.ts`
+  const exportToAdd = `export * from "./${name}/${name}"\n`
 
-  if (rollupExists) {
-    await patching.prepend(rollupPath, `export * from "./${name}"`)
-  } else {
-    jobs.push({ template: "rollup-index.ts.ejs", target: rollupPath })
+  if (!filesystem.exists(barrelExportPath)) {
+    const msg =
+      `No '${barrelExportPath}' file found. Can't export model.` +
+      `Export your new model manually.`
+    print.warning(msg)
+    process.exit(1)
   }
+  await patching.append(barrelExportPath, exportToAdd)
 
   await ignite.copyBatch(toolbox, jobs, props)
 
