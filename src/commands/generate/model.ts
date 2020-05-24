@@ -51,7 +51,7 @@ export const run = async function(toolbox: GluegunToolbox) {
   if (name.endsWith("-store")) {
     const rootStorePath = "./app/models/root-store/root-store.ts"
     const rootStoreDef = 'export const RootStoreModel = types.model("RootStore").props({'
-    const storeTypeImport = `import { ${pascalName}Model } from "../../models/${name}"\n`
+    const storeTypeImport = `import { ${pascalName}Model } from "../${name}/${name}"\n`
     const storeType = `\n  ${camelName}: types.optional(${pascalName}Model, {}),`
 
     await patching.prepend(rootStorePath, storeTypeImport)
