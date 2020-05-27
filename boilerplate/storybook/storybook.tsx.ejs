@@ -1,4 +1,4 @@
-import React, { useEffect } from "react"
+import React, { useEffect, FunctionComponent } from "react"
 import { getStorybookUI, configure } from "@storybook/react-native"
 <% if (props.useExpo) { -%>
 import { initFonts } from "../app/theme/fonts"
@@ -21,7 +21,7 @@ const StorybookUI = getStorybookUI({
 <% } -%>
 })
 
-export const StorybookUIRoot: React.FunctionComponent = () => {
+export const StorybookUIRoot: FunctionComponent = () => {
   useEffect(() => {
     (async () => {
 <% if (props.useExpo) { -%>

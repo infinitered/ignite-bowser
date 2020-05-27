@@ -1,25 +1,23 @@
-import * as React from "react"
+import React, { FunctionComponent as Component } from "react"
 import { observer } from "mobx-react-lite"
 import { ViewStyle } from "react-native"
-import { ParamListBase } from "@react-navigation/native"
-import { NativeStackNavigationProp } from "react-native-screens/native-stack"
 import { Screen, Text } from "../components"
-// import { useStores } from "../models/root-store"
+// import { useNavigation } from "@react-navigation/native"
+// import { useStores } from "../models"
 import { color } from "../theme"
-
-export interface <%= props.pascalName %>Props {
-  navigation: NativeStackNavigationProp<ParamListBase>
-}
-
 
 const ROOT: ViewStyle = {
   backgroundColor: color.palette.black,
 }
 
-export const <%= props.pascalName %>: React.FunctionComponent<<%= props.pascalName %>Props> = observer((props) => {
+export const <%= props.pascalName %>: Component = observer(function <%= props.pascalName %>() {
+  // Pull in one of our MST stores
   // const { someStore, anotherStore } = useStores()
   // OR
   // const rootStore = useStores()
+  
+  // Pull in navigation via hook
+  // const navigation = useNavigation()
   return (
     <Screen style={ROOT} preset="scroll">
       <Text preset="header" tx="<%= props.camelName %>.header" />

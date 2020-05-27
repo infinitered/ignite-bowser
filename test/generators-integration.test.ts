@@ -14,6 +14,8 @@ const execaShell = (command: string, opts = {}) => execa(command, { shell: true,
 describe("a generated app", () => {
   // creates a new temp directory
   const appTemp: string = tempy.directory()
+  console.log("Test app directory:", appTemp)
+
   beforeAll(async () => {
     // make sure we are in the temp directory. Do the initial git commit
     // manually, so we can set up the git user first on circleci.
@@ -104,7 +106,7 @@ describe("a generated app", () => {
     await execaShell(`${IGNITE_COMMAND} g model ${simpleModel}`, { preferLocal: false })
     expect(jetpack.exists(`app/models/${simpleModel}/${simpleModel}.ts`)).toBe("file")
     expect(jetpack.exists(`app/models/${simpleModel}/${simpleModel}.test.ts`)).toBe("file")
-    expect(jetpack.exists(`app/models/${simpleModel}/index.ts`)).toBe("file")
+    expect(jetpack.exists(`app/models/index.ts`)).toBe("file")
     const lint = await execa("npm", ["-s", "run", "lint"])
     expect(lint.stderr).toBe("")
   })

@@ -1,19 +1,26 @@
-import * as React from "react"
+import React, { FunctionComponent as Component } from "react"
 import { View } from "react-native"
-import { useObserver } from "mobx-react-lite"
 import { Text } from "../"
-import { useStores } from "../../models/root-store"
+// import { observer } from "mobx-react-lite"
+// import { useStores } from "../../models"
 import { <%= props.camelCaseName %>Styles as styles } from "./<%= props.name %>.styles"
 
 export interface <%= props.pascalName %>Props {}
 
 /**
- * React.FunctionComponent for your hook(s) needs
+ * This is a React functional component, ready to 
  *
  * Component description here for TypeScript tips.
  */
-export const <%= props.pascalName %>: React.FunctionComponent<<%= props.pascalName %>Props> = props => {
-  // const { someStore } = useStores()
+export const <%= props.pascalName %>: Component<<%= props.pascalName %>Props> = props => {
+  // Note: if you want your componeobservernt to refresh when data is updated in the store,
+  // wrap this component in `` like so:
+  // `export const <%= props.pascalName %> = observer(function <%= props.pascalName %> { ... })`
+  
+  // Enable this line to retrieve data from the rootStore (or other store)
+  // const rootStore = useStores()
+  // or
+  // const { otherStore, userStore } = useStores()
 
   return useObserver(() => (
     <View style={styles.WRAPPER}>
