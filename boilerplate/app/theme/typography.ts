@@ -1,5 +1,10 @@
 import { Platform } from "react-native"
 
+/*
+ * A list of fonts available by default on iOS and Android are available here:
+ * https://www.skcript.com/svr/react-native-fonts/
+ */
+
 /**
  * Just the font names.
  *
