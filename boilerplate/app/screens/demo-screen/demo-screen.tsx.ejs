@@ -79,7 +79,7 @@ const HINT: TextStyle = {
 
 export const DemoScreen: Component = observer(function DemoScreen() {
   const navigation = useNavigation()
-  const goBack = () => () => navigation.goBack()
+  const goBack = () => navigation.goBack()
 
   const demoReactotron = React.useMemo(
     () => async () => {
