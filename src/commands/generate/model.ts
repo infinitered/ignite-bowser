@@ -32,14 +32,18 @@ export const run = async function(toolbox: GluegunToolbox) {
     },
   ]
 
-  const rollupPath = `app/models/${name}/index.ts`
-  const rollupExists = filesystem.exists(rollupPath)
+  // patch the barrel export file
+  const barrelExportPath = `${process.cwd()}/app/models/index.ts`
+  const exportToAdd = `export * from "./${name}/${name}"\n`
 
-  if (rollupExists) {
-    await patching.prepend(rollupPath, `export * from "./${name}"`)
-  } else {
-    jobs.push({ template: "rollup-index.ts.ejs", target: rollupPath })
+  if (!filesystem.exists(barrelExportPath)) {
+    const msg =
+      `No '${barrelExportPath}' file found. Can't export model.` +
+      `Export your new model manually.`
+    print.warning(msg)
+    process.exit(1)
   }
+  await patching.append(barrelExportPath, exportToAdd)
 
   await ignite.copyBatch(toolbox, jobs, props)
 
@@ -47,7 +51,7 @@ export const run = async function(toolbox: GluegunToolbox) {
   if (name.endsWith("-store")) {
     const rootStorePath = "./app/models/root-store/root-store.ts"
     const rootStoreDef = 'export const RootStoreModel = types.model("RootStore").props({'
-    const storeTypeImport = `import { ${pascalName}Model } from "../../models/${name}"\n`
+    const storeTypeImport = `import { ${pascalName}Model } from "../${name}/${name}"\n`
     const storeType = `\n  ${camelName}: types.optional(${pascalName}Model, {}),`
 
     await patching.prepend(rootStorePath, storeTypeImport)

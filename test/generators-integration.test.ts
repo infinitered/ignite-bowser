@@ -106,7 +106,7 @@ describe("a generated app", () => {
     await execaShell(`${IGNITE_COMMAND} g model ${simpleModel}`, { preferLocal: false })
     expect(jetpack.exists(`app/models/${simpleModel}/${simpleModel}.ts`)).toBe("file")
     expect(jetpack.exists(`app/models/${simpleModel}/${simpleModel}.test.ts`)).toBe("file")
-    expect(jetpack.exists(`app/models/${simpleModel}/index.ts`)).toBe("file")
+    expect(jetpack.exists(`app/models/index.ts`)).toBe("file")
     const lint = await execa("npm", ["-s", "run", "lint"])
     expect(lint.stderr).toBe("")
   })
