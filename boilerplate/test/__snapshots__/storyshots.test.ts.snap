@@ -4481,8 +4481,8 @@ exports[`Storyshots Text Passing Content 1`] = `
                   }
                 }
               >
-
-                Hello
+                 
+                Hello 
                 <Text
                   style={
                     Object {
@@ -4638,10 +4638,10 @@ exports[`Storyshots Text Style Presets 1`] = `
                 }
               >
                 Check out
-
+                
 
                 my
-
+                
 
                 line height
               </Text>
@@ -5003,8 +5003,8 @@ exports[`Storyshots Text Styling 1`] = `
                   }
                 }
               >
-
-                Hello
+                 
+                Hello 
                 <Text
                   style={
                     Object {
