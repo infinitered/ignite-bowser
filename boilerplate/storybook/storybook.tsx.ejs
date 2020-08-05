@@ -16,8 +16,8 @@ const StorybookUI = getStorybookUI({
   onDeviceUI: true,
 <% if (props.useExpo) { -%>
   asyncStorage: require("react-native").AsyncStorage,
-<% } else { -%>  
-  asyncStorage: require("@react-native-community/async-storage").default
+<% } else { -%>
+  asyncStorage: require("@react-native-community/async-storage").default || null,
 <% } -%>
 })
 
