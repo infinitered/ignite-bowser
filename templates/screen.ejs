@@ -1,4 +1,4 @@
-import React, { FunctionComponent as Component } from "react"
+import React from "react"
 import { observer } from "mobx-react-lite"
 import { ViewStyle } from "react-native"
 import { Screen, Text } from "../../components"
@@ -11,7 +11,7 @@ const ROOT: ViewStyle = {
   flex: 1,
 }
 
-export const <%= props.pascalName %>: Component = observer(function <%= props.pascalName %>() {
+export const <%= props.pascalName %> = observer(function <%= props.pascalName %>() {
   // Pull in one of our MST stores
   // const { someStore, anotherStore } = useStores()
   // OR
