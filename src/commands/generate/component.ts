@@ -1,6 +1,6 @@
 import { GluegunToolbox } from "gluegun"
 
-export const description = "Generates a component, supporting files, and a storybook test."
+export const description = "Generates a component and a storybook test."
 export const run = async function(toolbox: GluegunToolbox) {
   // grab some features
   const { parameters, strings, print, ignite, patching, filesystem, prompt } = toolbox
@@ -13,34 +13,26 @@ export const run = async function(toolbox: GluegunToolbox) {
     return
   }
 
-  let componentType
-  if (!parameters.options["function-component"] && !parameters.options["stateless-function"]) {
-    const componentTypes = [
-      {
-        name: "functionComponent",
-        message: 'React.FunctionComponent, aka "hooks component" (recommended)',
-      },
-      {
-        name: "statelessFunction",
-        message: 'Stateless function, aka the "classic" ignite-bowser component',
-      },
-    ]
+  let observer = parameters.options.observer
+  if (parameters.options.observer === undefined) {
+    observer = await prompt.confirm(
+      `Should this component be _observed_ by Mobx?\n${print.colors.gray(`
 
-    const { component } = await prompt.ask([
-      {
-        name: "component",
-        message: "Which type of component do you want to generate?",
-        type: "select",
-        choices: componentTypes,
-      },
-    ])
-    componentType = component
+      If you'll be passing any mobx-state-tree objects in this component's props
+      and dereferencing them within this component, you'll want the component wrapped
+      in \`observer\` so that the component rerenders when properties of the object change.
+
+      If all props will be simple values or objects that don't come from a mobx store,
+      you don't need the component to be wrapped in \`observer\`.
+
+      `)}`,
+    )
   }
 
   const name = parameters.first
   const pascalName = pascalCase(name)
   const camelCaseName = camelCase(name)
-  const props = { name, pascalName, camelCaseName }
+  const props = { camelCaseName, name, observer, pascalName }
 
   const jobs = [
     {
@@ -48,22 +40,10 @@ export const run = async function(toolbox: GluegunToolbox) {
       target: `app/components/${name}/${name}.story.tsx`,
     },
     {
-      template: "styles.ts.ejs",
-      target: `app/components/${name}/${name}.styles.ts`,
-    },
-  ]
-
-  if (componentType === "functionComponent" || parameters.options["function-component"]) {
-    jobs.push({
-      template: "function-component.tsx.ejs",
-      target: `app/components/${name}/${name}.tsx`,
-    })
-  } else if (componentType === "statelessFunction" || parameters.options["stateless-function"]) {
-    jobs.push({
       template: "component.tsx.ejs",
       target: `app/components/${name}/${name}.tsx`,
-    })
-  }
+    },
+  ]
 
   await ignite.copyBatch(toolbox, jobs, props)
 

@@ -57,38 +57,24 @@ describe("a generated app", () => {
     )
   })
 
-  test("generates a stateless function", async () => {
-    const statelessFunction = "Stateless"
-    await execaShell(`${IGNITE_COMMAND} g component ${statelessFunction} --stateless-function`, {
+  test("generates an observed component", async () => {
+    const name = "Observed"
+    await execaShell(`${IGNITE_COMMAND} g component ${name} --observer`, {
       preferLocal: false,
     })
-    expect(jetpack.exists(`app/components/${statelessFunction}/${statelessFunction}.tsx`)).toBe(
-      "file",
-    )
-    expect(
-      jetpack.exists(`app/components/${statelessFunction}/${statelessFunction}.story.tsx`),
-    ).toBe("file")
-    expect(
-      jetpack.exists(`app/components/${statelessFunction}/${statelessFunction}.styles.ts`),
-    ).toBe("file")
+    expect(jetpack.exists(`app/components/${name}/${name}.tsx`)).toBe("file")
+    expect(jetpack.exists(`app/components/${name}/${name}.story.tsx`)).toBe("file")
     const lint = await execa("npm", ["-s", "run", "lint"])
     expect(lint.stderr).toBe("")
   })
 
-  test("generates a function component", async () => {
-    const functionComponent = "FunctionComponent"
-    await execaShell(`${IGNITE_COMMAND} g component ${functionComponent} --function-component`, {
+  test("generates a plain component", async () => {
+    const name = "Unobserved"
+    await execaShell(`${IGNITE_COMMAND} g component ${name} --function-component`, {
       preferLocal: false,
     })
-    expect(jetpack.exists(`app/components/${functionComponent}/${functionComponent}.tsx`)).toBe(
-      "file",
-    )
-    expect(
-      jetpack.exists(`app/components/${functionComponent}/${functionComponent}.story.tsx`),
-    ).toBe("file")
-    expect(
-      jetpack.exists(`app/components/${functionComponent}/${functionComponent}.styles.ts`),
-    ).toBe("file")
+    expect(jetpack.exists(`app/components/${name}/${name}.tsx`)).toBe("file")
+    expect(jetpack.exists(`app/components/${name}/${name}.story.tsx`)).toBe("file")
     const lint = await execa("npm", ["-s", "run", "lint"])
     expect(lint.stderr).toBe("")
   })
