@@ -59,9 +59,7 @@ export const install = async (toolbox: IgniteToolbox) => {
     )
 
   const name = parameters.first
-  const spinner = print
-    .spin(`using the ${red("Infinite Red")} Bowser boilerplate`)
-    .succeed()
+  const spinner = print.spin(`using the ${red("Infinite Red")} Bowser boilerplate`).succeed()
 
   let useExpo = parameters.options.expo
   const askAboutExpo = useExpo === undefined

@@ -24,7 +24,7 @@ export const typography = {
    */
   secondary: Platform.select({ ios: "Arial", android: "sans-serif" }),
 
-   /**
+  /**
    * Lets get fancy with a monospace font!
    */
   code: Platform.select({ ios: "Courier", android: "monospace" }),
