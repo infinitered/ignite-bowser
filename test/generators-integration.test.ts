@@ -58,33 +58,30 @@ describe("a generated app", () => {
   })
 
   test("generates an observed component", async () => {
-    const name = "Observed"
-    await execaShell(`${IGNITE_COMMAND} g component ${name} --observer`, {
+    await execaShell(`${IGNITE_COMMAND} g component observed-thing --observer`, {
       preferLocal: false,
     })
-    expect(jetpack.exists(`app/components/${name}/${name}.tsx`)).toBe("file")
-    expect(jetpack.exists(`app/components/${name}/${name}.story.tsx`)).toBe("file")
+    expect(jetpack.exists(`app/components/observed-thing/observed-thing.tsx`)).toBe("file")
+    expect(jetpack.exists(`app/components/observed-thing/observed-thing.story.tsx`)).toBe("file")
     const lint = await execa("npm", ["-s", "run", "lint"])
     expect(lint.stderr).toBe("")
   })
 
   test("generates a plain component", async () => {
-    const name = "Unobserved"
-    await execaShell(`${IGNITE_COMMAND} g component ${name} --function-component`, {
+    await execaShell(`${IGNITE_COMMAND} g component UnobservedThing --no-observer`, {
       preferLocal: false,
     })
-    expect(jetpack.exists(`app/components/${name}/${name}.tsx`)).toBe("file")
-    expect(jetpack.exists(`app/components/${name}/${name}.story.tsx`)).toBe("file")
+    expect(jetpack.exists(`app/components/unobserved-thing/unobserved-thing.tsx`)).toBe("file")
+    expect(jetpack.exists(`app/components/unobserved-thing/unobserved-thing.story.tsx`)).toBe(
+      "file",
+    )
     const lint = await execa("npm", ["-s", "run", "lint"])
     expect(lint.stderr).toBe("")
   })
 
   test("generates a screen", async () => {
-    const simpleScreen = "test"
-    await execaShell(`${IGNITE_COMMAND} g screen ${simpleScreen}`, { preferLocal: false })
-    expect(jetpack.exists(`app/screens/${simpleScreen}-screen/${simpleScreen}-screen.tsx`)).toBe(
-      "file",
-    )
+    await execaShell(`${IGNITE_COMMAND} g screen TestScreen`, { preferLocal: false })
+    expect(jetpack.exists(`app/screens/test-screen/test-screen.tsx`)).toBe("file")
     const lint = await execa("npm", ["-s", "run", "lint"])
     expect(lint.stderr).toBe("")
   })

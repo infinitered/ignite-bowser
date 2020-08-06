@@ -4,7 +4,7 @@ export const description = "Generates a component and a storybook test."
 export const run = async function(toolbox: GluegunToolbox) {
   // grab some features
   const { parameters, strings, print, ignite, patching, filesystem, prompt } = toolbox
-  const { pascalCase, camelCase, isBlank } = strings
+  const { camelCase, isBlank, kebabCase, pascalCase } = strings
 
   // validation
   if (isBlank(parameters.first)) {
@@ -32,16 +32,17 @@ export const run = async function(toolbox: GluegunToolbox) {
   const name = parameters.first
   const pascalName = pascalCase(name)
   const camelCaseName = camelCase(name)
-  const props = { camelCaseName, name, observer, pascalName }
+  const kebabCaseName = kebabCase(name)
+  const props = { camelCaseName, kebabCaseName, name, observer, pascalName }
 
   const jobs = [
     {
       template: "component.story.tsx.ejs",
-      target: `app/components/${name}/${name}.story.tsx`,
+      target: `app/components/${kebabCaseName}/${kebabCaseName}.story.tsx`,
     },
     {
       template: "component.tsx.ejs",
-      target: `app/components/${name}/${name}.tsx`,
+      target: `app/components/${kebabCaseName}/${kebabCaseName}.tsx`,
     },
   ]
 
@@ -49,7 +50,7 @@ export const run = async function(toolbox: GluegunToolbox) {
 
   // patch the barrel export file
   const barrelExportPath = `${process.cwd()}/app/components/index.ts`
-  const exportToAdd = `export * from "./${name}/${name}"\n`
+  const exportToAdd = `export * from "./${kebabCaseName}/${kebabCaseName}"\n`
 
   if (!filesystem.exists(barrelExportPath)) {
     const msg =
@@ -63,6 +64,6 @@ export const run = async function(toolbox: GluegunToolbox) {
   // wire up example
   await patching.prepend(
     "./storybook/storybook-registry.ts",
-    `require("../app/components/${name}/${name}.story")\n`,
+    `require("../app/components/${kebabCaseName}/${kebabCaseName}.story")\n`,
   )
 }

@@ -4,7 +4,7 @@ export const description = "Generates a React Native screen."
 export const run = async function(toolbox: GluegunToolbox) {
   // grab some features
   const { parameters, print, strings, ignite, filesystem, patching } = toolbox
-  const { pascalCase, isBlank, camelCase } = strings
+  const { camelCase, isBlank, kebabCase, pascalCase } = strings
 
   // validation
   if (isBlank(parameters.first)) {
@@ -13,24 +13,25 @@ export const run = async function(toolbox: GluegunToolbox) {
     return
   }
 
-  const name = parameters.first
-  const screenName = name.endsWith("-screen") ? name : `${name}-screen`
-
-  // prettier-ignore
-  if (name.endsWith('-screen')) {
-    print.info(`Note: For future reference, the \`-screen\` suffix is automatically added for you.`)
+  let name = parameters.first
+  const matches = name.match(/(.*)((-s|S)creen)$/)
+  if (matches) {
+    name = matches[1] // grab the name without the suffix
+    // prettier-ignore
+    print.info(`Note: For future reference, the \`${matches[2]}\` suffix is automatically added for you.`)
     print.info(`You're welcome to add it manually, but we wanted you to know you don't have to. :)`)
   }
 
-  // get permutations of the given model name
-  const pascalName = pascalCase(screenName)
-  const camelName = camelCase(screenName)
+  // get permutations of the given name, suffixed
+  const pascalName = pascalCase(name) + "Screen"
+  const camelName = camelCase(name) + "Screen"
+  const kebabName = kebabCase(name) + "-screen"
 
-  const props = { name: screenName, pascalName, camelName }
+  const props = { pascalName, camelName }
   const jobs = [
     {
       template: `screen.ejs`,
-      target: `app/screens/${screenName}/${screenName}.tsx`,
+      target: `app/screens/${kebabName}/${kebabName}.tsx`,
     },
   ]
 
@@ -39,7 +40,7 @@ export const run = async function(toolbox: GluegunToolbox) {
 
   // patch the barrel export file
   const barrelExportPath = `${process.cwd()}/app/screens/index.ts`
-  const exportToAdd = `export * from "./${screenName}/${screenName}"\n`
+  const exportToAdd = `export * from "./${kebabName}/${kebabName}"\n`
 
   if (!filesystem.exists(barrelExportPath)) {
     const msg =
@@ -50,5 +51,5 @@ export const run = async function(toolbox: GluegunToolbox) {
   }
   await patching.append(barrelExportPath, exportToAdd)
 
-  print.info(`Screen ${screenName} created`)
+  print.info(`Screen ${pascalName} created`)
 }
