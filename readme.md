@@ -68,8 +68,11 @@ Will give you information of what generators are present.
 
 This is the generator you will be using most often. There are 2 flavors:
 
-- React.FunctionComponent (i.e. "hooks enabled component")
-- Stateless function (i.e. the "classic ignite-bowser component")
+- Wrapped with mobx-react-lite's `observer` function - you need this if you
+  pass any mobx-state-tree objects as props to the component, and the component
+  will dereference properties of those objects.
+- Plain, not wrapped with `observer`. If you're only passing plain values or
+  non-MST objects, this is fine.
 
 ```
 ignite generate component awesome-component

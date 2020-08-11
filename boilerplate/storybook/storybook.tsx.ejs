@@ -1,4 +1,4 @@
-import React, { useEffect, FunctionComponent } from "react"
+import React, { useEffect } from "react"
 import { getStorybookUI, configure } from "@storybook/react-native"
 <% if (props.useExpo) { -%>
 import { initFonts } from "../app/theme/fonts"
@@ -16,12 +16,12 @@ const StorybookUI = getStorybookUI({
   onDeviceUI: true,
 <% if (props.useExpo) { -%>
   asyncStorage: require("react-native").AsyncStorage,
-<% } else { -%>  
-  asyncStorage: require("@react-native-community/async-storage").default
+<% } else { -%>
+  asyncStorage: require("@react-native-community/async-storage").default || null,
 <% } -%>
 })
 
-export const StorybookUIRoot: FunctionComponent = () => {
+export function StorybookUIRoot() {
   useEffect(() => {
     (async () => {
 <% if (props.useExpo) { -%>

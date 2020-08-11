@@ -37,9 +37,7 @@ export const run = async function(toolbox: GluegunToolbox) {
   const exportToAdd = `export * from "./${name}/${name}"\n`
 
   if (!filesystem.exists(barrelExportPath)) {
-    const msg =
-      `No '${barrelExportPath}' file found. Can't export model.` +
-      `Export your new model manually.`
+    const msg = `No '${barrelExportPath}' file found. Can't export model. Export your new model manually.`
     print.warning(msg)
     process.exit(1)
   }

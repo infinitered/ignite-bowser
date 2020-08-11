@@ -1,4 +1,4 @@
-import React, { FunctionComponent as Component } from "react"
+import React from "react"
 import { ViewStyle, Animated, Easing, TouchableWithoutFeedback } from "react-native"
 import { color } from "../../theme"
 import { SwitchProps } from "./switch.props"
@@ -52,7 +52,7 @@ const enhance = (style, newStyles): any => {
 
 const makeAnimatedValue = switchOn => new Animated.Value(switchOn ? 1 : 0)
 
-export const Switch: Component<SwitchProps> = props => {
+export function Switch(props: SwitchProps) {
   const [timer] = React.useState<Animated.Value>(makeAnimatedValue(props.value))
   const startAnimation = React.useMemo(
     () => (newValue: boolean) => {
