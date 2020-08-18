@@ -197,6 +197,7 @@ And here: https://guides.cocoapods.org/using/getting-started.html
       template: "app/services/reactotron/reactotron.ts.ejs",
       target: "app/services/reactotron/reactotron.ts",
     },
+    { template: "app/utils/ignore-warnings.ts.ejs", target: "app/utils/ignore-warnings.ts" },
     { template: "app/utils/storage/storage.ts.ejs", target: "app/utils/storage/storage.ts" },
     {
       template: "app/utils/storage/storage.test.ts.ejs",
