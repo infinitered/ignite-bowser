@@ -1,17 +1,22 @@
 /**
- * Looking for the boilerplate code?
- *
- * Check in ./src/boilerplate.ts. That file is then compiled from
- * TypeScript into ./build/boilerplate.js, and this file requires
- * that compiled file.
+ * This file is here to warn legacy Ignite CLI users that they need to
+ * upgrade to the latest.
  */
+export const install = async toolbox => {
+  toolbox.print.warning(`
+    This version of Ignite Bowser is designed to work with Ignite CLI version 4+.
+    
+    Either:
+    
+    1. Use an older version of Ignite Bowser that works with your version of Ignite CLI
+        ignite new Foo -b ignite-bowser@5.3.0
+      
+    2. Upgrade your version of Ignite CLI to the latest
+        yarn upgrade -g ignite-cli --latest
+        or
+        yarn remove -g ignite-cli
+        npx ignite-cli new Foo -b ignite-bowser
+  `)
 
-const BOILERPLATE_FILE = `${__dirname}/build/boilerplate.js`
-if (!require("fs").existsSync(BOILERPLATE_FILE)) {
-  console.error(`\n\nCouldn't find boilerplate.js at`)
-  console.error(BOILERPLATE_FILE)
-  console.error(`\nIt looks like the boilerplate wasn't compiled with 'yarn build'.\n\n`)
   process.exit(1)
 }
-
-module.exports = require(BOILERPLATE_FILE)
