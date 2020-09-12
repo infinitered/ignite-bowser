@@ -14,7 +14,7 @@ module.exports = {
       const cwd = filesystem.cwd()
       process.chdir(__dirname)
 
-      await ignite.packager.add("expo", { dev: false, expo: true })
+      await ignite.packager.add("expo")
       await ignite.packager.add("react-native", { dev: false, expo: true })
 
       process.chdir(cwd)
