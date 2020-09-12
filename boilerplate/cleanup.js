@@ -5,7 +5,7 @@
 
 module.exports = {
   cleanup: async (toolbox, props) => {
-    const { print, filesystem, system, ignite } = toolbox
+    const { print, filesystem, ignite } = toolbox
 
     if (props.boilerplate.nickname === "bowser-expo") {
       // Additional setup for Expo
@@ -14,11 +14,10 @@ module.exports = {
       const cwd = filesystem.cwd()
       process.chdir(__dirname)
 
-      await ignite.packager.add("expo")
+      await ignite.packager.add("expo", { dev: false, expo: true })
+      await ignite.packager.add("react-native", { dev: false, expo: true })
 
       process.chdir(cwd)
     }
-
-    print.info(props)
   },
 }
