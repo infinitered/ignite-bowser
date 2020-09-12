@@ -3,8 +3,10 @@
  * The file will be deleted automatically afterward.
  */
 
-export async function cleanup(toolbox, props) {
-  const { print, filesystem } = toolbox
+module.exports = {
+  cleanup: function cleanup(toolbox, props) {
+    const { print, filesystem } = toolbox
 
-  print.info(props)
+    print.info(props)
+  },
 }
