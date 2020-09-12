@@ -6,6 +6,7 @@ labels: ""
 assignees: ""
 ---
 
+<!--
 ### Hey there! Ignite Bowser seems to be having a problem, eh?
 
 Welllllll, it just might be. First, search the issues to make sure it's not already
@@ -16,13 +17,13 @@ get some help. If you've identified that it's really an Ignite Bowser issue, the
 - Run `ignite doctor` and paste the result below, including the lines with 3 backticks
 - Delete these instructions! We don't want to look at them. ;)
 
----
+-->
 
 What's going on?
 
 ---
 
-Steps to reproduce
+Steps to reproduce and/or reproducible demo link
 
 ---
 

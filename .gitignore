@@ -4,17 +4,11 @@
 .DS_Store
 npm-debug.log
 npm-debug.log*
-coverage
-.nyc_output
 yarn.lock
 yarn-error.log
 lerna-debug.log
 node_modules
 .vscode/*
-testgrounds
-IntegrationTest
-integration_test
-ios/Pods
 package-lock.json
 
 # TS build
