@@ -10,7 +10,7 @@ module.exports = {
     if (props.boilerplate.name.toLowerCase().includes("expo")) {
       print.info("Adding Expo packages...")
       // Additional setup for Expo
-      await toolbox.ignite.add("expo")
+      await toolbox.ignite.packager.add("expo")
     }
 
     print.info(props)
