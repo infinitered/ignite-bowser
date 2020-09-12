@@ -4,7 +4,7 @@
  */
 
 module.exports = {
-  cleanup: function cleanup(toolbox, props) {
+  cleanup: async (toolbox, props) => {
     const { print, filesystem } = toolbox
 
     print.info(props)
