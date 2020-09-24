@@ -183,14 +183,14 @@ And here: https://guides.cocoapods.org/using/getting-started.html
 
   const templates = [
     { template: "index.js.ejs", target: useExpo ? "App.js" : "index.js" },
-    { template: "README.md", target: "README.md" },
+    { template: "README.md.ejs", target: "README.md" },
     { template: ".gitignore.ejs", target: ".gitignore" },
     { template: ".env.example", target: ".env" },
     { template: ".prettierignore", target: ".prettierignore" },
     { template: ".solidarity", target: ".solidarity" },
     { template: "babel.config.js", target: "babel.config.js" },
     { template: "react-native.config.js", target: "react-native.config.js" },
-    { template: "tsconfig.json", target: "tsconfig.json" },
+    { template: "tsconfig.json.ejs", target: "tsconfig.json" },
     { template: "app/app.tsx.ejs", target: "app/app.tsx" },
     { template: "app/i18n/i18n.ts.ejs", target: "app/i18n/i18n.ts" },
     {

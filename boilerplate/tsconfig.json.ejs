@@ -16,5 +16,9 @@
     "skipLibCheck": true
   },
   "exclude": ["node_modules"],
+  <% if (props.useExpo) { -%>
+  "include": ["App.js", "app", "test", "storybook"]
+  <% } else { -%>
   "include": ["index.js", "app", "test", "storybook"]
+  <% } -%>
 }
