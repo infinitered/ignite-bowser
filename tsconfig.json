@@ -2,7 +2,7 @@
   "compilerOptions": {
     "allowSyntheticDefaultImports": true,
     "experimentalDecorators": true,
-    "target": "es2015",
+    "target": "esnext",
     "lib": ["es6"],
     "noEmit": true,
     "module": "commonjs",
