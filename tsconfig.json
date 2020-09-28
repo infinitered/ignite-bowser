@@ -2,8 +2,8 @@
   "compilerOptions": {
     "allowSyntheticDefaultImports": true,
     "experimentalDecorators": true,
-    "target": "es5",
-    "lib": ["es2015", "es2016", "es2016.array.include", "scripthost"],
+    "target": "esnext",
+    "lib": ["es6"],
     "module": "commonjs",
     "moduleResolution": "node",
     "noImplicitAny": false,
