@@ -9,7 +9,7 @@ module.exports = {
   cleanup: async (toolbox, props) => {
     const { print, filesystem, ignite } = toolbox
 
-    if (props.boilerplate.nickname === "bowser-expo") {
+    if (props.expo) {
       // Additional setup for Expo
       print.info("Adding Expo packages...")
 
