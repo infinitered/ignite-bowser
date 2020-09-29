@@ -6,8 +6,8 @@ export default {
   run: async (toolbox: GluegunToolbox) => {
     const { print, filesystem, system, meta, parameters } = toolbox
     const { path } = filesystem
-    const { newline, info, colors } = print
-    const { gray, red, magenta, cyan, bold, yellow } = colors
+    const { info, colors } = print
+    const { gray, red, magenta, cyan, bold, yellow, white } = colors
 
     // start tracking performance
     const perfStart = new Date().getTime()
@@ -18,7 +18,11 @@ export default {
 
     // debug?
     const debug = Boolean(parameters.options.debug)
-    const log = m => (debug ? info(m) : undefined)
+    const log = m => {
+      if (debug) info(m)
+      return m
+    }
+    const p = m => print.info(gray(`      ${m}`))
 
     // expo or no?
     const expo = Boolean(parameters.options.expo)
@@ -32,47 +36,45 @@ export default {
     log({ expo, cli, bowserPath, boilerplatePath, cliString })
 
     // welcome everybody!
-    newline()
-    info(red("🔥 Ignite CLI 🔥"))
-    newline()
-    info(magenta(`Creating ${projectName} using Ignite Bowser ${meta.version()}...`))
-    info(gray(`Using ${cli}`))
+    p("\n")
+    p(red("🔥 Ignite Bowser 🔥\n"))
+    p(gray(`Creating ${magenta(projectName)} using ${red("Ignite Bowser")} ${meta.version()}`))
+    p(gray(`Powered by ${red("Infinite Red")} - https://infinite.red`))
+    p(gray(`Using ${cyan(cli)}`))
+    p(gray(`──────────────────────────────────────────────\n`))
+    p(`🔥 Igniting app`)
 
     // generate the project
-    log(`Spawning process with "${cliString}"`)
-    await spawnProgress(cliString, {
+    await spawnProgress(log(cliString), {
       onProgress: (out: string) => {
-        out = out.toString()
-        log(out)
+        out = log(out.toString())
 
         if (expo) {
-          const { expoProgress } = require("../tools/progress")
-          const prog = expoProgress(out)
-          if (prog) print.info(prog)
+          if (out.includes("Using Yarn")) p(`🪔 Summoning Expo CLI`)
+          if (out.includes("project is ready")) p(`🎫 Cleaning up Expo install`)
         } else {
-          const { cliProgress } = require("../tools/progress")
-          const prog = cliProgress(out)
-          if (prog) print.info(prog)
+          if (out.includes("Welcome to React Native!")) p(`🖨  3D-printing a new React Native app`)
+          if (out.includes("Run instructions for")) p(`🧊 Cooling print nozzles`)
         }
       },
     })
 
     // note the original directory
-    const cwd = process.cwd()
-    log({ cwd })
+    const cwd = log(process.cwd())
 
     // jump into the project to do additional tasks
     process.chdir(projectName)
-    log(`chdir to ${projectName}`)
 
     // copy the .gitignore if it wasn't copied over [expo...]
-    const gitPath = path(process.cwd(), ".gitignore")
+    const gitPath = log(path(process.cwd(), ".gitignore"))
     if (!filesystem.exists(gitPath)) {
       filesystem.copy(path(boilerplatePath, ".gitignore"), gitPath)
     }
 
     // remove the ios and android folders if we're spinning up an Expo app
-    if (expo) await Promise.all([filesystem.removeAsync("ios"), filesystem.removeAsync("android")])
+    if (expo) {
+      await Promise.all([filesystem.removeAsync("ios"), filesystem.removeAsync("android")])
+    }
 
     // TODO: add this package to provide generators and other functionality?
     // await packager.add(`ignite-bowser@${meta.version()}`)
@@ -82,46 +84,41 @@ export default {
 
     // commit any changes
     if (parameters.options.git !== false) {
-      log(`
-        system.run:
-
-        git init;
-        git add -A;
-        git commit -m "New Ignite Bowser app";
-      `)
-      await system.run(`
-        \\rm -rf ./.git
-        git init;
-        git add -A;
-        git commit -m "New Ignite Bowser app";
-      `)
+      p(`🖥  Setting up source control`)
+      await system.run(
+        log(`
+          \\rm -rf ./.git
+          git init;
+          git add -A;
+          git commit -m "New Ignite Bowser app";
+        `),
+      )
     }
 
     // back to the original directory
-    process.chdir(cwd)
-    log(`chdir: ${cwd}`)
+    process.chdir(log(cwd))
 
     // we're done!
     const perfDuration = (new Date().getTime() - perfStart) / 10 / 100
     const androidInfo = isAndroidInstalled(toolbox)
       ? ""
       : `\n\nTo run in Android, make sure you've followed the latest react-native setup instructions at https://facebook.github.io/react-native/docs/getting-started.html before using ignite.\nYou won't be able to run ${bold(
-          "react-native run-android",
+          "npx react-native run-android",
         )} successfully until you have.`
 
-    const runInfo = expo
-      ? "yarn start"
-      : `react-native run-ios\n        react-native run-android${androidInfo}`
+    const runInfo = expo ? "yarn start" : `npx react-native run-ios\n        npx react-native run-android${androidInfo}`
 
-    const successMessage = `
-      ${red("Ignite CLI")} ignited ${yellow(projectName)} in ${gray(`${perfDuration}s`)}
-      To get started:
-        cd ${projectName}
-        ${runInfo}
-      ${cyan("Need additional help? Join our Slack community at http://community.infinite.red.")}
-      ${bold("Now get cooking! 🍽")}
-    `
-
-    print.info(successMessage)
+    p(`\n\n`)
+    p(bold(white(`${red("Ignite CLI")} ignited ${yellow(projectName)} in ${gray(`${perfDuration}s`)}`)))
+    p(`\n`)
+    p(`To get started:`)
+    p(`  cd ${projectName}`)
+    p(`  ${runInfo}`)
+    p(`\n`)
+    p(cyan("Need additional help?"))
+    p(cyan("Join our Slack community at http://community.infinite.red."))
+    p(`\n`)
+    p(bold(white("Now get cooking! 🍽")))
+    p(`\n`)
   },
 }
