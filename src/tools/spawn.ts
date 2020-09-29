@@ -6,7 +6,7 @@ export function spawnProgress(commandLine: string, options: SpawnOptions): Promi
     const args = commandLine.split(" ")
     const spawned = require("cross-spawn")(args.shift(), args, options)
 
-    spawned.stdout.on("data", data => options.onProgress(data))
+    spawned.stdout.on("data", data => options.onProgress && options.onProgress(data))
     spawned.on("close", _ => resolve())
     spawned.on("error", err => reject(err))
   })
