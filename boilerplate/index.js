@@ -23,8 +23,7 @@ if (__DEV__) {
   }
 }
 
-// TODO: Enable these automatically if not using Expo
-// import { AppRegistry } from "react-native"
-// AppRegistry.registerComponent(APP_NAME, () => RootComponent)
+import { AppRegistry } from "react-native"
+AppRegistry.registerComponent("HelloWorld", () => RootComponent)
 
 export default RootComponent
