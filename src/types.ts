@@ -1,16 +1,6 @@
-export { GluegunCommand } from "gluegun"
+export { GluegunCommand, GluegunToolbox } from "gluegun"
 
-export type CLIType = "ignite-classic" | "react-native-cli" | "expo" | "create-react-native-app"
-
-export type Boilerplate = {
-  name: string
-  nickname: string
-  highlighted: boolean
-  description: string
-  template: string
-  cli: CLIType
-  stack?: string[]
-}
+export type CLIType = "ignite-classic" | "react-native-cli" | "expo-cli" | "create-react-native-app"
 
 export type CLIOptions = {
   cli: CLIType
