@@ -1,6 +1,7 @@
 import { GluegunToolbox } from "../types"
 import { spawnProgress } from "../tools/spawn"
 import { isAndroidInstalled } from "../tools/react-native"
+import { packager } from "../tools/packager"
 
 export default {
   run: async (toolbox: GluegunToolbox) => {
@@ -71,16 +72,30 @@ export default {
       filesystem.copy(path(boilerplatePath, ".gitignore"), gitPath)
     }
 
-    // remove the ios and android folders if we're spinning up an Expo app
+    // expo-specific changes
     if (expo) {
-      await Promise.all([filesystem.removeAsync("ios"), filesystem.removeAsync("android")])
+      // merge package.json with Expo's (if Expo)
+      const merge = require("deepmerge-json")
+      var dst = filesystem.read("package.json", "json")
+      var src = filesystem.read("package.expo.json", "json")
+      const pkgJob = filesystem.writeAsync("package.json", merge(dst, src))
+
+      // remove the ios and android folders if we're spinning up an Expo app
+      const iosJob = filesystem.removeAsync("ios")
+      const androidJob = filesystem.removeAsync("android")
+
+      // do all this concurrently for speed
+      await Promise.all([iosJob, androidJob, pkgJob])
+
+      // remove the expo-only package.json
+      filesystem.remove("package.expo.json")
+
+      p(`🧶 Unboxing NPM dependencies`)
+      await packager.install({ onProgress: log, expo: false, dev: false })
     }
 
     // TODO: add this package to provide generators and other functionality?
     // await packager.add(`ignite-bowser@${meta.version()}`)
-
-    // TODO: finish installing packages?
-    // await packager.install()
 
     // install pods
     p(`☕️ Pouring CocoaPods`)
@@ -88,7 +103,7 @@ export default {
 
     // commit any changes
     if (parameters.options.git !== false) {
-      p(`🖥  Setting up source control`)
+      p(`🖥  Powering up source control`)
       await system.run(
         log(`
           \\rm -rf ./.git

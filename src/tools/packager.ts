@@ -45,19 +45,16 @@ function install() {
 }
 
 export const packager = {
-  add: async (pkg: string, options?: PackageOptions) => {
+  add: async (pkg: string, options: PackageOptions = packageOptions) => {
     const cmd = add(pkg, options)
-    console.log(cmd)
     return spawnProgress(cmd, { onProgress: options.onProgress })
   },
-  remove: async (pkg: string, options?: PackageOptions) => {
+  remove: async (pkg: string, options: PackageOptions = packageOptions) => {
     const cmd = remove(pkg, options)
-    console.log(cmd)
     return spawnProgress(cmd, { onProgress: options.onProgress })
   },
-  install: async (options?: PackageOptions) => {
+  install: async (options: PackageOptions = packageOptions) => {
     const cmd = install()
-    console.log(cmd)
     return spawnProgress(cmd, { onProgress: options.onProgress })
   },
 }
