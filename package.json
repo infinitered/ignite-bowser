@@ -1,16 +1,20 @@
 {
   "name": "ignite-bowser",
-  "description": "Infinite Red's hot boilerplate for React Native.",
+  "version": "5.3.0",
+  "description": "Infinite Red's hottest boilerplate for React Native.",
+  "bin": {
+    "ignite-bowser": "bin/ignite-bowser"
+  },
+  "preferGlobal": true,
   "license": "MIT",
   "repository": "infinitered/ignite-bowser",
   "homepage": "https://github.com/infinitered/ignite-bowser",
-  "version": "5.3.0",
   "files": [
     "boilerplate.js",
     "boilerplate",
     "build",
-    "templates",
     "plugin.js",
+    "bin",
     "readme.md"
   ],
   "author": {
@@ -35,6 +39,34 @@
     "build": "yarn compile",
     "compile": "tsc -p .",
     "clean": "rm -rf ./build"
+  },
+  "devEngines": {
+    "node": ">=7.x",
+    "npm": ">=4.x"
+  },
+  "dependencies": {
+    "gluegun": "4.4.0"
+  },
+  "devDependencies": {
+    "@semantic-release/git": "^9.0.0",
+    "@types/jest": "^26.0.14",
+    "@types/node": "^14.11.2",
+    "@typescript-eslint/eslint-plugin": "^4.3.0",
+    "@typescript-eslint/parser": "^4.3.0",
+    "babel-eslint": "^10.0.3",
+    "eslint": "^7.10.0",
+    "eslint-config-prettier": "^6.5.0",
+    "eslint-config-standard": "^14.1.0",
+    "eslint-plugin-import": "^2.18.2",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-promise": "^4.2.1",
+    "eslint-plugin-standard": "^4.0.1",
+    "jest": "^26.4.2",
+    "npm-run-all": "4.1.5",
+    "prettier": "2.1.2",
+    "semantic-release": "^17.1.2",
+    "ts-jest": "^26.4.0",
+    "typescript": "^4.0.3"
   },
   "eslintConfig": {
     "parser": "@typescript-eslint/parser",
@@ -98,36 +130,6 @@
         }
       ]
     ]
-  },
-  "devDependencies": {
-    "@semantic-release/git": "^7.0.17",
-    "@types/jest": "^24.0.19",
-    "@types/node": "^12.12.4",
-    "@types/ramda": "0.26.36",
-    "@typescript-eslint/eslint-plugin": "^2.11.0",
-    "@typescript-eslint/parser": "^2.11.0",
-    "babel-eslint": "^10.0.3",
-    "eslint": "^6.6.0",
-    "eslint-config-prettier": "^6.5.0",
-    "eslint-config-standard": "^14.1.0",
-    "eslint-plugin-import": "^2.18.2",
-    "eslint-plugin-node": "^10.0.0",
-    "eslint-plugin-promise": "^4.2.1",
-    "eslint-plugin-standard": "^4.0.1",
-    "fs-jetpack": "^2.2.3",
-    "gluegun": "^4.0.2",
-    "jest": "^24.9.0",
-    "npm-run-all": "4.1.5",
-    "prettier": "1.18.2",
-    "semantic-release": "^15.13.28",
-    "sinon": "^7.5.0",
-    "tempy": "^0.3.0",
-    "ts-jest": "^24.1.0",
-    "typescript": "^3.6.4"
-  },
-  "dependencies": {
-    "ramda": "^0.26.1",
-    "read-pkg-up": "^7.0.0"
   },
   "jest": {
     "testPathIgnorePatterns": [

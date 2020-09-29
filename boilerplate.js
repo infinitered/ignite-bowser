@@ -1,21 +1,18 @@
 /**
  * This file is here to warn legacy Ignite CLI users that they need to
- * upgrade to the latest.
+ * use this as a standalone CLI.
  */
 export const install = async toolbox => {
   toolbox.print.warning(`
-    This version of Ignite Bowser is designed to work with Ignite CLI version 4+.
+    This version of Ignite Bowser is designed to run as a standalone CLI.
     
     Either:
     
     1. Use an older version of Ignite Bowser that works with your version of Ignite CLI
-        ignite new Foo -b ignite-bowser@5.3.0
+        npx ignite-cli new Foo -b ignite-bowser@5.3.0
       
-    2. Upgrade your version of Ignite CLI to the latest
-        yarn upgrade -g ignite-cli --latest
-        or
-        yarn remove -g ignite-cli
-        npx ignite-cli new Foo -b ignite-bowser
+    2. Run the new standalone CLI:
+        npx ignite-bowser new Foo
   `)
 
   process.exit(1)
