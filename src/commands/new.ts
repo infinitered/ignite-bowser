@@ -38,10 +38,10 @@ export default {
     // welcome everybody!
     p("\n")
     p(red("🔥 Ignite Bowser 🔥\n"))
-    p(gray(`Creating ${magenta(projectName)} using ${red("Ignite Bowser")} ${meta.version()}`))
-    p(gray(`Powered by ${red("Infinite Red")} - https://infinite.red`))
-    p(gray(`Using ${cyan(cli)}`))
-    p(gray(`──────────────────────────────────────────────\n`))
+    p(gray(` █ Creating ${magenta(projectName)} using ${red("Ignite Bowser")} ${meta.version()}`))
+    p(gray(` █ Powered by ${red("Infinite Red")} - https://infinite.red`))
+    p(gray(` █ Using ${cyan(cli)}`))
+    p(gray(` ────────────────────────────────────────────────\n`))
     p(`🔥 Igniting app`)
 
     // generate the project
@@ -81,6 +81,10 @@ export default {
 
     // TODO: finish installing packages?
     // await packager.install()
+
+    // install pods
+    p(`☕️ Pouring CocoaPods`)
+    await spawnProgress("npx pod-install", {})
 
     // commit any changes
     if (parameters.options.git !== false) {
