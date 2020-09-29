@@ -36,6 +36,7 @@
     "mobx-react-lite": "^1.4.1",
     "mobx-state-tree": "^3.14.1",
     "ramda": "0.27.1",
+    "react-native": "^0.63.2",
     "react-native-gesture-handler": "1.8.0",
     "react-native-keychain": "6.1.1",
     "react-native-localize": "^1.0.0",
