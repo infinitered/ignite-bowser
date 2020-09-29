@@ -84,17 +84,19 @@ export const install = async (toolbox: IgniteToolbox) => {
   }
 
   let includeDetox = false
-  if (isMac && !useExpo) {
-    const isCocoapodsInstalled = await system.which(`pod`)
-    if (!isCocoapodsInstalled && reactNativeVersion >= "0.60") {
-      print.error(`
-Error: Cocoapods is not installed, but is required for React Native
-0.60 or later, when not using Expo.
+  if (isMac) {
+    if (!useExpo) {
+      const isCocoapodsInstalled = await system.which(`pod`)
+      if (!isCocoapodsInstalled && reactNativeVersion >= "0.60") {
+        print.error(`
+              Error: Cocoapods is not installed, but is required for React Native
+              0.60 or later, when not using Expo.
 
-More info here: https://reactnative.dev/docs/environment-setup
-And here: https://guides.cocoapods.org/using/getting-started.html
+              More info here: https://reactnative.dev/docs/environment-setup
+              And here: https://guides.cocoapods.org/using/getting-started.html
       `)
-      process.exit(1)
+        process.exit(1)
+      }
     }
 
     const askAboutDetox = parameters.options.detox === undefined
@@ -163,8 +165,13 @@ And here: https://guides.cocoapods.org/using/getting-started.html
   filesystem.copy(`${boilerplatePath}/storybook`, `${process.cwd()}/storybook`, copyOpts)
   filesystem.copy(`${boilerplatePath}/bin`, `${process.cwd()}/bin`, copyOpts)
   includeDetox && filesystem.copy(`${boilerplatePath}/e2e`, `${process.cwd()}/e2e`, copyOpts)
+
+  if (useExpo && !includeDetox) {
+    filesystem.remove(`${process.cwd()}/bin/downloadExpoApp.sh`)
+  }
   if (!useExpo) {
     filesystem.remove(`${process.cwd()}/app/theme/fonts/index.ts`)
+    filesystem.remove(`${process.cwd()}/bin/downloadExpoApp.sh`)
   } else {
     const mocksToRemove = [
       "__snapshots__",
@@ -222,6 +229,18 @@ And here: https://guides.cocoapods.org/using/getting-started.html
     { template: "storybook/storybook.tsx.ejs", target: "storybook/storybook.tsx" },
     { template: "bin/postInstall", target: "bin/postInstall" },
   ]
+  if (includeDetox) {
+    templates.push(
+      {
+        template: "e2e/firstTest.spec.ejs",
+        target: "e2e/firstTest.spec.js",
+      },
+      {
+        template: "e2e/README.md.ejs",
+        target: "e2e/README.md",
+      },
+    )
+  }
   const templateProps = {
     name,
     igniteVersion: meta.version(),
@@ -366,6 +385,12 @@ And here: https://guides.cocoapods.org/using/getting-started.html
   const installDeps = ignite.useYarn ? "yarn" : "npm install"
   await system.run(installDeps)
 
+  // download exponent app
+  if (useExpo && includeDetox) {
+    const downloadExpoApp = ignite.useYarn ? "yarn downloadExpoApp" : "npm run downloadExpoApp"
+    await system.run(downloadExpoApp)
+  }
+
   // install dependencies for Expo
   if (useExpo) {
     ignite.log("adding Expo-compatible dependencies")
@@ -381,6 +406,7 @@ And here: https://guides.cocoapods.org/using/getting-started.html
         react-native-safe-area-view \
       `)
   }
+
   spinner.succeed(`Installed dependencies`)
 
   // run react-native link to link assets
