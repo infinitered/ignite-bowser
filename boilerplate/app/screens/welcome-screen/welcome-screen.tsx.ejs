@@ -1,9 +1,9 @@
-import React, { FunctionComponent as Component } from "react"
+import React from "react"
 import { View, Image, ViewStyle, TextStyle, ImageStyle, SafeAreaView } from "react-native"
 import { useNavigation } from "@react-navigation/native"
 import { observer } from "mobx-react-lite"
 import { Button, Header, Screen, Text, Wallpaper } from "../../components"
-import { color, spacing } from "../../theme"
+import { color, spacing, typography } from "../../theme"
 const bowserLogo = require("./bowser.png")
 
 const FULL: ViewStyle = { flex: 1 }
@@ -13,7 +13,7 @@ const CONTAINER: ViewStyle = {
 }
 const TEXT: TextStyle = {
   color: color.palette.white,
-  fontFamily: "Montserrat",
+  fontFamily: typography.primary,
 }
 const BOLD: TextStyle = { fontWeight: "bold" }
 const HEADER: TextStyle = {
@@ -75,7 +75,7 @@ const FOOTER_CONTENT: ViewStyle = {
   paddingHorizontal: spacing[4],
 }
 
-export const WelcomeScreen: Component = observer(function WelcomeScreen() {
+export const WelcomeScreen = observer(function WelcomeScreen() {
   const navigation = useNavigation()
   const nextScreen = () => navigation.navigate("demo")
 

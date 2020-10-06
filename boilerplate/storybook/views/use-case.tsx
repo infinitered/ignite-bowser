@@ -45,12 +45,13 @@ export interface UseCaseProps {
 }
 
 export function UseCase(props: UseCaseProps) {
-  const style = {
+  const style: ViewStyle = {
     ...COMPONENT,
     ...{ padding: props.noPad ? 0 : 10 },
     ...{ backgroundColor: props.noBackground ? "rgba(0,0,0,0)" : COMPONENT.backgroundColor },
     ...props.style,
   }
+
   return (
     <View style={ROOT}>
       <View style={HEADER}>

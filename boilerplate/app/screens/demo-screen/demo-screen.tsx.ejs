@@ -1,4 +1,4 @@
-import React, { FunctionComponent as Component } from "react"
+import React from "react"
 import { Image, ImageStyle, Platform, TextStyle, View, ViewStyle } from "react-native"
 import { useNavigation } from "@react-navigation/native"
 import { observer } from "mobx-react-lite"
@@ -77,9 +77,9 @@ const HINT: TextStyle = {
   marginVertical: spacing[2],
 }
 
-export const DemoScreen: Component = observer(function DemoScreen() {
+export const DemoScreen = observer(function DemoScreen() {
   const navigation = useNavigation()
-  const goBack = () => () => navigation.goBack()
+  const goBack = () => navigation.goBack()
 
   const demoReactotron = React.useMemo(
     () => async () => {

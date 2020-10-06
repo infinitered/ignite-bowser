@@ -21,7 +21,7 @@ Includes:
 
 To see it in action, check out the blog post by Robin Heinze here: [Creating a Trivia App with Ignite Bowser](https://shift.infinite.red/creating-a-trivia-app-with-ignite-bowser-part-1-1987cc6e93a1).
 
-You can also watch a [live coding demo](https://www.youtube.com/watch?v=Pb8MWkQ9GOc) at React Live Amsterdam where Jamon Holmgren codes an Ignite Bowser app in less than 30 minutes.
+You can also watch a [live coding demo](https://www.youtube.com/watch?v=OgiFKMd_TeY) at React Live Amsterdam where Jamon Holmgren codes an Ignite Bowser app in less than 30 minutes.
 
 ## Quick Start
 
@@ -68,8 +68,11 @@ Will give you information of what generators are present.
 
 This is the generator you will be using most often. There are 2 flavors:
 
-- React.FunctionComponent (i.e. "hooks enabled component")
-- Stateless function (i.e. the "classic ignite-bowser component")
+- Wrapped with mobx-react-lite's `observer` function - you need this if you
+  pass any mobx-state-tree objects as props to the component, and the component
+  will dereference properties of those objects.
+- Plain, not wrapped with `observer`. If you're only passing plain values or
+  non-MST objects, this is fine.
 
 ```
 ignite generate component awesome-component
@@ -137,6 +140,7 @@ ignite-project
 │   ├── utils
 │   ├── app.tsx
 │   ├── environment-variables.ts
+|   ├── assets/fonts/
 ├── storybook
 │   ├── views
 │   ├── index.ts
@@ -199,7 +203,7 @@ This is where your screen components will live. A screen is a React component wh
 Any services that interface with the outside world will live here (think REST APIs, Push Notifications, etc.).
 
 **theme**
-Here lives the theme for your application, including spacing, colors, and typography.
+Here lives the theme for your application, including spacing, colors, and typography. For help with adding custom fonts to your application, [check out the readme in ./assets/fonts/](./boilerplate/assets/fonts/custom-fonts.md).
 
 **utils**
 This is a great place to put miscellaneous helpers and utilities. Things like date helpers, formatters, etc. are often found here. However, it should only be used for things that are truely shared across your application. If a helper or utility is only used by a specific component or model, consider co-locating your helper with that component or model.

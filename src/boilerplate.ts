@@ -59,9 +59,7 @@ export const install = async (toolbox: IgniteToolbox) => {
     )
 
   const name = parameters.first
-  const spinner = print
-    .spin(`using the ${red("Infinite Red")} boilerplate v3 (code name 'Bowser')`)
-    .succeed()
+  const spinner = print.spin(`using the ${red("Infinite Red")} Bowser boilerplate`).succeed()
 
   let useExpo = parameters.options.expo
   const askAboutExpo = useExpo === undefined
@@ -160,6 +158,7 @@ And here: https://guides.cocoapods.org/using/getting-started.html
   const boilerplatePath = `${__dirname}/../boilerplate`
   const copyOpts = { overwrite: true, matching: "!*.ejs" }
   filesystem.copy(`${boilerplatePath}/app`, `${process.cwd()}/app`, copyOpts)
+  filesystem.copy(`${boilerplatePath}/assets`, `${process.cwd()}/assets`, copyOpts)
   filesystem.copy(`${boilerplatePath}/test`, `${process.cwd()}/test`, copyOpts)
   filesystem.copy(`${boilerplatePath}/storybook`, `${process.cwd()}/storybook`, copyOpts)
   filesystem.copy(`${boilerplatePath}/bin`, `${process.cwd()}/bin`, copyOpts)
@@ -184,20 +183,21 @@ And here: https://guides.cocoapods.org/using/getting-started.html
 
   const templates = [
     { template: "index.js.ejs", target: useExpo ? "App.js" : "index.js" },
-    { template: "README.md", target: "README.md" },
+    { template: "README.md.ejs", target: "README.md" },
     { template: ".gitignore.ejs", target: ".gitignore" },
     { template: ".env.example", target: ".env" },
     { template: ".prettierignore", target: ".prettierignore" },
     { template: ".solidarity", target: ".solidarity" },
     { template: "babel.config.js", target: "babel.config.js" },
     { template: "react-native.config.js", target: "react-native.config.js" },
-    { template: "tsconfig.json", target: "tsconfig.json" },
+    { template: "tsconfig.json.ejs", target: "tsconfig.json" },
     { template: "app/app.tsx.ejs", target: "app/app.tsx" },
     { template: "app/i18n/i18n.ts.ejs", target: "app/i18n/i18n.ts" },
     {
       template: "app/services/reactotron/reactotron.ts.ejs",
       target: "app/services/reactotron/reactotron.ts",
     },
+    { template: "app/utils/ignore-warnings.ts.ejs", target: "app/utils/ignore-warnings.ts" },
     { template: "app/utils/storage/storage.ts.ejs", target: "app/utils/storage/storage.ts" },
     {
       template: "app/utils/storage/storage.test.ts.ejs",

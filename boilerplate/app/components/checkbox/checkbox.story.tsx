@@ -38,7 +38,7 @@ storiesOf("Checkbox", module)
           {({ on, toggle }) => (
             <View>
               <Checkbox
-                text="We’re an App Design & Development Team. Experts in mobile & web technologies. We create beautiful, functional mobile apps and websites. "
+                text="We’re an App Design & Development Team. Experts in mobile & web technologies. We create beautiful, functional mobile apps and websites."
                 value={on}
                 multiline
                 onToggle={toggle}

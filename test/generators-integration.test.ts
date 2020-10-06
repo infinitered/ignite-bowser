@@ -57,46 +57,31 @@ describe("a generated app", () => {
     )
   })
 
-  test("generates a stateless function", async () => {
-    const statelessFunction = "Stateless"
-    await execaShell(`${IGNITE_COMMAND} g component ${statelessFunction} --stateless-function`, {
+  test("generates an observed component", async () => {
+    await execaShell(`${IGNITE_COMMAND} g component observed-thing --observer`, {
       preferLocal: false,
     })
-    expect(jetpack.exists(`app/components/${statelessFunction}/${statelessFunction}.tsx`)).toBe(
-      "file",
-    )
-    expect(
-      jetpack.exists(`app/components/${statelessFunction}/${statelessFunction}.story.tsx`),
-    ).toBe("file")
-    expect(
-      jetpack.exists(`app/components/${statelessFunction}/${statelessFunction}.styles.ts`),
-    ).toBe("file")
+    expect(jetpack.exists(`app/components/observed-thing/observed-thing.tsx`)).toBe("file")
+    expect(jetpack.exists(`app/components/observed-thing/observed-thing.story.tsx`)).toBe("file")
     const lint = await execa("npm", ["-s", "run", "lint"])
     expect(lint.stderr).toBe("")
   })
 
-  test("generates a function component", async () => {
-    const functionComponent = "FunctionComponent"
-    await execaShell(`${IGNITE_COMMAND} g component ${functionComponent} --function-component`, {
+  test("generates a plain component", async () => {
+    await execaShell(`${IGNITE_COMMAND} g component UnobservedThing --no-observer`, {
       preferLocal: false,
     })
-    expect(jetpack.exists(`app/components/${functionComponent}/${functionComponent}.tsx`)).toBe(
+    expect(jetpack.exists(`app/components/unobserved-thing/unobserved-thing.tsx`)).toBe("file")
+    expect(jetpack.exists(`app/components/unobserved-thing/unobserved-thing.story.tsx`)).toBe(
       "file",
     )
-    expect(
-      jetpack.exists(`app/components/${functionComponent}/${functionComponent}.story.tsx`),
-    ).toBe("file")
-    expect(
-      jetpack.exists(`app/components/${functionComponent}/${functionComponent}.styles.ts`),
-    ).toBe("file")
     const lint = await execa("npm", ["-s", "run", "lint"])
     expect(lint.stderr).toBe("")
   })
 
   test("generates a screen", async () => {
-    const simpleScreen = "test"
-    await execaShell(`${IGNITE_COMMAND} g screen ${simpleScreen}`, { preferLocal: false })
-    expect(jetpack.exists(`app/screens/${simpleScreen}-screen.tsx`)).toBe("file")
+    await execaShell(`${IGNITE_COMMAND} g screen TestScreen`, { preferLocal: false })
+    expect(jetpack.exists(`app/screens/test-screen/test-screen.tsx`)).toBe("file")
     const lint = await execa("npm", ["-s", "run", "lint"])
     expect(lint.stderr).toBe("")
   })
