@@ -78,7 +78,7 @@
     "@typescript-eslint/eslint-plugin": "^2.27.0",
     "@typescript-eslint/parser": "^2.27.0",
 <% if (props.includeDetox) { -%>
-    "detox": "^16.0.0",
+    "detox": "^17.8.3",
 <% } -%>
     "eslint": "^6.8.0",
     "eslint-config-prettier": "^6.0.0",
@@ -148,13 +148,13 @@
     "configurations": {
       "ios.sim.debug": {
         "binaryPath": "ios/build/Build/Products/Debug-iphonesimulator/<%= props.name %>.app",
-        "build": "xcodebuild -workspace ios/<%= props.name %>.xcworkspace -scheme <%= props.name %> -configuration Debug -sdk iphonesimulator -derivedDataPath ios/build -UseModernBuildSystem=NO",
+        "build": "xcodebuild -workspace ios/<%= props.name %>.xcworkspace -scheme <%= props.name %> -configuration Debug -sdk iphonesimulator -derivedDataPath ios/build -destination 'name=iPhone 11'",
         "type": "ios.simulator",
         "name": "iPhone 8"
       },
       "ios.sim.release": {
         "binaryPath": "ios/build/Build/Products/Release-iphonesimulator/<%= props.name %>.app",
-        "build": "xcodebuild -workspace ios/<%= props.name %>.xcworkspace -scheme <%= props.name %> -configuration Release -sdk iphonesimulator -derivedDataPath ios/build -UseModernBuildSystem=NO",
+        "build": "xcodebuild -workspace ios/<%= props.name %>.xcworkspace -scheme <%= props.name %> -configuration Release -sdk iphonesimulator -derivedDataPath ios/build -destination 'name=iPhone 11'",
         "type": "ios.simulator",
         "name": "iPhone 8"
       }
