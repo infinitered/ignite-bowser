@@ -3,7 +3,7 @@ import { Instance, SnapshotOut, types } from "mobx-state-tree"
 /**
  * Model description here for TypeScript hints.
  */
-export const <%= props.pascalName %> = types
+export const <%= props.pascalName %>Model = types
   .model("<%= props.pascalName %>")
   .props({})
   .views(self => ({})) // eslint-disable-line @typescript-eslint/no-unused-vars
@@ -17,7 +17,7 @@ export const <%= props.pascalName %> = types
   *  .postProcessSnapshot(omit(["password", "socialSecurityNumber", "creditCardNumber"]))
   */
 
-type <%= props.pascalName %>Type = Instance<typeof <%= props.pascalName %>>
+type <%= props.pascalName %>Type = Instance<typeof <%= props.pascalName %>Model>
 export interface <%= props.pascalName %> extends <%= props.pascalName %>Type {}
-type <%= props.pascalName %>SnapshotType = SnapshotOut<typeof <%= props.pascalName %>>
+type <%= props.pascalName %>SnapshotType = SnapshotOut<typeof <%= props.pascalName %>Model>
 export interface <%= props.pascalName %>Snapshot extends <%= props.pascalName %>SnapshotType {}

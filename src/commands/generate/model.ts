@@ -14,7 +14,7 @@ export const run = async function(toolbox: GluegunToolbox) {
   }
 
   // get permutations of the given model name
-  const givenName = parameters.first
+  const givenName = parameters.first.includes("-model") ? parameters.first.replace("-model", "") : parameters.first
   const name = kebabCase(givenName)
   const pascalName = pascalCase(givenName)
   const camelName = camelCase(givenName)
