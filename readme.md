@@ -21,7 +21,7 @@ Includes:
 
 To see it in action, check out the blog post by Robin Heinze here: [Creating a Trivia App with Ignite Bowser](https://shift.infinite.red/creating-a-trivia-app-with-ignite-bowser-part-1-1987cc6e93a1).
 
-You can also watch a [live coding demo](https://www.youtube.com/watch?v=OgiFKMd_TeY) at React Live Amsterdam where Jamon Holmgren codes an Ignite Bowser app in less than 30 minutes.
+You can also watch a [live coding demo](https://www.youtube.com/watch?v=OgiFKMd_TeY) at React Live Amsterdam, where Jamon Holmgren codes an Ignite Bowser app in less than 30 minutes.
 
 ## Quick Start
 
@@ -62,11 +62,11 @@ The true gem of Ignite Bowser. Generators help you scaffold your app very quickl
 ignite generate
 ```
 
-Will give you information of what generators are present.
+Will give you information on what generators are present.
 
 ### Component generator
 
-This is the generator you will be using most often. There are 2 flavors:
+This is the generator you will be using most often. There are two flavors:
 
 - Wrapped with mobx-react-lite's `observer` function - you need this if you
   pass any mobx-state-tree objects as props to the component, and the component
@@ -119,7 +119,7 @@ ignite generate model awesome-model
 
 ### Advanced
 
-The built in generators aren't enough? Fret not, you can create your own generators that suit your project/company. These generators can live with the default ignite-bowser generators.
+The built-in generators aren't enough? Fret not, you can create your own generators that suit your project/company. These generators can live with the default ignite-bowser generators.
 
 Please refer to the [documentation on how to create your own generators.](https://github.com/infinitered/ignite/blob/master/docs/advanced-guides/creating-generators.md)
 
@@ -183,13 +183,13 @@ app
 ```
 
 **components**
-This is where your React dumb components will live. Each component will have a directory containing the `.tsx` file, along with a story file, and optionally `.presets`, and `.props` files for larger components. The app will come with some commonly used components like Button.
+This is where your React dumb components will live. Each component will have a directory containing the `.tsx` file, along with a story file, and optionally `.presets` and `.props` files for larger components. The app will come with some commonly used components like Button.
 
 **i18n**
 This is where your translations will live if you are using `react-native-i18n`.
 
 **models**
-This is where your app's models will live. Each model has a directory which will contain the `mobx-state-tree` model file, test file, and any other supporting files like actions, types, etc. There's also an extensions directory with useful shared extensions that you can include in your models like `.extend(withRootStore)` or `.extend(withEnvironment)` to access the root store or environment respectively.
+This is where your app's models will live. Each model has a directory that will contain the `mobx-state-tree` model file, test file, and any other supporting files like actions, types, etc. There's also an extensions directory with useful shared extensions that you can include in your models like `.extend(withRootStore)` or `.extend(withEnvironment)` to access the root store or environment, respectively.
 
 **navigation**
 This is where your `react-navigation` navigators will live.
@@ -197,7 +197,7 @@ This is where your `react-navigation` navigators will live.
 For a walkthrough about how React Navigation v5 works, check out Harris Robin's post: [Getting Started with the New React Navigation v5 and Ignite Bowser v5](https://shift.infinite.red/getting-started-with-the-new-react-navigation-v5-and-ignite-bowser-v5-31fb4a57f2b9).
 
 **screens**
-This is where your screen components will live. A screen is a React component which will take up the entire screen and be part of the navigation hierarchy. Each screen will have a directory containing the `.tsx` file, along with any assets or other helper files.
+This is where your screen components will live. A screen is a React component that will take up the entire screen and be part of the navigation hierarchy. Each screen will have a directory containing the `.tsx` file, along with any assets or other helper files.
 
 **services**
 Any services that interface with the outside world will live here (think REST APIs, Push Notifications, etc.).
@@ -206,9 +206,9 @@ Any services that interface with the outside world will live here (think REST AP
 Here lives the theme for your application, including spacing, colors, and typography. For help with adding custom fonts to your application, [check out the readme in ./assets/fonts/](./boilerplate/assets/fonts/custom-fonts.md).
 
 **utils**
-This is a great place to put miscellaneous helpers and utilities. Things like date helpers, formatters, etc. are often found here. However, it should only be used for things that are truely shared across your application. If a helper or utility is only used by a specific component or model, consider co-locating your helper with that component or model.
+This is a great place to put miscellaneous helpers and utilities. Things like date helpers, formatters, etc. are often found here. However, it should only be used for things that are truly shared across your application. If a helper or utility is only used by a specific component or model, consider co-locating your helper with that component or model.
 
-**app.tsx** This is the entry point to your app. This is where you will find the main App component which renders the rest of the application. This is also where you will specify whether you want to run the app in storybook mode.
+**app.tsx** This is the entry point to your app. This is where you will find the main App component, which renders the rest of the application. This is also where you will specify whether you want to run the app in storybook mode.
 
 ### ./ignite directory
 
@@ -216,7 +216,7 @@ The `ignite` directory stores all things Ignite, including CLI and boilerplate i
 
 ### ./storybook directory
 
-This is where your stories will be registered and where the Storybook configs will live
+This is where your stories will be registered and where the Storybook configs will live.
 
 ### ./test directory
 
@@ -226,7 +226,7 @@ This directory will hold your Jest configs and mocks, as well as your [storyshot
 
 ## Why this stack?
 
-If you've used Ignite Andross (the first Ignite stack), you know we formerly used Redux for state management, as does much of the community. However, we encountered some pain points with Redux so went in search of a different solution to meet our needs and landed on `mobx-state-tree`. We find that it’s a great middle-ground between completely structured (like `redux`) and completely freestyle (like `mobx`). It brings more than just state-management to the table as well (such as dependency injection, serialization, and lifecycle events).
+If you've used Ignite Andross (the first Ignite stack), you know we formerly used Redux for state management, as does much of the community. However, we encountered some pain points with Redux so we went in search of a different solution to meet our needs and landed on `mobx-state-tree`. We find that it’s a great middle-ground between completely structured (like `redux`) and completely freestyle (like `mobx`). It brings more than just state-management to the table as well (such as dependency injection, serialization, and lifecycle events).
 
 ### Some Highlights of MST
 
@@ -259,8 +259,8 @@ We also recognize no state management solution is perfect. MST has some known do
 - Integration with TypeScript is clunky at times. MST's own typing system is sometimes at odds with what TypeScript wants
 - `mobx` and `mobx-state-tree` both seem to have "magic" or "sorcery" that makes issues less straightforward to debug because you don't always have a clear picture of what's happening (but using [Reactotron](https://github.com/infinitered/reactotron), which has `mobx-state-tree` support built-in, helps a lot). The [MobX docs](https://mobx.js.org/) can also help illumitate some of the magic.
 - The user base is small, so finding help on GitHub or Stack overflow is less convenient (however, the [Infinite Red Slack Community](http://community.infinite.red), as well as the [MobX State Tree Spectrum channel](https://spectrum.chat/mobx-state-tree) are both very helpful)
-- Fatal errors are sometimes too-easily triggered and error messages can be verbose and hard to grok
-- The API has a large surface area and the docs tend to be technical and unfriendly
+- Fatal errors are sometimes too-easily triggered, and error messages can be verbose and hard to grok
+- The API has a large surface area and, the docs tend to be technical and unfriendly
 
 ## Learning MobX State Tree
 
@@ -274,11 +274,11 @@ MobX and MobX State Tree can be a lot to learn if you're coming from Redux, so h
 
 - And for more in-depth reading, the [official documentation](https://github.com/mobxjs/mobx-state-tree/blob/master/README.md) is a great resource.
 
-- The official docs for [MobX](https://mobx.js.org/) are another important resource, since MST is built on MobX.
+- The official docs for [MobX](https://mobx.js.org/) are another important resource since MST is built on MobX.
 
 - For help from real people in the community, make sure to check out the [Infinite Red Community Slack](https://community.infinite.red) as well as the [MobX State Tree spectrum channel](https://spectrum.chat/mobx-state-tree).
 
-- To see example code bases using Bowser (and MST), check out these repositories:
+- To see example codebases using Bowser (and MST), check out these repositories:
 - https://github.com/jamonholmgren/PlayerPopularity (simple implementation)
 - https://github.com/jamonholmgren/TrailBlazers (simple implementation with hooks)
 - https://github.com/infinitered/ChainReactApp2019 (more in-depth implementation)
@@ -287,7 +287,7 @@ MobX and MobX State Tree can be a lot to learn if you're coming from Redux, so h
 
 To keep your React Native app updated:
 
-- [React Native Upgrade Helper](https://react-native-community.github.io/upgrade-helper/) great web based tool
+- [React Native Upgrade Helper](https://react-native-community.github.io/upgrade-helper/) great web-based tool
 - [rn-diff-purge](https://github.com/react-native-community/rn-diff-purge)
 
 To keep your Ignite Bowser based app updated:
@@ -296,7 +296,7 @@ To keep your Ignite Bowser based app updated:
 
 ## TypeScript
 
-In addition to `redux` --> `mobx-state-tree`, we've also transitioned to using `TypeScript` vs plain `JavaScript`. We find that TypeScript streamlines the developer experience by catching errors _before_ you hit refresh on that simulator, and prevents costly bugs by enforcing type safety.
+In addition to `redux` --> `mobx-state-tree`, we've also transitioned to using `TypeScript` vs plain `JavaScript`. We find that TypeScript streamlines the developer experience by catching errors _before_ you hit refresh on that simulator and prevents costly bugs by enforcing type safety.
 
 In Bowser, TypeScript is fully set up, so if you know TS, all you need to do is start coding!
 
@@ -317,7 +317,7 @@ If you are new to TypeScript, here are some of our favorite resources:
 
 ## Premium Support
 
-[Ignite CLI](https://infinite.red/ignite), [Ignite Andross](https://github.com/infinitered/ignite-andross), and [Ignite Bowser](https://github.com/infinitered/ignite-bowser), as open source projects, are free to use and always will be. [Infinite Red](https://infinite.red/) offers premium Ignite CLI support and general mobile app design/development services. Email us at [hello@infinite.red](mailto:hello@infinite.red) to get in touch with us for more details.
+[Ignite CLI](https://infinite.red/ignite), [Ignite Andross](https://github.com/infinitered/ignite-andross), and [Ignite Bowser](https://github.com/infinitered/ignite-bowser), as open-source projects, are free to use and always will be. [Infinite Red](https://infinite.red/) offers premium Ignite CLI support and general mobile app design/development services. Email us at [hello@infinite.red](mailto:hello@infinite.red) to get in touch with us for more details.
 
 ## Contribute
 
