@@ -4,7 +4,7 @@ import { IgniteToolbox, IgniteRNInstallResult } from "./types"
 import { expo } from "./lib/expo"
 
 // We need this value here, as well as in our package.json.ejs template
-const REACT_NATIVE_GESTURE_HANDLER_VERSION = "^1.5.0"
+const REACT_NATIVE_GESTURE_HANDLER_VERSION = "^1.8.0"
 
 /**
  * Is Android installed?
