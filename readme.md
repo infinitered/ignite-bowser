@@ -36,9 +36,9 @@ Prerequisites:
 First, install Ignite CLI globally:
 
 ```
-npm install -g ignite-cli
+npm install -g ignite-cli@3
 # or
-yarn global add ignite-cli
+yarn global add ignite-cli@3
 ```
 
 **Note:**
@@ -317,10 +317,9 @@ If you are new to TypeScript, here are some of our favorite resources:
 - [2017 aka Andross](https://github.com/infinitered/ignite-andross)
 - [2016 aka Ignite 1.0](https://github.com/infinitered/ignite-ir-boilerplate-2016)
 
-## Premium Support
-
-[Ignite CLI](https://infinite.red/ignite), [Ignite Andross](https://github.com/infinitered/ignite-andross), and [Ignite Bowser](https://github.com/infinitered/ignite-bowser), as open-source projects, are free to use and always will be. [Infinite Red](https://infinite.red/) offers premium Ignite CLI support and general mobile app design/development services. Email us at [hello@infinite.red](mailto:hello@infinite.red) to get in touch with us for more details.
-
 ## Contribute
 
 #### [Contribute to Ignite Bowser](https://github.com/infinitered/ignite-bowser/blob/master/.github/CONTRIBUTING.md) - Getting up and running for your first pull request
+
+_Bowser is now [re-integrated](https://github.com/infinitered/ignite/releases/tag/v4.0.0) into Ignite CLI as of version 4.0.0! Head to https://github.com/infinitered/ignite to check it out. This version will continue to work on Ignite 3.x and be supported by the community._
+
