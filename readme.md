@@ -6,6 +6,8 @@
 
 ## Infinite Red's latest and greatest React Native boilerplate
 
+_**Important note:** Bowser is now [re-integrated](https://github.com/infinitered/ignite/releases/tag/v4.0.0) into Ignite CLI as of version 4.0.0! Head to https://github.com/infinitered/ignite to check it out. This version will continue to work on Ignite 3.x and be supported by the community._
+
 Once you've installed [React Native](https://shift.infinite.red/painless-react-native-setup-for-mac-windows-linux-956c23d2abf9) and the [Ignite CLI](https://github.com/infinitered/ignite), you can get started with this boilerplate.
 
 This is the boilerplate that the [Infinite Red](https://infinite.red) team recommends and uses on a day-to-day basis. Prior art includes [Ignite Andross](https://github.com/infinitered/ignite-andross).
