@@ -1,3 +1,9 @@
+## Why is this archived?
+
+We really appreciate all the community support in the years since we first released ignite-bowser. Our focus has shifted to the latest version of [Ignite](https://github.com/infinitered/ignite), which includes the latest version of our boilerplate. Feel free to fork this library and continue on its legacy if you want. 
+
+NOTE: This repo has been renamed from ignite-ir-boilerplate-bowser to ignite-bowser. Although web traffic and git operations for the previous name will be redirected, we recommend you update any links and git urls for this repo.
+
 <p align="center"><img src="http://ir_public.s3.amazonaws.com/projects/ignite/ignite-bowser-launch-screen.png" alt="logo" width="414px"></p>
 
 # Ignite Bowser - the hottest React Native boilerplate
